@@ -9,15 +9,15 @@ from aiseg import modify
 
 
 def create_synthetic_documents():
-    template_directory_path = Path('../../juzo_templates_and_bbas/templates/')
-    output_directory_path = Path('../../juzo_templates_and_bbas/output/')
+    template_directory_path = Path('../../dataset/templates/')
+    output_directory_path = Path('../../dataset/output/')
     # crop_images_directory_path = Path('D:/Projects/MNISTExtractor/Code/mnist_png/data/output/training/0')
-    crop_images_directory_path = Path('../../juzo_templates_and_bbas/crops/')
+    crop_images_directory_path = Path('../../dataset/crops/')
     visual_object_classes = ['http://ai4bd.com/resource/cdm/juzo/numeric', 'http://ai4bd.com/resource/cdm/juzo/alpha']
     number_of_samples_per_template = 1
 
-    print(path.exists('../../juzo_templates_and_bbas/templates/'))
-    print(path.exists('../../juzo_templates_and_bbas/output/'))
+    print(path.exists('../../dataset/templates/'))
+    print(path.exists('../../dataset/output/'))
 
     modify.create_synthetic_samples(template_directory_path, output_directory_path,
                                     crop_images_directory_path, visual_object_classes,
