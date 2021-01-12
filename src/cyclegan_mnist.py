@@ -1,3 +1,6 @@
+# Reference 
+# https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/
+
 # example of training a gan on mnist
 from numpy import expand_dims
 from numpy import zeros

@@ -1,3 +1,8 @@
+# Reference
+# https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/
+
+
+
 # example of defining and using the generator model
 from numpy import zeros
 from numpy.random import randn

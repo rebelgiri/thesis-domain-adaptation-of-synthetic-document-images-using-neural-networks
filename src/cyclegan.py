@@ -1,3 +1,9 @@
+# Reference 
+# https://machinelearningmastery.com/cyclegan-tutorial-with-keras/
+
+
+
+
 from keras.optimizers import Adam
 from keras.models import Model
 from keras.models import Input
