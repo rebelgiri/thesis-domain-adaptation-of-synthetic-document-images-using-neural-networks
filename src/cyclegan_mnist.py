@@ -1,6 +1,3 @@
-# Reference 
-# https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/
-
 # example of training a gan on mnist
 from numpy import expand_dims
 from numpy import zeros
@@ -34,7 +31,7 @@ def define_discriminator(in_shape=(28, 28, 1)):
     model.add(Dense(1, activation='sigmoid'))
     # compile model
     opt = Adam(lr=0.0002, beta_1=0.5)
-    model.compile(loss='binary_crossentropy', optimizer=opt, metrics=['accuracy'])
+    model.compile(loss='mse', optimizer=opt, metrics=['accuracy'])
     return model
 
 
@@ -68,7 +65,7 @@ def define_gan(g_model, d_model):
     model.add(d_model)
     # compile model
     opt = Adam(lr=0.0002, beta_1=0.5)
-    model.compile(loss='binary_crossentropy', optimizer=opt)
+    model.compile(loss='mse', optimizer=opt)
     return model
 
 
