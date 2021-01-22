@@ -1,7 +1,7 @@
 # Reference 
 # https://machinelearningmastery.com/cyclegan-tutorial-with-keras/
 
-
+import tensorflow as tf
 from keras.optimizers import Adam
 from keras.initializers import RandomNormal
 from keras.models import Model
@@ -28,6 +28,8 @@ from numpy import ones
 from numpy import asarray
 from matplotlib import pyplot
 from random import random
+import os
+import time
 
 
 # example of defining a 70x70 patchgan discriminator model
@@ -228,6 +230,96 @@ def train(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_mode
             i + 1, dA_loss1, dA_loss2, dB_loss1, dB_loss2, g_loss1, g_loss2))
 
 
+BUFFER_SIZE = 1000
+BATCH_SIZE = 1
+IMG_WIDTH = 256
+IMG_HEIGHT = 256
+
+
+def random_crop(image):
+  cropped_image = tf.image.random_crop(
+      image, size=[IMG_HEIGHT, IMG_WIDTH, 3])
+
+  return cropped_image
+
+# normalizing the images to [-1, 1]
+def normalize(image):
+  image = tf.cast(image, tf.float32)
+  image = (image / 127.5) - 1
+  return image
+
+def random_jitter(image):
+  # resizing to 286 x 286 x 3
+    image = tf.image.resize(image, [286, 286],
+                          method=tf.image.ResizeMethod.NEAREST_NEIGHBOR,
+                          preserve_aspect_ratio=False)
+
+    plt.imshow(np.asarray(image))
+    plt.savefig('image_after_resizing.png')
+    # randomly cropping to 256 x 256 x 3
+    image = random_crop(image)
+
+    plt.imshow(np.asarray(image))
+    plt.savefig('image_after_cropping.png')
+
+    # random mirroring
+    image = tf.image.random_flip_left_right(image)
+    plt.imshow(np.asarray(image))
+    plt.savefig('image_after_random_mirroring.png')
+
+    return image
+
+def convert_image_in_rgb(image):
+
+    # Convert into RGB image(3D) only if image is a Gray scale image (2D)
+    image = Image.open(image)
+    number_of_dimetions = len(image.size)
+    if(2 == number_of_dimetions):
+        image = image.convert('RGB')
+        image = np.asarray(image)
+
+    return image    
+
+def preprocess_train_images(image):
+
+  image = convert_image_in_rgb(image)
+  image = random_jitter(image)
+  image = normalize(image)
+
+  return image
+
+def preprocess_test_images(image):
+  image = convert_image_in_rgb(image)
+  image = normalize(image)
+  return image  
+
+   
+
+def load_dataset(path):
+
+    print('load data set')
+     # preprocess images
+    train = []
+    train_cleaned = []
+    test = []
+
+    if not os.path.exists(path):
+        print('Path of the file is Invalid')
+
+    for f in sorted(os.listdir(path + 'train/')):
+        train.append(preprocess_train_images(path + 'train/' + f))
+
+    for f in sorted(os.listdir(path + 'train_cleaned/')):
+        train_cleaned.append(preprocess_train_images(path + 'train_cleaned/' + f))
+   
+    for f in sorted(os.listdir(path + 'test/')):
+        test.append(preprocess_test_images(path + 'test/' + f))
+
+    train = np.asarray(train)
+    train_cleaned = np.asarray(train_cleaned)
+    return [train, train_cleaned]
+
+
 # create the model
 # model = define_generator()
 # summarize the model
@@ -260,5 +352,7 @@ c_model_AtoB = define_composite_model(g_model_AtoB, d_model_B, g_model_BtoA, ima
 # composite: B -> A -> [real/fake, B]
 c_model_BtoA = define_composite_model(g_model_BtoA, d_model_A, g_model_AtoB, image_shape)
 
-dataset = ...
+
+path = '/home/giriraj/giri/data/'
+dataset = load_dataset(path)
 train(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_model_BtoA, dataset)
