@@ -17,12 +17,16 @@ def normalize(image):
 
 def preprocess_test_images(image):
     print(image)
-    image = convert_image_in_rgb(image)
+    
+    
+    
+    
+    # image = convert_image_in_rgb(image)
     # resizing to 256 x 256 x 3
-    image = tf.image.resize(image, [256, 256],
+    # image = tf.image.resize(image, [256, 256],
                           method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
-    image = normalize(image)
-    return image  
+    # image = normalize(image)
+    # return image  
 
 def convert_image_in_rgb(image):
     # Convert into RGB image(3D) only if image is a Gray scale image (2D)
@@ -46,30 +50,27 @@ def save_plot(examples, n):
         pyplot.savefig('Results_From_ResNet_Generator.png')
     pyplot.close()
 
-
+ # Load and preprocess test data set images
 def load_test_data_set(path):
-
-    print('Start function test load dataset')
-    # preprocess images
+    print('Start: Load and preprocess test data set images')
     test_data_set = []
-   
     for f in os.listdir(path + 'test/'):
         test_data_set.append(preprocess_test_images(path + 'test/' + f))
 
     test_data_set = np.asarray(test_data_set)
     print(test_data_set.shape)
-    print('End function load test data set')
+    print('End: Load and preprocess test data set images')
     return test_data_set
 
 # load model
 
-model = load_model('generator_model_g_model_AtoB_050.h5', 
-custom_objects={'InstanceNormalization':keras_contrib.layers.normalization.instancenormalization})
+# model = load_model('/home/giriraj/thesis-domain-adaptation-of-synthetic-generated-documents/thesis-domain-adaptation-of-synthetic-generated-documents/src/CycleGAN_RESNET_Results_26_01_21/generator_model_g_model_AtoB_050.h5', 
+# custom_objects={'InstanceNormalization':InstanceNormalization})
 
 path = '/home/giriraj/giri/data/'
 test_data_set = load_test_data_set(path)
 
 # generate images
-X = model.predict(test_data_set)
+# X = model.predict(test_data_set)
 # plot the result
-save_plot(X, 5)
+# save_plot(X, 5)
