@@ -11,6 +11,11 @@ import time
 import matplotlib.pyplot as plt
 from IPython.display import clear_output
 
+
+import os
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+
 AUTOTUNE = tf.data.AUTOTUNE
 
 def random_crop(image):

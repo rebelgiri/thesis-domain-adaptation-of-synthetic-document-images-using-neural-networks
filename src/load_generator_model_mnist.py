@@ -2,7 +2,7 @@
 from keras.models import load_model
 from numpy.random import randn
 from matplotlib import pyplot
-
+import os
 
 # generate points in latent space as input for the generator
 def generate_latent_points(latent_dim, n_samples):
@@ -23,13 +23,19 @@ def save_plot(examples, n):
         pyplot.axis('off')
         # plot raw pixel data
         pyplot.imshow(examples[i, :, :, 0], cmap='gray_r')
-    pyplot.show()
+        pyplot.savefig('Results_From_MNIST_data_Generator.png')
+
+    pyplot.close()
 
 
 # load model
-model = load_model('generator_model_100.h5')
+isExist = os.path.exists('/home/giriraj/thesis-domain-adaptation-of-synthetic-generated-documents/thesis-domain-adaptation-of-synthetic-generated-documents/src/results/generator_model_100.h5') 
+print(isExist) 
+
+model = load_model('/home/giriraj/thesis-domain-adaptation-of-synthetic-generated-documents/thesis-domain-adaptation-of-synthetic-generated-documents/src/results/generator_model_100.h5')
 # generate images
 latent_points = generate_latent_points(100, 25)
+
 # generate images
 X = model.predict(latent_points)
 # plot the result

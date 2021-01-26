@@ -31,7 +31,7 @@ def define_discriminator(in_shape=(28, 28, 1)):
     model.add(Dense(1, activation='sigmoid'))
     # compile model
     opt = Adam(lr=0.0002, beta_1=0.5)
-    model.compile(loss='mse', optimizer=opt, metrics=['accuracy'])
+    model.compile(loss='binary_crossentropy', optimizer=opt, metrics=['accuracy'])
     return model
 
 

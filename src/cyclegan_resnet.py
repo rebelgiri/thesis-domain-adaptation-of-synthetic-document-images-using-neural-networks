@@ -1,5 +1,6 @@
 # Reference 
 # https://machinelearningmastery.com/cyclegan-tutorial-with-keras/
+# https://www.tensorflow.org/tutorials/generative/cyclegan
 
 import tensorflow as tf
 from keras.optimizers import Adam
@@ -15,7 +16,6 @@ from keras_contrib.layers.normalization.instancenormalization import InstanceNor
 from keras.utils.vis_utils import plot_model
 from keras.initializers import RandomNormal
 from keras.layers import Conv2DTranspose
-# import cv2
 import glob
 import numpy as np
 import zipfile
@@ -31,6 +31,7 @@ from random import random
 import os
 import time
 
+# pip install git+https://www.github.com/keras-team/keras-contrib.git
 
 # example of defining a 70x70 patchgan discriminator model
 # define the discriminator model
@@ -66,7 +67,6 @@ def define_discriminator(image_shape):
     model.compile(loss='mse', optimizer=Adam(lr=0.0002, beta_1=0.5), loss_weights=[0.5])
     return model
 
-
 # generator a resnet block
 def resnet_block(n_filters, input_layer):
     # weight initialization
@@ -81,7 +81,6 @@ def resnet_block(n_filters, input_layer):
     # concatenate merge channel-wise with input layer
     g = Concatenate()([g, input_layer])
     return g
-
 
 # example of an encoder-decoder generator for the cyclegan
 # define the standalone generator model
@@ -121,7 +120,6 @@ def define_generator(image_shape=(256, 256, 3), n_resnet=9):
     model = Model(in_image, out_image)
     return model
 
-
 # define a composite model for updating generators by adversarial and cycle loss
 def define_composite_model(g_model_1, d_model, g_model_2, image_shape):
     # ensure the model we're updating is trainable
@@ -150,7 +148,6 @@ def define_composite_model(g_model_1, d_model, g_model_2, image_shape):
     model.compile(loss=['mse', 'mae', 'mae', 'mae'], loss_weights=[1, 5, 10, 10], optimizer=opt)
     return model
 
-
 # select a batch of random samples, returns images and target
 def generate_real_samples(dataset, n_samples, patch_shape):
     # choose random instances
@@ -161,7 +158,6 @@ def generate_real_samples(dataset, n_samples, patch_shape):
     y = ones((n_samples, patch_shape, patch_shape, 1))
     return X, y
 
-
 # generate a batch of images, returns images and targets
 def generate_fake_samples(g_model, dataset, patch_shape):
     # generate fake instance
@@ -169,7 +165,6 @@ def generate_fake_samples(g_model, dataset, patch_shape):
     # create 'fake' class labels (0)
     y = zeros((len(X), patch_shape, patch_shape, 1))
     return X, y
-
 
 # update image pool for fake images
 def update_image_pool(pool, images, max_size=50):
@@ -189,11 +184,10 @@ def update_image_pool(pool, images, max_size=50):
             pool[ix] = image
     return asarray(selected)
 
-
 # train cyclegan models
 def train(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_model_BtoA, dataset):
     # define properties of the training run
-    n_epochs, n_batch, = 100, 1
+    n_epochs, n_batch, = 50, 1
     # determine the output square shape of the discriminator
     n_patch = d_model_A.output_shape[1]
     # unpack dataset
@@ -203,74 +197,116 @@ def train(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_mode
     # calculate the number of batches per training epoch
     bat_per_epo = int(len(trainA) / n_batch)
     # calculate the number of training iterations
-    n_steps = bat_per_epo * n_epochs
+    # n_steps = bat_per_epo * n_epochs
     # manually enumerate epochs
-    for i in range(n_steps):
-        # select a batch of real samples
-        X_realA, y_realA = generate_real_samples(trainA, n_batch, n_patch)
-        X_realB, y_realB = generate_real_samples(trainB, n_batch, n_patch)
-        # generate a batch of fake samples
-        X_fakeA, y_fakeA = generate_fake_samples(g_model_BtoA, X_realB, n_patch)
-        X_fakeB, y_fakeB = generate_fake_samples(g_model_AtoB, X_realA, n_patch)
-        # update fakes from pool
-        X_fakeA = update_image_pool(poolA, X_fakeA)
-        X_fakeB = update_image_pool(poolB, X_fakeB)
-        # update generator B->A via adversarial and cycle loss
-        g_loss2, _, _, _, _ = c_model_BtoA.train_on_batch([X_realB, X_realA], [y_realA, X_realA, X_realB, X_realA])
-        # update discriminator for A -> [real/fake]
-        dA_loss1 = d_model_A.train_on_batch(X_realA, y_realA)
-        dA_loss2 = d_model_A.train_on_batch(X_fakeA, y_fakeA)
-        # update generator A->B via adversarial and cycle loss
-        g_loss1, _, _, _, _ = c_model_AtoB.train_on_batch([X_realA, X_realB], [y_realB, X_realB, X_realA, X_realB])
-        # update discriminator for B -> [real/fake]
-        dB_loss1 = d_model_B.train_on_batch(X_realB, y_realB)
-        dB_loss2 = d_model_B.train_on_batch(X_fakeB, y_fakeB)
-        # summarize performance
-        print('>%d, dA[%.3f,%.3f] dB[%.3f,%.3f] g[%.3f,%.3f]' % (
-            i + 1, dA_loss1, dA_loss2, dB_loss1, dB_loss2, g_loss1, g_loss2))
+    for i in range(n_epochs):
+        for j in range(bat_per_epo):
+            # select a batch of real samples
+            X_realA, y_realA = generate_real_samples(trainA, n_batch, n_patch)
+            X_realB, y_realB = generate_real_samples(trainB, n_batch, n_patch)
+            # generate a batch of fake samples
+            X_fakeA, y_fakeA = generate_fake_samples(g_model_BtoA, X_realB, n_patch)
+            X_fakeB, y_fakeB = generate_fake_samples(g_model_AtoB, X_realA, n_patch)
+            # update fakes from pool
+            X_fakeA = update_image_pool(poolA, X_fakeA)
+            X_fakeB = update_image_pool(poolB, X_fakeB)
+            # update generator B->A via adversarial and cycle loss
+            g_loss2, _, _, _, _ = c_model_BtoA.train_on_batch([X_realB, X_realA], [y_realA, X_realA, X_realB, X_realA])
+            # update discriminator for A -> [real/fake]
+            dA_loss1 = d_model_A.train_on_batch(X_realA, y_realA)
+            dA_loss2 = d_model_A.train_on_batch(X_fakeA, y_fakeA)
+            # update generator A->B via adversarial and cycle loss
+            g_loss1, _, _, _, _ = c_model_AtoB.train_on_batch([X_realA, X_realB], [y_realB, X_realB, X_realA, X_realB])
+            # update discriminator for B -> [real/fake]
+            dB_loss1 = d_model_B.train_on_batch(X_realB, y_realB)
+            dB_loss2 = d_model_B.train_on_batch(X_fakeB, y_fakeB)
+            # summarize performance
+            print('>%d, dA[%.3f,%.3f] dB[%.3f,%.3f] g[%.3f,%.3f]' % (
+                j + 1, dA_loss1, dA_loss2, dB_loss1, dB_loss2, g_loss1, g_loss2))
 
+        # evaluate the model performance, sometimes
+        # if (i + 1) % 10 == 0:
+        summarize_performance(i, g_model_AtoB, d_model_B, dataset, n_batch, n_patch)
+            
+# evaluate the discriminator, plot generated images, save generator model
+def summarize_performance(epoch, g_model_AtoB, d_model_B, dataset, n_batch, n_patch):
 
-BUFFER_SIZE = 1000
-BATCH_SIZE = 1
-IMG_WIDTH = 256
-IMG_HEIGHT = 256
+    # unpack dataset
+    trainA, trainB = dataset
 
+    # select a batch of real samples
+    X_realA, _ = generate_real_samples(trainA, n_batch, n_patch)
+    # X_realB, y_realB = generate_real_samples(trainB, n_batch, n_patch)
+    
+    # generate a batch of fake samples
+    X_fakeB, y_fakeB = generate_fake_samples(g_model_AtoB, X_realA, n_patch)
+
+    # evaluate discriminator on real examples
+    # _, acc_realB = d_model_B.evaluate(X_realB, y_realB, verbose=2)
+
+    # evaluate discriminator on fake examples
+    # _, acc_fakeB = d_model_B.evaluate(X_fakeB, y_fakeB, verbose=2)
+
+    # summarize discriminator performance
+    # print('>Accuracy real: %.0f%%, fake: %.0f%%' % (acc_realB * 100, acc_fakeB * 100))
+    # save plot
+    generator_model_AtoB = 'g_model_AtoB'
+    discriminator_model_B = 'd_model_B'
+    save_plot(X_fakeB, epoch, n_batch, generator_model_AtoB)
+
+    # save the generator model tile file
+    filename_g_model_AtoB = 'generator_model_%s_%03d.h5' % (generator_model_AtoB, epoch + 1)
+    filename_d_model_B = 'discriminator_model_%s_%03d.h5' % (discriminator_model_B, epoch + 1)
+    g_model_AtoB.save(filename_g_model_AtoB)
+    d_model_B.save(filename_d_model_B)
+
+# create and save a plot of generated images
+def save_plot(examples, epoch, n, generator_model_name):
+    # plot images
+    for i in range(n * n):
+        # define subplot
+        pyplot.subplot(n, n, 1 + i)
+        # turn off axis
+        pyplot.axis('off')
+        # plot raw pixel data
+        pyplot.imshow(examples[i])
+    # save plot to file
+    filename = 'generated_plot_%s_e%03d.png' % (generator_model_name, epoch + 1)
+    pyplot.savefig(filename)
+    pyplot.close()
 
 def random_crop(image):
-  cropped_image = tf.image.random_crop(
-      image, size=[IMG_HEIGHT, IMG_WIDTH, 3])
-
+  IMG_WIDTH = 256
+  IMG_HEIGHT = 256
+  cropped_image = tf.image.random_crop(image, size=[IMG_HEIGHT, IMG_WIDTH, 3])
   return cropped_image
 
-# normalizing the images to [-1, 1]
 def normalize(image):
+  # normalizing the images to [-1, 1]
   image = tf.cast(image, tf.float32)
   image = (image / 127.5) - 1
   return image
 
 def random_jitter(image):
-  # resizing to 286 x 286 x 3
+    # resizing to 286 x 286 x 3
     image = tf.image.resize(image, [286, 286],
-                          method=tf.image.ResizeMethod.NEAREST_NEIGHBOR,
-                          preserve_aspect_ratio=False)
-
-    plt.imshow(np.asarray(image))
-    plt.savefig('image_after_resizing.png')
+                          method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
+    # plt.imshow(np.asarray(image))
+    # plt.savefig('image_after_resizing.png')
+    
     # randomly cropping to 256 x 256 x 3
     image = random_crop(image)
-
-    plt.imshow(np.asarray(image))
-    plt.savefig('image_after_cropping.png')
+    # plt.imshow(np.asarray(image))
+    # plt.savefig('image_after_cropping.png')
 
     # random mirroring
     image = tf.image.random_flip_left_right(image)
-    plt.imshow(np.asarray(image))
-    plt.savefig('image_after_random_mirroring.png')
-
+    # plt.imshow(np.asarray(image))
+    # plt.savefig('image_after_random_mirroring.png')
+    
     return image
 
 def convert_image_in_rgb(image):
-
     # Convert into RGB image(3D) only if image is a Gray scale image (2D)
     image = Image.open(image)
     number_of_dimetions = len(image.size)
@@ -281,24 +317,22 @@ def convert_image_in_rgb(image):
     return image    
 
 def preprocess_train_images(image):
-
-  image = convert_image_in_rgb(image)
-  image = random_jitter(image)
-  image = normalize(image)
-
-  return image
+    print(image)
+    image = convert_image_in_rgb(image)
+    image = random_jitter(image)
+    image = normalize(image)
+    return image
 
 def preprocess_test_images(image):
-  image = convert_image_in_rgb(image)
-  image = normalize(image)
-  return image  
-
-   
+    print(image)
+    image = convert_image_in_rgb(image)
+    image = normalize(image)
+    return image  
 
 def load_dataset(path):
 
-    print('load data set')
-     # preprocess images
+    print('Start function load dataset')
+    # preprocess images
     train = []
     train_cleaned = []
     test = []
@@ -306,19 +340,23 @@ def load_dataset(path):
     if not os.path.exists(path):
         print('Path of the file is Invalid')
 
-    for f in sorted(os.listdir(path + 'train/')):
+    for f in os.listdir(path + 'train/'):
         train.append(preprocess_train_images(path + 'train/' + f))
 
-    for f in sorted(os.listdir(path + 'train_cleaned/')):
+    for f in os.listdir(path + 'train_cleaned/'):
         train_cleaned.append(preprocess_train_images(path + 'train_cleaned/' + f))
    
-    for f in sorted(os.listdir(path + 'test/')):
+    for f in os.listdir(path + 'test/'):
         test.append(preprocess_test_images(path + 'test/' + f))
 
     train = np.asarray(train)
     train_cleaned = np.asarray(train_cleaned)
-    return [train, train_cleaned]
 
+    print(train.shape)
+    print(train_cleaned.shape)
+
+    print('End function load data set')
+    return [train, train_cleaned]
 
 # create the model
 # model = define_generator()
@@ -336,7 +374,6 @@ def load_dataset(path):
 # plot the model
 # plot_model(model, to_file='discriminator_model_plot.png', show_shapes=True, show_layer_names=True)
 
-
 # input shape
 image_shape = (256, 256, 3)
 # generator: A -> B
@@ -351,7 +388,6 @@ d_model_B = define_discriminator(image_shape)
 c_model_AtoB = define_composite_model(g_model_AtoB, d_model_B, g_model_BtoA, image_shape)
 # composite: B -> A -> [real/fake, B]
 c_model_BtoA = define_composite_model(g_model_BtoA, d_model_A, g_model_AtoB, image_shape)
-
 
 path = '/home/giriraj/giri/data/'
 dataset = load_dataset(path)
