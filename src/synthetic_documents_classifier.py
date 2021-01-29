@@ -18,7 +18,10 @@ from PIL import Image
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 def load_dataset():
-    print('Inside load dataset function')
+    print('Start load data set function')
+
+
+    print('End load data set function')
 
 
 def main():
@@ -74,19 +77,19 @@ def main():
     print("test loss, test acc:", results)
 
     # serialize model to JSON
-    model_json = model.to_json()
-    with open("synthetic_documents_classifier.json", "w") as json_file:
-        json_file.write(model_json)
+    # model_json = model.to_json()
+    # with open("synthetic_documents_classifier.json", "w") as json_file:
+    #    json_file.write(model_json)
 
     # serialize weights to HDF5
-    model.save_weights("synthetic_documents_classifier_model.h5")
-    print("Saved model to disk")
+    model.save("synthetic_documents_classifier_model.h5")
+    # print("Saved model to disk")
 
     # ynew = np.argmax(model.predict_classes(X_test), axis=-1)
-
-    print('End')
+    # print('End')
 
 
 if __name__ == "__main__":
-    # execute only if run as a script
-    main()
+    path =''
+    data_set =  load_data_set(path)
+    start_training(data_set)

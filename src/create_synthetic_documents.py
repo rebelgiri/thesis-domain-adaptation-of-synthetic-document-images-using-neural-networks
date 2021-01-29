@@ -24,9 +24,12 @@ def create_synthetic_documents():
                                     number_of_samples_per_template)
 
 
-def main():
-    create_synthetic_documents()
+# def main():
+#    create_synthetic_documents()
 
 
 if __name__ == "__main__":
-    main()
+    print(f"Arguments count: {len(sys.argv)}")
+    for i, arg in enumerate(sys.argv):
+        print(f"Argument {i:>6}: {arg}")
+    create_synthetic_documents()()

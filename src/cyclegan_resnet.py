@@ -19,7 +19,7 @@ from keras.layers import Conv2DTranspose
 import glob
 import numpy as np
 import zipfile
-from PIL import Image
+from PIL import Image, ImageOps
 import matplotlib.pyplot as plt
 from numpy.random import randn
 from numpy.random import randint
@@ -30,6 +30,7 @@ from matplotlib import pyplot
 from random import random
 import os
 import time
+import cv2
 
 # pip install git+https://www.github.com/keras-team/keras-contrib.git
 
@@ -84,7 +85,7 @@ def resnet_block(n_filters, input_layer):
 
 # example of an encoder-decoder generator for the cyclegan
 # define the standalone generator model
-def define_generator(image_shape=(256, 256, 3), n_resnet=9):
+def define_generator(image_shape=(256, 256, 1), n_resnet=9):
     # weight initialization
     init = RandomNormal(stddev=0.02)
     # image input
@@ -113,7 +114,7 @@ def define_generator(image_shape=(256, 256, 3), n_resnet=9):
     g = InstanceNormalization(axis=-1)(g)
     g = Activation('relu')(g)
     # c7s1-3
-    g = Conv2D(3, (7, 7), padding='same', kernel_initializer=init)(g)
+    g = Conv2D(1, (7, 7), padding='same', kernel_initializer=init)(g)
     g = InstanceNormalization(axis=-1)(g)
     out_image = Activation('tanh')(g)
     # define model
@@ -187,7 +188,7 @@ def update_image_pool(pool, images, max_size=50):
 # train cyclegan models
 def train(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_model_BtoA, dataset):
     # define properties of the training run
-    n_epochs, n_batch, = 50, 1
+    n_epochs, n_batch, = 100, 1
     # determine the output square shape of the discriminator
     n_patch = d_model_A.output_shape[1]
     # unpack dataset
@@ -249,10 +250,11 @@ def summarize_performance(epoch, g_model_AtoB, d_model_B, dataset, n_batch, n_pa
 
     # summarize discriminator performance
     # print('>Accuracy real: %.0f%%, fake: %.0f%%' % (acc_realB * 100, acc_fakeB * 100))
+    
     # save plot
     generator_model_AtoB = 'g_model_AtoB'
     discriminator_model_B = 'd_model_B'
-    save_plot(X_fakeB, epoch, n_batch, generator_model_AtoB)
+    # save_plot(X_fakeB, epoch, n_batch, generator_model_AtoB)
 
     # save the generator model tile file
     filename_g_model_AtoB = 'generator_model_%s_%03d.h5' % (generator_model_AtoB, epoch + 1)
@@ -275,88 +277,43 @@ def save_plot(examples, epoch, n, generator_model_name):
     pyplot.savefig(filename)
     pyplot.close()
 
-def random_crop(image):
-  IMG_WIDTH = 256
-  IMG_HEIGHT = 256
-  cropped_image = tf.image.random_crop(image, size=[IMG_HEIGHT, IMG_WIDTH, 3])
-  return cropped_image
-
-def normalize(image):
-  # normalizing the images to [-1, 1]
-  image = tf.cast(image, tf.float32)
-  image = (image / 127.5) - 1
-  return image
-
-def random_jitter(image):
-    # resizing to 286 x 286 x 3
-    image = tf.image.resize(image, [286, 286],
-                          method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
-    # plt.imshow(np.asarray(image))
-    # plt.savefig('image_after_resizing.png')
-    
-    # randomly cropping to 256 x 256 x 3
-    image = random_crop(image)
-    # plt.imshow(np.asarray(image))
-    # plt.savefig('image_after_cropping.png')
-
-    # random mirroring
-    image = tf.image.random_flip_left_right(image)
-    # plt.imshow(np.asarray(image))
-    # plt.savefig('image_after_random_mirroring.png')
-    
-    return image
-
-def convert_image_in_rgb(image):
-    # Convert into RGB image(3D) only if image is a Gray scale image (2D)
-    image = Image.open(image)
-    number_of_dimetions = len(image.size)
-    if(2 == number_of_dimetions):
-        image = image.convert('RGB')
-        image = np.asarray(image)
-
-    return image    
-
 def preprocess_train_images(image):
-    print(image)
-    image = convert_image_in_rgb(image)
-    image = random_jitter(image)
-    image = normalize(image)
-    return image
-
-def preprocess_test_images(image):
-    print(image)
-    image = convert_image_in_rgb(image)
-    image = normalize(image)
-    return image  
+    # random mirroring
+    image_flipped_left_right = image.transpose(PIL.Image.FLIP_LEFT_RIGHT)
+    # convert image into grayscale image
+    image_grayscale = np.asarray(ImageOps.grayscale(image_flipped_left_right))
+    # resizing to 286 x 286
+    image_resized = cv2.resize(image_grayscale, dsize=(286 , 286), interpolation=cv2.INTER_NEAREST)
+    # random crop 256 x 256
+    image_random_cropped = np.asarray(tf.image.random_crop(image_resized, size=[256, 256]))
+    # normalizing the images to [-1, 1]
+    image_float32 = image_random_cropped.astype('float32')
+    image_normalized = (image_float32 / 127.5) - 1
+    return image_normalized
 
 def load_dataset(path):
-
     print('Start function load dataset')
     # preprocess images
-    train = []
-    train_cleaned = []
-    test = []
+    domainA_Images = []
+    domainB_Images = []
 
     if not os.path.exists(path):
         print('Path of the file is Invalid')
 
-    for f in os.listdir(path + 'train/'):
-        train.append(preprocess_train_images(path + 'train/' + f))
+    for f in os.listdir(path + 'synthetic_document_images/documents/'):
+        domainA_Images.append(preprocess_train_images(path + 'synthetic_document_images/documents/' + f))
 
-    for f in os.listdir(path + 'train_cleaned/'):
-        train_cleaned.append(preprocess_train_images(path + 'train_cleaned/' + f))
-   
-    for f in os.listdir(path + 'test/'):
-        test.append(preprocess_test_images(path + 'test/' + f))
+    for f in os.listdir(path + 'real_images/'):
+        domainB_Images.append(preprocess_train_images(path + 'real_images/' + f))
 
-    train = np.asarray(train)
-    train_cleaned = np.asarray(train_cleaned)
+    domainA_Images = np.asarray(domainA_Images)
+    domainB_Images = np.asarray(domainB_Images)
 
-    print(train.shape)
-    print(train_cleaned.shape)
-
+    print(domainA_Images.shape)
+    print(domainB_Images.shape)
     print('End function load data set')
-    return [train, train_cleaned]
+
+    return [domainA_Images, domainB_Images]
 
 # create the model
 # model = define_generator()
@@ -366,7 +323,7 @@ def load_dataset(path):
 # plot_model(model, to_file='generator_model_plot.png', show_shapes=True, show_layer_names=True)
 
 # define image shape
-# image_shape = (256, 256, 3)
+# image_shape = (256, 256, 1)
 # create the model
 # model = define_discriminator(image_shape)
 # summarize the model
@@ -375,19 +332,37 @@ def load_dataset(path):
 # plot_model(model, to_file='discriminator_model_plot.png', show_shapes=True, show_layer_names=True)
 
 # input shape
-image_shape = (256, 256, 3)
+image_shape = (256, 256, 1)
+
 # generator: A -> B
 g_model_AtoB = define_generator(image_shape)
+# g_model_AtoB.summary()
+# plot_model(g_model_AtoB, to_file='g_model_AtoB_plot.png', show_shapes=True, show_layer_names=True)
+
 # generator: B -> A
 g_model_BtoA = define_generator(image_shape)
+# g_model_BtoA.summary()
+# plot_model(g_model_BtoA, to_file='g_model_BtoA_plot.png', show_shapes=True, show_layer_names=True)
+
 # discriminator: A -> [real/fake]
 d_model_A = define_discriminator(image_shape)
+# d_model_A.summary()
+# plot_model(d_model_A, to_file='d_model_A_plot.png', show_shapes=True, show_layer_names=True)
+
 # discriminator: B -> [real/fake]
 d_model_B = define_discriminator(image_shape)
+# d_model_B.summary()
+# plot_model(d_model_B, to_file='d_model_B_plot.png', show_shapes=True, show_layer_names=True)
+
 # composite: A -> B -> [real/fake, A]
 c_model_AtoB = define_composite_model(g_model_AtoB, d_model_B, g_model_BtoA, image_shape)
+# c_model_AtoB.summary()
+# plot_model(c_model_AtoB, to_file='c_model_AtoB_plot.png', show_shapes=True, show_layer_names=True)
+
 # composite: B -> A -> [real/fake, B]
 c_model_BtoA = define_composite_model(g_model_BtoA, d_model_A, g_model_AtoB, image_shape)
+# c_model_BtoA.summary()
+# plot_model(c_model_BtoA, to_file='c_model_BtoA_plot.png', show_shapes=True, show_layer_names=True)
 
 path = '/home/giriraj/giri/data/'
 dataset = load_dataset(path)
