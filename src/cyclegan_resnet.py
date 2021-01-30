@@ -19,6 +19,7 @@ from keras.layers import Conv2DTranspose
 import glob
 import numpy as np
 import zipfile
+import PIL
 from PIL import Image, ImageOps
 import matplotlib.pyplot as plt
 from numpy.random import randn
@@ -278,18 +279,21 @@ def save_plot(examples, epoch, n, generator_model_name):
     pyplot.close()
 
 def preprocess_train_images(image):
-    # random mirroring
-    image_flipped_left_right = image.transpose(PIL.Image.FLIP_LEFT_RIGHT)
-    # convert image into grayscale image
-    image_grayscale = np.asarray(ImageOps.grayscale(image_flipped_left_right))
-    # resizing to 286 x 286
-    image_resized = cv2.resize(image_grayscale, dsize=(286 , 286), interpolation=cv2.INTER_NEAREST)
-    # random crop 256 x 256
-    image_random_cropped = np.asarray(tf.image.random_crop(image_resized, size=[256, 256]))
-    # normalizing the images to [-1, 1]
-    image_float32 = image_random_cropped.astype('float32')
-    image_normalized = (image_float32 / 127.5) - 1
-    return image_normalized
+
+    with Image.open(image) as image:
+        # random mirroring
+        image_flipped_left_right = image.transpose(PIL.Image.FLIP_LEFT_RIGHT)
+        # convert image into grayscale image
+        image_grayscale = np.asarray(ImageOps.grayscale(image_flipped_left_right))
+        # resizing to 286 x 286
+        image_resized = cv2.resize(image_grayscale, dsize=(286 , 286), interpolation=cv2.INTER_NEAREST)
+        # random crop 256 x 256
+        image_random_cropped = np.asarray(tf.image.random_crop(image_resized, size=[256, 256]))
+        # normalizing the images to [-1, 1]
+        image_float32 = image_random_cropped.astype('float32')
+        image_normalized = (image_float32 / 127.5) - 1
+
+    return image_normalized.reshape(256, 256, 1)
 
 def load_dataset(path):
     print('Start function load dataset')
@@ -300,11 +304,11 @@ def load_dataset(path):
     if not os.path.exists(path):
         print('Path of the file is Invalid')
 
-    for f in os.listdir(path + 'synthetic_document_images/documents/'):
-        domainA_Images.append(preprocess_train_images(path + 'synthetic_document_images/documents/' + f))
+    for f in os.listdir(path + 'temp_synthetic_document_images/documents/'):
+        domainA_Images.append(preprocess_train_images(path + 'temp_synthetic_document_images/documents/' + f))
 
-    for f in os.listdir(path + 'real_images/'):
-        domainB_Images.append(preprocess_train_images(path + 'real_images/' + f))
+    for f in os.listdir(path + 'temp_val_images/'):
+        domainB_Images.append(preprocess_train_images(path + 'temp_val_images/' + f))
 
     domainA_Images = np.asarray(domainA_Images)
     domainB_Images = np.asarray(domainB_Images)
@@ -315,28 +319,13 @@ def load_dataset(path):
 
     return [domainA_Images, domainB_Images]
 
-# create the model
-# model = define_generator()
-# summarize the model
-# model.summary()
-# plot the model
-# plot_model(model, to_file='generator_model_plot.png', show_shapes=True, show_layer_names=True)
-
-# define image shape
-# image_shape = (256, 256, 1)
-# create the model
-# model = define_discriminator(image_shape)
-# summarize the model
-# model.summary()
-# plot the model
-# plot_model(model, to_file='discriminator_model_plot.png', show_shapes=True, show_layer_names=True)
 
 # input shape
 image_shape = (256, 256, 1)
 
 # generator: A -> B
 g_model_AtoB = define_generator(image_shape)
-# g_model_AtoB.summary()
+g_model_AtoB.summary()
 # plot_model(g_model_AtoB, to_file='g_model_AtoB_plot.png', show_shapes=True, show_layer_names=True)
 
 # generator: B -> A
@@ -364,6 +353,7 @@ c_model_BtoA = define_composite_model(g_model_BtoA, d_model_A, g_model_AtoB, ima
 # c_model_BtoA.summary()
 # plot_model(c_model_BtoA, to_file='c_model_BtoA_plot.png', show_shapes=True, show_layer_names=True)
 
-path = '/home/giriraj/giri/data/'
+path = '/home/giriraj/data/'
 dataset = load_dataset(path)
 train(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_model_BtoA, dataset)
+
