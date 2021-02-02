@@ -1,4 +1,4 @@
-# reference : https://github.com/priya-dwivedi/Deep-Learning/blob/master/resnet_keras/Residual_Networks_yourself.ipynb
+# Reference : https://github.com/priya-dwivedi/Deep-Learning/blob/master/resnet_keras/Residual_Networks_yourself.ipynb
 
 from keras.layers import Input, Add, Dense, Activation, ZeroPadding2D, BatchNormalization, Flatten, Conv2D, \
     AveragePooling2D, MaxPooling2D
@@ -7,10 +7,15 @@ from keras.initializers import glorot_uniform
 from keras.utils import np_utils
 from keras.datasets import mnist
 from matplotlib import pyplot as plt
+
 import os
-
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-
+import cv2
+import glob
+import numpy as np
+import PIL
+from PIL import Image, ImageOps
+from keras.utils import np_utils
+from sklearn.utils import shuffle
 
 def identity_block(X, f, filters, stage, block):
     """
@@ -60,8 +65,7 @@ def identity_block(X, f, filters, stage, block):
 
     return X
 
-
-def ResNet50(input_shape=(64, 64, 3), classes=6):
+def ResNet50(input_shape=(256, 256, 1), classes=10):
     """
     Implementation of the popular ResNet50 the following architecture:
     CONV2D -> BATCHNORM -> RELU -> MAXPOOL -> CONVBLOCK -> IDBLOCK*2 -> CONVBLOCK -> IDBLOCK*3
@@ -127,7 +131,6 @@ def ResNet50(input_shape=(64, 64, 3), classes=6):
 
     return model
 
-
 def convolutional_block(X, f, filters, stage, block, s=2):
     """
     Implementation of the convolutional block as defined in Figure 4
@@ -182,42 +185,60 @@ def convolutional_block(X, f, filters, stage, block, s=2):
 
     return X
 
+def preprocess_data_set(image):
+    print('Start preprocess data set function')
+    print(image)
+    with Image.open(image) as image:
+        image_grayscale = np.asarray(ImageOps.grayscale(image))
+        # resizing to 256 x 256
+        image_resized = cv2.resize(image_grayscale, dsize=(256 , 256), interpolation=cv2.INTER_NEAREST)
+        # normalizing the images to [0, 1]
+        image_float32 = image_resized.astype('float32')
+        image_normalized = (image_float32 / 255)
 
-def load_data_set():
+    return image_normalized.reshape(256, 256, 1)
+
+def load_data_set(data_set_path):
     print('Start load data set function')
 
-    # Load pre-shuffled MNIST data into train and test sets
-    (X_train, y_train), (X_test, y_test) = mnist.load_data()
+    data_set = []
+    data_set_labels = list()
+    list_of_name_of_template = list()
 
-    # Pre-processing input data
-    X_train = X_train.reshape(X_train.shape[0], 28, 28, 1)
-    X_train = X_train.astype('float32')
-    X_train /= 255
+    # Open folder, read, preprocess the images and store.
+    for template_class_folder_name in os.listdir(data_set_path):
+        list_of_name_of_template.append(template_class_folder_name)
+        template_class_folder_name = data_set_path +  template_class_folder_name + '/documents/'
+        image_file_names = glob.glob(template_class_folder_name + '*.png')
+        label = 0
+        for image in image_file_names:
+            data_set.append(preprocess_data_set(image))
+            data_set_labels.append(label)
+        label = label + 1    
 
-    X_test = X_test.reshape(X_test.shape[0], 28, 28, 1)
-    X_test = X_test.astype('float32')
-    X_test /= 255
-
+    data_set = np.asarray(data_set)
+    data_set_labels = np.asarray(data_set_labels)
     # Pre-processing class labels
-    y_train = np_utils.to_categorical(y_train, 10)
-    y_test = np_utils.to_categorical(y_test, 10)
-
+    data_set_labels = np_utils.to_categorical(data_set_labels, 10)
+    # shuffle data set
+    data_set, data_set_labels = shuffle(data_set, data_set_labels)
     print('End load data set function')
 
-    return (X_train, y_train), (X_test, y_test)
-
+    return data_set, data_set_labels    
 
 def create_model():
     model = ResNet50(input_shape=(256, 256, 1), classes=10)
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return model
 
-
-def start_training(model, data_set):
-    (X_train, y_train), (X_test, y_test) = data_set
-
+def start_training(model, training_data_set, validation_data_set, test_data_set):
+  
+    (X_train, y_train) = training_data_set
+    (X_val, y_val) = validation_data_set
+    (X_test, y_test) = test_data_set
+ 
     # Fit the model
-    history = model.fit(X_train, y_train, epochs=10, batch_size=50, validation_data=(X_test, y_test))
+    history = model.fit(X_train, y_train, epochs=10, batch_size=50, validation_data=(X_val, y_val))
 
     # Save the results
     plt.plot(history.history['accuracy'], label='accuracy')
@@ -236,13 +257,17 @@ def start_training(model, data_set):
     model.save("synthetic_documents_classifier_model.h5")
     print("Saved model to disk")
 
-    # ynew = np.argmax(model.predict_classes(X_test), axis=-1)
-    # print('End')
-
 
 if __name__ == "__main__":
-    data_set = load_data_set()
-    model = create_model()
-    start_training(model, data_set)
+    training_data_set_path = '/home/giriraj/data/synthetic_document_images_classifier/'
+    validation_data_set_path = ''
+    test_data_set_path = ''
 
-model.summary()
+    training_data_set = load_data_set(training_data_set_path)
+    validation_data_set = load_data_set(validation_data_set_path)
+    test_data_set = load_data_set(test_data_set_path)
+    model = create_model()
+    model.summary()
+    start_training(model, training_data_set, validation_data_set, test_data_set)
+
+
