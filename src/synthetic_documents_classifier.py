@@ -260,8 +260,8 @@ def start_training(model, training_data_set, validation_data_set, test_data_set)
 
 if __name__ == "__main__":
     training_data_set_path = '/home/giriraj/data/synthetic_document_images_classifier/'
-    validation_data_set_path = ''
-    test_data_set_path = ''
+    validation_data_set_path = '/home/giriraj/data/val_images_classified_decided'
+    test_data_set_path = '/home/giriraj/data/val_images_classified_decided'
 
     training_data_set = load_data_set(training_data_set_path)
     validation_data_set = load_data_set(validation_data_set_path)
