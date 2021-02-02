@@ -6,38 +6,33 @@ import tensorflow as tf
 from keras_contrib.layers.normalization.instancenormalization import InstanceNormalization
 import os
 from os import path
-from PIL import Image
+from PIL import Image, ImageOps
 import numpy as np
 import cv2
 
-
+# normalizing the images to [-1, 1]
 def normalize(image):
-  # normalizing the images to [-1, 1]
-  # image = tf.cast(image, tf.float32)
   image = image.astype('float32')
   image = (image / 127.5) - 1
   return image
 
-def preprocess_test_images(image):
-    print(image)
-    image = convert_image_in_rgb(image)
-    # resizing to 256 x 256 x 3
-    # image = tf.image.resize(image, [256, 256],
-    #                       method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
-    
-    # Resize is necessary, as different size images can not be
-    # stacked upon each other in 4 dimentional numpy array ex. (70, 256, 256, 3)
-    image = cv2.resize(image, dsize=(256, 256), interpolation=cv2.INTER_NEAREST)
-    image = normalize(image)
-    return image  
+def preprocess_test_images(image_path):
+    print(image_path)
+    image = Image.open(image_path)
+    image_grayscale = np.asarray(ImageOps.grayscale(image))
+    image_resized = cv2.resize(image_grayscale, dsize=(256, 256), interpolation=cv2.INTER_NEAREST)
+    image_normalized = normalize(image_resized)
+    return image_normalized.reshape(256, 256, 1)
 
-def convert_image_in_rgb(image):
-    # Convert into RGB image(3D) only if image is a Gray scale image (2D)
-    with Image.open(image) as img:
-        number_of_dimetions = len(img.size)
-        if(2 == number_of_dimetions):
-            image = np.asarray(img.convert('RGB'))
-    return image   
+def save_images_in_larger_dimension(generated_images):
+    for i in range(generated_images.shape[0]):
+        image_resized = cv2.resize(generated_images[i], dsize=(2700, 3700), 
+        interpolation=cv2.INTER_NEAREST)
+        pyplot.axis('off')
+        pyplot.imshow(generated_images[i], cmap='gray')
+        pyplot.savefig('Generated_Image_%d.png' % (i))
+
+
 
 
 # create and save a plot of generated images (reversed grayscale)
@@ -67,8 +62,8 @@ def load_test_data_set(path):
     # preprocess images
     test_data_set = []
    
-    for f in os.listdir(path + 'test/'):
-        test_data_set.append(preprocess_test_images(path + 'test/' + f))
+    for f in os.listdir(path):
+        test_data_set.append(preprocess_test_images(path + f))
 
     test_data_set = np.asarray(test_data_set)
     print(test_data_set.shape)
@@ -77,13 +72,16 @@ def load_test_data_set(path):
 
 # load model
 
-model = load_model('src/CycleGAN_ResNet_Results_26_01_21/generator_model_g_model_AtoB_048.h5',
+model = load_model('generator_model_g_model_AtoB_045.h5',
 custom_objects={'InstanceNormalization': InstanceNormalization})
 
-path = '/home/giriraj/giri/data/'
+path = '/home/giriraj/giri/data/synthetic_document_images_test/documents/'
 test_data_set = load_test_data_set(path)
 
 # generate images
 X = model.predict(test_data_set)
+
+save_images_in_larger_dimension(X)
+
 # plot the result
 save_plot(test_data_set, X, 5)
