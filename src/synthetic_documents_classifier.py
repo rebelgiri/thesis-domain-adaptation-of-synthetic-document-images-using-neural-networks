@@ -208,9 +208,11 @@ def load_data_set(data_set_path):
     # Open folder, read, preprocess the images and store.
     for template_class_folder_name in os.listdir(data_set_path):
         list_of_name_of_template.append(template_class_folder_name)
+        label = 0
+        print(template_class_folder_name + ' is labelled as %d' %(label))
         template_class_folder_name = data_set_path +  template_class_folder_name + '/documents/'
         image_file_names = glob.glob(template_class_folder_name + '*.png')
-        label = 0
+        
         for image in image_file_names:
             data_set.append(preprocess_data_set(image))
             data_set_labels.append(label)
@@ -233,6 +235,7 @@ def create_model():
 
 def start_training(model, training_data_set, validation_data_set, test_data_set):
   
+    print('Start Training')
     (X_train, y_train) = training_data_set
     (X_val, y_val) = validation_data_set
     (X_test, y_test) = test_data_set
@@ -256,16 +259,19 @@ def start_training(model, training_data_set, validation_data_set, test_data_set)
     # serialize weights to HDF5
     model.save("synthetic_documents_classifier_model.h5")
     print("Saved model to disk")
+    print('End Training')
 
 
 if __name__ == "__main__":
+    
     training_data_set_path = '/home/giriraj/data/synthetic_document_images_classifier/'
     validation_data_set_path = '/home/giriraj/data/val_images_classified_decided'
     test_data_set_path = '/home/giriraj/data/val_images_classified_decided'
 
     training_data_set = load_data_set(training_data_set_path)
     validation_data_set = load_data_set(validation_data_set_path)
-    test_data_set = load_data_set(test_data_set_path)
+    # test_data_set = load_data_set(test_data_set_path)
+    test_data_set = validation_data_set
     model = create_model()
     model.summary()
     start_training(model, training_data_set, validation_data_set, test_data_set)
