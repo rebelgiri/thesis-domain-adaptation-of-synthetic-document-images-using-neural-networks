@@ -22,6 +22,7 @@ def preprocess_test_images(image_path):
     image_grayscale = np.asarray(ImageOps.grayscale(image))
     image_resized = cv2.resize(image_grayscale, dsize=(256, 256), interpolation=cv2.INTER_NEAREST)
     image_normalized = normalize(image_resized)
+    image.close()
     return image_normalized.reshape(256, 256, 1)
 
 def save_images_in_larger_dimension(generated_images):
