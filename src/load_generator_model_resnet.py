@@ -33,9 +33,6 @@ def save_images_in_larger_dimension(generated_images):
         pyplot.imshow(generated_images[i], cmap='gray')
         pyplot.savefig('Generated_Image_%d.png' % (i))
 
-
-
-
 # create and save a plot of generated images (reversed grayscale)
 def save_plot(test_data_set, examples, n):
     # plot images
@@ -56,7 +53,6 @@ def save_plot(test_data_set, examples, n):
         pyplot.savefig('Results_From_ResNet_Generator_%d.png' % (i))
         pyplot.close()
 
-
 def load_test_data_set(path):
 
     print('Start function test load dataset')
@@ -72,7 +68,6 @@ def load_test_data_set(path):
     return test_data_set
 
 # load model
-
 model = load_model('generator_model_g_model_AtoB_045.h5',
 custom_objects={'InstanceNormalization': InstanceNormalization})
 
