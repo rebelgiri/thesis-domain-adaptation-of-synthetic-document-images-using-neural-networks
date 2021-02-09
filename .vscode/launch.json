@@ -1,0 +1,16 @@
+{
+   
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": ["src/generator_model_g_model_AtoB_050.h5",
+                    "/home/giriraj/data/temp/",
+                    "/home/giriraj/data/temp/"]
+        }
+    ]
+}
