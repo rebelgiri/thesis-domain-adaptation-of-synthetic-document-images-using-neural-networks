@@ -8,6 +8,7 @@ from keras.utils import np_utils
 from keras.datasets import mnist
 from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
 import os
 import cv2
 import glob
@@ -237,9 +238,9 @@ def create_model(num_classes=10):
     return model
 
 def start_training_classifier(model, training_data_set, test_data_set, type_of_the_classifier, 
-    list_of_name_of_template):
+    list_of_name_of_template, classifier_logs):
   
-    print('Start Training Classifier ' + type_of_the_classifier)
+    print('Start Training Classifier ' + type_of_the_classifier, file=classifier_logs)
 
     X_train, y_train = training_data_set
     X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.20, random_state=42)
@@ -265,13 +266,14 @@ def start_training_classifier(model, training_data_set, test_data_set, type_of_t
 
     # Evaluate on real annoted data
     results = model.evaluate(X_test, y_test, verbose=2)
-    print("test loss, test acc:", results)
+    print(classification_report(X_test, y_test, target_names=list_of_name_of_template), file=classifier_logs)
+    print("test loss, test acc:", results, file=classifier_logs)
 
     # serialize weights to HDF5
     model.save(type_of_the_classifier + '_model.h5')
     
-    print('Saved model to disk ' + type_of_the_classifier)
-    print('End Training ' + type_of_the_classifier)
+    print('Saved model to disk ' + type_of_the_classifier, file=classifier_logs)
+    print('End Training ' + type_of_the_classifier, file=classifier_logs)
 
 
 
