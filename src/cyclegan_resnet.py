@@ -32,6 +32,7 @@ from random import random
 import os
 import time
 import cv2
+import sys
 
 # pip install git+https://www.github.com/keras-team/keras-contrib.git
 
@@ -66,7 +67,7 @@ def define_discriminator(image_shape):
     # define model
     model = Model(in_image, patch_out)
     # compile model
-    model.compile(loss='mse', optimizer=Adam(lr=0.0002, beta_1=0.5), loss_weights=[0.5])
+    model.compile(loss='mse', optimizer=Adam(lr=0.0002, beta_1=0.5), loss_weights=[0.5], metrics=['accuracy'])
     return model
 
 # generator a resnet block
@@ -187,9 +188,9 @@ def update_image_pool(pool, images, max_size=50):
     return asarray(selected)
 
 # train cyclegan models
-def train(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_model_BtoA, dataset):
+def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_model_BtoA, dataset):
     # define properties of the training run
-    n_epochs, n_batch, = 100, 1
+    n_epochs, n_batch, = 15, 1
     # determine the output square shape of the discriminator
     n_patch = d_model_A.output_shape[1]
     # unpack dataset
@@ -215,13 +216,13 @@ def train(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_mode
             # update generator B->A via adversarial and cycle loss
             g_loss2, _, _, _, _ = c_model_BtoA.train_on_batch([X_realB, X_realA], [y_realA, X_realA, X_realB, X_realA])
             # update discriminator for A -> [real/fake]
-            dA_loss1 = d_model_A.train_on_batch(X_realA, y_realA)
-            dA_loss2 = d_model_A.train_on_batch(X_fakeA, y_fakeA)
+            dA_loss1, _ = d_model_A.train_on_batch(X_realA, y_realA)
+            dA_loss2, _ = d_model_A.train_on_batch(X_fakeA, y_fakeA)
             # update generator A->B via adversarial and cycle loss
             g_loss1, _, _, _, _ = c_model_AtoB.train_on_batch([X_realA, X_realB], [y_realB, X_realB, X_realA, X_realB])
             # update discriminator for B -> [real/fake]
-            dB_loss1 = d_model_B.train_on_batch(X_realB, y_realB)
-            dB_loss2 = d_model_B.train_on_batch(X_fakeB, y_fakeB)
+            dB_loss1, _ = d_model_B.train_on_batch(X_realB, y_realB)
+            dB_loss2, _ = d_model_B.train_on_batch(X_fakeB, y_fakeB)
             # summarize performance
             print('>%d, dA[%.3f,%.3f] dB[%.3f,%.3f] g[%.3f,%.3f]' % (
                 j + 1, dA_loss1, dA_loss2, dB_loss1, dB_loss2, g_loss1, g_loss2))
@@ -238,24 +239,24 @@ def summarize_performance(epoch, g_model_AtoB, d_model_B, dataset, n_batch, n_pa
 
     # select a batch of real samples
     X_realA, _ = generate_real_samples(trainA, n_batch, n_patch)
-    # X_realB, y_realB = generate_real_samples(trainB, n_batch, n_patch)
+    X_realB, y_realB = generate_real_samples(trainB, n_batch, n_patch)
     
     # generate a batch of fake samples
     X_fakeB, y_fakeB = generate_fake_samples(g_model_AtoB, X_realA, n_patch)
 
     # evaluate discriminator on real examples
-    # _, acc_realB = d_model_B.evaluate(X_realB, y_realB, verbose=2)
+    _, acc_realB = d_model_B.evaluate(X_realB, y_realB)
 
     # evaluate discriminator on fake examples
-    # _, acc_fakeB = d_model_B.evaluate(X_fakeB, y_fakeB, verbose=2)
+    _, acc_fakeB = d_model_B.evaluate(X_fakeB, y_fakeB)
 
     # summarize discriminator performance
-    # print('>Accuracy real: %.0f%%, fake: %.0f%%' % (acc_realB * 100, acc_fakeB * 100))
+    print('>Accuracy real: %.0f%%, fake: %.0f%%' % (acc_realB * 100, acc_fakeB * 100))
     
     # save plot
     generator_model_AtoB = 'g_model_AtoB'
     discriminator_model_B = 'd_model_B'
-    # save_plot(X_fakeB, epoch, n_batch, generator_model_AtoB)
+    save_plot(X_fakeB, epoch, n_batch, generator_model_AtoB)
 
     # save the generator model tile file
     filename_g_model_AtoB = 'generator_model_%s_%03d.h5' % (generator_model_AtoB, epoch + 1)
@@ -294,20 +295,23 @@ def preprocess_train_images(image):
 
     return image_normalized.reshape(256, 256, 1)
 
-def load_dataset(path):
+def cyclegan_load_data_set(synthetic_document_images_path, real_document_images_path):
     print('Start function load dataset')
     # preprocess images
     domainA_Images = []
     domainB_Images = []
 
-    if not os.path.exists(path):
-        print('Path of the file is Invalid')
+    if not os.path.exists(synthetic_document_images_path):
+        print('Path of the synthetic document images is Invalid')
 
-    for f in os.listdir(path + 'synthetic_document_images/documents/'):
-        domainA_Images.append(preprocess_train_images(path + 'synthetic_document_images/documents/' + f))
+    if not os.path.exists(real_document_images_path):
+        print('Path of the real images is Invalid')    
 
-    for f in os.listdir(path + 'real_images/'):
-        domainB_Images.append(preprocess_train_images(path + 'real_images/' + f))
+    for f in os.listdir(synthetic_document_images_path):
+        domainA_Images.append(preprocess_train_images(synthetic_document_images_path + f))
+
+    for f in os.listdir(real_document_images_path):
+        domainB_Images.append(preprocess_train_images(real_document_images_path + f))
 
     domainA_Images = np.asarray(domainA_Images)
     domainB_Images = np.asarray(domainB_Images)
@@ -319,40 +323,5 @@ def load_dataset(path):
     return [domainA_Images, domainB_Images]
 
 
-# input shape
-image_shape = (256, 256, 1)
-
-# generator: A -> B
-g_model_AtoB = define_generator(image_shape)
-g_model_AtoB.summary()
-# plot_model(g_model_AtoB, to_file='g_model_AtoB_plot.png', show_shapes=True, show_layer_names=True)
-
-# generator: B -> A
-g_model_BtoA = define_generator(image_shape)
-# g_model_BtoA.summary()
-# plot_model(g_model_BtoA, to_file='g_model_BtoA_plot.png', show_shapes=True, show_layer_names=True)
-
-# discriminator: A -> [real/fake]
-d_model_A = define_discriminator(image_shape)
-# d_model_A.summary()
-# plot_model(d_model_A, to_file='d_model_A_plot.png', show_shapes=True, show_layer_names=True)
-
-# discriminator: B -> [real/fake]
-d_model_B = define_discriminator(image_shape)
-# d_model_B.summary()
-# plot_model(d_model_B, to_file='d_model_B_plot.png', show_shapes=True, show_layer_names=True)
-
-# composite: A -> B -> [real/fake, A]
-c_model_AtoB = define_composite_model(g_model_AtoB, d_model_B, g_model_BtoA, image_shape)
-# c_model_AtoB.summary()
-# plot_model(c_model_AtoB, to_file='c_model_AtoB_plot.png', show_shapes=True, show_layer_names=True)
-
-# composite: B -> A -> [real/fake, B]
-c_model_BtoA = define_composite_model(g_model_BtoA, d_model_A, g_model_AtoB, image_shape)
-# c_model_BtoA.summary()
-# plot_model(c_model_BtoA, to_file='c_model_BtoA_plot.png', show_shapes=True, show_layer_names=True)
-
-path = '/home/giriraj/giri/data/'
-dataset = load_dataset(path)
-train(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_model_BtoA, dataset)
+    
 

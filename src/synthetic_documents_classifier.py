@@ -1,13 +1,13 @@
 # Reference : https://github.com/priya-dwivedi/Deep-Learning/blob/master/resnet_keras/Residual_Networks_yourself.ipynb
 
 from keras.layers import Input, Add, Dense, Activation, ZeroPadding2D, BatchNormalization, Flatten, Conv2D, \
-    AveragePooling2D, MaxPooling2D
-from keras.models import Model
+    AveragePooling2D, MaxPooling2D, Dropout 
+from keras.models import Model, Sequential
 from keras.initializers import glorot_uniform
 from keras.utils import np_utils
 from keras.datasets import mnist
 from matplotlib import pyplot as plt
-
+from sklearn.model_selection import train_test_split
 import os
 import cv2
 import glob
@@ -16,6 +16,9 @@ import PIL
 from PIL import Image, ImageOps
 from keras.utils import np_utils
 from sklearn.utils import shuffle
+import sys
+import datetime
+import tensorflow as tf
 
 def identity_block(X, f, filters, stage, block):
     """
@@ -192,13 +195,13 @@ def preprocess_data_set(image):
         image_grayscale = np.asarray(ImageOps.grayscale(image))
         # resizing to 256 x 256
         image_resized = cv2.resize(image_grayscale, dsize=(256 , 256), interpolation=cv2.INTER_NEAREST)
-        # normalizing the images to [0, 1]
+        # normalizing the images to [-1, 1]
         image_float32 = image_resized.astype('float32')
-        image_normalized = (image_float32 / 255)
+        image_normalized = (image_float32 / 127.5) - 1
 
     return image_normalized.reshape(256, 256, 1)
 
-def load_data_set(data_set_path):
+def classifier_load_data_set(data_set_path):
     print('Start load data set function')
 
     data_set = []
@@ -210,7 +213,7 @@ def load_data_set(data_set_path):
         list_of_name_of_template.append(template_class_folder_name)
         label = 0
         print(template_class_folder_name + ' is labelled as %d' %(label))
-        template_class_folder_name = data_set_path +  template_class_folder_name + '/documents/'
+        template_class_folder_name = data_set_path +  template_class_folder_name + '/'
         image_file_names = glob.glob(template_class_folder_name + '*.png')
         
         for image in image_file_names:
@@ -226,22 +229,29 @@ def load_data_set(data_set_path):
     data_set, data_set_labels = shuffle(data_set, data_set_labels)
     print('End load data set function')
 
-    return data_set, data_set_labels    
+    return (data_set, data_set_labels), list_of_name_of_template
 
-def create_model():
+def create_model(num_classes=10):
     model = ResNet50(input_shape=(256, 256, 1), classes=10)
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return model
 
-def start_training(model, training_data_set, validation_data_set, test_data_set):
+def start_training_classifier(model, training_data_set, test_data_set, type_of_the_classifier, list_of_name_of_template):
   
-    print('Start Training')
-    (X_train, y_train) = training_data_set
-    (X_val, y_val) = validation_data_set
-    (X_test, y_test) = test_data_set
+    print('Start Training Classifier ' + type_of_the_classifier)
+
+    X_train, y_train = training_data_set
+    X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.20, random_state=42)
+
+    X_test, y_test = test_data_set
  
+
+    log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
+
     # Fit the model
-    history = model.fit(X_train, y_train, epochs=10, batch_size=50, validation_data=(X_val, y_val))
+    history = model.fit(X_train, y_train, epochs=10, batch_size=50, validation_data=(X_val, y_val),
+    callbacks=[tensorboard_callback])
 
     # Save the results
     plt.plot(history.history['accuracy'], label='accuracy')
@@ -257,23 +267,11 @@ def start_training(model, training_data_set, validation_data_set, test_data_set)
     print("test loss, test acc:", results)
 
     # serialize weights to HDF5
-    model.save("synthetic_documents_classifier_model.h5")
-    print("Saved model to disk")
-    print('End Training')
-
-
-if __name__ == "__main__":
+    model.save(type_of_the_classifier + '_model.h5')
     
-    training_data_set_path = '/home/giriraj/data/synthetic_document_images_classifier/'
-    validation_data_set_path = '/home/giriraj/data/val_images_classified_decided'
-    test_data_set_path = '/home/giriraj/data/val_images_classified_decided'
+    print('Saved model to disk ' + type_of_the_classifier)
+    print('End Training ' + type_of_the_classifier)
 
-    training_data_set = load_data_set(training_data_set_path)
-    validation_data_set = load_data_set(validation_data_set_path)
-    # test_data_set = load_data_set(test_data_set_path)
-    test_data_set = validation_data_set
-    model = create_model()
-    model.summary()
-    start_training(model, training_data_set, validation_data_set, test_data_set)
+
 
 
