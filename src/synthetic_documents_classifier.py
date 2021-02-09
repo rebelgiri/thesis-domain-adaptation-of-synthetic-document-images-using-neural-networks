@@ -236,7 +236,8 @@ def create_model(num_classes=10):
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return model
 
-def start_training_classifier(model, training_data_set, test_data_set, type_of_the_classifier, list_of_name_of_template):
+def start_training_classifier(model, training_data_set, test_data_set, type_of_the_classifier, 
+    list_of_name_of_template):
   
     print('Start Training Classifier ' + type_of_the_classifier)
 

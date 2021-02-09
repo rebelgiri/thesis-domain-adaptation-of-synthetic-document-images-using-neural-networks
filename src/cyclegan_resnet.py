@@ -188,7 +188,9 @@ def update_image_pool(pool, images, max_size=50):
     return asarray(selected)
 
 # train cyclegan models
-def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_model_BtoA, dataset):
+def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_model_BtoA, 
+    dataset, cyclegan_training_logs):
+
     # define properties of the training run
     n_epochs, n_batch, = 15, 1
     # determine the output square shape of the discriminator
@@ -225,14 +227,14 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
             dB_loss2, _ = d_model_B.train_on_batch(X_fakeB, y_fakeB)
             # summarize performance
             print('>%d, dA[%.3f,%.3f] dB[%.3f,%.3f] g[%.3f,%.3f]' % (
-                j + 1, dA_loss1, dA_loss2, dB_loss1, dB_loss2, g_loss1, g_loss2))
+                j + 1, dA_loss1, dA_loss2, dB_loss1, dB_loss2, g_loss1, g_loss2), file=cyclegan_training_logs)
 
         # evaluate the model performance, sometimes
         # if (i + 1) % 10 == 0:
-        summarize_performance(i, g_model_AtoB, d_model_B, dataset, n_batch, n_patch)
+        summarize_performance(i, g_model_AtoB, d_model_B, dataset, n_batch, n_patch, cyclegan_training_logs)
             
 # evaluate the discriminator, plot generated images, save generator model
-def summarize_performance(epoch, g_model_AtoB, d_model_B, dataset, n_batch, n_patch):
+def summarize_performance(epoch, g_model_AtoB, d_model_B, dataset, n_batch, n_patch,cyclegan_training_logs):
 
     # unpack dataset
     trainA, trainB = dataset
@@ -251,7 +253,7 @@ def summarize_performance(epoch, g_model_AtoB, d_model_B, dataset, n_batch, n_pa
     _, acc_fakeB = d_model_B.evaluate(X_fakeB, y_fakeB)
 
     # summarize discriminator performance
-    print('>Accuracy real: %.0f%%, fake: %.0f%%' % (acc_realB * 100, acc_fakeB * 100))
+    print('>Accuracy real: %.0f%%, fake: %.0f%%' % (acc_realB * 100, acc_fakeB * 100), file=cyclegan_training_logs)
     
     # save plot
     generator_model_AtoB = 'g_model_AtoB'

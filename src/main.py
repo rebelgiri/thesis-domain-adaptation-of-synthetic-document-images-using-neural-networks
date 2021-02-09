@@ -1,7 +1,7 @@
 
 from cyclegan_resnet import *
 from synthetic_documents_classifier import *
-
+from datetime import datetime
 
 # Algorithm Steps:
 # Train the CycleGAN.
@@ -15,6 +15,9 @@ if __name__ == "__main__":
     real_document_images_path = sys.argv[2]
     classifier_training_data_set_path = sys.argv[3]
     classifier_test_data_set_path = sys.argv[4]
+
+    cyclegan_training_logs = open('cyclegan_training_logs.txt', 'a')
+    print(datetime.now(), file=cyclegan_training_logs)
 
     # Train the CycleGAN.
     
@@ -51,11 +54,11 @@ if __name__ == "__main__":
     # c_model_BtoA.summary()
     # plot_model(c_model_BtoA, to_file='c_model_BtoA_plot.png', show_shapes=True, show_layer_names=True)
 
-    # dataset = cyclegan_load_data_set(synthetic_document_images_path, real_document_images_path)
-    # train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_model_BtoA, dataset)
+    data_set_cyclegan = cyclegan_load_data_set(synthetic_document_images_path, real_document_images_path)
+    train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, 
+        c_model_AtoB, c_model_BtoA, data_set_cyclegan, cyclegan_training_logs)
 
     # Train the Synthetic Document Image Classifier and Verify in Annotated Test Data.
-    
     classifier_training_data_set, list_of_name_of_template = classifier_load_data_set(classifier_training_data_set_path)
     classifier_test_data_set = classifier_load_data_set(classifier_test_data_set_path)
     type_of_the_classifier = 'synthetic_documents_classifier'
@@ -64,7 +67,13 @@ if __name__ == "__main__":
     # plot_model(synthetic_documents_classifier_model, to_file=type_of_the_classifier + '.png', show_shapes=True, show_layer_names=True)
     
     start_training_classifier(synthetic_documents_classifier_model, 
-        classifier_training_data_set, classifier_test_data_set, type_of_the_classifier, list_of_name_of_template)
+        classifier_training_data_set, classifier_test_data_set, type_of_the_classifier,
+        list_of_name_of_template)
+
+    print('---------------------------------------------------------------------------------', 
+    file=cyclegan_training_logs)
+    
+    cyclegan_training_logs.close()    
 
     
 

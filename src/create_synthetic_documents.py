@@ -25,10 +25,6 @@ def create_synthetic_documents(path_templates_with_annotations, path_crops,
                                     crop_images_directory_path, visual_object_classes,
                                     number_of_samples_per_template)
 
-
-
-
-
 if __name__ == "__main__":
     print(f"Arguments count: {len(sys.argv)}")
     templates_with_annotations_path = sys.argv[1]
