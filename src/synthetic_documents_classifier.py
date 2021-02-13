@@ -267,14 +267,14 @@ def start_training_classifier(model, training_data_set_iter, test_data_set_iter,
     history = list()
 
     # Fit the model
-    for i in range(100):
+    for i in range(1000):
         X_train_tensor, y_train_tensor = training_data_set_iter.next()
         X_train = X_train_tensor.numpy()
         X_train = np.einsum('ijkl->iklj', X_train)
         y_train = y_train_tensor.numpy()
         # Pre-processing class labels
         y_train = np_utils.to_categorical(y_train, 10)
-        history.append(model.fit(X_train, y_train, epochs=1, batch_size=100,  validation_split=0.2,
+        history.append(model.fit(X_train, y_train, epochs=1, batch_size=10,  validation_split=0.2,
         callbacks=[tensorboard_callback]))
 
     # Save the results

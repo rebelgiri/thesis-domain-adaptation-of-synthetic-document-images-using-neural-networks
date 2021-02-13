@@ -192,7 +192,7 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
     data_set_cyclegan_iter, cyclegan_training_logs):
 
     # define properties of the training run
-    n_epochs, n_batch = 5, 100
+    n_epochs, n_batch = 5, 1
     # determine the output square shape of the discriminator
     n_patch = d_model_A.output_shape[1]
     # unpack dataset
@@ -207,7 +207,7 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
     # calculate the number of training iterations
     # n_steps = bat_per_epo * n_epochs
     
-    bat_per_epo = 1000
+    bat_per_epo = 100000
     # manually enumerate epochs
     for i in range(n_epochs):
         for j in range(bat_per_epo):

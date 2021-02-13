@@ -35,7 +35,7 @@ def cyclegan_data_set_loader(synthetic_document_images_path, real_document_image
     )
     synthetic_document_images_data_set_loader = torch.utils.data.DataLoader(
         synthetic_document_images_folder,
-        batch_size=100,
+        batch_size=1,
         num_workers=4,
         shuffle=True
     )
@@ -46,7 +46,7 @@ def cyclegan_data_set_loader(synthetic_document_images_path, real_document_image
     )
     real_document_images_data_set_loader = torch.utils.data.DataLoader(
         real_document_images_folder,
-        batch_size=100,
+        batch_size=1,
         num_workers=4,
         shuffle=True
     )
