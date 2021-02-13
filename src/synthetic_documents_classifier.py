@@ -274,7 +274,7 @@ def start_training_classifier(model, training_data_set_iter, test_data_set_iter,
         y_train = y_train_tensor.numpy()
         # Pre-processing class labels
         y_train = np_utils.to_categorical(y_train, 10)
-        history.append(model.fit(X_train, y_train, epochs=1, batch_size=10,  validation_split=0.2,
+        history.append(model.fit(X_train, y_train, epochs=1, batch_size=100,  validation_split=0.2,
         callbacks=[tensorboard_callback]))
 
     # Save the results
