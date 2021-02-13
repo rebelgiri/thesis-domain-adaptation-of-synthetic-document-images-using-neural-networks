@@ -3,6 +3,7 @@ from synthetic_documents_classifier import *
 import sys
 from keras_contrib.layers.normalization.instancenormalization import InstanceNormalization
 from sklearn.utils import shuffle
+from data_loader import *
 
 
 # Algorithm Steps:
@@ -25,17 +26,28 @@ if __name__ == "__main__":
     model = load_model(cyclegan_generator_path,
     custom_objects={'InstanceNormalization': InstanceNormalization})
 
-    source_domain_data_set, list_of_name_of_template = classifier_load_data_set(classifier_training_data_set_path)
+    # source_domain_data_set, list_of_name_of_template = classifier_load_data_set(
+    # classifier_training_data_set_path)
+    # source_domain_images, source_domain_labels = source_domain_data_set
+
+    # generate images
+    # translated_target_domain_images = model.predict(source_domain_images)
+
+    # shuffle data set
+    # translated_target_domain_images, source_domain_labels = shuffle(translated_target_domain_images, source_domain_labels)
 
 
-    source_domain_images, source_domain_labels = source_domain_data_set
+    (classifier_training_images_data_set_iter, 
+    classifier_test_images_data_set_iter, classes) = classifier_data_set_loader(
+        classifier_training_data_set_path, classifier_test_data_set_path)
+
+
+
 
     # generate images
     translated_target_domain_images = model.predict(source_domain_images)
 
-    # shuffle data set
-    translated_target_domain_images, source_domain_labels = shuffle(translated_target_domain_images, source_domain_labels)
-
+    
     # Train the Domain Adapted Realistic Document Image Classifier and 
     # Verify on Annotated Test Data.
    

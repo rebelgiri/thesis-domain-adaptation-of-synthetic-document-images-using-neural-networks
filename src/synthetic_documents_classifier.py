@@ -20,6 +20,7 @@ from sklearn.utils import shuffle
 import sys
 import datetime
 import tensorflow as tf
+from tensorflow.python.keras.activations import relu, softmax
 
 def identity_block(X, f, filters, stage, block):
     """
@@ -233,29 +234,78 @@ def classifier_load_data_set(data_set_path):
     return (data_set, data_set_labels), list_of_name_of_template
 
 def create_model(num_classes=10):
-    model = ResNet50(input_shape=(256, 256, 1), classes=10)
+    # model = ResNet50(input_shape=(256, 256, 1), classes=10)
+
+    model = Sequential()
+    model.add(Conv2D(32, kernel_size=(3, 3),
+                     activation='relu',
+                     input_shape=(256, 256, 1)))
+    model.add(Conv2D(64, (3, 3), activation='relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(0.25))
+    model.add(Flatten())
+    model.add(Dense(128, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(num_classes, activation='softmax'))
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return model
 
-def start_training_classifier(model, training_data_set, test_data_set, type_of_the_classifier, 
-    list_of_name_of_template, classifier_logs):
-  
-    print('Start Training Classifier ' + type_of_the_classifier, file=classifier_logs)
+def start_training_classifier(model, training_data_set_iter, test_data_set_iter, type_of_the_classifier, 
+    classes, classifier_logs):
+     
+    time = datetime.datetime.now().strftime('%Y-%m-%d %H-%M-%S')
+    print('Start Training Classifier ' + type_of_the_classifier + '_' + time + '_model.h5', file=classifier_logs)
+   
+   
+    # X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, 
+    # test_size=0.20, random_state=42)
 
-    X_train, y_train = training_data_set
-    X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.20, random_state=42)
-
-    X_test, y_test = test_data_set
- 
-
+   
     log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
+    history = list()
+
     # Fit the model
-    history = model.fit(X_train, y_train, epochs=10, batch_size=50, validation_data=(X_val, y_val),
-    callbacks=[tensorboard_callback])
+    for i in range(100):
+        X_train_tensor, y_train_tensor = training_data_set_iter.next()
+        X_train = X_train_tensor.numpy()
+        X_train = np.einsum('ijkl->iklj', X_train)
+        y_train = y_train_tensor.numpy()
+        # Pre-processing class labels
+        y_train = np_utils.to_categorical(y_train, 10)
+        history.append(model.fit(X_train, y_train, epochs=1, batch_size=100,  validation_split=0.2,
+        callbacks=[tensorboard_callback]))
 
     # Save the results
+    length = len(history)
+    h = np.zeros((length, 5), dtype=np.float32)
+
+    for i in range(length):
+        h[i, 0] = i
+        h[i, 1] = np.array(history[i].history['accuracy'])
+        h[i, 2] = np.array(history[i].history['loss'])
+        h[i, 3] = np.array(history[i].history['val_accuracy'])
+        h[i, 4] = np.array(history[i].history['val_loss'])
+
+    plt.plot(h[:, 1] * 100, '--')
+    plt.plot(h[:, 2] * 100, '-.')
+    plt.plot(h[:, 3] * 100, ':')
+    plt.plot(h[:, 4] * 100, '-')
+
+    plt.legend(['acc', 'loss', 'val_acc', 'val_loss'], loc='lower right')
+    plt.axis([0, length, 0, 100])
+
+    plt.xlabel('Epochs')
+    plt.ylabel('Accuracy and Error in percentage')
+    plt.grid('on')
+
+    plt.show()
+    plt.savefig(type_of_the_classifier + '_' + time + '_model.png')
+    plt.close()
+
+
+    '''
     plt.plot(history.history['accuracy'], label='accuracy')
     plt.plot(history.history['val_accuracy'], label='val_accuracy')
     plt.xlabel('Epoch')
@@ -263,17 +313,35 @@ def start_training_classifier(model, training_data_set, test_data_set, type_of_t
     plt.legend(loc='lower right')
     plt.show()
     plt.savefig('Epoch_Vs_Accuracy_Results.png')
+    '''
 
     # Evaluate on real annoted data
+    X_test_tensor, y_test_tensor = test_data_set_iter.next()
+    X_test = X_test_tensor.numpy()
+    X_test = np.einsum('ijkl->iklj', X_test)
+    y_test = y_test_tensor.numpy()
+    y_test_true = y_test
+    # Pre-processing class labels
+    y_test = np_utils.to_categorical(y_test, 10)
+
+    print('Evaluation Results', file=classifier_logs)
+    print(X_test.shape, file=classifier_logs)
+    print(y_test.shape, file=classifier_logs)
+
+    y_test_pred = np.argmax(model.predict(X_test), axis=-1)
+
+    print(y_test_pred)
+    
+
     results = model.evaluate(X_test, y_test, verbose=2)
-    print(classification_report(X_test, y_test, target_names=list_of_name_of_template), file=classifier_logs)
+    print(classification_report(y_test_true, y_test_pred, target_names=classes, zero_division=1), file=classifier_logs)
     print("test loss, test acc:", results, file=classifier_logs)
 
     # serialize weights to HDF5
-    model.save(type_of_the_classifier + '_model.h5')
+    model.save(type_of_the_classifier + '_' + time + '_model.h5')
     
-    print('Saved model to disk ' + type_of_the_classifier, file=classifier_logs)
-    print('End Training ' + type_of_the_classifier, file=classifier_logs)
+    print('Saved model to disk ' + type_of_the_classifier + '_' + time + '_model.h5', file=classifier_logs)
+    print('End Training ' + type_of_the_classifier + '_' + time + '_model.h5', file=classifier_logs)
 
 
 
