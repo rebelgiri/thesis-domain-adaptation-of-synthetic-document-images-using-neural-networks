@@ -90,7 +90,7 @@ def classifier_data_set_loader(classifier_training_data_set_path, classifier_tes
 
     classifier_test_images_data_set_loader = torch.utils.data.DataLoader(
         classifier_test_images_folder,
-        batch_size=1200,
+        batch_size=1200, # we have around 1162 test images
         num_workers=4,
         shuffle=True
     )
