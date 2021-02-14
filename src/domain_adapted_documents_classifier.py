@@ -19,15 +19,18 @@ def start_training_domain_adapted_documents_classifier(model,
         domain_adapted_documents_classifier_logs):
 
 
-    time = datetime.datetime.now().strftime('%Y-%m-%d %H-%M-%S')
+    time = datetime.now().strftime('%Y-%m-%d %H-%M-%S')
     print('Start Training Classifier ' + type_of_the_classifier + '_' + time + '_model.h5', 
     file=domain_adapted_documents_classifier_logs)
    
    
     X_train, y_train = dataset
-    log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    log_dir = "logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S")
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
+    # Pre-processing class labels
+    y_train = np_utils.to_categorical(y_train, 10)
+    
     history = model.fit(X_train, y_train, epochs=10, batch_size=100,  validation_split=0.2,
         callbacks=[tensorboard_callback])
 
@@ -102,16 +105,21 @@ if __name__ == "__main__":
     # translated_target_domain_images, source_domain_labels = shuffle(translated_target_domain_images, source_domain_labels)
 
     translated_target_domain_images = np.array([])
+    source_domain_labels = np.array([])
     (classifier_training_images_data_set_iter, 
     classifier_test_images_data_set_iter, classes) = classifier_data_set_loader(
         classifier_training_data_set_path, classifier_test_data_set_path)
 
-    for i in range(100):
+    for i in range(1):
         (source_domain_images_tensor, 
         source_domain_labels_tensor) = classifier_training_images_data_set_iter.next()
         source_domain_images_tensor_numpy = source_domain_images_tensor.numpy()
         source_domain_images = np.einsum('ijkl->iklj', source_domain_images_tensor_numpy)
-        source_domain_labels = source_domain_labels_tensor.numpy()
+        source_domain_labels_numpy = source_domain_labels_tensor.numpy()
+        
+        source_domain_labels = np.vstack([source_domain_labels, 
+        source_domain_labels_numpy]) if source_domain_labels.size else source_domain_labels_numpy
+
         # generate images
         translated_target_domain_pred_images = model.predict(source_domain_images)
         translated_target_domain_images = np.vstack([translated_target_domain_images, 
@@ -119,6 +127,7 @@ if __name__ == "__main__":
 
 
     print(translated_target_domain_images.shape, file=domain_adapted_documents_classifier_logs) 
+    print(source_domain_labels.shape, file=domain_adapted_documents_classifier_logs)
 
     # Train the Domain Adapted Realistic Document Image Classifier and 
     # Verify on Annotated Test Data.
