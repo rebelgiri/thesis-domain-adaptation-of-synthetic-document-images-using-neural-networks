@@ -245,6 +245,8 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
             dB_loss2, _ = d_model_B.train_on_batch(X_fakeB, y_fakeB)
             # summarize performance
             print('>%d, dA[%.3f,%.3f] dB[%.3f,%.3f] g[%.3f,%.3f]' % (
+                j + 1, dA_loss1, dA_loss2, dB_loss1, dB_loss2, g_loss1, g_loss2))
+            print('>%d, dA[%.3f,%.3f] dB[%.3f,%.3f] g[%.3f,%.3f]' % (
                 j + 1, dA_loss1, dA_loss2, dB_loss1, dB_loss2, g_loss1, g_loss2), file=cyclegan_training_logs)
 
         # evaluate the model performance, sometimes
