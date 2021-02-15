@@ -17,7 +17,7 @@ if __name__ == "__main__":
     classifier_training_data_set_path = sys.argv[3]
     classifier_test_data_set_path = sys.argv[4]
 
-    time = datetime.now().strftime('%Y-%m-%d %H-%M-%S')
+    time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     cyclegan_training_logs = open('cyclegan_training_logs' + '_' + time + '_.txt', 'a')
     synthetic_documents_classifier_logs =  open('synthetic_documents_classifier_logs' + 
     '_' + time + '_.txt', 'a')

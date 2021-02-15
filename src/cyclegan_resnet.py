@@ -192,7 +192,7 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
     data_set_cyclegan_iter, cyclegan_training_logs):
 
     # define properties of the training run
-    n_epochs, n_batch = 5, 1
+    n_epochs, n_batch = 3, 1
     # determine the output square shape of the discriminator
     n_patch = d_model_A.output_shape[1]
     # unpack dataset
@@ -252,40 +252,46 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
         # evaluate the model performance, sometimes
         # if (i + 1) % 10 == 0:
 
-        summarize_performance(i, g_model_AtoB, d_model_B, (trainA, trainB), n_batch, n_patch, cyclegan_training_logs)
+        summarize_performance(i, g_model_AtoB, 'g_model_AtoB', d_model_B, 'd_model_B', (trainA, trainB), 
+        n_batch, n_patch, cyclegan_training_logs)
+
+        summarize_performance(i, g_model_BtoA, 'g_model_BtoA', d_model_A, 'd_model_A', (trainB, trainA), 
+        n_batch, n_patch, cyclegan_training_logs)
             
 # evaluate the discriminator, plot generated images, save generator model
-def summarize_performance(epoch, g_model_AtoB, d_model_B, dataset, n_batch, n_patch,cyclegan_training_logs):
+def summarize_performance(epoch, g_model, g_model_name, d_model, d_model_name, dataset, 
+n_batch, n_patch,cyclegan_training_logs):
 
     # unpack dataset
-    trainA, trainB = dataset
+    trainS, trainT = dataset
 
     # select a batch of real samples
-    X_realA, _ = generate_real_samples(trainA, n_batch, n_patch)
-    X_realB, y_realB = generate_real_samples(trainB, n_batch, n_patch)
+    X_realS, _ = generate_real_samples(trainS, n_batch, n_patch)
+    X_realT, y_realT = generate_real_samples(trainT, n_batch, n_patch)
     
     # generate a batch of fake samples
-    X_fakeB, y_fakeB = generate_fake_samples(g_model_AtoB, X_realA, n_patch)
+    X_fakeT, y_fakeT = generate_fake_samples(g_model, X_realS, n_patch)
 
     # evaluate discriminator on real examples
-    _, acc_realB = d_model_B.evaluate(X_realB, y_realB)
+    _, acc_realT = d_model.evaluate(X_realT, y_realT)
 
     # evaluate discriminator on fake examples
-    _, acc_fakeB = d_model_B.evaluate(X_fakeB, y_fakeB)
+    _, acc_fakeT = d_model.evaluate(X_fakeT, y_fakeT)
 
     # summarize discriminator performance
-    print('>Accuracy real: %.0f%%, fake: %.0f%%' % (acc_realB * 100, acc_fakeB * 100), file=cyclegan_training_logs)
+    print('>Accuracy real: %.0f%%, fake: %.0f%%' % (acc_realT * 100, acc_fakeT * 100), 
+    file=cyclegan_training_logs)
+
+    print('>Accuracy real: %.0f%%, fake: %.0f%%' % (acc_realT * 100, acc_fakeT * 100))
     
     # save plot
-    generator_model_AtoB = 'g_model_AtoB'
-    discriminator_model_B = 'd_model_B'
-    save_plot(X_fakeB, epoch, n_batch, generator_model_AtoB)
-
+  
+    save_plot(X_fakeT, epoch, n_batch, g_model_name)
     # save the generator model tile file
-    filename_g_model_AtoB = 'generator_model_%s_%03d.h5' % (generator_model_AtoB, epoch + 1)
-    filename_d_model_B = 'discriminator_model_%s_%03d.h5' % (discriminator_model_B, epoch + 1)
-    g_model_AtoB.save(filename_g_model_AtoB)
-    d_model_B.save(filename_d_model_B)
+    filename_g_model = 'generator_model_%s_%03d.h5' % (g_model_name, epoch + 1)
+    filename_d_model = 'discriminator_model_%s_%03d.h5' % (d_model_name, epoch + 1)
+    g_model.save(filename_g_model)
+    d_model.save(filename_d_model)
 
 # create and save a plot of generated images
 def save_plot(examples, epoch, n, generator_model_name):
@@ -296,7 +302,10 @@ def save_plot(examples, epoch, n, generator_model_name):
         # turn off axis
         pyplot.axis('off')
         # plot raw pixel data
-        pyplot.imshow(examples[i])
+        image = examples[i]
+        # we need to get rid of the last dimension
+        image = image[:, :, 0]
+        pyplot.imshow(image, cmap='gray')
     # save plot to file
     filename = 'generated_plot_%s_e%03d.png' % (generator_model_name, epoch + 1)
     pyplot.savefig(filename)
