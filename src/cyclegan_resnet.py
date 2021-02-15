@@ -249,14 +249,13 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
             print('>%d, dA[%.3f,%.3f] dB[%.3f,%.3f] g[%.3f,%.3f]' % (
                 j + 1, dA_loss1, dA_loss2, dB_loss1, dB_loss2, g_loss1, g_loss2), file=cyclegan_training_logs)
 
-        # evaluate the model performance, sometimes
-        # if (i + 1) % 10 == 0:
+            # evaluate the model performance, sometimes
+            if (j + 1) % 10000 == 0:
+                summarize_performance(i, g_model_AtoB, 'g_model_AtoB', d_model_B, 'd_model_B', 
+                (trainA, trainB), n_batch, n_patch, cyclegan_training_logs)
 
-        summarize_performance(i, g_model_AtoB, 'g_model_AtoB', d_model_B, 'd_model_B', (trainA, trainB), 
-        n_batch, n_patch, cyclegan_training_logs)
-
-        summarize_performance(i, g_model_BtoA, 'g_model_BtoA', d_model_A, 'd_model_A', (trainB, trainA), 
-        n_batch, n_patch, cyclegan_training_logs)
+                summarize_performance(i, g_model_BtoA, 'g_model_BtoA', d_model_A, 'd_model_A', 
+                (trainB, trainA), n_batch, n_patch, cyclegan_training_logs)
             
 # evaluate the discriminator, plot generated images, save generator model
 def summarize_performance(epoch, g_model, g_model_name, d_model, d_model_name, dataset, 
