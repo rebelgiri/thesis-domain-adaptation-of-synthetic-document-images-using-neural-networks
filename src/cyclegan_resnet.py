@@ -251,10 +251,10 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
 
             # evaluate the model performance, sometimes
             if (j + 1) % 10000 == 0:
-                summarize_performance(j, g_model_AtoB, 'g_model_AtoB', d_model_B, 'd_model_B', 
+                summarize_performance(j + i, g_model_AtoB, 'g_model_AtoB', d_model_B, 'd_model_B', 
                 (trainA, trainB), n_batch, n_patch, cyclegan_training_logs)
 
-                summarize_performance(j, g_model_BtoA, 'g_model_BtoA', d_model_A, 'd_model_A', 
+                summarize_performance(j + i, g_model_BtoA, 'g_model_BtoA', d_model_A, 'd_model_A', 
                 (trainB, trainA), n_batch, n_patch, cyclegan_training_logs)
             
 # evaluate the discriminator, plot generated images, save generator model
