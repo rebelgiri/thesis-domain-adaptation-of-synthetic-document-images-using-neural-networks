@@ -192,7 +192,7 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
     data_set_cyclegan_loader, cyclegan_training_logs):
 
     # define properties of the training run
-    n_epochs, n_batch = 5, 10
+    n_epochs, n_batch = 5, 1
 
     # determine the output square shape of the discriminator
     n_patch = d_model_A.output_shape[1]
