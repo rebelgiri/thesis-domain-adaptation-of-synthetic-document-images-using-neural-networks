@@ -189,12 +189,14 @@ def update_image_pool(pool, images, max_size=50):
 
 # train cyclegan models
 def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_model_BtoA, 
-    data_set_cyclegan_iter, cyclegan_training_logs):
+    data_set_cyclegan_loader, cyclegan_training_logs):
 
     # define properties of the training run
-    n_epochs, n_batch = 3, 1
+    n_epochs, n_batch = 5, 10
+
     # determine the output square shape of the discriminator
     n_patch = d_model_A.output_shape[1]
+    
     # unpack dataset
     # trainA, trainB = dataset
     
@@ -202,27 +204,27 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
     poolA, poolB = list(), list()
     
     # calculate the number of batches per training epoch
-    # bat_per_epo = int(len(trainA) / n_batch)
+    bat_per_epo = int(100000 / n_batch)
     
     # calculate the number of training iterations
     # n_steps = bat_per_epo * n_epochs
     
-    bat_per_epo = 100000
     # manually enumerate epochs
     for i in range(n_epochs):
+        synthetic_document_images_data_set_iter = iter(data_set_cyclegan_loader[0])
+        real_document_images_data_set_iter = iter(data_set_cyclegan_loader[1])
         for j in range(bat_per_epo):
-
-            trainA, _ = data_set_cyclegan_iter[0].next() # Synthetic Domain Images
-            trainB, _ = data_set_cyclegan_iter[1].next() # Real Domain Images
+            trainA, _ = synthetic_document_images_data_set_iter.next() # Synthetic Domain Images
+            trainB, _ = real_document_images_data_set_iter.next() # Real Domain Images
 
             trainA = trainA.numpy()
             trainA = np.einsum('ijkl->iklj', trainA)
-
+            
             trainB = trainB.numpy()
             trainB= np.einsum('ijkl->iklj', trainB)
-
-            print(trainA.shape, file=cyclegan_training_logs)
-            print(trainB.shape, file=cyclegan_training_logs)
+            
+            # print(trainA.shape, file=cyclegan_training_logs)
+            # print(trainB.shape, file=cyclegan_training_logs)
             
             # select a batch of real samples
             X_realA, y_realA = generate_real_samples(trainA, n_batch, n_patch)
@@ -243,19 +245,22 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
             # update discriminator for B -> [real/fake]
             dB_loss1, _ = d_model_B.train_on_batch(X_realB, y_realB)
             dB_loss2, _ = d_model_B.train_on_batch(X_fakeB, y_fakeB)
+            
             # summarize performance
             print('>%d, dA[%.3f,%.3f] dB[%.3f,%.3f] g[%.3f,%.3f]' % (
                 j + 1, dA_loss1, dA_loss2, dB_loss1, dB_loss2, g_loss1, g_loss2))
             print('>%d, dA[%.3f,%.3f] dB[%.3f,%.3f] g[%.3f,%.3f]' % (
                 j + 1, dA_loss1, dA_loss2, dB_loss1, dB_loss2, g_loss1, g_loss2), file=cyclegan_training_logs)
 
-            # evaluate the model performance, sometimes
-            if (j + 1) % 10000 == 0:
-                summarize_performance(j + i, g_model_AtoB, 'g_model_AtoB', d_model_B, 'd_model_B', 
+        # evaluate the model performance, sometimes
+        # if (j + 1) % 10000 == 0:
+        
+        summarize_performance(i, g_model_AtoB, 'g_model_AtoB', d_model_B, 'd_model_B', 
                 (trainA, trainB), n_batch, n_patch, cyclegan_training_logs)
 
-                summarize_performance(j + i, g_model_BtoA, 'g_model_BtoA', d_model_A, 'd_model_A', 
+        summarize_performance(i, g_model_BtoA, 'g_model_BtoA', d_model_A, 'd_model_A', 
                 (trainB, trainA), n_batch, n_patch, cyclegan_training_logs)
+
             
 # evaluate the discriminator, plot generated images, save generator model
 def summarize_performance(epoch, g_model, g_model_name, d_model, d_model_name, dataset, 

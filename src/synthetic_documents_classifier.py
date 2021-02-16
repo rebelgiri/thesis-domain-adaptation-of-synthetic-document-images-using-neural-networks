@@ -250,32 +250,34 @@ def create_model(num_classes=10):
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return model
 
-def start_training_classifier(model, training_data_set_iter, test_data_set_iter, type_of_the_classifier, 
-    classes, classifier_logs):
+def start_training_synthetic_documents_classifier(model, training_data_set_loader, test_data_set_loader, 
+type_of_the_classifier, classes, classifier_logs):
      
-    time = datetime.datetime.now().strftime('%Y-%m-%d %H-%M-%S')
+    time = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     print('Start Training Classifier ' + type_of_the_classifier + '_' + time + '_model.h5', file=classifier_logs)
-   
-   
+      
     # X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, 
     # test_size=0.20, random_state=42)
 
-   
     log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
     history = list()
+    n_epochs = 10
 
     # Fit the model
-    for i in range(1000):
-        X_train_tensor, y_train_tensor = training_data_set_iter.next()
-        X_train = X_train_tensor.numpy()
-        X_train = np.einsum('ijkl->iklj', X_train)
-        y_train = y_train_tensor.numpy()
-        # Pre-processing class labels
-        y_train = np_utils.to_categorical(y_train, 10)
-        history.append(model.fit(X_train, y_train, epochs=1, batch_size=100,  validation_split=0.2,
-        callbacks=[tensorboard_callback]))
+    for _ in range(n_epochs):
+        for _, data in enumerate(training_data_set_loader, 0):
+            X_train_tensor, y_train_tensor = data
+            X_train = X_train_tensor.numpy()
+            X_train = np.einsum('ijkl->iklj', X_train)
+            y_train = y_train_tensor.numpy()
+
+            # Pre-processing class labels
+            y_train = np_utils.to_categorical(y_train, 10)
+            
+            history.append(model.fit(X_train, y_train, epochs=1, batch_size=100, 
+            validation_split=0.2, callbacks=[tensorboard_callback]))
 
     # Save the results
     length = len(history)
@@ -316,6 +318,7 @@ def start_training_classifier(model, training_data_set_iter, test_data_set_iter,
     '''
 
     # Evaluate on real annoted data
+    test_data_set_iter = iter(test_data_set_loader)
     X_test_tensor, y_test_tensor = test_data_set_iter.next()
     X_test = X_test_tensor.numpy()
     X_test = np.einsum('ijkl->iklj', X_test)
@@ -329,9 +332,6 @@ def start_training_classifier(model, training_data_set_iter, test_data_set_iter,
     print(y_test.shape, file=classifier_logs)
 
     y_test_pred = np.argmax(model.predict(X_test), axis=-1)
-
-    print(y_test_pred)
-    
 
     results = model.evaluate(X_test, y_test, verbose=2)
     print(classification_report(y_test_true, y_test_pred, target_names=classes, zero_division=1), file=classifier_logs)

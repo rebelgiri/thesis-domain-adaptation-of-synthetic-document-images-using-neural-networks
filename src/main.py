@@ -19,11 +19,6 @@ if __name__ == "__main__":
 
     time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     cyclegan_training_logs = open('cyclegan_training_logs' + '_' + time + '_.txt', 'a')
-    synthetic_documents_classifier_logs =  open('synthetic_documents_classifier_logs' + 
-    '_' + time + '_.txt', 'a')
-    print(datetime.now(), file=cyclegan_training_logs)
-    print(datetime.now(), file=synthetic_documents_classifier_logs)
-
 
     # Train the CycleGAN.
     
@@ -67,13 +62,13 @@ if __name__ == "__main__":
     # print(real_document_images_data_set.shape)
 
 
-    data_set_cyclegan_iter = cyclegan_data_set_loader(synthetic_document_images_path, real_document_images_path)    
+    data_set_cyclegan_loader = cyclegan_data_set_loader(synthetic_document_images_path, real_document_images_path)    
     
     # for batch_idx, (data, target) in enumerate(data_set_cyclegan_iter[0]):
     #    print(batch_idx)
 
     train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, 
-        c_model_AtoB, c_model_BtoA, data_set_cyclegan_iter, cyclegan_training_logs)
+        c_model_AtoB, c_model_BtoA, data_set_cyclegan_loader, cyclegan_training_logs)
 
 
     print('---------------------------------------------------------------------------------', 
@@ -87,15 +82,18 @@ if __name__ == "__main__":
     
     type_of_the_classifier = 'synthetic_documents_classifier'
     synthetic_documents_classifier_model = create_model(10)
-    
     # synthetic_documents_classifier_model.summary()
     # plot_model(synthetic_documents_classifier_model, to_file=type_of_the_classifier + '.png', show_shapes=True, show_layer_names=True)
     
-    (classifier_training_images_data_set_iter, classifier_test_images_data_set_iter, classes) = classifier_data_set_loader(
+    (classifier_training_images_data_set_loader, classifier_test_images_data_set_loader, classes) = classifier_data_set_loader(
         classifier_training_data_set_path, classifier_test_data_set_path)
 
-    start_training_classifier(synthetic_documents_classifier_model, 
-        classifier_training_images_data_set_iter, classifier_test_images_data_set_iter, type_of_the_classifier,
+
+    synthetic_documents_classifier_logs =  open('synthetic_documents_classifier_logs' + 
+    '_' + time + '_.txt', 'a')
+    
+    start_training_synthetic_documents_classifier(synthetic_documents_classifier_model, 
+        classifier_training_images_data_set_loader, classifier_test_images_data_set_loader, type_of_the_classifier,
         classes, synthetic_documents_classifier_logs)
 
     print('---------------------------------------------------------------------------------', 
