@@ -2,7 +2,7 @@
 # https://machinelearningmastery.com/cyclegan-tutorial-with-keras/
 # https://www.tensorflow.org/tutorials/generative/cyclegan
 
-import tensorflow as tf
+
 from keras.optimizers import Adam
 from keras.initializers import RandomNormal
 from keras.models import Model
@@ -11,28 +11,17 @@ from keras.layers import Conv2D
 from keras.layers import LeakyReLU
 from keras.layers import Activation
 from keras.layers import Concatenate
-from keras.layers import BatchNormalization
 from keras_contrib.layers.normalization.instancenormalization import InstanceNormalization
-from keras.utils.vis_utils import plot_model
 from keras.initializers import RandomNormal
 from keras.layers import Conv2DTranspose
-import glob
 import numpy as np
-import zipfile
-import PIL
-from PIL import Image, ImageOps
-import matplotlib.pyplot as plt
-from numpy.random import randn
 from numpy.random import randint
 from numpy import zeros
 from numpy import ones
 from numpy import asarray
 from matplotlib import pyplot
 from random import random
-import os
-import time
-import cv2
-import sys
+
 
 # pip install git+https://www.github.com/keras-team/keras-contrib.git
 
@@ -197,18 +186,12 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
     # determine the output square shape of the discriminator
     n_patch = d_model_A.output_shape[1]
     
-    # unpack dataset
-    # trainA, trainB = dataset
-    
     # prepare image pool for fakes
     poolA, poolB = list(), list()
     
     # calculate the number of batches per training epoch
     bat_per_epo = int(100000 / n_batch)
-    
-    # calculate the number of training iterations
-    # n_steps = bat_per_epo * n_epochs
-    
+        
     # manually enumerate epochs
     for i in range(n_epochs):
         synthetic_document_images_data_set_iter = iter(data_set_cyclegan_loader[0])
@@ -222,9 +205,6 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
             
             trainB = trainB.numpy()
             trainB= np.einsum('ijkl->iklj', trainB)
-            
-            # print(trainA.shape, file=cyclegan_training_logs)
-            # print(trainB.shape, file=cyclegan_training_logs)
             
             # select a batch of real samples
             X_realA, y_realA = generate_real_samples(trainA, n_batch, n_patch)
@@ -315,48 +295,6 @@ def save_plot(examples, epoch, n, generator_model_name):
     pyplot.savefig(filename)
     pyplot.close()
 
-def preprocess_train_images(image):
-    print(image)
-    # random mirroring
-    image_flipped_left_right = Image.open(image).transpose(PIL.Image.FLIP_LEFT_RIGHT)
-    # convert image into grayscale image
-    image_grayscale = np.asarray(ImageOps.grayscale(image_flipped_left_right))
-    # resizing to 286 x 286
-    image_resized = cv2.resize(image_grayscale, dsize=(286 , 286), interpolation=cv2.INTER_NEAREST)
-    # random crop 256 x 256
-    image_random_cropped = np.asarray(tf.image.random_crop(image_resized, size=[256, 256]))
-    # normalizing the images to [-1, 1]
-    image_float32 = image_random_cropped.astype('float32')
-    image_normalized = (image_float32 / 127.5) - 1
-
-    return image_normalized.reshape(256, 256, 1)
-
-def cyclegan_load_data_set(synthetic_document_images_path, real_document_images_path):
-    print('Start function load dataset')
-    # preprocess images
-    domainA_Images = []
-    domainB_Images = []
-
-    if not os.path.exists(synthetic_document_images_path):
-        print('Path of the synthetic document images is Invalid')
-
-    if not os.path.exists(real_document_images_path):
-        print('Path of the real images is Invalid')    
-
-    for f in os.listdir(synthetic_document_images_path):
-        domainA_Images.append(preprocess_train_images(synthetic_document_images_path + f))
-
-    for f in os.listdir(real_document_images_path):
-        domainB_Images.append(preprocess_train_images(real_document_images_path + f))
-
-    domainA_Images = np.asarray(domainA_Images)
-    domainB_Images = np.asarray(domainB_Images)
-
-    print(domainA_Images.shape)
-    print(domainB_Images.shape)
-    print('End function load data set')
-
-    return (domainA_Images, domainB_Images)
 
 
     

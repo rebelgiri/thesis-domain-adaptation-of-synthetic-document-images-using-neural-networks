@@ -5,22 +5,16 @@ from keras.layers import Input, Add, Dense, Activation, ZeroPadding2D, BatchNorm
 from keras.models import Model, Sequential
 from keras.initializers import glorot_uniform
 from keras.utils import np_utils
-from keras.datasets import mnist
 from matplotlib import pyplot as plt
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 import os
 import cv2
 import glob
 import numpy as np
-import PIL
 from PIL import Image, ImageOps
 from keras.utils import np_utils
 from sklearn.utils import shuffle
-import sys
-import datetime
 import tensorflow as tf
-from tensorflow.python.keras.activations import relu, softmax
 
 def identity_block(X, f, filters, stage, block):
     """
@@ -251,19 +245,14 @@ def create_model(num_classes=10):
     return model
 
 def start_training_synthetic_documents_classifier(model, training_data_set_loader, test_data_set_loader, 
-type_of_the_classifier, classes, classifier_logs):
+type_of_the_classifier, classes, classifier_logs, time):
      
-    time = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    print('Start Training Classifier ' + type_of_the_classifier + '_' + time + '_model.h5', file=classifier_logs)
-      
-    # X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, 
-    # test_size=0.20, random_state=42)
-
-    log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    print('Start Training Classifier ' + type_of_the_classifier , file=classifier_logs)
+    log_dir = "logs/fit/" + time
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
     history = list()
-    n_epochs = 10
+    n_epochs = 3
 
     # Fit the model
     for _ in range(n_epochs):
@@ -276,9 +265,12 @@ type_of_the_classifier, classes, classifier_logs):
             # Pre-processing class labels
             y_train = np_utils.to_categorical(y_train, 10)
             
-            history.append(model.fit(X_train, y_train, epochs=1, batch_size=100, 
+            history.append(model.fit(X_train, y_train, epochs=1, batch_size=10, 
             validation_split=0.2, callbacks=[tensorboard_callback]))
 
+
+    print('Training Finished...')
+    
     # Save the results
     length = len(history)
     h = np.zeros((length, 5), dtype=np.float32)

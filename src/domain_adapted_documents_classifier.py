@@ -4,7 +4,7 @@ import sys
 from datetime import datetime
 from keras_contrib.layers.normalization.instancenormalization import InstanceNormalization
 from sklearn.utils import shuffle
-from data_loader import *
+from data_set_loader_pytorch import *
 import numpy as np
 
 
@@ -16,11 +16,11 @@ import numpy as np
 def start_training_domain_adapted_documents_classifier(model, 
         dataset, 
         classifier_test_images_data_set_iter, type_of_the_classifier, classes, 
-        domain_adapted_documents_classifier_logs):
+        domain_adapted_documents_classifier_logs, time):
 
     X_train, y_train = dataset
     
-    log_dir = "logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S")
+    log_dir = "logs/fit/" + time
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
     # Pre-processing class labels
@@ -126,7 +126,7 @@ if __name__ == "__main__":
     start_training_domain_adapted_documents_classifier(domain_adapted_documents_classifier_model, 
         (translated_target_domain_images, source_domain_labels), 
         classifier_test_images_data_set_iter, type_of_the_classifier, classes, 
-        domain_adapted_documents_classifier_logs)
+        domain_adapted_documents_classifier_logs, time)
 
     print('---------------------------------------------------------------------------------', 
     file=domain_adapted_documents_classifier_logs)

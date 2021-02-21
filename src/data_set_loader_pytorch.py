@@ -2,8 +2,6 @@
 import torch
 import torchvision
 import torchvision.transforms as transforms
-import torchvision.datasets as datasets
-import numpy as np
 
 
 # Specify transforms using torchvision.transforms as transforms library
@@ -36,7 +34,6 @@ def cyclegan_data_set_loader(synthetic_document_images_path, real_document_image
     synthetic_document_images_data_set_loader = torch.utils.data.DataLoader(
         synthetic_document_images_folder,
         batch_size=1,
-        # num_workers=4,
         shuffle=True
     )
 
@@ -47,22 +44,9 @@ def cyclegan_data_set_loader(synthetic_document_images_path, real_document_image
     real_document_images_data_set_loader = torch.utils.data.DataLoader(
         real_document_images_folder,
         batch_size=1,
-        # num_workers=4,
         shuffle=True
     )
 
-    # synthetic_document_images_data_set_iter = iter(synthetic_document_images_data_set_loader)
-    # synthetic_document_images_tensor, _ = dataiter.next()
-    # synthetic_document_images = synthetic_document_images_tensor.numpy()
-    # synthetic_document_images_data_set = np.einsum('ijkl->iklj', synthetic_document_images)
-    
-    
-    # real_document_images_data_set_iter = iter(real_document_images_data_set_loader)
-    # real_document_images_tensor, _ = dataiter.next()
-    # real_document_images = real_document_images_tensor.numpy()
-    # real_document_images_data_set = np.einsum('ijkl->iklj', real_document_images)
-
-    # return (synthetic_document_images_data_set_iter, real_document_images_data_set_iter)
 
     return (synthetic_document_images_data_set_loader, real_document_images_data_set_loader)
     
@@ -77,7 +61,7 @@ def classifier_data_set_loader(classifier_training_data_set_path, classifier_tes
 
     classifier_training_images_data_set_loader = torch.utils.data.DataLoader(
         classifier_training_images_folder,
-        batch_size=100,
+        batch_size=10,
         num_workers=4,
         shuffle=True
     )
@@ -94,10 +78,8 @@ def classifier_data_set_loader(classifier_training_data_set_path, classifier_tes
         shuffle=True
     )
 
-    # classifier_training_images_data_set_iter = iter(classifier_training_images_data_set_loader)    
-    # classifier_test_images_data_set_iter = iter(classifier_test_images_data_set_loader)
-    # print(classifier_training_images_folder.classes)
-    # print(classifier_test_images_folder.classes)
-
     return (classifier_training_images_data_set_loader, classifier_test_images_data_set_loader, 
     classifier_training_images_folder.classes)
+
+
+
