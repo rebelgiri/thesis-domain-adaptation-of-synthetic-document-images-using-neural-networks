@@ -50,12 +50,10 @@ if __name__ == "__main__":
     model = load_model(cyclegan_generator_path,
     custom_objects={'InstanceNormalization': InstanceNormalization})
 
-
     total_no_images = train_it.n  
     steps = int(total_no_images/ 10) # 10000
     translated_target_domain_images = np.array([])
     source_domain_labels = np.array([])
-
 
     for i in range(steps): #steps
         source_domain_images_batch , source_domain_labels_batch = train_it.next()
@@ -84,16 +82,16 @@ if __name__ == "__main__":
     '_' + time + '.txt', 'a')
     log_dir = "logs/fit/" + time
     
-    # tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
+    tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
     history = list()
     
-    domain_adapted_documents_classifier_model.fit(
+    history.append(domain_adapted_documents_classifier_model.fit(
             translated_target_domain_images, 
             source_domain_labels,
             epochs=10,
             batch_size=10,
-            validation_split=0.2)
-    # callbacks=[tensorboard_callback]))      
+            validation_split=0.2,
+            callbacks=[tensorboard_callback]))      
     print('Training Finished...')
 
    

@@ -3,13 +3,13 @@ import tensorflow as tf
 from keras.preprocessing.image import ImageDataGenerator
 import sys
 
+
 def normalize(image):
   image = (image / 127.5) - 1
   return image
 
 def  classifier_data_set_loader_keras(classifier_training_data_set_path, 
 classifier_test_data_set_path):
-
 
     # create generator
     datagen = ImageDataGenerator(preprocessing_function=normalize())
