@@ -3,6 +3,7 @@ from cyclegan_resnet import *
 from synthetic_documents_classifier import *
 from datetime import datetime
 from data_set_loader_pytorch import *
+import sys
 
 # Algorithm Steps:
 # Train the CycleGAN.
