@@ -11,14 +11,10 @@ def create_synthetic_documents(path_templates_with_annotations, path_crops,
     template_directory_path = Path(path_templates_with_annotations)
     output_directory_path = Path(path_output)
     
-    # crop_images_directory_path = Path('D:/Projects/MNISTExtractor/Code/mnist_png/data/output/training/0')
     
     crop_images_directory_path = Path(path_crops)
     visual_object_classes = [visual_object_classes_numeric, visual_object_classes_alpha]
     number_of_samples_per_template = 10000
-
-    # print(path.exists('../../dataset/templates/'))
-    # print(path.exists('../../dataset/output/'))
 
     print('Creating Sythetic Document Images for ' + template_folder_name)
     modify.create_synthetic_samples(template_directory_path, output_directory_path,
