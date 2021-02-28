@@ -51,24 +51,7 @@ if __name__ == "__main__":
     train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, 
         c_model_AtoB, c_model_BtoA, data_set_cyclegan_loader, cyclegan_training_logs)
 
-    cyclegan_training_logs.close()    
-
-    # Train the Synthetic Document Image Classifier and Verify in Annotated Test Data.
-    type_of_the_classifier = 'synthetic_documents_classifier'
-    synthetic_documents_classifier_model = create_model(10)
-    
-    (classifier_training_images_data_set_loader, classifier_test_images_data_set_loader, classes) = classifier_data_set_loader(
-        classifier_training_data_set_path, classifier_test_data_set_path)
-
-
-    synthetic_documents_classifier_logs =  open('synthetic_documents_classifier_logs' + 
-    '_' + time + '.txt', 'a')
-    
-    start_training_synthetic_documents_classifier(synthetic_documents_classifier_model, 
-        classifier_training_images_data_set_loader, classifier_test_images_data_set_loader, type_of_the_classifier,
-        classes, synthetic_documents_classifier_logs)
-
-    synthetic_documents_classifier_logs.close()
+    cyclegan_training_logs.close()
     
 
 
