@@ -244,7 +244,7 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
             
 # evaluate the discriminator, plot generated images, save generator model
 def summarize_performance(epoch, g_model, g_model_name, d_model, d_model_name, dataset, 
-n_batch, n_patch,cyclegan_training_logs):
+    n_batch, n_patch, cyclegan_training_logs):
 
     # unpack dataset
     trainS, trainT = dataset
