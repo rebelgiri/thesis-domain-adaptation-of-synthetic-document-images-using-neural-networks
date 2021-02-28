@@ -7,13 +7,12 @@ from datetime import datetime
 from keras_contrib.layers.normalization.instancenormalization import InstanceNormalization
 # from data_set_loader_pytorch import *
 from data_set_loader_keras import *
+from train_synthetic_documents_classfier import *
 import numpy as np
-
 
 # Algorithm Steps:
 # Load the CycleGAN Model Generate the Domain Adapted Realistic Document Images.
 # Train the Domain Adapted Realistic Document Image Classifier and Verify in Annotated Test Data.
-
 
 if __name__ == "__main__":
 
@@ -31,8 +30,7 @@ if __name__ == "__main__":
         color_mode='grayscale',
         shuffle=True,
         batch_size=10,
-        interpolation='bilinear',
-        subset='training')
+        interpolation='bilinear')
 
     # prepare an iterators for testing dataset
     test_it = datagen.flow_from_directory(
@@ -55,7 +53,7 @@ if __name__ == "__main__":
     translated_target_domain_images = np.array([])
     source_domain_labels = np.array([])
 
-    for i in range(steps): #steps
+    for i in range(steps): # steps
         source_domain_images_batch , source_domain_labels_batch = train_it.next()
 
         source_domain_labels = np.vstack([source_domain_labels, 
@@ -65,9 +63,11 @@ if __name__ == "__main__":
         translated_target_domain_pred_images = model.predict(source_domain_images_batch)
         translated_target_domain_images = np.vstack([translated_target_domain_images, 
         translated_target_domain_pred_images]) if translated_target_domain_images.size else translated_target_domain_pred_images
+        print('translated target domain images and labels shape')
+        print(translated_target_domain_images.shape) 
+        print(source_domain_labels.shape)
 
-
-    print('translated target domain images and labels shape')
+    print('final translated target domain images and labels shape')
     print(translated_target_domain_images.shape) 
     print(source_domain_labels.shape)
 
@@ -78,61 +78,60 @@ if __name__ == "__main__":
     domain_adapted_documents_classifier_model = create_model(10)
 
     time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    domain_adapted_documents_classifier_logs =  open('domain_adapted_documents_classifier_logs'
-    '_' + time + '.txt', 'a')
     log_dir = "logs/fit/" + time
     
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
-    history = list()
+
+    # Creates a file writer for the log directory.
+    file_writer_cm = tf.summary.create_file_writer(log_dir + '/cm')
+    file_writer = tf.summary.create_file_writer(log_dir)
+    with file_writer.as_default():
+      tf.summary.image("10 training data examples", translated_target_domain_images[0:10], 
+      max_outputs=25, step=0)
+ 
+    # Prepare the plot
+    figure = image_grid(translated_target_domain_images[0:10], classes, 
+    np.argmax(source_domain_labels[0:10], axis=-1))
+
+    # Convert to image and log
+    with file_writer.as_default():
+      tf.summary.image("Training data", plot_to_image(figure), step=0)
+
+    # retrieve the test data
+    X_test, y_test = test_it.next()
     
-    history.append(domain_adapted_documents_classifier_model.fit(
+    domain_adapted_documents_classifier_model.fit(
             translated_target_domain_images, 
             source_domain_labels,
-            epochs=10,
-            batch_size=10,
+            epochs=10, # 10
+            batch_size=10, # 10
             validation_split=0.2,
-            callbacks=[tensorboard_callback]))      
+            callbacks=[tensorboard_callback,
+            CustomCallback(domain_adapted_documents_classifier_model, 
+            X_test,
+            np.argmax(y_test, axis=-1),
+            classes,
+            log_dir,
+            file_writer_cm
+            )])    
     print('Training Finished...')
+     # serialize weights to HDF5
+    domain_adapted_documents_classifier_model.save(type_of_the_classifier + '_' + time + '_model.h5')
+    
+    domain_adapted_documents_classifier_logs =  open('domain_adapted_documents_classifier_logs'
+    '_' + time + '.txt', 'a')
+    
+    print('Saved model to disk ' + type_of_the_classifier + '_' + time + '_model.h5', 
+    file=domain_adapted_documents_classifier_logs)
 
-   
 
     print('translated target domain images and labels shape', file=domain_adapted_documents_classifier_logs)
     print(translated_target_domain_images.shape, file=domain_adapted_documents_classifier_logs) 
     print(source_domain_labels.shape, file=domain_adapted_documents_classifier_logs)
 
-    # Save the results
-    length = len(history)
-    h = np.zeros((length, 5), dtype=np.float32)
-
-    for i in range(length):
-        h[i, 0] = i
-        h[i, 1] = np.array(history[i].history['accuracy'])
-        h[i, 2] = np.array(history[i].history['loss'])
-        h[i, 3] = np.array(history[i].history['val_accuracy'])
-        h[i, 4] = np.array(history[i].history['val_loss'])
-
-    plt.plot(h[:, 1] * 100, '--')
-    plt.plot(h[:, 2] * 100, '-.')
-    plt.plot(h[:, 3] * 100, ':')
-    plt.plot(h[:, 4] * 100, '-')
-
-    plt.legend(['acc', 'loss', 'val_acc', 'val_loss'], loc='lower right')
-    plt.axis([0, length, 0, 100])
-
-    plt.xlabel('Epochs')
-    plt.ylabel('Accuracy and Error in percentage')
-    plt.grid('on')
-
-    plt.show()
-    plt.savefig(type_of_the_classifier + '_' + time + '_model.png')
-    plt.close()
-
-
-    X_test, y_test = test_it.next()
 
     y_test_pred = np.argmax(domain_adapted_documents_classifier_model.predict(X_test), axis=-1)
     y_test_real = np.argmax(y_test, axis=-1)
-
 
     results = domain_adapted_documents_classifier_model.evaluate(X_test, y_test, verbose=2)
     print(classification_report(y_test_real, y_test_pred, target_names=classes, zero_division=1), 
@@ -140,12 +139,7 @@ if __name__ == "__main__":
     
     print("test loss, test acc:", results, file=domain_adapted_documents_classifier_logs)
 
-    # serialize weights to HDF5
-    domain_adapted_documents_classifier_model.save(type_of_the_classifier + '_' + time + '_model.h5')
-
-    print('Saved model to disk ' + type_of_the_classifier + '_' + time + '_model.h5', 
-    file=domain_adapted_documents_classifier_logs)
-
+  
     domain_adapted_documents_classifier_logs.close()
 
     
