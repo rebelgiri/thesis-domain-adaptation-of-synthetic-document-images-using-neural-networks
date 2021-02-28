@@ -2,8 +2,8 @@
 from keras.models import load_model
 from matplotlib import pyplot
 from keras_contrib.layers.normalization.instancenormalization import InstanceNormalization
-from data_set_loader_pytorch import *
-import numpy as np
+# from data_set_loader_pytorch import *
+from data_set_loader_keras import *
 
 # create and save a plot of generated images (reversed grayscale)
 def save_plot(test_data_set, examples, n):
@@ -27,30 +27,25 @@ def save_plot(test_data_set, examples, n):
 
 
 # load model    
-model = load_model('/home/giriraj/thesis-domain-adaptation-of-synthetic-generated-documents/thesis-domain-adaptation-of-synthetic-generated-documents/generator_model_g_model_AtoB_005.h5',
+model = load_model('/home/giriraj/cyclegan_models/generator_model_g_model_AtoB_003.h5',
 custom_objects={'InstanceNormalization': InstanceNormalization})
 
 
-test_images_folder = torchvision.datasets.ImageFolder(
-        root='/home/giriraj/data/synthetic_document_images_test',
-        transform=transformations['classifier']
-    )
+# create generator
+datagen = ImageDataGenerator(preprocessing_function=normalize)
 
-test_images_loader = torch.utils.data.DataLoader(
-        test_images_folder,
-        batch_size=55,
-        num_workers=4,
-        shuffle=True
-    )
+# prepare an iterators for training dataset
+test_it = datagen.flow_from_directory('/mnt/data/data/synthetic_document_images_test/', 
+    color_mode='grayscale',
+    shuffle=True,
+    batch_size=54,
+    interpolation='bilinear',
+    subset='training')
 
-
-test_images_iter = iter(test_images_loader)
-test_data_set, _ = test_images_iter.next() # Test Synthetic Domain Images
-test_data_set = test_data_set.numpy()
-test_data_set = np.einsum('ijkl->iklj', test_data_set)
-
+test_data_set, _ = test_it.next()
 
 print(test_data_set.shape)
+
 # generate images
 X = model.predict(test_data_set)
 
