@@ -1,5 +1,6 @@
 from keras.models import load_model
 from sklearn.utils import validation
+from sklearn.model_selection import train_test_split
 from tensorflow.python.ops.gen_batch_ops import batch
 from synthetic_documents_classifier import *
 import sys
@@ -99,13 +100,18 @@ if __name__ == "__main__":
 
     # retrieve the test data
     X_test, y_test = test_it.next()
-    
+
+
+    translated_target_domain_images, val_images, source_domain_labels, val_labels = train_test_split(
+      translated_target_domain_images, source_domain_labels, test_size=0.2)
+  
+
     domain_adapted_documents_classifier_model.fit(
-            translated_target_domain_images, 
-            source_domain_labels,
+            datagen.flow(translated_target_domain_images, source_domain_labels, batch_size=10),
             epochs=10, # 10
-            batch_size=10, # 10
-            validation_split=0.2,
+            steps_per_epoch=10000, # 10000
+            validation_data=datagen.flow(val_images, val_labels, batch_size=10),
+            validation_steps=2000, # 2000
             callbacks=[tensorboard_callback,
             CustomCallback(domain_adapted_documents_classifier_model, 
             X_test,
