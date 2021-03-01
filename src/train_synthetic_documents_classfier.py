@@ -176,7 +176,7 @@ if __name__ == "__main__":
     synthetic_documents_classifier_model.fit(
             train_it,
             steps_per_epoch=10000, # 10000
-            epochs=5,
+            epochs=10,
             validation_data=val_it,
             validation_steps=2000, # 2000
             callbacks=[tensorboard_callback, CustomCallback(synthetic_documents_classifier_model, 
