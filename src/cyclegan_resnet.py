@@ -175,10 +175,10 @@ def update_image_pool(pool, images, max_size=50):
 
 # train cyclegan models
 def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_model_BtoA, 
-    source_domain_it, target_domain_it, cyclegan_training_logs):
+    ds_source_domain_dataset, ds_target_domain_dataset, cyclegan_training_logs):
 
     # define properties of the training run
-    n_epochs, n_batch = 10, 10
+    n_epochs, n_batch = 1, 10
 
     # determine the output square shape of the discriminator
     n_patch = d_model_A.output_shape[1]
@@ -191,9 +191,15 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
         
     # manually enumerate epochs
     for i in range(n_epochs):
-        for j in range(bat_per_epo):
-            trainA, _ = source_domain_it.next() # Source Domain Images
-            trainB, _ = target_domain_it.next() # Target Domain Images
+        ds_source_domain_dataset_iter = iter(ds_source_domain_dataset)
+        ds_target_domain_dataset_iter = iter(ds_target_domain_dataset)
+
+        for j in range(1): # bat_per_epo
+            trainA, _ = next(ds_source_domain_dataset_iter) # Source Domain Images
+            trainB, _ = next(ds_target_domain_dataset_iter) # Target Domain Images
+            
+            trainA = asarray(trainA)
+            trainB = asarray(trainB)
             
             # select a batch of real samples
             X_realA, y_realA = generate_real_samples(trainA, n_batch, n_patch)

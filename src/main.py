@@ -1,9 +1,10 @@
+from tensorflow.python.data.ops.dataset_ops import AUTOTUNE
 from cyclegan_resnet import *
 from datetime import datetime
 import sys
 import tensorflow as tf
-from keras.preprocessing.image import ImageDataGenerator
-from train_synthetic_documents_classfier import normalize
+from preprocessing_images import preprocess_train_image
+import pathlib
 
 # Algorithm Steps:
 # Train the CycleGAN.
@@ -44,25 +45,20 @@ if __name__ == "__main__":
     # composite: B -> A -> [real/fake, B]
     c_model_BtoA = define_composite_model(g_model_BtoA, d_model_A, g_model_AtoB, image_shape)
 
-    datagen = ImageDataGenerator(
-        preprocessing_function=normalize)
+    
+    ds_source_domain_list_files = tf.data.Dataset.list_files(str(pathlib.Path(synthetic_document_images_path+'*.png')))
+    ds_source_domain_dataset = ds_source_domain_list_files.map(preprocess_train_image,
+    num_parallel_calls=4).cache().shuffle(10).batch(1)
 
-    # prepare an iterators for each dataset
-    source_domain_it = datagen.flow_from_directory(synthetic_document_images_path, 
-    color_mode='grayscale',
-    shuffle=True,
-    batch_size=10,
-    interpolation='bilinear')
-  
 
-    target_domain_it = datagen.flow_from_directory(real_document_images_path, 
-    color_mode='grayscale',
-    shuffle=True,
-    batch_size=10,
-    interpolation='bilinear')
+    ds_target_domain_list_files = tf.data.Dataset.list_files(str(pathlib.Path(real_document_images_path+'*.png')))
+    ds_target_domain_dataset = ds_target_domain_list_files.map(preprocess_train_image,
+    num_parallel_calls=4).cache().shuffle(10).batch(1)
+
+
     
     train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, 
-        c_model_AtoB, c_model_BtoA, source_domain_it, target_domain_it, cyclegan_training_logs)
+        c_model_AtoB, c_model_BtoA, ds_source_domain_dataset, ds_target_domain_dataset, cyclegan_training_logs)
 
     cyclegan_training_logs.close()
     
