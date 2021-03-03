@@ -1,19 +1,18 @@
 from keras.models import load_model
-from sklearn.utils import validation
 from sklearn.model_selection import train_test_split
-from tensorflow.python.ops.gen_batch_ops import batch
-from synthetic_documents_classifier import *
+from classifier_model import *
+from train_synthetic_documents_classfier import *
 import sys
 from datetime import datetime
 from keras_contrib.layers.normalization.instancenormalization import InstanceNormalization
-# from data_set_loader_pytorch import *
-from data_set_loader_keras import *
-from train_synthetic_documents_classfier import *
 import numpy as np
+from keras.preprocessing.image import ImageDataGenerator
+
 
 # Algorithm Steps:
 # Load the CycleGAN Model Generate the Domain Adapted Realistic Document Images.
 # Train the Domain Adapted Realistic Document Image Classifier and Verify in Annotated Test Data.
+
 
 if __name__ == "__main__":
 

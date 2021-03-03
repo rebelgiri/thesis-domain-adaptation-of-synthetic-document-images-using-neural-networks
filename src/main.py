@@ -1,9 +1,9 @@
-
 from cyclegan_resnet import *
-from synthetic_documents_classifier import *
 from datetime import datetime
-from data_set_loader_pytorch import *
 import sys
+import tensorflow as tf
+from keras.preprocessing.image import ImageDataGenerator
+from train_synthetic_documents_classfier import normalize
 
 # Algorithm Steps:
 # Train the CycleGAN.
@@ -15,8 +15,8 @@ if __name__ == "__main__":
     print(f"Arguments count: {len(sys.argv)}")
     synthetic_document_images_path = sys.argv[1]
     real_document_images_path = sys.argv[2]
-    classifier_training_data_set_path = sys.argv[3]
-    classifier_test_data_set_path = sys.argv[4]
+
+    print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
     time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     cyclegan_training_logs = open('cyclegan_training_logs' + '_' + time + '_.txt', 'a')
@@ -43,13 +43,26 @@ if __name__ == "__main__":
     
     # composite: B -> A -> [real/fake, B]
     c_model_BtoA = define_composite_model(g_model_BtoA, d_model_A, g_model_AtoB, image_shape)
+
+    datagen = ImageDataGenerator(
+        preprocessing_function=normalize)
+
+    # prepare an iterators for each dataset
+    source_domain_it = datagen.flow_from_directory(synthetic_document_images_path, 
+    color_mode='grayscale',
+    shuffle=True,
+    batch_size=10,
+    interpolation='bilinear')
   
 
-    data_set_cyclegan_loader = cyclegan_data_set_loader(synthetic_document_images_path, real_document_images_path)    
+    target_domain_it = datagen.flow_from_directory(real_document_images_path, 
+    color_mode='grayscale',
+    shuffle=True,
+    batch_size=10,
+    interpolation='bilinear')
     
-   
     train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, 
-        c_model_AtoB, c_model_BtoA, data_set_cyclegan_loader, cyclegan_training_logs)
+        c_model_AtoB, c_model_BtoA, source_domain_it, target_domain_it, cyclegan_training_logs)
 
     cyclegan_training_logs.close()
     

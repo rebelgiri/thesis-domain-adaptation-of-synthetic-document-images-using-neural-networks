@@ -2,8 +2,9 @@
 from keras.models import load_model
 from matplotlib import pyplot
 from keras_contrib.layers.normalization.instancenormalization import InstanceNormalization
-# from data_set_loader_pytorch import *
-from data_set_loader_keras import *
+from keras.preprocessing.image import ImageDataGenerator
+from train_synthetic_documents_classfier import normalize
+
 
 # create and save a plot of generated images (reversed grayscale)
 def save_plot(test_data_set, examples, n):

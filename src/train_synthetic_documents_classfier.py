@@ -1,9 +1,9 @@
-from matplotlib.pyplot import imsave, imshow
-from numpy.lib.function_base import append
-from synthetic_documents_classifier import *
+from classifier_model import *
 from datetime import datetime
-# from data_set_loader_pytorch import *
-from data_set_loader_keras import *
+from keras.preprocessing.image import ImageDataGenerator
+from matplotlib import pyplot as plt
+from sklearn.metrics import classification_report
+import numpy as np
 import sys
 import tensorflow as tf
 import io
@@ -98,9 +98,9 @@ def image_grid(train_images, class_names, train_labels):
   return figure
 
 
-def normalize(image_tensor):
-  image_tensor = (image_tensor / 127.5) - 1
-  return image_tensor
+def normalize(image):
+  image = (image / 127.5) - 1
+  return image
 
 if __name__ == "__main__":
 

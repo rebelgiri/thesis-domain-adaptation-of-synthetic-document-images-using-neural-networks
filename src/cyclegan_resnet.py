@@ -1,6 +1,7 @@
 # Reference 
 # https://machinelearningmastery.com/cyclegan-tutorial-with-keras/
 # https://www.tensorflow.org/tutorials/generative/cyclegan
+# pip install git+https://www.github.com/keras-team/keras-contrib.git
 
 
 from keras.optimizers import Adam
@@ -14,16 +15,12 @@ from keras.layers import Concatenate
 from keras_contrib.layers.normalization.instancenormalization import InstanceNormalization
 from keras.initializers import RandomNormal
 from keras.layers import Conv2DTranspose
-import numpy as np
 from numpy.random import randint
 from numpy import zeros
 from numpy import ones
 from numpy import asarray
 from matplotlib import pyplot
 from random import random
-
-
-# pip install git+https://www.github.com/keras-team/keras-contrib.git
 
 # example of defining a 70x70 patchgan discriminator model
 # define the discriminator model
@@ -178,10 +175,10 @@ def update_image_pool(pool, images, max_size=50):
 
 # train cyclegan models
 def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_AtoB, c_model_BtoA, 
-    data_set_cyclegan_loader, cyclegan_training_logs):
+    source_domain_it, target_domain_it, cyclegan_training_logs):
 
     # define properties of the training run
-    n_epochs, n_batch = 5, 1
+    n_epochs, n_batch = 10, 10
 
     # determine the output square shape of the discriminator
     n_patch = d_model_A.output_shape[1]
@@ -194,17 +191,9 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
         
     # manually enumerate epochs
     for i in range(n_epochs):
-        synthetic_document_images_data_set_iter = iter(data_set_cyclegan_loader[0])
-        real_document_images_data_set_iter = iter(data_set_cyclegan_loader[1])
         for j in range(bat_per_epo):
-            trainA, _ = synthetic_document_images_data_set_iter.next() # Synthetic Domain Images
-            trainB, _ = real_document_images_data_set_iter.next() # Real Domain Images
-
-            trainA = trainA.numpy()
-            trainA = np.einsum('ijkl->iklj', trainA)
-            
-            trainB = trainB.numpy()
-            trainB= np.einsum('ijkl->iklj', trainB)
+            trainA, _ = source_domain_it.next() # Source Domain Images
+            trainB, _ = target_domain_it.next() # Target Domain Images
             
             # select a batch of real samples
             X_realA, y_realA = generate_real_samples(trainA, n_batch, n_patch)
