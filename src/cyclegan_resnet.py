@@ -178,7 +178,7 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
     ds_source_domain_dataset, ds_target_domain_dataset, cyclegan_training_logs):
 
     # define properties of the training run
-    n_epochs, n_batch = 1, 10
+    n_epochs, n_batch = 10, 1
 
     # determine the output square shape of the discriminator
     n_patch = d_model_A.output_shape[1]
@@ -191,16 +191,13 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
         
     # manually enumerate epochs
     for i in range(n_epochs):
-        ds_source_domain_dataset_iter = iter(ds_source_domain_dataset)
-        ds_target_domain_dataset_iter = iter(ds_target_domain_dataset)
-
-        for j in range(1): # bat_per_epo
+        ds_source_domain_dataset_iter = ds_source_domain_dataset.as_numpy_iterator()
+        ds_target_domain_dataset_iter = ds_target_domain_dataset.as_numpy_iterator()
+        for j in range(bat_per_epo): # bat_per_epo
+        
             trainA, _ = next(ds_source_domain_dataset_iter) # Source Domain Images
             trainB, _ = next(ds_target_domain_dataset_iter) # Target Domain Images
-            
-            trainA = asarray(trainA)
-            trainB = asarray(trainB)
-            
+        
             # select a batch of real samples
             X_realA, y_realA = generate_real_samples(trainA, n_batch, n_patch)
             X_realB, y_realB = generate_real_samples(trainB, n_batch, n_patch)

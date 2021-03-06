@@ -1,14 +1,15 @@
 from classifier_model import *
 from datetime import datetime
-from keras.preprocessing.image import ImageDataGenerator
 from matplotlib import pyplot as plt
 from sklearn.metrics import classification_report
+from preprocessing_images import *
 import numpy as np
 import sys
 import tensorflow as tf
 import io
 import itertools
 import sklearn.metrics
+import pathlib
 
 class CustomCallback(tf.keras.callbacks.Callback):
 
@@ -98,55 +99,56 @@ def image_grid(train_images, class_names, train_labels):
   return figure
 
 
-def normalize(image):
-  image = (image / 127.5) - 1
-  return image
-
 if __name__ == "__main__":
 
     print(f"Arguments count: {len(sys.argv)}")
     classifier_training_data_set_path = sys.argv[1]
-    classifier_validation_data_set_path = sys.argv[2] 
-    classifier_test_data_set_path = sys.argv[3]
+    classifier_test_data_set_path = sys.argv[2]
 
     print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
-    # create generator
-    datagen = ImageDataGenerator(preprocessing_function=normalize)
+    data_dir = pathlib.Path(classifier_training_data_set_path)
+    list_ds = tf.data.Dataset.list_files(str(data_dir/'*/*'))
 
-    # prepare an iterators for training dataset
-    train_it = datagen.flow_from_directory(classifier_training_data_set_path, 
-      color_mode='grayscale',
-      shuffle=True,
-      batch_size=10,
-      interpolation='bilinear')
+    test_data_dir = pathlib.Path(classifier_test_data_set_path)
+    test_ds = tf.data.Dataset.list_files(str(test_data_dir/'*/*'))
 
-    # batchX, batchy = train_it.next()
-    # print('Batch shape=%s, min=%.3f, max=%.3f' % (batchX.shape, batchX.min(), batchX.max()))
+    class_names = np.array(sorted([item.name for item in data_dir.glob('*')]))
+    print(class_names)  
 
-    # prepare an iterators for validation dataset
-    val_it = datagen.flow_from_directory(classifier_validation_data_set_path, 
-      color_mode='grayscale',
-      shuffle=True,
-      batch_size=10,
-      interpolation='bilinear')
+    image_count = len(list(data_dir.glob('*/*.png')))
+    print(image_count)
 
-    # batchX, batchy = val_it.next()
-    # print('Batch shape=%s, min=%.3f, max=%.3f' % (batchX.shape, batchX.min(), batchX.max()))
+    val_size = int(image_count * 0.2)
+    train_ds = list_ds.skip(val_size)
+    val_ds = list_ds.take(val_size)
 
-    # prepare an iterators for testing dataset
-    test_it = datagen.flow_from_directory(classifier_test_data_set_path, 
-      color_mode='grayscale',
-      shuffle=True,
-      batch_size=1162,
-      interpolation='bilinear')
-    
-    classes = list()
-    for key in train_it.class_indices:
-        classes.append(key)
 
-    # print(classes)
+    print(tf.data.experimental.cardinality(train_ds).numpy())
+    print(tf.data.experimental.cardinality(val_ds).numpy())
+    print(tf.data.experimental.cardinality(test_ds).numpy())
+
+    train_ds = train_ds.map(preprocess_classifier_images, 
+      num_parallel_calls=tf.data.experimental.AUTOTUNE)
+
+    val_ds = val_ds.map(preprocess_classifier_images,
+      num_parallel_calls=tf.data.experimental.AUTOTUNE)
+
+    test_ds = test_ds.map(preprocess_classifier_images,
+      num_parallel_calls=tf.data.experimental.AUTOTUNE)
+
+    train_ds = configure_for_performance(train_ds, 10)
+    val_ds = configure_for_performance(val_ds, 10)
+    test_ds = configure_for_performance(test_ds, 1162)
+
+    for image, label in train_ds.take(1):
+        print("Image shape: ", image.numpy().shape)
+        print("Label: ", label.numpy())
+
     time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+
+    # Tensorboard Logging
+
     log_dir = "logs/fit/" + time
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
@@ -154,38 +156,34 @@ if __name__ == "__main__":
     file_writer_cm = tf.summary.create_file_writer(log_dir + '/cm')
     file_writer = tf.summary.create_file_writer(log_dir)
     with file_writer.as_default():
-      batchX, batchY = train_it.next()
+      batchX, batchY = next(iter(train_ds))
       tf.summary.image("10 training data examples", batchX, max_outputs=25, step=0)
  
     # Prepare the plot
-    figure = image_grid(batchX, classes, np.argmax(batchY, axis=-1))
+    figure = image_grid(batchX, class_names, np.argmax(batchY, axis=-1))
     # Convert to image and log
     with file_writer.as_default():
       tf.summary.image("Training data", plot_to_image(figure), step=0)
 
-    # Define the per-epoch callback.
-    # cm_callback = tf.keras.callbacks.LambdaCallback(on_epoch_end=log_confusion_matrix)
+    # retrieve the test data
+    X_test, y_test = next(iter(test_ds))
 
     # create classifier model
     type_of_the_classifier = 'synthetic_documents_classifier'
     synthetic_documents_classifier_model = create_model(10)     
 
-    # retrieve the test data
-    X_test, y_test = test_it.next()
-
     synthetic_documents_classifier_model.fit(
-            train_it,
-            steps_per_epoch=10000, # 10000
+            train_ds,
             epochs=10,
-            validation_data=val_it,
-            validation_steps=2000, # 2000
+            validation_data=val_ds,
             callbacks=[tensorboard_callback, CustomCallback(synthetic_documents_classifier_model, 
             X_test,
             np.argmax(y_test, axis=-1),
-            classes,
+            class_names,
             log_dir,
             file_writer_cm
-            )])
+            )]
+            )
           
     print('Training Finished...')
     # serialize weights to HDF5
@@ -201,7 +199,7 @@ if __name__ == "__main__":
     y_test_real = np.argmax(y_test, axis=-1)
 
     results = synthetic_documents_classifier_model.evaluate(X_test, y_test, verbose=2)
-    print(classification_report(y_test_real, y_test_pred, target_names=classes, zero_division=1), file=synthetic_documents_classifier_logs)
+    print(classification_report(y_test_real, y_test_pred, target_names=class_names, zero_division=1), file=synthetic_documents_classifier_logs)
     print("test loss, test acc:", results, file=synthetic_documents_classifier_logs)
 
     # serialize weights to HDF5

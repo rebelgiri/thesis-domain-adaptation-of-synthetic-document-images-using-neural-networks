@@ -3,7 +3,7 @@ from cyclegan_resnet import *
 from datetime import datetime
 import sys
 import tensorflow as tf
-from preprocessing_images import preprocess_train_image
+from preprocessing_images import preprocess_cyclegan_images
 import pathlib
 
 # Algorithm Steps:
@@ -13,10 +13,11 @@ import pathlib
 
 if __name__ == "__main__":
 
+
     print(f"Arguments count: {len(sys.argv)}")
     synthetic_document_images_path = sys.argv[1]
     real_document_images_path = sys.argv[2]
-
+    tf.debugging.set_log_device_placement(True)
     print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
     time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
@@ -45,18 +46,16 @@ if __name__ == "__main__":
     # composite: B -> A -> [real/fake, B]
     c_model_BtoA = define_composite_model(g_model_BtoA, d_model_A, g_model_AtoB, image_shape)
 
-    
-    ds_source_domain_list_files = tf.data.Dataset.list_files(str(pathlib.Path(synthetic_document_images_path+'*.png')))
-    ds_source_domain_dataset = ds_source_domain_list_files.map(preprocess_train_image,
-    num_parallel_calls=4).cache().shuffle(10).batch(1)
 
+    ds_source_domain_list_files = tf.data.Dataset.list_files(str(pathlib.Path(synthetic_document_images_path+'*.png')))
+    ds_source_domain_dataset = ds_source_domain_list_files.map(preprocess_cyclegan_images,
+        num_parallel_calls=tf.data.experimental.AUTOTUNE).cache().shuffle(100).batch(1)
 
     ds_target_domain_list_files = tf.data.Dataset.list_files(str(pathlib.Path(real_document_images_path+'*.png')))
-    ds_target_domain_dataset = ds_target_domain_list_files.map(preprocess_train_image,
-    num_parallel_calls=4).cache().shuffle(10).batch(1)
+    ds_target_domain_dataset = ds_target_domain_list_files.map(preprocess_cyclegan_images,
+        num_parallel_calls=tf.data.experimental.AUTOTUNE).cache().shuffle(100).batch(1).prefetch(2)
 
 
-    
     train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, 
         c_model_AtoB, c_model_BtoA, ds_source_domain_dataset, ds_target_domain_dataset, cyclegan_training_logs)
 
