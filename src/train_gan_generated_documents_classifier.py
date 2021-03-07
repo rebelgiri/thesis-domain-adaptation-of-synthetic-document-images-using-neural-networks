@@ -1,12 +1,10 @@
 from keras.models import load_model
-from sklearn.model_selection import train_test_split
 from classifier_model import *
 from train_synthetic_documents_classifier import *
 import sys
 from datetime import datetime
 from keras_contrib.layers.normalization.instancenormalization import InstanceNormalization
 import numpy as np
-from keras.preprocessing.image import ImageDataGenerator
 
 
 # Algorithm Steps:
@@ -103,7 +101,8 @@ if __name__ == "__main__":
     print(tf.data.experimental.cardinality(generated_target_domain_images_ds).numpy())
 
     final_train_ds =  tf.data.Dataset.zip((generated_target_domain_images_ds, original_labels_ds))  
-    
+    print(tf.data.experimental.cardinality(final_train_ds).numpy())
+
 
     plt.figure(figsize=(10,10))
     for i in range(10):
@@ -123,8 +122,7 @@ if __name__ == "__main__":
     type_of_the_classifier = 'domain_adapted_documents_classifier'
     domain_adapted_documents_classifier_model = create_model(10)
 
-    
- 
+
     # Tensorboard Logs
     time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     log_dir = "logs/fit/" + time   
@@ -145,12 +143,11 @@ if __name__ == "__main__":
     with file_writer.as_default():
       tf.summary.image("Training data", plot_to_image(figure), step=0)
 
-
-
     # retrieve the test data
     X_test, y_test = next(iter(test_ds))
 
-    
+    # Shuffle final training dataset
+    final_train_ds = final_train_ds.shuffle(100000)
 
     val_size = int(image_count * 0.2)
     final_train_ds = final_train_ds.skip(val_size)
