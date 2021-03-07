@@ -29,13 +29,21 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
-
+import pathlib
 import tensorflow_addons as tfa
 import tensorflow_datasets as tfds
 
 tfds.disable_progress_bar()
 autotune = tf.data.experimental.AUTOTUNE
+from preprocessing_images import *
 
+synthetic_document_images_path = '/mnt/data/data/cyclegan_synthetic_document_images/synthetic_document_images/'
+real_document_images_path = '/mnt/data/data/cyclegan_real_document_images/real_document_images/'
+
+# synthetic_document_images_path = '/mnt/data/data/cyclegan_synthetic_document_images_test/'
+# real_document_images_path = '/mnt/data/data/cyclegan_real_document_images_test/'
+
+synthetic_document_images_path_test = '/mnt/data/data/cyclegan_synthetic_document_images_test/'
 
 """
 ## Prepare the dataset
@@ -45,21 +53,41 @@ dataset.
 """
 
 # Load the horse-zebra dataset using tensorflow-datasets.
-dataset, _ = tfds.load("cycle_gan/horse2zebra", with_info=True, as_supervised=True)
-train_horses, train_zebras = dataset["trainA"], dataset["trainB"]
-test_horses, test_zebras = dataset["testA"], dataset["testB"]
+# dataset, _ = tfds.load("cycle_gan/horse2zebra", with_info=True, as_supervised=True)
+# train_horses, train_zebras = dataset["trainA"], dataset["trainB"]
+# test_horses, test_zebras = dataset["testA"], dataset["testB"]
+
+buffer_size = 256
+batch_size = 1
+
+# Training Dataset
+ds_source_domain_list_files = tf.data.Dataset.list_files(str(pathlib.Path(synthetic_document_images_path+'*.png')))
+ds_source_domain_dataset = ds_source_domain_list_files.map(preprocess_cyclegan_images,
+        num_parallel_calls=tf.data.experimental.AUTOTUNE).cache().shuffle(buffer_size).batch(batch_size)
+
+ds_target_domain_list_files = tf.data.Dataset.list_files(str(pathlib.Path(real_document_images_path+'*.png')))
+ds_target_domain_dataset = ds_target_domain_list_files.map(preprocess_cyclegan_images,
+        num_parallel_calls=tf.data.experimental.AUTOTUNE).cache().shuffle(buffer_size).batch(batch_size)
+
+
+# Testing Dataset
+ds_source_domain_list_files_test = tf.data.Dataset.list_files(str(
+    pathlib.Path(synthetic_document_images_path_test+'*.png')))
+
+ds_source_domain_dataset_test = ds_source_domain_list_files_test.map(preprocess_cyclegan_images,
+        num_parallel_calls=tf.data.experimental.AUTOTUNE).cache().shuffle(buffer_size).batch(batch_size)
+
+
 
 # Define the standard image size.
 orig_img_size = (286, 286)
 # Size of the random crops to be used during training.
-input_img_size = (256, 256, 3)
+input_img_size = (256, 256, 1)
 # Weights initializer for the layers.
 kernel_init = keras.initializers.RandomNormal(mean=0.0, stddev=0.02)
 # Gamma initializer for instance normalization.
 gamma_init = keras.initializers.RandomNormal(mean=0.0, stddev=0.02)
 
-buffer_size = 256
-batch_size = 1
 
 
 def normalize_img(img):
@@ -90,7 +118,7 @@ def preprocess_test_image(img, label):
 """
 ## Create `Dataset` objects
 """
-
+'''
 
 # Apply the preprocessing operations to the training data
 train_horses = (
@@ -119,7 +147,7 @@ test_zebras = (
     .shuffle(buffer_size)
     .batch(batch_size)
 )
-
+'''
 
 """
 ## Visualize some samples
@@ -127,12 +155,15 @@ test_zebras = (
 
 
 _, ax = plt.subplots(4, 2, figsize=(10, 15))
-for i, samples in enumerate(zip(train_horses.take(4), train_zebras.take(4))):
-    horse = (((samples[0][0] * 127.5) + 127.5).numpy()).astype(np.uint8)
-    zebra = (((samples[1][0] * 127.5) + 127.5).numpy()).astype(np.uint8)
-    ax[i, 0].imshow(horse)
-    ax[i, 1].imshow(zebra)
+for i, samples in enumerate(zip(ds_source_domain_dataset.take(4), ds_target_domain_dataset.take(4))):
+    # source = (((samples[0][0] * 127.5) + 127.5).numpy()).astype(np.uint8)
+    # target = (((samples[1][0] * 127.5) + 127.5).numpy()).astype(np.uint8)
+    source = ((samples[0][0]).numpy())
+    target = ((samples[1][0]).numpy())
+    ax[i, 0].imshow(source, cmap=plt.cm.gray)
+    ax[i, 1].imshow(target, cmap=plt.cm.gray)
 plt.show()
+plt.savefig('Visualize_Some_Samples')
 
 
 """
@@ -311,7 +342,7 @@ def get_resnet_generator(
 
     # Final block
     x = ReflectionPadding2D(padding=(3, 3))(x)
-    x = layers.Conv2D(3, (7, 7), padding="valid")(x)
+    x = layers.Conv2D(1, (7, 7), padding="valid")(x)
     x = layers.Activation("tanh")(x)
 
     model = keras.models.Model(img_input, x, name=name)
@@ -420,7 +451,7 @@ class CycleGan(keras.Model):
         self.identity_loss_fn = keras.losses.MeanAbsoluteError()
 
     def train_step(self, batch_data):
-        # x is Horse and y is zebra
+        # x is Source and y is Target
         real_x, real_y = batch_data
 
         # For CycleGAN, we need to calculate different
@@ -439,14 +470,14 @@ class CycleGan(keras.Model):
         # 9. Return the losses in a dictionary
 
         with tf.GradientTape(persistent=True) as tape:
-            # Horse to fake zebra
+            # Source to fake Target
             fake_y = self.gen_G(real_x, training=True)
-            # Zebra to fake horse -> y2x
+            # Target to fake Source -> y2x
             fake_x = self.gen_F(real_y, training=True)
 
-            # Cycle (Horse to fake zebra to fake horse): x -> y -> x
+            # Cycle (Source to fake Target to fake Source): x -> y -> x
             cycled_x = self.gen_F(fake_y, training=True)
-            # Cycle (Zebra to fake horse to fake zebra) y -> x -> y
+            # Cycle (Target to fake Source to fake Target) y -> x -> y
             cycled_y = self.gen_G(fake_x, training=True)
 
             # Identity mapping
@@ -533,13 +564,12 @@ class GANMonitor(keras.callbacks.Callback):
 
     def on_epoch_end(self, epoch, logs=None):
         _, ax = plt.subplots(4, 2, figsize=(12, 12))
-        for i, img in enumerate(test_horses.take(self.num_img)):
+        for i, img in enumerate(ds_source_domain_dataset_test.take(self.num_img)):
             prediction = self.model.gen_G(img)[0].numpy()
-            prediction = (prediction * 127.5 + 127.5).astype(np.uint8)
-            img = (img[0] * 127.5 + 127.5).numpy().astype(np.uint8)
-
-            ax[i, 0].imshow(img)
-            ax[i, 1].imshow(prediction)
+            # prediction = (prediction * 127.5 + 127.5).astype(np.uint8)
+            # img = (img[0] * 127.5 + 127.5).numpy().astype(np.uint8)
+            ax[i, 0].imshow(img[0].numpy(), cmap=plt.cm.gray)
+            ax[i, 1].imshow(prediction, cmap=plt.cm.gray)
             ax[i, 0].set_title("Input image")
             ax[i, 1].set_title("Translated image")
             ax[i, 0].axis("off")
@@ -550,6 +580,7 @@ class GANMonitor(keras.callbacks.Callback):
                 "generated_img_{i}_{epoch}.png".format(i=i, epoch=epoch + 1)
             )
         plt.show()
+        plt.savefig('CycleGAN_Generated_Images')
         plt.close()
 
 
@@ -588,6 +619,8 @@ cycle_gan_model.compile(
     gen_loss_fn=generator_loss_fn,
     disc_loss_fn=discriminator_loss_fn,
 )
+
+    
 # Callbacks
 plotter = GANMonitor()
 checkpoint_filepath = "./model_checkpoints/cyclegan_checkpoints.{epoch:03d}"
@@ -595,13 +628,14 @@ model_checkpoint_callback = keras.callbacks.ModelCheckpoint(
     filepath=checkpoint_filepath
 )
 
+
 # Here we will train the model for just one epoch as each epoch takes around
 # 7 minutes on a single P100 backed machine.
 cycle_gan_model.fit(
-    tf.data.Dataset.zip((train_horses, train_zebras)),
-    epochs=1,
+    tf.data.Dataset.zip((ds_source_domain_dataset, ds_target_domain_dataset)),
+    epochs=10,
     callbacks=[plotter, model_checkpoint_callback],
-)
+    )
 
 """
 Test the performance of the model.
@@ -619,18 +653,17 @@ unzip -qq saved_checkpoints.zip
 
 
 # Load the checkpoints
-weight_file = "./saved_checkpoints/cyclegan_checkpoints.090"
+weight_file = "./model_checkpoints/cyclegan_checkpoints.010"
 cycle_gan_model.load_weights(weight_file).expect_partial()
 print("Weights loaded successfully")
 
 _, ax = plt.subplots(4, 2, figsize=(10, 15))
-for i, img in enumerate(test_horses.take(4)):
+for i, img in enumerate(ds_source_domain_dataset_test.take(4)):
     prediction = cycle_gan_model.gen_G(img, training=False)[0].numpy()
-    prediction = (prediction * 127.5 + 127.5).astype(np.uint8)
-    img = (img[0] * 127.5 + 127.5).numpy().astype(np.uint8)
-
-    ax[i, 0].imshow(img)
-    ax[i, 1].imshow(prediction)
+    # prediction = (prediction * 127.5 + 127.5).astype(np.uint8)
+    # img = (img[0] * 127.5 + 127.5).numpy().astype(np.uint8)
+    ax[i, 0].imshow(img[0].numpy(), cmap=plt.cm.gray)
+    ax[i, 1].imshow(prediction, cmap=plt.cm.gray)
     ax[i, 0].set_title("Input image")
     ax[i, 0].set_title("Input image")
     ax[i, 1].set_title("Translated image")
@@ -641,3 +674,4 @@ for i, img in enumerate(test_horses.take(4)):
     prediction.save("predicted_img_{i}.png".format(i=i))
 plt.tight_layout()
 plt.show()
+plt.savefig('CycleGAN_Predicted_Images')

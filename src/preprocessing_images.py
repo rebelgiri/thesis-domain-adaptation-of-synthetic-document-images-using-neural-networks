@@ -23,9 +23,10 @@ def preprocess_cyclegan_images(image_path):
     # Resize the image [[256, 256]]
     img = tf.image.resize(img, [256, 256])
     img = normalize_img(img)
-    label = 0
-    return img, label
-
+    # label = 0
+    # return img, label
+    return img;
+    
 def get_label(file_path):
   # convert the path to a list of path components
   parts = tf.strings.split(file_path, os.path.sep)
