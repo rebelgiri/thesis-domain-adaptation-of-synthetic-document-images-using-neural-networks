@@ -5,6 +5,7 @@ import sys
 import tensorflow as tf
 from preprocessing_images import preprocess_cyclegan_images
 import pathlib
+from preprocessing_images import *
 
 # Algorithm Steps:
 # Train the CycleGAN.
@@ -49,12 +50,16 @@ if __name__ == "__main__":
 
     ds_source_domain_list_files = tf.data.Dataset.list_files(str(pathlib.Path(synthetic_document_images_path+'*.png')))
     ds_source_domain_dataset = ds_source_domain_list_files.map(preprocess_cyclegan_images,
-        num_parallel_calls=tf.data.experimental.AUTOTUNE).cache().shuffle(100).batch(1)
+        num_parallel_calls=tf.data.experimental.AUTOTUNE)
+
+    ds_source_domain_dataset = configure_for_performance(ds_source_domain_dataset, 1)   
 
     ds_target_domain_list_files = tf.data.Dataset.list_files(str(pathlib.Path(real_document_images_path+'*.png')))
     ds_target_domain_dataset = ds_target_domain_list_files.map(preprocess_cyclegan_images,
-        num_parallel_calls=tf.data.experimental.AUTOTUNE).cache().shuffle(100).batch(1).prefetch(2)
+        num_parallel_calls=tf.data.experimental.AUTOTUNE)
 
+
+    ds_target_domain_dataset = configure_for_performance(ds_target_domain_dataset, 1) 
 
     train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, 
         c_model_AtoB, c_model_BtoA, ds_source_domain_dataset, ds_target_domain_dataset, cyclegan_training_logs)
