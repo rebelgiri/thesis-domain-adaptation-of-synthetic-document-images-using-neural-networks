@@ -195,8 +195,8 @@ def train_cyclegan(d_model_A, d_model_B, g_model_AtoB, g_model_BtoA, c_model_Ato
         ds_target_domain_dataset_iter = ds_target_domain_dataset.as_numpy_iterator()
         for j in range(bat_per_epo): # bat_per_epo
         
-            trainA, _ = next(ds_source_domain_dataset_iter) # Source Domain Images
-            trainB, _ = next(ds_target_domain_dataset_iter) # Target Domain Images
+            trainA = next(ds_source_domain_dataset_iter) # Source Domain Images
+            trainB = next(ds_target_domain_dataset_iter) # Target Domain Images
         
             # select a batch of real samples
             X_realA, y_realA = generate_real_samples(trainA, n_batch, n_patch)
