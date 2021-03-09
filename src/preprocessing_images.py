@@ -25,7 +25,7 @@ def preprocess_cyclegan_images(image_path):
     img = normalize_img(img)
     # label = 0
     # return img, label
-    return img;
+    return img
     
 def get_label(file_path):
   # convert the path to a list of path components

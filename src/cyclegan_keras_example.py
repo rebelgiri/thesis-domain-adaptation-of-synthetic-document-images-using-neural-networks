@@ -580,7 +580,7 @@ class GANMonitor(keras.callbacks.Callback):
                 "generated_img_{i}_{epoch}.png".format(i=i, epoch=epoch + 1)
             )
         plt.show()
-        plt.savefig('CycleGAN_Generated_Images')
+        plt.savefig('CycleGAN_Generated_Images_{i}_{epoch}.png'.format(i=i, epoch=epoch + 1))
         plt.close()
 
 
