@@ -18,7 +18,7 @@ if __name__ == "__main__":
     print(f"Arguments count: {len(sys.argv)}")
     synthetic_document_images_path = sys.argv[1]
     real_document_images_path = sys.argv[2]
-    tf.debugging.set_log_device_placement(True)
+    # tf.debugging.set_log_device_placement(True)
     print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
     time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
