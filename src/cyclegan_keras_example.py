@@ -633,7 +633,7 @@ model_checkpoint_callback = keras.callbacks.ModelCheckpoint(
 # 7 minutes on a single P100 backed machine.
 cycle_gan_model.fit(
     tf.data.Dataset.zip((ds_source_domain_dataset, ds_target_domain_dataset)),
-    epochs=10,
+    epochs=20,
     callbacks=[plotter, model_checkpoint_callback],
     )
 
@@ -653,7 +653,7 @@ unzip -qq saved_checkpoints.zip
 
 
 # Load the checkpoints
-weight_file = "./model_checkpoints/cyclegan_checkpoints.010"
+weight_file = "./model_checkpoints/cyclegan_checkpoints.020"
 cycle_gan_model.load_weights(weight_file).expect_partial()
 print("Weights loaded successfully")
 
