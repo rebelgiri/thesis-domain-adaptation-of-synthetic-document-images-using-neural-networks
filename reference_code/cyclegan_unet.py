@@ -16,7 +16,7 @@ import os
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
-AUTOTUNE = tf.data.AUTOTUNE
+AUTOTUNE = tf.data.experimental.AUTOTUNE
 
 def random_crop(image):
     cropped_image = tf.image.random_crop(
