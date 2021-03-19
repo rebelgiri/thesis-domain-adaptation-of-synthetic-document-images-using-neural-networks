@@ -20,11 +20,13 @@ def preprocess_cyclegan_images(image_path):
     img = tf.io.read_file(image_path)
     # Convert the image in grayscale
     img = tf.image.decode_png(img, channels=1)
-    # Resize the image [[256, 256]]
-    img = tf.image.resize(img, [256, 256])
+    # Random flip left to right
+    img = tf.image.random_flip_left_right(img)
+    # Resize the image [[286, 286]]
+    img = tf.image.resize(img, [286, 286])
+    # Random crop image [[256, 256]]
+    img = tf.image.random_crop(img, [256, 256, 1])
     img = normalize_img(img)
-    # label = 0
-    # return img, label
     return img
     
 def get_label(file_path):
@@ -36,8 +38,12 @@ def get_label(file_path):
 def decode_img(img):
     # Convert the image in grayscale
     img = tf.image.decode_png(img, channels=1)
-    # Resize the image [[256, 256]]
-    img = tf.image.resize(img, [256, 256])
+    # Random flip left to right
+    img = tf.image.random_flip_left_right(img)
+    # Resize the image [[286, 286]]
+    img = tf.image.resize(img, [286, 286])
+    # Random crop image [[256, 256]]
+    img = tf.image.random_crop(img, [256, 256, 1])
     img = normalize_img(img)
     return img
 
@@ -48,9 +54,9 @@ def preprocess_classifier_images(file_path):
   img = decode_img(img)
   return img, label
 
-def configure_for_performance(ds, batch_size):
+def configure_for_performance(ds, batch_size, buffer_size):
   ds = ds.cache()
-  ds = ds.shuffle(buffer_size=1000, seed=10)
+  ds = ds.shuffle(buffer_size, seed=10)
   ds = ds.batch(batch_size)
   ds = ds.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
   return ds    
