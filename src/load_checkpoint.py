@@ -559,7 +559,7 @@ if __name__ == "__main__":
     X_test, y_test = next(iter(test_ds))
 
     # Shuffle final training dataset
-    # final_train_ds = final_train_ds.shuffle(100000)
+    final_train_ds = final_train_ds.shuffle(100000)
 
     val_size = int(image_count * 0.2)
     final_train_ds = final_train_ds.skip(val_size)
