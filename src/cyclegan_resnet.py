@@ -262,7 +262,7 @@ def summarize_performance(epoch, g_model, g_model_name, d_model, d_model_name, d
     
     # save plot
   
-    save_plot(X_fakeT, epoch, n_batch, g_model_name)
+    save_plot(X_realS, X_fakeT, epoch, g_model_name)
     # save the generator model tile file
     filename_g_model = 'generator_model_%s_%03d.h5' % (g_model_name, epoch + 1)
     filename_d_model = 'discriminator_model_%s_%03d.h5' % (d_model_name, epoch + 1)
@@ -270,23 +270,31 @@ def summarize_performance(epoch, g_model, g_model_name, d_model, d_model_name, d
     d_model.save(filename_d_model)
 
 # create and save a plot of generated images
-def save_plot(examples, epoch, n, generator_model_name):
+def save_plot(source, target, epoch, generator_model_name):
     # plot images
-    for i in range(n * n):
-        # define subplot
-        pyplot.subplot(n, n, 1 + i)
-        # turn off axis
-        pyplot.axis('off')
-        # plot raw pixel data
-        image = examples[i]
-        # we need to get rid of the last dimension
-        image = image[:, :, 0]
-        pyplot.imshow(image, cmap='gray')
+    # define subplot
+    pyplot.subplot(1, 2, 1)
+    # turn off axis
+    pyplot.axis('off')
+    # plot raw pixel data
+    image = source[0]
+    # we need to get rid of the last dimension
+    image = image[:, :, 0]
+    pyplot.imshow(image, cmap='gray')
+
+    pyplot.subplot(1, 2, 2)
+    # turn off axis
+    pyplot.axis('off')
+    # plot raw pixel data
+    image = target[0]
+    # we need to get rid of the last dimension
+    image = image[:, :, 0]
+    pyplot.imshow(image, cmap='gray')
+
     # save plot to file
     filename = 'generated_plot_%s_e%03d.png' % (generator_model_name, epoch + 1)
     pyplot.savefig(filename)
     pyplot.close()
-
 
 
     
