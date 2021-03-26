@@ -620,14 +620,12 @@ cycle_gan_model.compile(
     disc_loss_fn=discriminator_loss_fn,
 )
 
-    
 # Callbacks
 plotter = GANMonitor()
 checkpoint_filepath = "./model_checkpoints/cyclegan_checkpoints.{epoch:03d}"
 model_checkpoint_callback = keras.callbacks.ModelCheckpoint(
     filepath=checkpoint_filepath
 )
-
 
 # Here we will train the model for just one epoch as each epoch takes around
 # 7 minutes on a single P100 backed machine.
@@ -637,11 +635,18 @@ cycle_gan_model.fit(
     callbacks=[plotter, model_checkpoint_callback],
     )
 
+print('Training Finished...')
+# serialize weights to HDF5
+cycle_gan_model.save('cycle_gan_model_model.h5')
+cycle_gan_model.gen_G.save('cycle_gan_model_gen_G_model.h5')
+cycle_gan_model.gen_F.save('cycle_gan_model_gen_F_model.h5')
+cycle_gan_model.disc_X.save('cycle_gan_model_disc_X_model.h5')
+cycle_gan_model.disc_Y.save('cycle_gan_model_disc_Y_model.h5')
+
+
 """
 Test the performance of the model.
 """
-
-
 # This model was trained for 90 epochs. We will be loading those weights
 # here. Once the weights are loaded, we will take a few samples from the test
 # data and check the model's performance.
