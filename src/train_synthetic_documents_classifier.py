@@ -137,9 +137,12 @@ if __name__ == "__main__":
     test_ds = test_ds.map(preprocess_classifier_images,
       num_parallel_calls=tf.data.experimental.AUTOTUNE)
 
-    train_ds = configure_for_performance(train_ds, 10)
-    val_ds = configure_for_performance(val_ds, 10)
-    test_ds = configure_for_performance(test_ds, 1162)
+    train_ds = configure_for_performance(train_ds, 10, 
+      tf.data.experimental.cardinality(train_ds).numpy())
+    val_ds = configure_for_performance(val_ds, 10,
+      tf.data.experimental.cardinality(val_ds).numpy())
+    test_ds = configure_for_performance(test_ds, 1162,
+      tf.data.experimental.cardinality(test_ds).numpy())
 
     for image, label in train_ds.take(1):
         print("Image shape: ", image.numpy().shape)
@@ -174,7 +177,7 @@ if __name__ == "__main__":
 
     synthetic_documents_classifier_model.fit(
             train_ds,
-            epochs=10,
+            epochs=3,
             validation_data=val_ds,
             callbacks=[tensorboard_callback, CustomCallback(synthetic_documents_classifier_model, 
             X_test,
