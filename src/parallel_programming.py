@@ -1,43 +1,138 @@
+"""
+Title: CycleGAN
+Author: [A_K_Nain](https://twitter.com/A_K_Nain)
+Date created: 2020/08/12
+Last modified: 2020/08/12
+Description: Implementation of CycleGAN.
+"""
 
+"""
+## CycleGAN
+CycleGAN is a model that aims to solve the image-to-image translation
+problem. The goal of the image-to-image translation problem is to learn the
+mapping between an input image and an output image using a training set of
+aligned image pairs. However, obtaining paired examples isn't always feasible.
+CycleGAN tries to learn this mapping without requiring paired input-output images,
+using cycle-consistent adversarial networks.
+- [Paper](https://arxiv.org/pdf/1703.10593.pdf)
+- [Original implementation](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
+"""
 
-from keras.models import load_model
-from classifier_model import *
-from train_synthetic_documents_classifier import *
-import sys
-from datetime import datetime
-from keras_contrib.layers.normalization.instancenormalization import InstanceNormalization
-import numpy as np
+"""
+## Setup
+"""
+
 import os
+import numpy as np
 import matplotlib.pyplot as plt
+import pathlib
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
-import pathlib
+
 import tensorflow_addons as tfa
 import tensorflow_datasets as tfds
+
 tfds.disable_progress_bar()
 autotune = tf.data.experimental.AUTOTUNE
-from preprocessing_images import *
-from numpy import load, save
 
+# Create a MirroredStrategy.
+strategy = tf.distribute.MirroredStrategy()
+print('Number of devices: {}'.format(strategy.num_replicas_in_sync))
 
-buffer_size = 256
-batch_size = 1
+"""
+## Prepare the dataset
+"""
+#synthetic_document_images_path = '/mnt/data/data/cyclegan_synthetic_document_images/synthetic_document_images/'
+#real_document_images_path = '/mnt/data/data/cyclegan_real_document_images/real_document_images/'
+
+synthetic_document_images_path = '/mnt/data/data/cyclegan_synthetic_document_images_test/'
+real_document_images_path = '/mnt/data/data/cyclegan_real_document_images_test/'
+synthetic_document_images_path_test = '/mnt/data/data/cyclegan_synthetic_document_images_test/'
+
 
 # Define the standard image size.
-orig_img_size = (286, 286)
-# Size of the random crops to be used during training.
 input_img_size = (256, 256, 1)
+
 # Weights initializer for the layers.
 kernel_init = keras.initializers.RandomNormal(mean=0.0, stddev=0.02)
 # Gamma initializer for instance normalization.
 gamma_init = keras.initializers.RandomNormal(mean=0.0, stddev=0.02)
 
+buffer_size = 256
+batch_size = 1
+
+
+def normalize_img(img):
+    # Map values in the range [-1, 1]
+    img = tf.cast(img, dtype=tf.float32)
+    return (img / 127.5) - 1.0
+
+
+def preprocess_cyclegan_images(image_path):
+    img = tf.io.read_file(image_path)
+    # Convert the image in grayscale
+    img = tf.image.decode_png(img, channels=1)
+    # Resize the image [[256, 256]]
+    img = tf.image.resize(img, [256, 256])
+    # Map values in the range [-1, 1]
+    img = normalize_img(img)
+    return img
+
+
+
+# Training Dataset
+ds_source_domain_list_files = tf.data.Dataset.list_files(str(pathlib.Path(synthetic_document_images_path+'*.png')))
+ds_source_domain_dataset = ds_source_domain_list_files.map(preprocess_cyclegan_images,
+        num_parallel_calls=tf.data.experimental.AUTOTUNE).cache().shuffle(buffer_size).batch(batch_size)
+
+ds_target_domain_list_files = tf.data.Dataset.list_files(str(pathlib.Path(real_document_images_path+'*.png')))
+ds_target_domain_dataset = ds_target_domain_list_files.map(preprocess_cyclegan_images,
+        num_parallel_calls=tf.data.experimental.AUTOTUNE).cache().shuffle(buffer_size).batch(batch_size)
+
+
+# Testing Dataset
+ds_source_domain_list_files_test = tf.data.Dataset.list_files(str(
+    pathlib.Path(synthetic_document_images_path_test+'*.png')))
+
+ds_source_domain_dataset_test = ds_source_domain_list_files_test.map(preprocess_cyclegan_images,
+        num_parallel_calls=tf.data.experimental.AUTOTUNE).cache().shuffle(buffer_size).batch(batch_size)
+
+
+
+
+# Create a checkpoint directory to store the checkpoints.
+checkpoint_dir = './cyclegan_parallel_programming/training_checkpoints'
+checkpoint_prefix = os.path.join(checkpoint_dir, "ckpt")
+
+
+"""
+## Create `Dataset` objects
+"""
+BATCH_SIZE_PER_REPLICA = batch_size
+GLOBAL_BATCH_SIZE = BATCH_SIZE_PER_REPLICA * strategy.num_replicas_in_sync  
+
+"""
+## Visualize some samples
+"""
+
+_, ax = plt.subplots(4, 2, figsize=(10, 15))
+for i, samples in enumerate(zip(ds_source_domain_dataset.take(4), ds_target_domain_dataset.take(4))):
+    source = ((samples[0][0]).numpy())
+    target = ((samples[1][0]).numpy())
+    ax[i, 0].imshow(source, cmap=plt.cm.gray)
+    ax[i, 1].imshow(target, cmap=plt.cm.gray)
+plt.show()
+plt.savefig('Visualize_Some_Samples')   
+
+
 class ReflectionPadding2D(layers.Layer):
     """Implements Reflection Padding as a layer.
+
     Args:
         padding(tuple): Amount of padding for the
         spatial dimensions.
+
     Returns:
         A padded tensor with the same type as the input tensor.
     """
@@ -55,7 +150,6 @@ class ReflectionPadding2D(layers.Layer):
             [0, 0],
         ]
         return tf.pad(input_tensor, padding_tensor, mode="REFLECT")
-
 
 
 def residual_block(
@@ -147,11 +241,7 @@ def upsample(
     return x
 
 
-"""
-## Build the generators
-The generator consists of downsampling blocks: nine residual blocks
-and upsampling blocks. The structure of the generator is the following:
-```
+'''
 c7s1-64 ==> Conv block with `relu` activation, filter size of 7
 d128 ====|
          |-> 2 downsampling blocks
@@ -169,9 +259,7 @@ u128 ====|
          |-> 2 upsampling blocks
 u64  ====|
 c7s1-3 => Last conv block with `tanh` activation, filter size of 7.
-```
-"""
-
+'''
 
 def get_resnet_generator(
     filters=64,
@@ -211,12 +299,6 @@ def get_resnet_generator(
     model = keras.models.Model(img_input, x, name=name)
     return model
 
-
-"""
-## Build the discriminators
-The discriminators implement the following architecture:
-`C64->C128->C256->C512`
-"""
 
 
 def get_discriminator(
@@ -260,22 +342,6 @@ def get_discriminator(
     return model
 
 
-# Get the generators
-gen_G = get_resnet_generator(name="generator_G")
-gen_F = get_resnet_generator(name="generator_F")
-
-# Get the discriminators
-disc_X = get_discriminator(name="discriminator_X")
-disc_Y = get_discriminator(name="discriminator_Y")
-
-
-"""
-## Build the CycleGAN model
-We will override the `train_step()` method of the `Model` class
-for training via `fit()`.
-"""
-
-
 class CycleGan(keras.Model):
     def __init__(
         self,
@@ -302,6 +368,8 @@ class CycleGan(keras.Model):
         disc_Y_optimizer,
         gen_loss_fn,
         disc_loss_fn,
+        cycle_loss_fn,
+        identity_loss_fn
     ):
         super(CycleGan, self).compile()
         self.gen_G_optimizer = gen_G_optimizer
@@ -310,11 +378,11 @@ class CycleGan(keras.Model):
         self.disc_Y_optimizer = disc_Y_optimizer
         self.generator_loss_fn = gen_loss_fn
         self.discriminator_loss_fn = disc_loss_fn
-        self.cycle_loss_fn = keras.losses.MeanAbsoluteError()
-        self.identity_loss_fn = keras.losses.MeanAbsoluteError()
+        self.cycle_loss_fn = cycle_loss_fn
+        self.identity_loss_fn = identity_loss_fn
 
     def train_step(self, batch_data):
-        # x is Source and y is Target
+        # x is Horse and y is zebra
         real_x, real_y = batch_data
 
         # For CycleGAN, we need to calculate different
@@ -333,14 +401,14 @@ class CycleGan(keras.Model):
         # 9. Return the losses in a dictionary
 
         with tf.GradientTape(persistent=True) as tape:
-            # Source to fake Target
+            # Horse to fake zebra
             fake_y = self.gen_G(real_x, training=True)
-            # Target to fake Source -> y2x
+            # Zebra to fake horse -> y2x
             fake_x = self.gen_F(real_y, training=True)
 
-            # Cycle (Source to fake Target to fake Source): x -> y -> x
+            # Cycle (Horse to fake zebra to fake horse): x -> y -> x
             cycled_x = self.gen_F(fake_y, training=True)
-            # Cycle (Target to fake Source to fake Target) y -> x -> y
+            # Cycle (Zebra to fake horse to fake zebra) y -> x -> y
             cycled_y = self.gen_G(fake_x, training=True)
 
             # Identity mapping
@@ -406,24 +474,53 @@ class CycleGan(keras.Model):
             zip(disc_Y_grads, self.disc_Y.trainable_variables)
         )
 
+        total_loss = total_loss_G + total_loss_F + disc_X_loss + disc_Y_loss
+
+        return total_loss
+        '''
         return {
             "G_loss": total_loss_G,
             "F_loss": total_loss_F,
             "D_X_loss": disc_X_loss,
             "D_Y_loss": disc_Y_loss,
         }
+        '''
 
 
+# Open a strategy scope.
+with strategy.scope():
 
-if __name__ == "__main__":
-
-    print(f"Arguments count: {len(sys.argv)}")
-    cyclegan_generator_path = sys.argv[1]
-    classifier_training_data_set_path = sys.argv[2]
-    classifier_test_data_set_path = sys.argv[3]
-    confusion_matrix_image_name = sys.argv[4]
+    mae_loss_fn = keras.losses.MeanAbsoluteError(reduction=tf.keras.losses.Reduction.NONE)
     
-    time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    # Loss function for evaluating cycle consistency loss
+    def cycle_loss_fn(real, cycled):
+        cycle_loss = mae_loss_fn(real, cycled)
+        cycle_loss = tf.nn.compute_average_loss(cycle_loss, global_batch_size=GLOBAL_BATCH_SIZE)
+        return cycle_loss
+         
+    # Loss function for evaluating identity mapping loss
+    def identity_loss_fn(real, same):
+        identity_loss = mae_loss_fn(real, same)
+        identity_loss = tf.nn.compute_average_loss(identity_loss, global_batch_size=GLOBAL_BATCH_SIZE)
+        return identity_loss
+
+    # Loss function for evaluating adversarial loss
+    adv_loss_fn = keras.losses.MeanSquaredError(reduction=tf.keras.losses.Reduction.NONE)
+
+    # Define the loss function for the generators
+    def generator_loss_fn(fake):
+        fake_loss = adv_loss_fn(tf.ones_like(fake), fake)
+        fake_loss = tf.nn.compute_average_loss(fake_loss, global_batch_size=GLOBAL_BATCH_SIZE)
+        return fake_loss
+
+    # Define the loss function for the discriminators
+    def discriminator_loss_fn(real, fake):
+        real_loss = adv_loss_fn(tf.ones_like(real), real)
+        fake_loss = adv_loss_fn(tf.zeros_like(fake), fake)
+        real_loss = tf.nn.compute_average_loss(real_loss, global_batch_size=GLOBAL_BATCH_SIZE)
+        fake_loss = tf.nn.compute_average_loss(fake_loss, global_batch_size=GLOBAL_BATCH_SIZE)  
+        return (real_loss + fake_loss) * 0.5
+
     # Get the generators
     gen_G = get_resnet_generator(name="generator_G")
     gen_F = get_resnet_generator(name="generator_F")
@@ -432,190 +529,65 @@ if __name__ == "__main__":
     disc_X = get_discriminator(name="discriminator_X")
     disc_Y = get_discriminator(name="discriminator_Y")
 
-
     # Create cycle gan model
     cycle_gan_model = CycleGan(
         generator_G=gen_G, generator_F=gen_F, discriminator_X=disc_X, discriminator_Y=disc_Y
     )
-    cycle_gan_model.load_weights(cyclegan_generator_path).expect_partial()
-    print("Weights loaded successfully")
+
+    optimizer = keras.optimizers.Adam(learning_rate=2e-4, beta_1=0.5)   
+
+    # Compile the model
+    cycle_gan_model.compile(
+        gen_G_optimizer=optimizer,
+        gen_F_optimizer=optimizer,
+        disc_X_optimizer=optimizer,
+        disc_Y_optimizer=optimizer,
+        gen_loss_fn=generator_loss_fn,
+        disc_loss_fn=discriminator_loss_fn,
+        cycle_loss_fn=cycle_loss_fn,
+        identity_loss_fn=identity_loss_fn
+    )
 
 
+    checkpoint = tf.train.Checkpoint(
+                            gen_G=gen_G,
+                            gen_F=gen_F,
+                            disc_X=disc_X,
+                            disc_Y=disc_Y,
+                            gen_G_optimizer=optimizer,
+                            gen_F_optimizer=optimizer,
+                            disc_X_optimizer=optimizer,
+                            disc_Y_optimizer=optimizer)
 
-    data_dir = pathlib.Path(classifier_training_data_set_path)
-    train_ds = tf.data.Dataset.list_files(str(data_dir/'*/*'), shuffle=False)
+    ckpt_manager = tf.train.CheckpointManager(checkpoint, checkpoint_prefix, max_to_keep=5)
 
-    test_data_dir = pathlib.Path(classifier_test_data_set_path)
-    test_ds = tf.data.Dataset.list_files(str(test_data_dir/'*/*'), shuffle=False)
+    train_dist_dataset = strategy.experimental_distribute_dataset(
+        tf.data.Dataset.zip((ds_source_domain_dataset, ds_target_domain_dataset)))
 
-    class_names = np.array(sorted([item.name for item in data_dir.glob('*')]))
-    print(class_names)  
-    no_of_classes = len(class_names)
-
-    list_of_files = list(data_dir.glob('*/*.png'))
-    #print(list(data_dir.glob('*/*.png')))  
-
-    image_count = len(list(data_dir.glob('*/*.png')))
-    print(image_count)
-
-    print(tf.data.experimental.cardinality(train_ds).numpy())
-    print(tf.data.experimental.cardinality(test_ds).numpy())
-
-    train_ds = train_ds.map(lambda x: preprocess_classifier_images(x, class_names), 
-      num_parallel_calls=tf.data.experimental.AUTOTUNE)
-
-    test_ds = test_ds.map(lambda x: preprocess_classifier_images(x, class_names), 
-      num_parallel_calls=tf.data.experimental.AUTOTUNE)
-
-    train_ds = configure_for_performance_without_shuffle(train_ds, 1)
-    test_ds = configure_for_performance(test_ds, 1162, 
-    tf.data.experimental.cardinality(test_ds).numpy())
-
-    print('Retrieving Original Labels')
-    original_labels =  np.asarray(list(train_ds.map(lambda y, x: x)))
     
-    print(original_labels.shape)
-    original_labels = np.reshape(original_labels, (image_count, no_of_classes))
-    print(original_labels.shape)
-    original_labels_ds = tf.data.Dataset.from_tensor_slices((original_labels))
+# `run` replicates the provided computation and runs it
+# with the distributed input.
+@tf.function
+def distributed_train_step(dataset_inputs):
+  per_replica_losses = strategy.run(cycle_gan_model.train_step, args=(dataset_inputs,))
+  return strategy.reduce(tf.distribute.ReduceOp.SUM, per_replica_losses,
+                         axis=None)
+
+for epoch in range(1):
+    # TRAIN LOOP
+    all_loss = 0.0
+    num_batches = 0.0
+    for one_batch in train_dist_dataset:
+        all_loss +=  distributed_train_step(one_batch)
+        num_batches += 1
     
-   
-    plt.figure(figsize=(10,10))
-    for i in range(10):
-      X_train_10_samples, y_train_10_samples = next(iter(train_ds))
-      plt.subplot(5, 2, i+1)
-      plt.xticks([])
-      plt.yticks([])
-      plt.grid(False)
-      plt.imshow(X_train_10_samples[0], cmap=plt.cm.gray)
-      plt.xlabel(class_names[np.argmax(y_train_10_samples[0], axis=-1)])
-      plt.show()
-      plt.savefig('Save_Sample_Images_1')
-   
+    train_loss = all_loss/num_batches
+    checkpoint.save(checkpoint_prefix)
+    print(train_loss)
 
-   
-    plt.figure(figsize=(10,10))
-    for i in range(10):
-      X_train_10_samples, y_train_10_samples = next(iter(train_ds))
-      plt.subplot(5, 2, i+1)
-      plt.xticks([])
-      plt.yticks([])
-      plt.grid(False)
-      plt.imshow(X_train_10_samples[0], cmap=plt.cm.gray)
-      plt.xlabel(class_names[np.argmax(y_train_10_samples[0], axis=-1)])
-      plt.show()
-      plt.savefig('Save_Sample_Images_2')
-
-
-    # Generation of Target Domain Document Images
-    with tf.device("cpu:0"):
-        generated_target_domain_images = cycle_gan_model.gen_G.predict(train_ds)
-    print('Generated target domain images and labels shape')
-    print(generated_target_domain_images.shape)
-    
-    save('generated_target_domain_images_' + time + '.npy', generated_target_domain_images)
-
-    generated_target_domain_images_ds = tf.data.Dataset.from_tensor_slices((generated_target_domain_images))
-    print(tf.data.experimental.cardinality(generated_target_domain_images_ds).numpy())
-
-    final_train_ds = tf.data.Dataset.zip((generated_target_domain_images_ds, original_labels_ds))  
-    print(tf.data.experimental.cardinality(final_train_ds).numpy())
-
-
-    plt.figure(figsize=(10,10))
-    for i in range(10):
-      plt.subplot(5, 2, i+1)
-      plt.xticks([])
-      plt.yticks([])
-      plt.grid(False)
-      plt.imshow(generated_target_domain_images[i], cmap=plt.cm.gray)
-      plt.xlabel(class_names[np.argmax(original_labels[i], axis=-1)])
-      plt.show()
-      plt.savefig('Generated_Sample_Images')
- 
-    # Train the Domain Adapted Realistic Document Image Classifier and 
-    # Verify on Annotated Test Data.
-   
-    type_of_the_classifier = 'domain_adapted_documents_classifier'
-    domain_adapted_documents_classifier_model = create_model(10)
-
-    # Tensorboard Logs
-    log_dir = "logs/fit/" + time   
-    tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
-
-    # Creates a file writer for the log directory.
-    file_writer_cm = tf.summary.create_file_writer(log_dir + '/cm')
-    file_writer = tf.summary.create_file_writer(log_dir)
-    with file_writer.as_default():
-      tf.summary.image("10 training data examples", generated_target_domain_images[0:10], 
-      max_outputs=25, step=0)
- 
-    # Prepare the plot
-    figure = image_grid(generated_target_domain_images[0:10], class_names, 
-    np.argmax(original_labels[0:10], axis=-1))
-
-    # Convert to image and log
-    with file_writer.as_default():
-      tf.summary.image("Training data", plot_to_image(figure), step=0)
-
-    # retrieve the test data
-    X_test, y_test = next(iter(test_ds))
-
-    # Shuffle final training dataset
-    final_train_ds = final_train_ds.shuffle(tf.data.experimental.cardinality(final_train_ds).numpy())
-
-    val_size = int(image_count * 0.2)
-    final_train_ds = final_train_ds.skip(val_size)
-    val_ds = final_train_ds.take(val_size)
-
-    final_train_ds = configure_for_performance(final_train_ds, 1,
-    tf.data.experimental.cardinality(final_train_ds).numpy())
-    val_ds = configure_for_performance(val_ds, 1,
-    tf.data.experimental.cardinality(val_ds).numpy())
-
-    file_name = confusion_matrix_image_name + '_' + time
-    # Example: Confusion_Matrix_CycleGAN_Generated_Data_Classifier
-    
-    domain_adapted_documents_classifier_model.fit(
-            final_train_ds,
-            epochs=10,
-            validation_data=val_ds,
-            callbacks=[tensorboard_callback,
-            CustomCallback(domain_adapted_documents_classifier_model, 
-            X_test,
-            np.argmax(y_test, axis=-1),
-            class_names,
-            log_dir,
-            file_writer_cm,
-            file_name
-            )]
-            ) 
-
-
-    print('Training Finished...')
-     # serialize weights to HDF5
-    domain_adapted_documents_classifier_model.save(type_of_the_classifier + '_' + time + '_model.h5')
-    
-    domain_adapted_documents_classifier_logs =  open('domain_adapted_documents_classifier_logs'
-    '_' + time + '.txt', 'a')
-    
-    print('Saved model to disk ' + type_of_the_classifier + '_' + time + '_model.h5', 
-    file=domain_adapted_documents_classifier_logs)
-
-
-    print('translated target domain images and labels shape', file=domain_adapted_documents_classifier_logs)
-    print(generated_target_domain_images.shape, file=domain_adapted_documents_classifier_logs) 
-    print(original_labels.shape, file=domain_adapted_documents_classifier_logs)
-
-
-    y_test_pred = np.argmax(domain_adapted_documents_classifier_model.predict(X_test), axis=-1)
-    y_test_real = np.argmax(y_test, axis=-1)
-
-    results = domain_adapted_documents_classifier_model.evaluate(X_test, y_test, verbose=2)
-    print(classification_report(y_test_real, y_test_pred, target_names=class_names, zero_division=1), 
-    file=domain_adapted_documents_classifier_logs)
-    
-    print("test loss, test acc:", results, file=domain_adapted_documents_classifier_logs)
-
-  
-    domain_adapted_documents_classifier_logs.close()
+        
+# if a checkpoint exists, restore the latest checkpoint.
+if ckpt_manager.latest_checkpoint:
+  checkpoint.restore(ckpt_manager.latest_checkpoint)
+  print ('Latest checkpoint restored!!')
+      

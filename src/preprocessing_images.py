@@ -3,12 +3,14 @@
 import tensorflow as tf
 import os
 
+'''
 class_names = ['DE_LY_Arm_2020-01', 
   'DE_LY_Bein_2018-08', 'DE_LY_Bein_2019-01',
   'DE_LY_Bein_2019-07', 'DE_LY_Bein_2020-01', 
   'DE_LY_Bein_2020-03', 'DE_LY_Hand_2020-01', 
   'DE_PH_Bein_2018-09', 'DE_PH_Bein_2019-02',
   'DE_PH_Bein_2020-01']
+'''  
 
 def normalize_img(img):
     # Map values in the range [-1, 1]
@@ -29,7 +31,7 @@ def preprocess_cyclegan_images(image_path):
     img = normalize_img(img)
     return img
     
-def get_label(file_path):
+def get_label(file_path, class_names):
   # convert the path to a list of path components
   parts = tf.strings.split(file_path, os.path.sep)
   # Integer encode the label
@@ -47,12 +49,24 @@ def decode_img(img):
     img = normalize_img(img)
     return img
 
-def preprocess_classifier_images(file_path):
-  label = get_label(file_path)
+def preprocess_classifier_images(file_path, class_names):
+  label = get_label(file_path, class_names)
   # load the raw data from the file as a string
   img = tf.io.read_file(file_path)
   img = decode_img(img)
   return img, label
+
+def preprocess_classifier_test_images(file_path, class_names):
+  label = get_label(file_path, class_names)
+  # load the raw data from the file as a string
+  img = tf.io.read_file(file_path)
+  # Convert the image in grayscale
+  img = tf.image.decode_png(img, channels=1)
+  # Resize the image [[256, 256]]
+  img = tf.image.resize(img, [256, 256])
+  # Map values in the range [-1, 1]
+  img = normalize_img(img)  
+  return img, label  
 
 def configure_for_performance(ds, batch_size, buffer_size):
   ds = ds.cache()
