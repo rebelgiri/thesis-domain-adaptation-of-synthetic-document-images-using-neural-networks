@@ -18,6 +18,7 @@ import tensorflow_datasets as tfds
 tfds.disable_progress_bar()
 autotune = tf.data.experimental.AUTOTUNE
 from preprocessing_images import *
+from numpy import load, save
 
 
 buffer_size = 256
@@ -420,7 +421,9 @@ if __name__ == "__main__":
     cyclegan_generator_path = sys.argv[1]
     classifier_training_data_set_path = sys.argv[2]
     classifier_test_data_set_path = sys.argv[3]
-
+    confusion_matrix_image_name = sys.argv[4]
+    
+    time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     # Get the generators
     gen_G = get_resnet_generator(name="generator_G")
     gen_F = get_resnet_generator(name="generator_F")
@@ -458,10 +461,10 @@ if __name__ == "__main__":
     print(tf.data.experimental.cardinality(train_ds).numpy())
     print(tf.data.experimental.cardinality(test_ds).numpy())
 
-    train_ds = train_ds.map(preprocess_classifier_images, 
+    train_ds = train_ds.map(lambda x: preprocess_classifier_images(x, class_names), 
       num_parallel_calls=tf.data.experimental.AUTOTUNE)
 
-    test_ds = test_ds.map(preprocess_classifier_images, 
+    test_ds = test_ds.map(lambda x: preprocess_classifier_images(x, class_names), 
       num_parallel_calls=tf.data.experimental.AUTOTUNE)
 
     train_ds = configure_for_performance_without_shuffle(train_ds, 1)
@@ -508,13 +511,14 @@ if __name__ == "__main__":
     with tf.device("cpu:0"):
         generated_target_domain_images = cycle_gan_model.gen_G.predict(train_ds)
     print('Generated target domain images and labels shape')
-    print(generated_target_domain_images.shape) 
-
+    print(generated_target_domain_images.shape)
+    
+    save('generated_target_domain_images_' + time + '.npy', generated_target_domain_images)
 
     generated_target_domain_images_ds = tf.data.Dataset.from_tensor_slices((generated_target_domain_images))
     print(tf.data.experimental.cardinality(generated_target_domain_images_ds).numpy())
 
-    final_train_ds =  tf.data.Dataset.zip((generated_target_domain_images_ds, original_labels_ds))  
+    final_train_ds = tf.data.Dataset.zip((generated_target_domain_images_ds, original_labels_ds))  
     print(tf.data.experimental.cardinality(final_train_ds).numpy())
 
 
@@ -536,7 +540,6 @@ if __name__ == "__main__":
     domain_adapted_documents_classifier_model = create_model(10)
 
     # Tensorboard Logs
-    time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     log_dir = "logs/fit/" + time   
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
@@ -570,6 +573,9 @@ if __name__ == "__main__":
     val_ds = configure_for_performance(val_ds, 1,
     tf.data.experimental.cardinality(val_ds).numpy())
 
+    file_name = confusion_matrix_image_name + '_' + time
+    # Example: Confusion_Matrix_CycleGAN_Generated_Data_Classifier
+    
     domain_adapted_documents_classifier_model.fit(
             final_train_ds,
             epochs=10,
@@ -580,7 +586,8 @@ if __name__ == "__main__":
             np.argmax(y_test, axis=-1),
             class_names,
             log_dir,
-            file_writer_cm
+            file_writer_cm,
+            file_name
             )]
             ) 
 
