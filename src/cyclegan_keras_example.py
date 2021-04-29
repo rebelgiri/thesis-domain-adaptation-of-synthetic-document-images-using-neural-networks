@@ -45,17 +45,6 @@ real_document_images_path = '/mnt/data/data/cyclegan_real_document_images/real_d
 
 synthetic_document_images_path_test = '/mnt/data/data/cyclegan_synthetic_document_images_test/'
 
-"""
-## Prepare the dataset
-In this example, we will be using the
-[horse to zebra](https://www.tensorflow.org/datasets/catalog/cycle_gan#cycle_ganhorse2zebra)
-dataset.
-"""
-
-# Load the horse-zebra dataset using tensorflow-datasets.
-# dataset, _ = tfds.load("cycle_gan/horse2zebra", with_info=True, as_supervised=True)
-# train_horses, train_zebras = dataset["trainA"], dataset["trainB"]
-# test_horses, test_zebras = dataset["testA"], dataset["testB"]
 
 buffer_size = 256
 batch_size = 1
@@ -98,12 +87,14 @@ def normalize_img(img):
 
 def preprocess_train_image(img, label):
     # Random flip
-    img = tf.image.random_flip_left_right(img)
+    #img = tf.image.random_flip_left_right(img)
     # Resize to the original size first
-    img = tf.image.resize(img, [*orig_img_size])
+    #img = tf.image.resize(img, [*orig_img_size])
     # Random crop to 256X256
-    img = tf.image.random_crop(img, size=[*input_img_size])
+    #img = tf.image.random_crop(img, size=[*input_img_size])
     # Normalize the pixel values in the range [-1, 1]
+    
+    img = tf.image.resize(img, [input_img_size[0], input_img_size[1]])
     img = normalize_img(img)
     return img
 
@@ -114,40 +105,6 @@ def preprocess_test_image(img, label):
     img = normalize_img(img)
     return img
 
-
-"""
-## Create `Dataset` objects
-"""
-'''
-
-# Apply the preprocessing operations to the training data
-train_horses = (
-    train_horses.map(preprocess_train_image, num_parallel_calls=autotune)
-    .cache()
-    .shuffle(buffer_size)
-    .batch(batch_size)
-)
-train_zebras = (
-    train_zebras.map(preprocess_train_image, num_parallel_calls=autotune)
-    .cache()
-    .shuffle(buffer_size)
-    .batch(batch_size)
-)
-
-# Apply the preprocessing operations to the test data
-test_horses = (
-    test_horses.map(preprocess_test_image, num_parallel_calls=autotune)
-    .cache()
-    .shuffle(buffer_size)
-    .batch(batch_size)
-)
-test_zebras = (
-    test_zebras.map(preprocess_test_image, num_parallel_calls=autotune)
-    .cache()
-    .shuffle(buffer_size)
-    .batch(batch_size)
-)
-'''
 
 """
 ## Visualize some samples
