@@ -13,13 +13,14 @@ import pathlib
 
 class CustomCallback(tf.keras.callbacks.Callback):
 
-    def __init__(self, model, test_images, test_labels, class_names, log_dir, file_writer_cm):
+    def __init__(self, model, test_images, test_labels, class_names, log_dir, file_writer_cm, file_name):
         self.model = model
         self.test_images = test_images
         self.test_labels = test_labels
         self.class_names = class_names
         self.log_dir = log_dir
         self.file_writer_cm = file_writer_cm
+        self.file_name = file_name
 
     def on_epoch_end(self, epoch, logs):
         # Use the model to predict the values from the validation dataset.
@@ -29,7 +30,7 @@ class CustomCallback(tf.keras.callbacks.Callback):
         # Calculate the confusion matrix.
         cm = sklearn.metrics.confusion_matrix(self.test_labels, test_pred)
         # Log the confusion matrix as an image summary.
-        figure = plot_confusion_matrix(cm, class_names=self.class_names)
+        figure = plot_confusion_matrix(cm, class_names=self.class_names, file_name=self.file_name)
         cm_image = plot_to_image(figure)
 
         # Log the confusion matrix as an image summary.
@@ -54,7 +55,7 @@ def plot_to_image(figure):
   return image
 
 
-def plot_confusion_matrix(cm, class_names):
+def plot_confusion_matrix(cm, class_names, file_name):
   """
   Returns a matplotlib figure containing the plotted confusion matrix.
 
@@ -62,12 +63,12 @@ def plot_confusion_matrix(cm, class_names):
     cm (array, shape = [n, n]): a confusion matrix of integer classes
     class_names (array, shape = [n]): String names of the integer classes
   """
-  figure = plt.figure(figsize=(8, 8))
+  figure = plt.figure(figsize=(12, 12), dpi=200)
   plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
   plt.title("Confusion matrix")
   plt.colorbar()
   tick_marks = np.arange(len(class_names))
-  plt.xticks(tick_marks, class_names, rotation=45)
+  plt.xticks(tick_marks, class_names, rotation=90)
   plt.yticks(tick_marks, class_names)
 
   # Compute the labels from the normalized confusion matrix.
@@ -82,6 +83,7 @@ def plot_confusion_matrix(cm, class_names):
   plt.tight_layout()
   plt.ylabel('True label')
   plt.xlabel('Predicted label')
+  plt.savefig(file_name)
   return figure
 
 def image_grid(train_images, class_names, train_labels):
@@ -104,6 +106,7 @@ if __name__ == "__main__":
     print(f"Arguments count: {len(sys.argv)}")
     classifier_training_data_set_path = sys.argv[1]
     classifier_test_data_set_path = sys.argv[2]
+    confusion_matrix_image_name = sys.argv[3]
 
     print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
@@ -128,15 +131,17 @@ if __name__ == "__main__":
     print(tf.data.experimental.cardinality(val_ds).numpy())
     print(tf.data.experimental.cardinality(test_ds).numpy())
 
-    train_ds = train_ds.map(preprocess_classifier_images, 
+
+    train_ds = train_ds.map(lambda x: preprocess_classifier_images(x, class_names), 
       num_parallel_calls=tf.data.experimental.AUTOTUNE)
 
-    val_ds = val_ds.map(preprocess_classifier_images,
+    val_ds = val_ds.map(lambda x: preprocess_classifier_images(x, class_names),
       num_parallel_calls=tf.data.experimental.AUTOTUNE)
 
-    test_ds = test_ds.map(preprocess_classifier_images,
+    test_ds = test_ds.map(lambda x: preprocess_classifier_images(x, class_names),
       num_parallel_calls=tf.data.experimental.AUTOTUNE)
 
+    
     train_ds = configure_for_performance(train_ds, 10, 
       tf.data.experimental.cardinality(train_ds).numpy())
     val_ds = configure_for_performance(val_ds, 10,
@@ -173,18 +178,23 @@ if __name__ == "__main__":
 
     # create classifier model
     type_of_the_classifier = 'synthetic_documents_classifier'
+    file_name = confusion_matrix_image_name + '_' + time
+    # Example:  Confusion_Matrix_Synthetic_Data_Classifier
+    # Example:  Confusion_Matrix_Faxified_Data_Classifier
+    
     synthetic_documents_classifier_model = create_model(10)     
 
     synthetic_documents_classifier_model.fit(
             train_ds,
-            epochs=3,
+            epochs=15,
             validation_data=val_ds,
             callbacks=[tensorboard_callback, CustomCallback(synthetic_documents_classifier_model, 
             X_test,
             np.argmax(y_test, axis=-1),
             class_names,
             log_dir,
-            file_writer_cm
+            file_writer_cm,
+            file_name
             )]
             )
           
