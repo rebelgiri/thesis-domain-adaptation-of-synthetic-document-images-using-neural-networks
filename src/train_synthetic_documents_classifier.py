@@ -95,6 +95,8 @@ def image_grid(train_images, class_names, train_labels):
     plt.yticks([])
     plt.grid(False)
     plt.imshow(train_images[i], cmap=plt.cm.binary)
+    #image = np.squeeze(train_images[i])
+    #plt.imshow(image, cmap=plt.cm.binary)
 
   return figure
 
