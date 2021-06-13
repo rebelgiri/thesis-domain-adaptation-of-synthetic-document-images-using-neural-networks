@@ -421,9 +421,16 @@ if __name__ == "__main__":
     cyclegan_generator_path = sys.argv[1]
     classifier_training_data_set_path = sys.argv[2]
     classifier_test_data_set_path = sys.argv[3]
-    confusion_matrix_image_name = sys.argv[4]
+    classifier_name = sys.argv[4]
     
     time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+
+    path = classifier_name + '_' + time
+    os.mkdir(path)
+    print("Directory '% s' created" % path)
+    path = path + '/'
+
+
     # Get the generators
     gen_G = get_resnet_generator(name="generator_G")
     gen_F = get_resnet_generator(name="generator_F")
@@ -461,10 +468,10 @@ if __name__ == "__main__":
     print(tf.data.experimental.cardinality(train_ds).numpy())
     print(tf.data.experimental.cardinality(test_ds).numpy())
 
-    train_ds = train_ds.map(lambda x: preprocess_classifier_images(x, class_names), 
+    train_ds = train_ds.map(lambda x: preprocess_classifier_test_images(x, class_names), 
       num_parallel_calls=tf.data.experimental.AUTOTUNE)
 
-    test_ds = test_ds.map(lambda x: preprocess_classifier_images(x, class_names), 
+    test_ds = test_ds.map(lambda x: preprocess_classifier_test_images(x, class_names), 
       num_parallel_calls=tf.data.experimental.AUTOTUNE)
 
     train_ds = configure_for_performance_without_shuffle(train_ds, 1)
@@ -477,6 +484,7 @@ if __name__ == "__main__":
     print(original_labels.shape)
     original_labels = np.reshape(original_labels, (image_count, no_of_classes))
     print(original_labels.shape)
+    save(path + 'Generated_Target_Domain_Images_Labels_' + time + '.npy', original_labels)
     original_labels_ds = tf.data.Dataset.from_tensor_slices((original_labels))
     
    
@@ -487,11 +495,12 @@ if __name__ == "__main__":
       plt.xticks([])
       plt.yticks([])
       plt.grid(False)
-      plt.imshow(X_train_10_samples[0], cmap=plt.cm.gray)
-      plt.xlabel(class_names[np.argmax(y_train_10_samples[0], axis=-1)])
+      plt.imshow(X_train_10_samples[i], cmap=plt.cm.gray)
+      plt.xlabel(class_names[np.argmax(y_train_10_samples[i], axis=-1)])
       plt.show()
-      plt.savefig('Save_Sample_Images_1')
-   
+      plt.savefig(path + 'Save_Sample_Images_1')
+    plt.close()
+    
 
    
     plt.figure(figsize=(10,10))
@@ -501,19 +510,20 @@ if __name__ == "__main__":
       plt.xticks([])
       plt.yticks([])
       plt.grid(False)
-      plt.imshow(X_train_10_samples[0], cmap=plt.cm.gray)
-      plt.xlabel(class_names[np.argmax(y_train_10_samples[0], axis=-1)])
+      plt.imshow(X_train_10_samples[i], cmap=plt.cm.gray)
+      plt.xlabel(class_names[np.argmax(y_train_10_samples[i], axis=-1)])
       plt.show()
-      plt.savefig('Save_Sample_Images_2')
+      plt.savefig(path + 'Save_Sample_Images_2')
+    plt.close()
 
 
     # Generation of Target Domain Document Images
     with tf.device("cpu:0"):
         generated_target_domain_images = cycle_gan_model.gen_G.predict(train_ds)
-    print('Generated target domain images and labels shape')
+    print('Generated target domain images shape')
     print(generated_target_domain_images.shape)
     
-    save('generated_target_domain_images_' + time + '.npy', generated_target_domain_images)
+    save(path + 'Generated_Target_Domain_Images_' + time + '.npy', generated_target_domain_images)
 
     generated_target_domain_images_ds = tf.data.Dataset.from_tensor_slices((generated_target_domain_images))
     print(tf.data.experimental.cardinality(generated_target_domain_images_ds).numpy())
@@ -531,16 +541,16 @@ if __name__ == "__main__":
       plt.imshow(generated_target_domain_images[i], cmap=plt.cm.gray)
       plt.xlabel(class_names[np.argmax(original_labels[i], axis=-1)])
       plt.show()
-      plt.savefig('Generated_Sample_Images')
- 
+      plt.savefig(path + 'Generated_Sample_Images')
+    plt.close()
+
     # Train the Domain Adapted Realistic Document Image Classifier and 
     # Verify on Annotated Test Data.
    
-    type_of_the_classifier = 'domain_adapted_documents_classifier'
     domain_adapted_documents_classifier_model = create_model(10)
 
     # Tensorboard Logs
-    log_dir = "logs/fit/" + time   
+    log_dir = path + "logs/fit/" + time   
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
     # Creates a file writer for the log directory.
@@ -573,12 +583,14 @@ if __name__ == "__main__":
     val_ds = configure_for_performance(val_ds, 1,
     tf.data.experimental.cardinality(val_ds).numpy())
 
-    file_name = confusion_matrix_image_name + '_' + time
+    file_name = path + 'Confusion_Matrix_' + classifier_name + '_' + time
+    file_name_plot = classifier_name + '_' + time
+
     # Example: Confusion_Matrix_CycleGAN_Generated_Data_Classifier
-    
-    domain_adapted_documents_classifier_model.fit(
+    epochs = 10
+    history = domain_adapted_documents_classifier_model.fit(
             final_train_ds,
-            epochs=10,
+            epochs=epochs,
             validation_data=val_ds,
             callbacks=[tensorboard_callback,
             CustomCallback(domain_adapted_documents_classifier_model, 
@@ -590,16 +602,41 @@ if __name__ == "__main__":
             file_name
             )]
             ) 
+    
+    # list all data in history
+    print(history.history.keys())
+    # summarize history for accuracy
+    plt.plot(history.history['accuracy'])
+    plt.plot(history.history['val_accuracy'])
+    plt.title('Model accuracy', fontweight='bold', fontsize='x-large')
+    plt.ylabel('Accuracy', fontweight='bold', fontsize='x-large')
+    plt.xlabel('Epochs', fontweight='bold', fontsize='x-large')
+    plt.legend(['Train', 'Validation'], loc='upper left', prop=dict(weight='bold'))
+    plt.grid(True)
+    plt.show()
+    plt.savefig(path + file_name_plot + '_Accuracy', dpi=300)
+    plt.close()
 
+    # summarize history for loss
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('Model Loss', fontweight='bold', fontsize='x-large')
+    plt.ylabel('Loss', fontweight='bold', fontsize='x-large')
+    plt.xlabel('Epochs', fontweight='bold', fontsize='x-large')
+    plt.legend(['Train', 'Validation'], loc='upper left', prop=dict(weight='bold'))
+    plt.grid(True)
+    plt.show()
+    plt.savefig(path + file_name_plot + '_Loss', dpi=300)
+    plt.close()
 
     print('Training Finished...')
      # serialize weights to HDF5
-    domain_adapted_documents_classifier_model.save(type_of_the_classifier + '_' + time + '_model.h5')
+    domain_adapted_documents_classifier_model.save(path + classifier_name + '_' + time + '_model.h5')
     
-    domain_adapted_documents_classifier_logs =  open('domain_adapted_documents_classifier_logs'
+    domain_adapted_documents_classifier_logs =  open(path + classifier_name + '_logs'
     '_' + time + '.txt', 'a')
     
-    print('Saved model to disk ' + type_of_the_classifier + '_' + time + '_model.h5', 
+    print('Saved model to disk ' + classifier_name + '_' + time + '_model.h5', 
     file=domain_adapted_documents_classifier_logs)
 
 
