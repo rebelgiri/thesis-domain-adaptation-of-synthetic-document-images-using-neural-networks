@@ -35,13 +35,36 @@ import tensorflow_datasets as tfds
 
 tfds.disable_progress_bar()
 autotune = tf.data.experimental.AUTOTUNE
-from preprocessing_images import *
+# from preprocessing_images import *
+
+
+def normalize_img(img):
+    # Map values in the range [-1, 1]
+    img = tf.cast(img, dtype=tf.float32)
+    return (img / 127.5) - 1.0
+
+
+def preprocess_cyclegan_images(image_path):
+    img = tf.io.read_file(image_path)
+    # Convert the image in grayscale
+    img = tf.image.decode_png(img, channels=1)
+    # Random flip left to right
+    # img = tf.image.random_flip_left_right(img)
+
+    # Resize the image [[512, 512]]
+    img = tf.image.resize(img, [512, 512])
+    
+    # Random crop image [[256, 256]]
+    # img = tf.image.random_crop(img, [256, 256, 1])
+    
+    img = normalize_img(img)
+    return img
 
 synthetic_document_images_path = '/mnt/data/data/cyclegan_synthetic_document_images/synthetic_document_images/'
 real_document_images_path = '/mnt/data/data/cyclegan_real_document_images/real_document_images/'
 
-# synthetic_document_images_path = '/mnt/data/data/cyclegan_synthetic_document_images_test/'
-# real_document_images_path = '/mnt/data/data/cyclegan_real_document_images_test/'
+#synthetic_document_images_path = '/mnt/data/data/cyclegan_synthetic_document_images_test/'
+#real_document_images_path = '/mnt/data/data/cyclegan_real_document_images_test/'
 
 synthetic_document_images_path_test = '/mnt/data/data/cyclegan_synthetic_document_images_test/'
 
@@ -71,46 +94,15 @@ ds_source_domain_dataset_test = ds_source_domain_list_files_test.map(preprocess_
 # Define the standard image size.
 orig_img_size = (286, 286)
 # Size of the random crops to be used during training.
-input_img_size = (256, 256, 1)
+input_img_size = (512, 512, 1)
 # Weights initializer for the layers.
 kernel_init = keras.initializers.RandomNormal(mean=0.0, stddev=0.02)
 # Gamma initializer for instance normalization.
 gamma_init = keras.initializers.RandomNormal(mean=0.0, stddev=0.02)
 
-
-
-def normalize_img(img):
-    img = tf.cast(img, dtype=tf.float32)
-    # Map values in the range [-1, 1]
-    return (img / 127.5) - 1.0
-
-
-def preprocess_train_image(img, label):
-    # Random flip
-    #img = tf.image.random_flip_left_right(img)
-    # Resize to the original size first
-    #img = tf.image.resize(img, [*orig_img_size])
-    # Random crop to 256X256
-    #img = tf.image.random_crop(img, size=[*input_img_size])
-    # Normalize the pixel values in the range [-1, 1]
-    
-    img = tf.image.resize(img, [input_img_size[0], input_img_size[1]])
-    img = normalize_img(img)
-    return img
-
-
-def preprocess_test_image(img, label):
-    # Only resizing and normalization for the test images.
-    img = tf.image.resize(img, [input_img_size[0], input_img_size[1]])
-    img = normalize_img(img)
-    return img
-
-
 """
 ## Visualize some samples
 """
-
-
 _, ax = plt.subplots(4, 2, figsize=(10, 15))
 for i, samples in enumerate(zip(ds_source_domain_dataset.take(4), ds_target_domain_dataset.take(4))):
     # source = (((samples[0][0] * 127.5) + 127.5).numpy()).astype(np.uint8)
@@ -126,8 +118,6 @@ plt.savefig('Visualize_Some_Samples')
 """
 ## Building blocks used in the CycleGAN generators and discriminators
 """
-
-
 class ReflectionPadding2D(layers.Layer):
     """Implements Reflection Padding as a layer.
     Args:
@@ -584,8 +574,7 @@ model_checkpoint_callback = keras.callbacks.ModelCheckpoint(
     filepath=checkpoint_filepath
 )
 
-# Here we will train the model for just one epoch as each epoch takes around
-# 7 minutes on a single P100 backed machine.
+# Here we will train the model
 cycle_gan_model.fit(
     tf.data.Dataset.zip((ds_source_domain_dataset, ds_target_domain_dataset)),
     epochs=20,
@@ -593,12 +582,7 @@ cycle_gan_model.fit(
     )
 
 print('Training Finished...')
-# serialize weights to HDF5
-cycle_gan_model.save('cycle_gan_model_model.h5')
-cycle_gan_model.gen_G.save('cycle_gan_model_gen_G_model.h5')
-cycle_gan_model.gen_F.save('cycle_gan_model_gen_F_model.h5')
-cycle_gan_model.disc_X.save('cycle_gan_model_disc_X_model.h5')
-cycle_gan_model.disc_Y.save('cycle_gan_model_disc_Y_model.h5')
+
 
 
 """
