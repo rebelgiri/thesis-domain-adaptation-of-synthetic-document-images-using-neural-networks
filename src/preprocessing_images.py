@@ -68,6 +68,13 @@ def preprocess_classifier_test_images(file_path, class_names):
   img = normalize_img(img)  
   return img, label  
 
+def preprocess_numpy_array_image(image, label):
+  image = tf.cast(image, tf.float32)
+  image = tf.image.random_flip_left_right(image)
+  image = tf.image.random_flip_up_down(image)
+  return image, label
+
+
 def configure_for_performance(ds, batch_size, buffer_size):
   ds = ds.cache()
   ds = ds.shuffle(buffer_size, seed=10)
