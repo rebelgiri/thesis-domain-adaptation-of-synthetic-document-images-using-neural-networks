@@ -66,10 +66,12 @@ def plot_confusion_matrix(cm, class_names, file_name):
   figure = plt.figure(figsize=(12, 12), dpi=200)
   plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
   plt.title("Confusion matrix")
-  plt.colorbar()
+  cbar = plt.colorbar()
+  cbar.ax.tick_params(labelsize=20)
   tick_marks = np.arange(len(class_names))
-  plt.xticks(tick_marks, class_names, rotation=90)
-  plt.yticks(tick_marks, class_names)
+  plt.tick_params(labelsize=15)
+  plt.xticks(tick_marks, class_names, rotation=90, weight = 'bold')
+  plt.yticks(tick_marks, class_names, weight = 'bold')
 
   # Compute the labels from the normalized confusion matrix.
   labels = np.around(cm.astype('float') / cm.sum(axis=1)[:, np.newaxis], decimals=2)
@@ -78,7 +80,7 @@ def plot_confusion_matrix(cm, class_names, file_name):
   threshold = cm.max() / 2.
   for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
     color = "white" if cm[i, j] > threshold else "black"
-    plt.text(j, i, labels[i, j], horizontalalignment="center", color=color)
+    plt.text(j, i, labels[i, j], horizontalalignment="center", fontsize='large', fontweight='bold', color=color)
 
   plt.tight_layout()
   plt.ylabel('True label')
@@ -108,7 +110,7 @@ if __name__ == "__main__":
     print(f"Arguments count: {len(sys.argv)}")
     classifier_training_data_set_path = sys.argv[1]
     classifier_test_data_set_path = sys.argv[2]
-    confusion_matrix_image_name = sys.argv[3]
+    classifier_name = sys.argv[3]
 
     print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
@@ -134,13 +136,13 @@ if __name__ == "__main__":
     print(tf.data.experimental.cardinality(test_ds).numpy())
 
 
-    train_ds = train_ds.map(lambda x: preprocess_classifier_images(x, class_names), 
+    train_ds = train_ds.map(lambda x: preprocess_classifier_test_images(x, class_names), 
       num_parallel_calls=tf.data.experimental.AUTOTUNE)
 
-    val_ds = val_ds.map(lambda x: preprocess_classifier_images(x, class_names),
+    val_ds = val_ds.map(lambda x: preprocess_classifier_test_images(x, class_names),
       num_parallel_calls=tf.data.experimental.AUTOTUNE)
 
-    test_ds = test_ds.map(lambda x: preprocess_classifier_images(x, class_names),
+    test_ds = test_ds.map(lambda x: preprocess_classifier_test_images(x, class_names),
       num_parallel_calls=tf.data.experimental.AUTOTUNE)
 
     
@@ -179,16 +181,17 @@ if __name__ == "__main__":
     X_test, y_test = next(iter(test_ds))
 
     # create classifier model
-    type_of_the_classifier = 'synthetic_documents_classifier'
-    file_name = confusion_matrix_image_name + '_' + time
+ 
+    file_name = 'Confusion_Matrix_' + classifier_name + '_' + time
+    file_name_plot = classifier_name + '_' + time
     # Example:  Confusion_Matrix_Synthetic_Data_Classifier
     # Example:  Confusion_Matrix_Faxified_Data_Classifier
     
     synthetic_documents_classifier_model = create_model(10)     
-
-    synthetic_documents_classifier_model.fit(
+    epochs = 10
+    history = synthetic_documents_classifier_model.fit(
             train_ds,
-            epochs=15,
+            epochs=epochs,
             validation_data=val_ds,
             callbacks=[tensorboard_callback, CustomCallback(synthetic_documents_classifier_model, 
             X_test,
@@ -202,13 +205,39 @@ if __name__ == "__main__":
           
     print('Training Finished...')
     # serialize weights to HDF5
-    synthetic_documents_classifier_model.save(type_of_the_classifier + '_' + time + '_model.h5')
+    synthetic_documents_classifier_model.save(classifier_name + '_' + time + '_model.h5')
     
-    synthetic_documents_classifier_logs =  open('synthetic_documents_classifier_logs' + 
+    synthetic_documents_classifier_logs =  open(classifier_name + '_logs' + 
     '_' + time + '.txt', 'a')
 
-    print('Saved model to disk ' + type_of_the_classifier + '_' + time + '_model.h5', 
+    print('Saved model to disk ' + classifier_name + '_' + time + '_model.h5', 
     file=synthetic_documents_classifier_logs)
+
+    # list all data in history
+    print(history.history.keys())
+    # summarize history for accuracy
+    plt.plot(history.history['accuracy'])
+    plt.plot(history.history['val_accuracy'])
+    plt.title('Model accuracy', fontweight='bold', fontsize='x-large')
+    plt.ylabel('Accuracy', fontweight='bold', fontsize='x-large')
+    plt.xlabel('Epochs', fontweight='bold', fontsize='x-large')
+    plt.legend(['Train', 'Validation'], loc='upper left', prop=dict(weight='bold'))
+    plt.grid(True)
+    plt.show()
+    plt.savefig(file_name_plot + '_Accuracy', dpi=300)
+    plt.close()
+
+    # summarize history for loss
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('Model Loss', fontweight='bold', fontsize='x-large')
+    plt.ylabel('Loss', fontweight='bold', fontsize='x-large')
+    plt.xlabel('Epochs', fontweight='bold', fontsize='x-large')
+    plt.legend(['Train', 'Validation'], loc='upper left', prop=dict(weight='bold'))
+    plt.grid(True)
+    plt.show()
+    plt.savefig(file_name_plot + '_Loss', dpi=300)
+    plt.close()
 
     y_test_pred = np.argmax(synthetic_documents_classifier_model.predict(X_test), axis=-1)
     y_test_real = np.argmax(y_test, axis=-1)
@@ -218,7 +247,7 @@ if __name__ == "__main__":
     print("test loss, test acc:", results, file=synthetic_documents_classifier_logs)
 
     # serialize weights to HDF5
-    synthetic_documents_classifier_model.save(type_of_the_classifier + '_' + time + '_model.h5')
+    synthetic_documents_classifier_model.save(classifier_name + '_' + time + '_model.h5')
 
     synthetic_documents_classifier_logs.close()
 
