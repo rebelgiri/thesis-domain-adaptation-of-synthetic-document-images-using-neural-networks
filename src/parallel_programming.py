@@ -43,16 +43,16 @@ print('Number of devices: {}'.format(strategy.num_replicas_in_sync))
 """
 ## Prepare the dataset
 """
-#synthetic_document_images_path = '/mnt/data/data/cyclegan_synthetic_document_images/synthetic_document_images/'
-#real_document_images_path = '/mnt/data/data/cyclegan_real_document_images/real_document_images/'
+synthetic_document_images_path = '/mnt/data/data/cyclegan_synthetic_document_images/synthetic_document_images/'
+real_document_images_path = '/mnt/data/data/cyclegan_real_document_images/real_document_images/'
 
-synthetic_document_images_path = '/mnt/data/data/cyclegan_synthetic_document_images_test/'
-real_document_images_path = '/mnt/data/data/cyclegan_real_document_images_test/'
+#synthetic_document_images_path = '/mnt/data/data/cyclegan_synthetic_document_images_test/'
+#real_document_images_path = '/mnt/data/data/cyclegan_real_document_images_test/'
 synthetic_document_images_path_test = '/mnt/data/data/cyclegan_synthetic_document_images_test/'
 
 
 # Define the standard image size.
-input_img_size = (256, 256, 1)
+input_img_size = (512, 512, 1)
 
 # Weights initializer for the layers.
 kernel_init = keras.initializers.RandomNormal(mean=0.0, stddev=0.02)
@@ -73,8 +73,8 @@ def preprocess_cyclegan_images(image_path):
     img = tf.io.read_file(image_path)
     # Convert the image in grayscale
     img = tf.image.decode_png(img, channels=1)
-    # Resize the image [[256, 256]]
-    img = tf.image.resize(img, [256, 256])
+    # Resize the image [[512, 512]]
+    img = tf.image.resize(img, [512, 512])
     # Map values in the range [-1, 1]
     img = normalize_img(img)
     return img
@@ -92,6 +92,7 @@ ds_target_domain_dataset = ds_target_domain_list_files.map(preprocess_cyclegan_i
 
 
 # Testing Dataset
+
 ds_source_domain_list_files_test = tf.data.Dataset.list_files(str(
     pathlib.Path(synthetic_document_images_path_test+'*.png')))
 
@@ -102,7 +103,7 @@ ds_source_domain_dataset_test = ds_source_domain_list_files_test.map(preprocess_
 
 
 # Create a checkpoint directory to store the checkpoints.
-checkpoint_dir = './cyclegan_parallel_programming/training_checkpoints'
+checkpoint_dir = './cyclegan_parallel_training_checkpoints'
 checkpoint_prefix = os.path.join(checkpoint_dir, "ckpt")
 
 
@@ -124,6 +125,7 @@ for i, samples in enumerate(zip(ds_source_domain_dataset.take(4), ds_target_doma
     ax[i, 1].imshow(target, cmap=plt.cm.gray)
 plt.show()
 plt.savefig('Visualize_Some_Samples')   
+plt.close()
 
 
 class ReflectionPadding2D(layers.Layer):
@@ -549,7 +551,7 @@ with strategy.scope():
     )
 
 
-    checkpoint = tf.train.Checkpoint(
+checkpoint = tf.train.Checkpoint(
                             gen_G=gen_G,
                             gen_F=gen_F,
                             disc_X=disc_X,
@@ -559,12 +561,19 @@ with strategy.scope():
                             disc_X_optimizer=optimizer,
                             disc_Y_optimizer=optimizer)
 
-    ckpt_manager = tf.train.CheckpointManager(checkpoint, checkpoint_prefix, max_to_keep=5)
+#ckpt_manager = tf.train.CheckpointManager(checkpoint, checkpoint_prefix, max_to_keep=5)
 
-    train_dist_dataset = strategy.experimental_distribute_dataset(
-        tf.data.Dataset.zip((ds_source_domain_dataset, ds_target_domain_dataset)))
 
-    
+#train_dist_dataset = strategy.experimental_distribute_dataset(
+#        tf.data.Dataset.zip((ds_source_domain_dataset, ds_target_domain_dataset)))
+
+train_dist_dataset = tf.data.Dataset.zip((ds_source_domain_dataset, ds_target_domain_dataset))
+
+print('Number of Source Domain Samples')
+print(tf.data.experimental.cardinality(ds_source_domain_dataset).numpy())
+print('Number of Target Domain Samples')
+print(tf.data.experimental.cardinality(ds_target_domain_dataset).numpy())
+
 # `run` replicates the provided computation and runs it
 # with the distributed input.
 @tf.function
@@ -573,7 +582,10 @@ def distributed_train_step(dataset_inputs):
   return strategy.reduce(tf.distribute.ReduceOp.SUM, per_replica_losses,
                          axis=None)
 
-for epoch in range(1):
+
+train_loss_list = list()
+epochs = 2
+for epoch in range(epochs):
     # TRAIN LOOP
     all_loss = 0.0
     num_batches = 0.0
@@ -582,12 +594,49 @@ for epoch in range(1):
         num_batches += 1
     
     train_loss = all_loss/num_batches
+    train_loss_list.append(train_loss)
     checkpoint.save(checkpoint_prefix)
     print(train_loss)
 
-        
-# if a checkpoint exists, restore the latest checkpoint.
-if ckpt_manager.latest_checkpoint:
-  checkpoint.restore(ckpt_manager.latest_checkpoint)
-  print ('Latest checkpoint restored!!')
+
+# plotting the points 
+ax = plt.plot(range(1, epochs + 1, 1), train_loss_list)
+ax.get_yaxis().get_major_formatter().set_useOffset(False)
+
+# naming the x axis
+plt.xlabel('Epochs')
+plt.xticks(range(1, epochs + 1, 1))
+# naming the y axis
+plt.ylabel('Loss')
+# giving a title to my graph
+plt.title('Cumalative CycleGAN Training Loss Graph')
+# function to show the plot
+plt.savefig('Cumalative_CycleGAN_Training_Loss')
       
+# if a checkpoint exists, restore the latest checkpoint.
+#if ckpt_manager.latest_checkpoint:
+#  checkpoint.restore(ckpt_manager.latest_checkpoint)
+#  print ('Latest checkpoint restored!!')
+
+# Load the checkpoints
+weight_file = "./cyclegan_parallel_training_checkpoints/ckpt-2"
+cycle_gan_model.load_weights(weight_file).expect_partial()
+print("Weights loaded successfully")
+
+_, ax = plt.subplots(4, 2, figsize=(10, 15))
+for i, img in enumerate(ds_source_domain_dataset_test.take(4)):
+    prediction = cycle_gan_model.gen_G(img, training=False)[0].numpy()
+    ax[i, 0].imshow(img[0].numpy(), cmap=plt.cm.gray)
+    ax[i, 1].imshow(prediction, cmap=plt.cm.gray)
+    ax[i, 0].set_title("Input image")
+    ax[i, 0].set_title("Input image")
+    ax[i, 1].set_title("Translated image")
+    ax[i, 0].axis("off")
+    ax[i, 1].axis("off")
+
+    prediction = keras.preprocessing.image.array_to_img(prediction)
+    prediction.save("predicted_img_{i}.png".format(i=i))
+plt.tight_layout()
+plt.show()
+plt.savefig('CycleGAN_Predicted_Images')
+
