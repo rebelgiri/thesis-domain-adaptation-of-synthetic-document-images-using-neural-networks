@@ -28,6 +28,8 @@
 
 
 
+
+
 \titleformat{\chapter}[block]
   {\normalfont\huge\bfseries}{\thechapter.}{1em}{\huge}
 \titlespacing*{\chapter}{0pt}{15pt}{15pt}
@@ -46,10 +48,15 @@
 \end{comment}
 
 
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+
 
  \usepackage[utf8]{inputenc}
     \usepackage{amsmath, amssymb, latexsym}
     \DeclareMathOperator{\ReLU}{ReLU}
+    \DeclareMathOperator{\LeakyReLU}{LeakyReLU}
     \newcommand{\KL}{\ensuremath{\mathrm{KL}}}
     \newcommand{\Ber}{\ensuremath{\mathrm{Ber}}}
      

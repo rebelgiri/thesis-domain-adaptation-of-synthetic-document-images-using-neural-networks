@@ -1,10 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2020.12.20)  19 JUL 2021 22:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2020.12.20)  21 JUL 2021 12:50
 entering extended mode
-**"D:/Thesis/Using Neural Networks for the Domain Adaptation of Synthetic Gener
-ated Document Images/main.tex"
+**"D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-u
+sing-neural-networks/Using Neural Networks for the Domain Adaptation of Synthet
+ic Generated Document Images/main.tex"
 
-("D:/Thesis/Using Neural Networks for the Domain Adaptation of Synthetic Genera
-ted Document Images/main.tex"
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images/main.tex"
 LaTeX2e <2020-10-01> patch level 2
 L3 programming layer <2020-12-07> xparse <2020-03-03>
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\repor
@@ -701,6 +703,17 @@ Package: authblk 2001/02/27 1.3 (PWD)
 \c@authors=\count298
 \c@affil=\count299
 )
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\arra
+y.sty"
+Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
+\col@sep=\dimen260
+\ar@mcellbox=\box64
+\extrarowheight=\dimen261
+\NC@list=\toks33
+\extratabsurround=\skip106
+\backup@length=\skip107
+\ar@cellbox=\box65
+)
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\latex
 sym.sty"
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
@@ -716,15 +729,15 @@ ayer\pgf.sty"
 ies\pgfrcs.sty"
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/util
 ities\pgfutil-common.tex"
-\pgfutil@everybye=\toks33
-\pgfutil@tempdima=\dimen260
-\pgfutil@tempdimb=\dimen261
+\pgfutil@everybye=\toks34
+\pgfutil@tempdima=\dimen262
+\pgfutil@tempdimb=\dimen263
 
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/util
 ities\pgfutil-common-lists.tex"))
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/util
 ities\pgfutil-latex.def"
-\pgfutil@abb=\box64
+\pgfutil@abb=\box66
 )
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/util
 ities\pgfrcs.code.tex"
@@ -744,32 +757,32 @@ Package: pgfsys 2020/12/01 v3.1.7a (3.1.7a)
 
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/util
 ities\pgfkeys.code.tex"
-\pgfkeys@pathtoks=\toks34
-\pgfkeys@temptoks=\toks35
+\pgfkeys@pathtoks=\toks35
+\pgfkeys@temptoks=\toks36
 
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/util
 ities\pgfkeysfiltered.code.tex"
-\pgfkeys@tmptoks=\toks36
+\pgfkeys@tmptoks=\toks37
 ))
-\pgf@x=\dimen262
-\pgf@y=\dimen263
-\pgf@xa=\dimen264
-\pgf@ya=\dimen265
-\pgf@xb=\dimen266
-\pgf@yb=\dimen267
-\pgf@xc=\dimen268
-\pgf@yc=\dimen269
-\pgf@xd=\dimen270
-\pgf@yd=\dimen271
+\pgf@x=\dimen264
+\pgf@y=\dimen265
+\pgf@xa=\dimen266
+\pgf@ya=\dimen267
+\pgf@xb=\dimen268
+\pgf@yb=\dimen269
+\pgf@xc=\dimen270
+\pgf@yc=\dimen271
+\pgf@xd=\dimen272
+\pgf@yd=\dimen273
 \w@pgf@writea=\write3
 \r@pgf@reada=\read3
 \c@pgf@counta=\count300
 \c@pgf@countb=\count301
 \c@pgf@countc=\count302
 \c@pgf@countd=\count303
-\t@pgf@toka=\toks37
-\t@pgf@tokb=\toks38
-\t@pgf@tokc=\toks39
+\t@pgf@toka=\toks38
+\t@pgf@tokb=\toks39
+\t@pgf@tokc=\toks40
 \pgf@sys@id@count=\count304
 
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/syst
@@ -827,12 +840,12 @@ Package: pgfcore 2020/12/01 v3.1.7a (3.1.7a)
 \pgfmathutil.code.tex")
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
 \pgfmathparser.code.tex"
-\pgfmath@dimen=\dimen272
+\pgfmath@dimen=\dimen274
 \pgfmath@count=\count307
-\pgfmath@box=\box65
-\pgfmath@toks=\toks40
-\pgfmath@stack@operand=\toks41
-\pgfmath@stack@operation=\toks42
+\pgfmath@box=\box67
+\pgfmath@toks=\toks41
+\pgfmath@stack@operand=\toks42
+\pgfmath@stack@operation=\toks43
 )
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
 \pgfmathfunctions.code.tex"
@@ -861,52 +874,52 @@ Package: pgfcore 2020/12/01 v3.1.7a (3.1.7a)
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
 clayer\pgfcorepoints.code.tex"
 File: pgfcorepoints.code.tex 2020/12/01 v3.1.7a (3.1.7a)
-\pgf@picminx=\dimen273
-\pgf@picmaxx=\dimen274
-\pgf@picminy=\dimen275
-\pgf@picmaxy=\dimen276
-\pgf@pathminx=\dimen277
-\pgf@pathmaxx=\dimen278
-\pgf@pathminy=\dimen279
-\pgf@pathmaxy=\dimen280
-\pgf@xx=\dimen281
-\pgf@xy=\dimen282
-\pgf@yx=\dimen283
-\pgf@yy=\dimen284
-\pgf@zx=\dimen285
-\pgf@zy=\dimen286
+\pgf@picminx=\dimen275
+\pgf@picmaxx=\dimen276
+\pgf@picminy=\dimen277
+\pgf@picmaxy=\dimen278
+\pgf@pathminx=\dimen279
+\pgf@pathmaxx=\dimen280
+\pgf@pathminy=\dimen281
+\pgf@pathmaxy=\dimen282
+\pgf@xx=\dimen283
+\pgf@xy=\dimen284
+\pgf@yx=\dimen285
+\pgf@yy=\dimen286
+\pgf@zx=\dimen287
+\pgf@zy=\dimen288
 )
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
 clayer\pgfcorepathconstruct.code.tex"
 File: pgfcorepathconstruct.code.tex 2020/12/01 v3.1.7a (3.1.7a)
-\pgf@path@lastx=\dimen287
-\pgf@path@lasty=\dimen288
+\pgf@path@lastx=\dimen289
+\pgf@path@lasty=\dimen290
 )
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
 clayer\pgfcorepathusage.code.tex"
 File: pgfcorepathusage.code.tex 2020/12/01 v3.1.7a (3.1.7a)
-\pgf@shorten@end@additional=\dimen289
-\pgf@shorten@start@additional=\dimen290
+\pgf@shorten@end@additional=\dimen291
+\pgf@shorten@start@additional=\dimen292
 )
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
 clayer\pgfcorescopes.code.tex"
 File: pgfcorescopes.code.tex 2020/12/01 v3.1.7a (3.1.7a)
-\pgfpic=\box66
-\pgf@hbox=\box67
-\pgf@layerbox@main=\box68
+\pgfpic=\box68
+\pgf@hbox=\box69
+\pgf@layerbox@main=\box70
 \pgf@picture@serial@count=\count309
 )
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
 clayer\pgfcoregraphicstate.code.tex"
 File: pgfcoregraphicstate.code.tex 2020/12/01 v3.1.7a (3.1.7a)
-\pgflinewidth=\dimen291
+\pgflinewidth=\dimen293
 )
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
 clayer\pgfcoretransformations.code.tex"
 File: pgfcoretransformations.code.tex 2020/12/01 v3.1.7a (3.1.7a)
-\pgf@pt@x=\dimen292
-\pgf@pt@y=\dimen293
-\pgf@pt@temp=\dimen294
+\pgf@pt@x=\dimen294
+\pgf@pt@y=\dimen295
+\pgf@pt@temp=\dimen296
 )
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
 clayer\pgfcorequick.code.tex"
@@ -923,12 +936,12 @@ File: pgfcorepathprocessing.code.tex 2020/12/01 v3.1.7a (3.1.7a)
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
 clayer\pgfcorearrows.code.tex"
 File: pgfcorearrows.code.tex 2020/12/01 v3.1.7a (3.1.7a)
-\pgfarrowsep=\dimen295
+\pgfarrowsep=\dimen297
 )
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
 clayer\pgfcoreshade.code.tex"
 File: pgfcoreshade.code.tex 2020/12/01 v3.1.7a (3.1.7a)
-\pgf@max=\dimen296
+\pgf@max=\dimen298
 \pgf@sys@shading@range@num=\count310
 \pgf@shadingcount=\count311
 )
@@ -939,7 +952,7 @@ File: pgfcoreimage.code.tex 2020/12/01 v3.1.7a (3.1.7a)
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
 clayer\pgfcoreexternal.code.tex"
 File: pgfcoreexternal.code.tex 2020/12/01 v3.1.7a (3.1.7a)
-\pgfexternal@startupbox=\box69
+\pgfexternal@startupbox=\box71
 ))
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
 clayer\pgfcorelayers.code.tex"
@@ -960,7 +973,7 @@ File: pgfcorerdf.code.tex 2020/12/01 v3.1.7a (3.1.7a)
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/modu
 les\pgfmoduleshapes.code.tex"
 File: pgfmoduleshapes.code.tex 2020/12/01 v3.1.7a (3.1.7a)
-\pgfnodeparttextbox=\box70
+\pgfnodeparttextbox=\box72
 )
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/modu
 les\pgfmoduleplot.code.tex"
@@ -969,8 +982,8 @@ File: pgfmoduleplot.code.tex 2020/12/01 v3.1.7a (3.1.7a)
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/compat
 ibility\pgfcomp-version-0-65.sty"
 Package: pgfcomp-version-0-65 2020/12/01 v3.1.7a (3.1.7a)
-\pgf@nodesepstart=\dimen297
-\pgf@nodesepend=\dimen298
+\pgf@nodesepstart=\dimen299
+\pgf@nodesepend=\dimen300
 )
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/compat
 ibility\pgfcomp-version-1-18.sty"
@@ -992,10 +1005,10 @@ Package: pgffor 2020/12/01 v3.1.7a (3.1.7a)
 
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
 \pgfmath.code.tex")
-\pgffor@iter=\dimen299
-\pgffor@skip=\dimen300
-\pgffor@stack=\toks43
-\pgffor@toks=\toks44
+\pgffor@iter=\dimen301
+\pgffor@skip=\dimen302
+\pgffor@stack=\toks44
+\pgffor@toks=\toks45
 ))
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/fron
 tendlayer/tikz\tikz.code.tex"
@@ -1005,20 +1018,20 @@ Package: tikz 2020/12/01 v3.1.7a (3.1.7a)
 aries\pgflibraryplothandlers.code.tex"
 File: pgflibraryplothandlers.code.tex 2020/12/01 v3.1.7a (3.1.7a)
 \pgf@plot@mark@count=\count312
-\pgfplotmarksize=\dimen301
+\pgfplotmarksize=\dimen303
 )
-\tikz@lastx=\dimen302
-\tikz@lasty=\dimen303
-\tikz@lastxsaved=\dimen304
-\tikz@lastysaved=\dimen305
-\tikz@lastmovetox=\dimen306
-\tikz@lastmovetoy=\dimen307
-\tikzleveldistance=\dimen308
-\tikzsiblingdistance=\dimen309
-\tikz@figbox=\box71
-\tikz@figbox@bg=\box72
-\tikz@tempbox=\box73
-\tikz@tempbox@bg=\box74
+\tikz@lastx=\dimen304
+\tikz@lasty=\dimen305
+\tikz@lastxsaved=\dimen306
+\tikz@lastysaved=\dimen307
+\tikz@lastmovetox=\dimen308
+\tikz@lastmovetoy=\dimen309
+\tikzleveldistance=\dimen310
+\tikzsiblingdistance=\dimen311
+\tikz@figbox=\box73
+\tikz@figbox@bg=\box74
+\tikz@tempbox=\box75
+\tikz@tempbox@bg=\box76
 \tikztreelevel=\count313
 \tikznumberofchildren=\count314
 \tikznumberofcurrentchild=\count315
@@ -1040,25 +1053,25 @@ File: tikzlibrarytopaths.code.tex 2020/12/01 v3.1.7a (3.1.7a)
 No file main.aux.
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 102.
+LaTeX Font Info:    ... okay on input line 102.
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 95.
-Package hyperref Info: Link coloring OFF on input line 95.
+LaTeX Info: Redefining \selectfont on input line 102.
+Package hyperref Info: Link coloring OFF on input line 102.
 
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\n
 ameref.sty"
@@ -1074,9 +1087,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count321
 )
-LaTeX Info: Redefining \ref on input line 95.
-LaTeX Info: Redefining \pageref on input line 95.
-LaTeX Info: Redefining \nameref on input line 95.
+LaTeX Info: Redefining \ref on input line 102.
+LaTeX Info: Redefining \pageref on input line 102.
+LaTeX Info: Redefining \nameref on input line 102.
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
@@ -1085,16 +1098,16 @@ LaTeX Info: Redefining \nameref on input line 95.
 i\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count322
-\scratchdimen=\dimen310
-\scratchbox=\box75
+\scratchdimen=\dimen312
+\scratchbox=\box77
 \nofMPsegments=\count323
 \nofMParguments=\count324
-\everyMPshowfont=\toks45
+\everyMPshowfont=\toks46
 \MPscratchCnt=\count325
-\MPscratchDim=\dimen311
+\MPscratchDim=\dimen313
 \MPnumerator=\count326
 \makeMPintoPDFobject=\count327
-\everyMPtoPDFconversion=\toks46
+\everyMPtoPDFconversion=\toks47
 )
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-p
 kg\epstopdf-base.sty"
@@ -1139,10 +1152,12 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 \openout2 = `metadata.aux'.
 
 
-("D:/Thesis/Using Neural Networks for the Domain Adaptation of Synthetic Genera
-ted Document Images\metadata.tex")
-("D:/Thesis/Using Neural Networks for the Domain Adaptation of Synthetic Genera
-ted Document Images\titlepage.tex"
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\metadata.tex")
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\titlepage.tex"
 <images/TUC_deutsch_einzeile_CMYK.pdf, id=6, 273.02pt x 24.09pt>
 File: images/TUC_deutsch_einzeile_CMYK.pdf Graphic file (type pdf)
 <use images/TUC_deutsch_einzeile_CMYK.pdf>
@@ -1175,18 +1190,21 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 
 
 {C:/Users/Giriraj Pawar/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <D:/
-Thesis/Using Neural Networks for the Domain Adaptation of Synthetic Generated D
-ocument Images/images/TUC_deutsch_einzeile_CMYK.pdf>])
-("D:/Thesis/Using Neural Networks for the Domain Adaptation of Synthetic Genera
-ted Document Images\metadatainfo.tex"
+Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-using-n
+eural-networks/Using Neural Networks for the Domain Adaptation of Synthetic Gen
+erated Document Images/images/TUC_deutsch_einzeile_CMYK.pdf>])
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\metadatainfo.tex"
 Underfull \hbox (badness 10000) in paragraph at lines 3--12
 
  []
 
 )
-("D:/Thesis/Using Neural Networks for the Domain Adaptation of Synthetic Genera
-ted Document Images\abstarct.tex"pdfTeX warning (ext4): destination with the sa
-me identifier (name{page.1}) has been already used, duplicate ignored
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\abstarct.tex"pdfTeX warning (ext4): destination wit
+h the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.4 \begin{abstract}
@@ -1260,7 +1278,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.108 \newpage
+l.115 \newpage
                [1
 
 ]
@@ -1282,8 +1300,9 @@ l.108 \newpage
  [4
 
 ]
-("D:/Thesis/Using Neural Networks for the Domain Adaptation of Synthetic Genera
-ted Document Images\acrolist.tex"
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\acrolist.tex"
 
 LaTeX Warning: Hyper reference `acro:GAN' on page 5 undefined on input line 5.
 
@@ -1503,14 +1522,15 @@ LaTeX Warning: Hyper reference `acro:2D' on page 5 undefined on input line 33.
 ) [5
 
 ]
-("D:/Thesis/Using Neural Networks for the Domain Adaptation of Synthetic Genera
-ted Document Images\listofsymbols.tex")
-Overfull \hbox (34.08215pt too wide) in paragraph at lines 4--128
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\listofsymbols.tex")
+Overfull \hbox (34.08215pt too wide) in paragraph at lines 4--135
 [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4--128
+Underfull \hbox (badness 10000) in paragraph at lines 4--135
 
  []
 
@@ -1519,5 +1539,930 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--128
 ]
 Chapter 1.
 
-("D:/Thesis/Using Neural Networks for the Domain Adaptation of Synthetic Genera
-ted Document Images\introduction.tex"
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\introduction.tex"
+Package acronym Info: Label `acro:AI' newly defined as it shall be overridden
+although it is yet undefined on input line 8.
+
+
+Package acronym Warning: Acronym `AI' is not defined on input line 8.
+
+
+Package acronym Warning: Acronym `AI' is not defined on input line 8.
+
+
+Package acronym Warning: Acronym `AI' is not defined on input line 8.
+
+
+LaTeX Warning: Citation `Yu.2018' on page 7 undefined on input line 8.
+
+
+LaTeX Warning: Citation `Yurtsever_2020' on page 7 undefined on input line 8.
+
+
+LaTeX Warning: Citation `10.1007/978-3-642-82153-0_2' on page 7 undefined on in
+put line 8.
+
+
+LaTeX Warning: Citation `Girimonte2007' on page 7 undefined on input line 8.
+
+
+LaTeX Warning: Citation `2020' on page 7 undefined on input line 8.
+
+Package acronym Info: Label `acro:ML' newly defined as it shall be overridden
+although it is yet undefined on input line 8.
+
+Package acronym Warning: Acronym `ML' is not defined on input line 8.
+
+
+Package acronym Warning: Acronym `ML' is not defined on input line 8.
+
+Package acronym Info: Label `acro:DL' newly defined as it shall be overridden
+although it is yet undefined on input line 8.
+
+Package acronym Warning: Acronym `DL' is not defined on input line 8.
+
+
+Package acronym Warning: Acronym `DL' is not defined on input line 8.
+
+
+Package acronym Warning: Acronym `AI' is not defined on input line 8.
+
+
+LaTeX Warning: Reference `fig:deepLearningSubset' on page 7 undefined on input 
+line 8.
+
+Package acronym Info: Label `acro:ANN' newly defined as it shall be overridden
+although it is yet undefined on input line 8.
+
+Package acronym Warning: Acronym `ANN' is not defined on input line 8.
+
+
+Package acronym Warning: Acronym `ANN' is not defined on input line 8.
+
+<images/deeplearningsubset.jpg, id=90, 966.61125pt x 812.28468pt>
+File: images/deeplearningsubset.jpg Graphic file (type jpg)
+<use images/deeplearningsubset.jpg>
+Package pdftex.def Info: images/deeplearningsubset.jpg  used on input line 12.
+(pdftex.def)             Requested size: 241.65222pt x 203.07066pt.
+
+Package acronym Warning: Acronym `AI' is not defined on input line 19.
+
+
+Package acronym Warning: Acronym `ANN' is not defined on input line 19.
+
+
+Package acronym Warning: Acronym `ANN' is not defined on input line 19.
+
+[7
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1.1}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.22 
+      <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-imag
+es-using-neural-networks/Using Neural Networks for the Domain Adaptation of Syn
+thetic Generated Document Images/images/deeplearningsubset.jpg>]
+
+LaTeX Warning: Citation `kukacka2017regularization' on page 8 undefined on inpu
+t line 23.
+
+
+LaTeX Warning: Citation `10.5555/3153997' on page 8 undefined on input line 23.
+
+
+
+LaTeX Warning: Reference `motivation' on page 8 undefined on input line 26.
+
+
+LaTeX Warning: Reference `ProblemStatement' on page 8 undefined on input line 2
+6.
+
+
+LaTeX Warning: Reference `thesisobjectives' on page 8 undefined on input line 2
+6.
+
+
+LaTeX Warning: Reference `thesisstructurelimitations' on page 8 undefined on in
+put line 26.
+
+
+LaTeX Warning: Reference `terminology' on page 8 undefined on input line 26.
+
+
+LaTeX Warning: Citation `8978087' on page 8 undefined on input line 32.
+
+
+LaTeX Warning: Citation `hemmer2020deal' on page 8 undefined on input line 32.
+
+
+LaTeX Warning: Citation `Shorten.2019' on page 8 undefined on input line 32.
+
+
+LaTeX Warning: Citation `zhuang2020comprehensive' on page 8 undefined on input 
+line 32.
+
+
+LaTeX Warning: Citation `redko2020survey' on page 8 undefined on input line 32.
+
+
+<images/TransferLearning.png, id=102, 596.2275pt x 353.06906pt>
+File: images/TransferLearning.png Graphic file (type png)
+<use images/TransferLearning.png>
+Package pdftex.def Info: images/TransferLearning.png  used on input line 36.
+(pdftex.def)             Requested size: 238.48677pt x 141.22511pt.
+
+LaTeX Warning: Citation `zhuang2020comprehensive' on page 8 undefined on input 
+line 42.
+
+
+LaTeX Warning: Reference `fig:TransferLearning' on page 8 undefined on input li
+ne 42.
+
+
+LaTeX Warning: Citation `5288526' on page 8 undefined on input line 42.
+
+[8pdfTeX warning (ext4): destination with the same identifier (name{figure.1.2}
+) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.43 
+      <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-imag
+es-using-neural-networks/Using Neural Networks for the Domain Adaptation of Syn
+thetic Generated Document Images/images/TransferLearning.png>]
+
+LaTeX Warning: Reference `fig:DomainAdaptation' on page 9 undefined on input li
+ne 44.
+
+
+LaTeX Warning: Citation `5288526' on page 9 undefined on input line 44.
+
+
+LaTeX Warning: Citation `5288526' on page 9 undefined on input line 44.
+
+
+LaTeX Warning: Citation `5288526' on page 9 undefined on input line 44.
+
+Package acronym Info: Label `acro:SVHN' newly defined as it shall be overridden
+
+although it is yet undefined on input line 44.
+
+Package acronym Warning: Acronym `SVHN' is not defined on input line 44.
+
+
+Package acronym Warning: Acronym `SVHN' is not defined on input line 44.
+
+
+LaTeX Warning: Reference `fig:DA' on page 9 undefined on input line 44.
+
+<images/DA.png, id=109, 1961.82938pt x 634.62094pt>
+File: images/DA.png Graphic file (type png)
+<use images/DA.png>
+Package pdftex.def Info: images/DA.png  used on input line 49.
+(pdftex.def)             Requested size: 294.2617pt x 95.18903pt.
+
+Package acronym Warning: Acronym `SVHN' is not defined on input line 50.
+
+
+LaTeX Warning: Citation `37648' on page 9 undefined on input line 50.
+
+Package acronym Info: Label `acro:MNIST' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 50.
+
+Package acronym Warning: Acronym `MNIST' is not defined on input line 50.
+
+
+Package acronym Warning: Acronym `MNIST' is not defined on input line 50.
+
+
+Package acronym Warning: Acronym `SVHN' is not defined on input line 50.
+
+
+LaTeX Warning: Citation `37648' on page 9 undefined on input line 50.
+
+
+Package acronym Warning: Acronym `MNIST' is not defined on input line 50.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
+[][][]$\OT1/cmtt/m/n/8 https : / / machinelearning . apple . com / research / b
+ridging-[]the-[]domain-[]gap-[]for-[]neural-[]models$[] \OT1/cmr/m/n/8 last ac-
+cess:
+ []
+
+
+Package acronym Warning: Acronym `SVHN' is not defined on input line 57.
+
+
+Package acronym Warning: Acronym `MNIST' is not defined on input line 57.
+
+Package acronym Info: Label `acro:CNN' newly defined as it shall be overridden
+although it is yet undefined on input line 57.
+
+Package acronym Warning: Acronym `CNN' is not defined on input line 57.
+
+
+Package acronym Warning: Acronym `CNN' is not defined on input line 57.
+
+
+Package acronym Warning: Acronym `SVHN' is not defined on input line 57.
+
+
+Package acronym Warning: Acronym `MNIST' is not defined on input line 57.
+
+
+Package acronym Warning: Acronym `SVHN' is not defined on input line 57.
+
+
+Package acronym Warning: Acronym `MNIST' is not defined on input line 57.
+
+Package acronym Info: Label `acro:HTR' newly defined as it shall be overridden
+although it is yet undefined on input line 57.
+
+Package acronym Warning: Acronym `HTR' is not defined on input line 57.
+
+
+Package acronym Warning: Acronym `HTR' is not defined on input line 57.
+
+
+LaTeX Warning: Citation `Kang_2020' on page 9 undefined on input line 57.
+
+
+LaTeX Warning: Citation `5288526' on page 9 undefined on input line 57.
+
+
+LaTeX Warning: Citation `johnson2016perceptual' on page 9 undefined on input li
+ne 57.
+
+Package acronym Info: Label `acro:OCR' newly defined as it shall be overridden
+although it is yet undefined on input line 57.
+
+Package acronym Warning: Acronym `OCR' is not defined on input line 57.
+
+
+Package acronym Warning: Acronym `OCR' is not defined on input line 57.
+
+
+LaTeX Warning: Citation `8978011' on page 9 undefined on input line 57.
+
+[9pdfTeX warning (ext4): destination with the same identifier (name{figure.1.3}
+) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.58 
+      <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-imag
+es-using-neural-networks/Using Neural Networks for the Domain Adaptation of Syn
+thetic Generated Document Images/images/DA.png>]
+<images/DomainAdaptation.png, id=130, 1104.37593pt x 976.39781pt>
+File: images/DomainAdaptation.png Graphic file (type png)
+<use images/DomainAdaptation.png>
+Package pdftex.def Info: images/DomainAdaptation.png  used on input line 61.
+(pdftex.def)             Requested size: 331.31534pt x 292.9216pt.
+
+
+LaTeX Warning: Reference `fig:RealImage' on page 10 undefined on input line 71.
+
+
+
+LaTeX Warning: Citation `8978087' on page 10 undefined on input line 71.
+
+
+LaTeX Warning: Reference `fig:Problem' on page 10 undefined on input line 71.
+
+
+LaTeX Warning: Citation `8978087' on page 10 undefined on input line 71.
+
+
+LaTeX Warning: Citation `8978087' on page 10 undefined on input line 71.
+
+
+LaTeX Warning: Citation `8978011' on page 10 undefined on input line 71.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 71.
+
+
+LaTeX Warning: Citation `zhu2020unpaired' on page 10 undefined on input line 71
+.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 71.
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 71.
+
+
+LaTeX Warning: Citation `goodfellow2014generative' on page 10 undefined on inpu
+t line 71.
+
+
+Package acronym Warning: Acronym `ML' is not defined on input line 71.
+
+
+Package acronym Warning: Acronym `AI' is not defined on input line 71.
+
+
+LaTeX Warning: Citation `Metta2012' on page 10 undefined on input line 71.
+
+
+Package acronym Warning: Acronym `HTR' is not defined on input line 71.
+
+
+Package acronym Warning: Acronym `OCR' is not defined on input line 71.
+
+[10pdfTeX warning (ext4): destination with the same identifier (name{figure.1.4
+}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.72 
+      <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-imag
+es-using-neural-networks/Using Neural Networks for the Domain Adaptation of Syn
+thetic Generated Document Images/images/DomainAdaptation.png>]
+<images/Problem.png, id=139, 1237.62375pt x 424.58624pt>
+File: images/Problem.png Graphic file (type png)
+<use images/Problem.png>
+Package pdftex.def Info: images/Problem.png  used on input line 76.
+(pdftex.def)             Requested size: 433.1748pt x 148.6074pt.
+
+
+LaTeX Warning: Reference `fig:EmptyForm' on page 11 undefined on input line 86.
+
+
+
+LaTeX Warning: Reference `fig:keinwifi' on page 11 undefined on input line 86.
+
+
+Package acronym Warning: Acronym `MNIST' is not defined on input line 86.
+
+
+LaTeX Warning: Reference `fig:handwrittenCrops' on page 11 undefined on input l
+ine 86.
+
+Package acronym Info: Label `acro:COCO' newly defined as it shall be overridden
+
+although it is yet undefined on input line 86.
+
+Package acronym Warning: Acronym `COCO' is not defined on input line 86.
+
+
+Package acronym Warning: Acronym `COCO' is not defined on input line 86.
+
+
+LaTeX Warning: Citation `10.1007/978-3-319-10602-1_48' on page 11 undefined on 
+input line 86.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 86.
+
+
+LaTeX Warning: Reference `fig:Problem' on page 11 undefined on input line 89.
+
+
+LaTeX Warning: Reference `fig:ProposedSolution' on page 11 undefined on input l
+ine 89.
+
+
+LaTeX Warning: Reference `fig:Problem' on page 11 undefined on input line 89.
+
+[11pdfTeX warning (ext4): destination with the same identifier (name{figure.1.5
+}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.90 
+      <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-imag
+es-using-neural-networks/Using Neural Networks for the Domain Adaptation of Syn
+thetic Generated Document Images/images/Problem.png>]
+<images/ProposedSolution.png, id=146, 986.18437pt x 773.89125pt>
+File: images/ProposedSolution.png Graphic file (type png)
+<use images/ProposedSolution.png>
+Package pdftex.def Info: images/ProposedSolution.png  used on input line 94.
+(pdftex.def)             Requested size: 345.1697pt x 270.866pt.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 119.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 121.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 123.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 139.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 139.
+
+
+LaTeX Warning: Reference `relatedworks' on page 12 undefined on input line 139.
+
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 139.
+
+
+LaTeX Warning: Reference `fundamentals' on page 12 undefined on input line 139.
+
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 139.
+
+
+LaTeX Warning: Reference `methodology' on page 12 undefined on input line 139.
+
+
+LaTeX Warning: Reference `implementation' on page 12 undefined on input line 13
+9.
+
+
+LaTeX Warning: Reference `conclusion' on page 12 undefined on input line 139.
+
+[12pdfTeX warning (ext4): destination with the same identifier (name{figure.1.6
+}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.140 
+       <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-ima
+ges-using-neural-networks/Using Neural Networks for the Domain Adaptation of Sy
+nthetic Generated Document Images/images/ProposedSolution.png>]
+
+Package acronym Warning: Acronym `ANN' is not defined on input line 145.
+
+) [13]
+Chapter 2.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\relatedworks.tex"
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 7.
+
+
+LaTeX Warning: Reference `rwdiscussion' on page 14 undefined on input line 7.
+
+
+LaTeX Warning: Reference `rwconclusion' on page 14 undefined on input line 7.
+
+
+LaTeX Warning: Citation `goodfellow2014generative' on page 14 undefined on inpu
+t line 16.
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 16.
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 16.
+
+
+LaTeX Warning: Citation `726791' on page 14 undefined on input line 16.
+
+
+LaTeX Warning: Citation `susskind2010toronto' on page 14 undefined on input lin
+e 16.
+
+
+LaTeX Warning: Citation `krizhevsky2009learning' on page 14 undefined on input 
+line 16.
+
+
+LaTeX Warning: Citation `bengio2012better' on page 14 undefined on input line 1
+6.
+
+
+LaTeX Warning: Citation `bengio2012better' on page 14 undefined on input line 1
+6.
+
+
+LaTeX Warning: Citation `bengio2014deep' on page 14 undefined on input line 16.
+
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 16.
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 16.
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 16.
+
+
+LaTeX Warning: Citation `manisha2019generative' on page 14 undefined on input l
+ine 16.
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 16.
+
+
+LaTeX Warning: Citation `thanhtung2020catastrophic' on page 14 undefined on inp
+ut line 16.
+
+<images/GANEvolution.jpg, id=160, 1424.32124pt x 1935.23pt>
+File: images/GANEvolution.jpg Graphic file (type jpg)
+<use images/GANEvolution.jpg>
+Package pdftex.def Info: images/GANEvolution.jpg  used on input line 19.
+(pdftex.def)             Requested size: 356.07944pt x 483.80632pt.
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 20.
+
+
+LaTeX Warning: Citation `PavanKumar.2021' on page 14 undefined on input line 20
+.
+
+
+LaTeX Warning: Citation `mao2017squares' on page 14 undefined on input line 27.
+
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 27.
+
+Package acronym Info: Label `acro:LSGAN' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 27.
+
+Package acronym Warning: Acronym `LSGAN' is not defined on input line 27.
+
+
+Package acronym Warning: Acronym `LSGAN' is not defined on input line 27.
+
+
+Package acronym Warning: Acronym `LSGAN' is not defined on input line 27.
+
+
+Package acronym Warning: Acronym `LSGAN' is not defined on input line 27.
+
+
+LaTeX Warning: Citation `yu2016lsun' on page 14 undefined on input line 27.
+
+
+LaTeX Warning: Citation `6065551' on page 14 undefined on input line 27.
+
+
+LaTeX Warning: Citation `yu2016lsun' on page 14 undefined on input line 27.
+
+
+Package acronym Warning: Acronym `LSGAN' is not defined on input line 27.
+
+
+LaTeX Warning: Citation `radford2016unsupervised' on page 14 undefined on input
+ line 27.
+
+
+LaTeX Warning: Citation `zhao2017energybased' on page 14 undefined on input lin
+e 27.
+
+
+Package acronym Warning: Acronym `LSGAN' is not defined on input line 27.
+
+
+LaTeX Warning: Citation `metz2017unrolled' on page 14 undefined on input line 2
+7.
+
+
+Package acronym Warning: Acronym `LSGAN' is not defined on input line 27.
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 27.
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 27.
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 27.
+
+
+Package acronym Warning: Acronym `LSGAN' is not defined on input line 27.
+
+
+Package acronym Warning: Acronym `LSGAN' is not defined on input line 27.
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 27.
+
+
+LaTeX Warning: Citation `radford2016unsupervised' on page 14 undefined on input
+ line 27.
+
+
+LaTeX Warning: Citation `zhao2017energybased' on page 14 undefined on input lin
+e 27.
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 27.
+
+[14
+
+] [15pdfTeX warning (ext4): destination with the same identifier (name{figure.2
+.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.28 
+      <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-imag
+es-using-neural-networks/Using Neural Networks for the Domain Adaptation of Syn
+thetic Generated Document Images/images/GANEvolution.jpg>]
+
+LaTeX Warning: Citation `isola2018imagetoimage' on page 16 undefined on input l
+ine 30.
+
+Package acronym Info: Label `acro:cGAN' newly defined as it shall be overridden
+
+although it is yet undefined on input line 30.
+
+Package acronym Warning: Acronym `cGAN' is not defined on input line 30.
+
+
+Package acronym Warning: Acronym `cGAN' is not defined on input line 30.
+
+
+LaTeX Warning: Citation `cordts2016cityscapes' on page 16 undefined on input li
+ne 30.
+
+
+LaTeX Warning: Citation `zhu2018generative' on page 16 undefined on input line 
+30.
+
+
+LaTeX Warning: Citation `6909426' on page 16 undefined on input line 30.
+
+
+Package acronym Warning: Acronym `cGAN' is not defined on input line 30.
+
+
+Package acronym Warning: Acronym `cGAN' is not defined on input line 30.
+
+
+Package acronym Warning: Acronym `cGAN' is not defined on input line 30.
+
+
+LaTeX Warning: Citation `ronneberger2015unet' on page 16 undefined on input lin
+e 30.
+
+
+LaTeX Warning: Citation `li2016precomputed' on page 16 undefined on input line 
+30.
+
+Package acronym Info: Label `acro:AMT' newly defined as it shall be overridden
+although it is yet undefined on input line 30.
+
+Package acronym Warning: Acronym `AMT' is not defined on input line 30.
+
+
+Package acronym Warning: Acronym `AMT' is not defined on input line 30.
+
+
+Package acronym Warning: Acronym `cGAN' is not defined on input line 30.
+
+
+Package acronym Warning: Acronym `cGAN' is not defined on input line 30.
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 30.
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 30.
+
+
+Package acronym Warning: Acronym `cGAN' is not defined on input line 30.
+
+
+LaTeX Warning: Reference `fig:CGAN' on page 16 undefined on input line 30.
+
+<images/CGAN.png, id=175, 1274.51157pt x 444.91219pt>
+File: images/CGAN.png Graphic file (type png)
+<use images/CGAN.png>
+Package pdftex.def Info: images/CGAN.png  used on input line 36.
+(pdftex.def)             Requested size: 382.35643pt x 133.47467pt.
+
+Package acronym Warning: Acronym `cGAN' is not defined on input line 37.
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 37.
+
+
+LaTeX Warning: Citation `isola2018imagetoimage' on page 16 undefined on input l
+ine 37.
+
+
+Package acronym Warning: Acronym `cGAN' is not defined on input line 37.
+
+
+Package acronym Warning: Acronym `GAN' is not defined on input line 37.
+
+
+LaTeX Warning: Citation `isola2018imagetoimage' on page 16 undefined on input l
+ine 37.
+
+
+LaTeX Warning: Citation `park2020contrastive' on page 16 undefined on input lin
+e 45.
+
+
+LaTeX Warning: Citation `oord2019representation' on page 16 undefined on input 
+line 45.
+
+Package acronym Info: Label `acro:CUT' newly defined as it shall be overridden
+although it is yet undefined on input line 45.
+
+Package acronym Warning: Acronym `CUT' is not defined on input line 45.
+
+
+Package acronym Warning: Acronym `CUT' is not defined on input line 45.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 45.
+
+
+LaTeX Warning: Citation `zhu2020unpaired' on page 16 undefined on input line 45
+.
+
+Package acronym Info: Label `acro:MUNIT' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 45.
+
+Package acronym Warning: Acronym `MUNIT' is not defined on input line 45.
+
+
+Package acronym Warning: Acronym `MUNIT' is not defined on input line 45.
+
+
+LaTeX Warning: Citation `liu2018unsupervised' on page 16 undefined on input lin
+e 45.
+
+Package acronym Info: Label `acro:DRIT' newly defined as it shall be overridden
+
+although it is yet undefined on input line 45.
+
+Package acronym Warning: Acronym `DRIT' is not defined on input line 45.
+
+
+Package acronym Warning: Acronym `DRIT' is not defined on input line 45.
+
+
+LaTeX Warning: Citation `lee2019drit' on page 16 undefined on input line 45.
+
+Package acronym Info: Label `acro:GCGAN' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 45.
+
+Package acronym Warning: Acronym `GCGAN' is not defined on input line 45.
+
+
+Package acronym Warning: Acronym `GCGAN' is not defined on input line 45.
+
+
+LaTeX Warning: Citation `fu2018geometryconsistent' on page 16 undefined on inpu
+t line 45.
+
+
+Package acronym Warning: Acronym `CUT' is not defined on input line 45.
+
+
+Package acronym Warning: Acronym `CUT' is not defined on input line 45.
+
+Package acronym Info: Label `acro:FID' newly defined as it shall be overridden
+although it is yet undefined on input line 45.
+
+Package acronym Warning: Acronym `FID' is not defined on input line 45.
+
+
+Package acronym Warning: Acronym `FID' is not defined on input line 45.
+
+
+LaTeX Warning: Citation `heusel2018gans' on page 16 undefined on input line 45.
+
+
+
+Package acronym Warning: Acronym `CUT' is not defined on input line 45.
+
+Package acronym Info: Label `acro:FastCUT' newly defined as it shall be overrid
+den
+although it is yet undefined on input line 45.
+
+Package acronym Warning: Acronym `FastCUT' is not defined on input line 45.
+
+
+Package acronym Warning: Acronym `FastCUT' is not defined on input line 45.
+
+
+Package acronym Warning: Acronym `FastCUT' is not defined on input line 45.
+
+
+Package acronym Warning: Acronym `CUT' is not defined on input line 45.
+
+[16pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2
+}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.46 
+      <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-imag
+es-using-neural-networks/Using Neural Networks for the Domain Adaptation of Syn
+thetic Generated Document Images/images/CGAN.png>]
+<images/LearningToClean.jpg, id=188, 727.96968pt x 538.26094pt>
+File: images/LearningToClean.jpg Graphic file (type jpg)
+<use images/LearningToClean.jpg>
+Package pdftex.def Info: images/LearningToClean.jpg  used on input line 50.
+(pdftex.def)             Requested size: 436.78519pt x 322.95906pt.
+
+Overfull \hbox (3.16519pt too wide) in paragraph at lines 50--51
+ [] 
+ []
+
+
+LaTeX Warning: Citation `zhu2020unpaired' on page 17 undefined on input line 51
+.
+
+
+LaTeX Warning: Citation `sharma2019learning' on page 17 undefined on input line
+ 51.
+
+
+LaTeX Warning: Citation `zhu2020unpaired' on page 17 undefined on input line 51
+.
+
+
+LaTeX Warning: Citation `sharma2019learning' on page 17 undefined on input line
+ 51.
+
+
+LaTeX Warning: Citation `sharma2019learning' on page 17 undefined on input line
+ 58.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 58.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 58.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 58.
+
+
+Package acronym Warning: Acronym `cGAN' is not defined on input line 58.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 58.
+
+
+Package acronym Warning: Acronym `cGAN' is not defined on input line 58.
+
+Package acronym Info: Label `acro:PSNR' newly defined as it shall be overridden
+
+although it is yet undefined on input line 58.
+
+Package acronym Warning: Acronym `PSNR' is not defined on input line 58.
+
+
+Package acronym Warning: Acronym `PSNR' is not defined on input line 58.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 58.
+
+
+Package acronym Warning: Acronym `cGAN' is not defined on input line 58.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 58.
+
+
+LaTeX Warning: Reference `fig:LearningToClean' on page 17 undefined on input li
+ne 58.
+
+<images/CycleGANExamples.png, id=191, 1271.5003pt x 575.90157pt>
+File: images/CycleGANExamples.png Graphic file (type png)
+<use images/CycleGANExamples.png>
+Package pdftex.def Info: images/CycleGANExamples.png  used on input line 63.
+(pdftex.def)             Requested size: 445.03177pt x 201.56856pt.
+
+Overfull \hbox (11.41177pt too wide) in paragraph at lines 63--64
+ [] 
+ []
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 64.
+
+
+LaTeX Warning: Citation `zhu2020unpaired' on page 17 undefined on input line 64
+.
+
+
+Package acronym Warning: Acronym `CycleGAN' is not defined on input line 64.
+
+
+LaTeX Warning: Citation `zhu2020unpaired' on page 17 undefined on input line 64
+.
+
+[17pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3
+}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.67 \end{figure}
+                  <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-d
+ocument-images-using-neural-networks/Using Neural Networks for the Domain Adapt
+ation of Synthetic Generated Document Images/images/LearningToClean.jpg>
+!pdfTeX error: pdflatex (file D:/Thesis/git_report/thesis-domain-adaptation_of-
+synthetic-document-images-using-neural-networks/Using Neural Networks for the D
+omain Adaptation of Synthetic Generated Document Images/images/LearningToClean.
+jpg): fflush() failed (Invalid argument)
+ ==> Fatal error occurred, no output PDF file produced!
