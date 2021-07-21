@@ -1,1 +1,1 @@
-# thesis-domain-adaptation_of-synthetic-document-images-using-neural-networks
+# Domain Adaptation of Synthetic Document Images Using Neural Networks
