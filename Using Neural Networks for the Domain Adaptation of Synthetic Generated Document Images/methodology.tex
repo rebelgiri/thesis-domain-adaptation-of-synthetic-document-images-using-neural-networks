@@ -2,15 +2,14 @@
 \justifying
 \setlength{\parskip}{1em}
 
- Next, the \ac{CycleGAN}, is presented with its loss functions, in Section \ref{CycleConsistentAdversarialNetworks}.
+In this chapter, the methodology of our image-to-image translation application explained in depth. In Section \ref{ProposedApproach}, the proposed approach is pictorially described and theoretically explained. In Section \ref{CycleConsistentAdversarialNetworks}, the mathematics behind \ac{CycleGAN} is discussed thoroughly along with loss functions and objective functions. Also, the algorithm of the \ac{CycleGAN} described in Section \ref{CycleGANAlgorithm}.
 
 \section{Proposed Approach}\label{ProposedApproach}
 
 
-
 \begin{figure}[H]
         \begin{center}
-    	\includegraphics[scale=0.35]{images/Gxy.png}
+    	\includegraphics[scale=0.20]{images/Methodology/Gxy.png}
 	    \caption[]{}
 	    \label{fig:Gxy}
 	    \end{center}
@@ -20,7 +19,7 @@
 
 \begin{figure}[H]
         \begin{center}
-    	\includegraphics[scale=0.23]{images/Fyx.png}
+    	\includegraphics[scale=0.20]{images/Methodology/Fyx.png}
 	    \caption[]{}
 	    \label{fig:Fyx}
 	    \end{center}
@@ -33,23 +32,23 @@
 \subsection{Formulation}
 
 
-The aim is to learn mapping functions between two domains $X$ and $Y$. The Domain $X$ represents synthetic document images distribution and domain $Y$ represents real document images distribution. Given training samples $\{x_i\}_{i=1}^{N}$ where $x_i \in X$ and  $\{y_j\}_{j=1}^{M}$ where $y_j \in Y$. We denote the data distribution $x \sim p_{data}(x)$  and $y \sim p_{data}(y)$. As illustrated in Figure \ref{fig:CycleGAN}, the model includes two mappings $G : X \rightarrow Y$ and $F : Y \rightarrow X$. In addition, we introduce two adversarial discriminators $D_X$ and $D_Y$ , where $D_X$ aims to distinguish between images $\{x\}$ and translated images $\{F(y)\}$; in the same way, $D_Y$ aims to discriminate between $\{y\}$ and $\{G(x)\}$. Our objective contains three types of terms: least-square losses (\ac{LSGAN}) \cite{mao2017squares} for matching the distribution of generated images to the data distribution in the target domain; cycle consistency losses to prevent the learned mappings $G$ and $F$ from contradicting each other; and identity mapping loss to preserve the color of the input images.
+The aim is to learn mapping functions between two domains $X$ and $Y$. $X$ is the source domain and $Y$ is the target domain. The domain $X$ represents synthetic data distribution and domain $Y$ represents real data distribution. The synthetic data distribution is represented by synthetic document images created using empty form templates and handwritten crops. The real data distribution is represented by the real document images. For a given training samples $\{x_i\}_{i=1}^{N}$ where $x_i \in X$ and $\{y_j\}_{j=1}^{M}$ where $y_j \in Y$. The synthetic data distribution represented as $x \sim p_{data}(x)$ and real data distribution represented as $y \sim p_{data}(y)$. The model includes two mappings functions $G : X \rightarrow Y$ and $F : Y \rightarrow X$ as illustrated in figure \ref{fig:CycleGAN}, they are the generators. Along with generators, two adversarial discriminators $D_X$ and $D_Y$ are introduced. $D_X$ aims to distinguish between images $\{x\}$ and translated images $\{F(y)\}$. In the same way, $D_Y$ aims to discriminate between $\{y\}$ and $\{G(x)\}$.  The final objective function contains three loss functions. first, least-square loss\cite{mao2017squares} is used for matching the distribution of generated images to the data distribution in the target domain. The general \acp{GAN} uses sigmoid cross-entropy loss function to optimize generator and discriminator. In our thesis generators and discriminators used in \ac{CycleGAN} are optimized using least-square loss\cite{mao2017squares} which is opted from \acp{LSGAN}. Second, The cycle consistency loss to prevent the learned mappings functions $G$ and $F$ from contradicting each other\cite{zhu2020unpaired}. The third is identity mapping loss to preserve the color of the input images\cite{zhu2020unpaired}.
 
 
 \subsection{Least-Square Loss}
 
-Viewing the discriminator as a classifier, regular \acp{GAN} adopt the sigmoid cross-entropy loss function. As stated in Section \ref{rwdiscussion}, when updating the generator, this loss function will cause the problem of vanishing gradients for the samples that are on the correct side of the decision boundary, but are still far from the real data. Also to stabilize the model training procedure. First, $\mathcal{L}_{GAN}$ (equation \ref{ganObjectiveFunction}), the negative log-likelihood
-objective replaced by a least-squares loss (\ac{LSGAN}) \cite{mao2017squares}. This loss is more stable during training and generates higher quality results. The least-square loss is used to optimize the generator and discriminator adversarially. We use the $a$-$b$ coding scheme for the discriminator, where $a$ and $b$ are the labels for fake data and real data, respectively. Then the modified objective functions using least-squares loss can be defined as follows:
+
+In \acp{GAN} the discriminator is a binary classifier that adopts the sigmoid cross-entropy loss function. As stated in Section \ref{rwdiscussion}, while updating the generator, the sigmoid cross-entropy loss function causes the vanishing gradients problem for the samples that are on the correct side of the decision boundary but are still far from the real data.  Also, the sigmoid cross-entropy loss function causes difficulty to stabilize the model training procedure\cite{mao2017squares}. First, $\mathcal{L}_{GAN}$ (equation \ref{ganObjectiveFunction}), the negative log-likelihood objective replaced by a least-squares loss functions\cite{mao2017squares}. The least-squares loss is more stable during training and generates higher quality results\cite{mao2017squares}. It is used to optimize the generator and discriminator adversarially. In the below equations, we have used the $a$,$b$, and $c$ for the coding scheme for the equations of the discriminator. Where $a$ and $b$ are the labels for fake data and real data, respectively. $c$ denotes the value that G wants D to believe for fake data. Basically, $a = 0$, $b = 1$, and $c = 1$. That means fake data is represented by $0$, and real data is represented by $1$. Then the modified objective functions using least-squares loss can be defined as follows:
 
 
 
     \begin{equation}\label{lsgan1}
-        \underset{D}{\min}\ \mathcal{L}_{LSGAN}(D_Y) = \frac{1}{2}\ \mathbb{E}_{y \sim p_{data}(y)}\ [\|(D(y) - b)\|_2] + 
-        \frac{1}{2}\ \mathbb{E}_{x \sim p_{data}(x)}\ [\|(D(G(x)) - a)\|_2]
+        \underset{D}{\min}\ \mathcal{L}_{LSGAN}(D_Y) = \frac{1}{2}\ \mathbb{E}_{y \sim p_{data}(y)}\ [(D(y) - b)^2] + 
+        \frac{1}{2}\ \mathbb{E}_{x \sim p_{data}(x)}\ [(D(G(x)) - a)^2]
     \end{equation}
     
     \begin{equation}\label{lsgan2}
-        \underset{G}{\min}\ \mathcal{L}_{LSGAN}(G) = \mathbb{E}_{x \sim p_{data}(x)}\ [\|(D(G(x)) - c)\|_2]
+        \underset{G}{\min}\ \mathcal{L}_{LSGAN}(G) = \mathbb{E}_{x \sim p_{data}(x)}\ [(D(G(x)) - c)^2]
     \end{equation}
     
     \begin{equation}\label{lsgan3}
@@ -57,12 +56,12 @@ objective replaced by a least-squares loss (\ac{LSGAN}) \cite{mao2017squares}. T
     \end{equation}
     
     \begin{equation}\label{lsgan4}
-        \underset{D}{\min}\ \mathcal{L}_{LSGAN}(D_X) = \frac{1}{2}\ \mathbb{E}_{x \sim p_{data}(x)}\ [\|(D(x) - b)\|_2] + 
-        \frac{1}{2}\ \mathbb{E}_{y \sim p_{data}(y)}\ [\|(D(F(y)) - a)\|_2]
+        \underset{D}{\min}\ \mathcal{L}_{LSGAN}(D_X) = \frac{1}{2}\ \mathbb{E}_{x \sim p_{data}(x)}\ [(D(x) - b)^2] + 
+        \frac{1}{2}\ \mathbb{E}_{y \sim p_{data}(y)}\ [(D(F(y)) - a)^2]
     \end{equation}
     
     \begin{equation}\label{lsgan5}        
-        \underset{G}{\min}\ \mathcal{L}_{LSGAN}(F) = \mathbb{E}_{y \sim p_{data}(y)}\ [\|(D(F(y)) - c)\|_2]
+        \underset{G}{\min}\ \mathcal{L}_{LSGAN}(F) = \mathbb{E}_{y \sim p_{data}(y)}\ [(D(F(y)) - c)^2]
     \end{equation}
     
     
@@ -70,7 +69,7 @@ objective replaced by a least-squares loss (\ac{LSGAN}) \cite{mao2017squares}. T
         \mathcal{L}_{LSGAN}(F, D_X, Y, X) = \underset{D}{\min}\ \mathcal{L}_{LSGAN}(D_X) + \underset{G}{\min}\ \mathcal{L}_{LSGAN}(F)
     \end{equation}
     
-    where $c$ denotes the value that G wants D to believe for fake data. Basically, $a = 0$, $b = 1$, and $c = 1$.
+
 
 
 
@@ -114,8 +113,13 @@ where $\lambda_{cyc}$ and $\lambda_{identity}$ control the relative importance o
 
 
 
+\section{Algorithm}\label{CycleGANAlgorithm}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+
+%The aim is to learn mapping functions between two domains $X$ and $Y$. The Domain $X$ represents synthetic document images distribution and domain $Y$ represents real document images distribution. Given training samples $\{x_i\}_{i=1}^{N}$ where $x_i \in X$ and  $\{y_j\}_{j=1}^{M}$ where $y_j \in Y$. We denote the data distribution $x \sim p_{data}(x)$  and $y \sim p_{data}(y)$.
 
 \begin{comment}
 \subsection{Adversarial Loss}

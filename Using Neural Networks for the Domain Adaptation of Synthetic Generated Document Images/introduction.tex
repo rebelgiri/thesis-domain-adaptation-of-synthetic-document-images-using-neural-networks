@@ -5,11 +5,11 @@
 
 \section{Overview}
 
-\ac{AI} has been a game-changer in the computer science domain and has evolved tremendously over the years.\ \ac{AI} has a presence in many sectors like Healthcare \cite{Yu.2018}, Autonomous Vehicles \cite{Yurtsever_2020}, Robotics \cite{10.1007/978-3-642-82153-0_2}, Space Exploration \cite{Girimonte2007}, and Computer Vision \cite{2020}. This is largely due to the research in \ac{ML} and \ac{DL}. Machine Learning is a subdomain of Artificial Intelligence. Machine learning is an art of programming machines, so they can learn from data without being explicitly programmed. Machine learning is used create many \ac{AI} applications, where it is difficult or unfeasible to develop traditional algorithms to perform the needed tasks. Although Machine Learning and Deep learning domains fall under the category of Artificial Intelligence, there are some important differences between them (figure \ref{fig:deepLearningSubset}). First, deep learning is subdomain of machine learning. Second, deep learning algorithms are powered by \acp{ANN}, and third, they require less human intervention while extracting features from the data compared to deep learning. Now let us have a look into deep learning and try to understand how it is different from deep learning.
+\ac{AI} has been a game-changer in the computer science domain and has evolved tremendously over the years.\ \ac{AI} has a presence in many sectors like Healthcare \cite{Yu.2018}, Autonomous Vehicles \cite{Yurtsever_2020}, Robotics \cite{10.1007/978-3-642-82153-0_2}, Space Exploration \cite{Girimonte2007}, and Computer Vision \cite{2020}. This is largely due to the research in \ac{ML} and \ac{DL}. Machine Learning is a subdomain of Artificial Intelligence. Machine learning is an art of programming machines, so they can learn from data without being explicitly programmed. Machine learning is used create many \ac{AI} applications, where it is difficult or unfeasible to develop traditional algorithms to perform the needed tasks. Although machine learning and deep learning domains fall under the category of Artificial Intelligence, there are some important differences between them (figure \ref{fig:deepLearningSubset}). First, deep learning is subdomain of machine learning. Second, deep learning algorithms are powered by \acp{ANN}, and third, they require less human intervention while extracting features from the data compared to deep learning. Now let us have a look into deep learning and try to understand how it is different from machine learning.
 
 \begin{figure}[H]
         \begin{center}
- 	    \includegraphics[scale=0.25]{images/deeplearningsubset.jpg}
+ 	    \includegraphics[scale=0.25]{images/Introduction/deeplearningsubset.jpg}
 	    \caption[Relationship between Artificial Intelligence, Machine Learning, and Deep Learning.]{Relationship between Artificial Intelligence, Machine Learning, and Deep Learning.}
 	    \label{fig:deepLearningSubset}
 	    \end{center}
@@ -20,7 +20,7 @@ The concept of deep learning was invented back in the 1950s but was largely igno
 
 Neural Networks are capable enough to solve complex problems by extracting features, recognizing patterns in data efficiently. However, there are certain challenges while training the neural networks. In short, since usually the task is to select a deep learning algorithm and train it on data, majorly two things that can cause difficulties are bad algorithm and bad data. Let us start with some examples of bad data. The insufficient quantity of training data one of the major problems that occurred while training deep learning models; it takes a lot of data for most deep learning algorithms to work properly. The second is the poor quality data; if the training data is erroneous, noisy, full of outliers will make a model hard to detect patterns in the data. Hence the model will not perform well. The third is the irrelevant features; the model will only learn if the training data has more relevant features than irrelevant features. Hence, it is often worth putting effort and spend time cleaning up training data. Most of the Machine Leaning Engineers spend significant amount of time doing the same. 
 
-Now that after some examples of bad data, let's look at some of the examples of bad algorithms. The overfitting of training data; means the model performs well over the training data but generalizes well over unseen test data. Overfitting happens when the model is very complex compared to the amount and noisiness of the training data.  The method used to constrain a model to make it simpler and decrease the risk of overfitting is called regularization \cite{kukacka2017regularization}. Regularization is one of the solutions provided to generalize a model better to the new examples. The second is underfitting the training data; it is the opposite of overfitting, which means the model is too simple to learn the underlying structure of data. Selecting a less complex model, feeding better features during training can solve the problem of underfitting \cite{10.5555/3153997}. While training any deep learning model it is required to have good quality and enough quantity of data. But in many cases, it is very difficult to have data that is labeled and annotated. The training of the deep learning model is highly influenced by the quality and quantity of the data that has been used for the training of the model. But in many cases, it is very difficult to have data that is labeled and annotated. 
+Now that after some examples of bad data, let's look at some of the examples of bad algorithms. The overfitting of training data; means the model performs well over the training data but generalizes well over unseen test data. Overfitting happens when the model is very complex compared to the amount and noisiness of the training data.  The method used to constrain a model to make it simpler and decrease the risk of overfitting is called regularization \cite{kukacka2017regularization}. Regularization is one of the solutions provided to generalize a model better to the new examples. The second is underfitting the training data; it is the opposite of overfitting, which means the model is too simple to learn the underlying structure of data. Selecting a less complex model, feeding better features during training can solve the problem of underfitting \cite{10.5555/3153997}. The training of the deep learning model is highly influenced by the quality and quantity of the data that has been used for the training of the model. But in many cases, it is very difficult to have data that is labeled and annotated. 
 
 
 In the following sections, the motivation behind this thesis discussed in Section \ref{motivation} and the problem statement is discussed in Section \ref{ProblemStatement}. The objectives of this thesis discussed in Section \ref{thesisobjectives}. The thesis structure and limitations are discussed in Section \ref{thesisstructurelimitations}. Finally, the terminologies used in this thesis are defined in Section \ref{terminology}.
@@ -33,7 +33,7 @@ In recent years, deep learning methods have shown great effectiveness in many fi
 
 \begin{figure}[H]
         \begin{center}
- 	    \includegraphics[scale=0.40]{images/TransferLearning.png}
+ 	    \includegraphics[scale=0.40]{images/Introduction/TransferLearning.png}
 	    \caption[Simple examples of transfer learning.]{Simple examples of transfer learning.}
 	    \label{fig:TransferLearning}
 	    \end{center}
@@ -41,13 +41,13 @@ In recent years, deep learning methods have shown great effectiveness in many fi
 
 This thesis aims to solve the data scarcity problem using the domain adaptation method. Domain adaptation is a subcategory of transfer learning in which the task is to transfer the knowledge from the source domain to the target domain. Before discussing domain adaptation, let us have a look into transfer learning. Transfer learning is the ability of a system to recognize and apply the knowledge learned from one task to another task \cite{zhuang2020comprehensive}.  For example, if a person has mastered one musical instrument like the violin can learn piano faster compared to others, as the knowledge of one musical instrument can be applied while learning another musical instrument. Figure \ref{fig:TransferLearning} show intuitive example of transfer learning. Transfer learning inspired by human behavior, humans beings are capable to transfer knowledge from one domain to another domain. The transfer learning grasps knowledge from the source domain to improve the learning performance in the target domain so the number of labeled samples required in the target domain can be reduced. It is important to mention, transfer learning is effective only if the source domain and target domain are related. For example, learning bicycles will not help to learn piano faster. Qiang Yang et al.\ \cite{5288526} have performed survey on transfer learning, more information about the transfer learning can found in their research paper.  
 
-The difference between traditional machine learning and domain adaptation is shown in figure \ref{fig:DomainAdaptation}. When the source and target domains are the same and learning tasks also the same, then such a learning problem becomes a traditional machine learning problem \cite{5288526}. When the source and target domains are different but related, and learning tasks are the same then, such a learning problem becomes a domain adaptation problem \cite{5288526}. In domain adaptation, source and target domains have the same feature space but different distributions in contrast to transfer learning, which includes cases where the target domain's feature space is different from the source domain's feature space. Domain adaptation is distinguished depending upon the similarity or dissimilarity of feature space and availability of annotated data in the source domain and target domains. The domain adaptation has two categories, if the feature space is the same between the source domain and target domain is called homogeneous domain adaptation. If the feature space is different between the source and target domain is called heterogeneous domain adaptation. Further homogeneous and heterogeneous domain adaptation divided into three types of domain adaptation, supervised domain adaptation, semi-supervised domain adaptation, unsupervised domain adaptation. In the supervised domain adaptation, the samples in source and target domains are labeled. Semi-supervised domain adaptation has a small set of samples labeled in the target domain. And, in unsupervised domain adaptation, the samples in the source and target domain are not labeled \cite{5288526}. A simple example of domain adaptation of  \ac{SVHN} transformed into Handwritten Digits shown in figure \ref{fig:DA}.
+When the source and target domains are the same and learning tasks also the same, then such a learning problem becomes a traditional machine learning problem \cite{5288526}. When the source and target domains are different but related, and learning tasks are the same then, such a learning problem becomes a domain adaptation problem \cite{5288526}. In domain adaptation, source and target domains have the same feature space but different distributions in contrast to transfer learning, which includes cases where the target domain's feature space is different from the source domain's feature space. Domain adaptation is distinguished depending upon the similarity or dissimilarity of feature space and availability of annotated data in the source domain and target domains. The domain adaptation has two categories, if the feature space is the same between the source domain and target domain is called homogeneous domain adaptation. If the feature space is different between the source and target domain is called heterogeneous domain adaptation. Further homogeneous and heterogeneous domain adaptation divided into three types of domain adaptation, supervised domain adaptation, semi-supervised domain adaptation, unsupervised domain adaptation. In the supervised domain adaptation, the samples in source and target domains are labeled. Semi-supervised domain adaptation has a small set of samples labeled in the target domain. And, in unsupervised domain adaptation, the samples in the source and target domain are not labeled \cite{5288526}. A simple example of domain adaptation of  \ac{SVHN} transformed into Handwritten Digits shown in figure \ref{fig:DA}. The difference between traditional machine learning and domain adaptation is shown in figure \ref{fig:DomainAdaptation}.
 
 
 \begin{figure}[H]
         \begin{center}
- 	    \includegraphics[scale=0.15]{images/DA.png}
-	    \caption[Simple example of domain adaptation from SVHN dataset to MNIST Dataset for the digit recognition task.]{Simple example of domain adaptation from \ac{SVHN} dataset \cite{37648} to \ac{MNIST} Dataset\footnotemark for the digit recognition task.\footnotemark}
+ 	    \includegraphics[scale=0.15]{images/Introduction/DA.png}
+	    \caption[Simple example of domain adaptation from \ac{SVHN} dataset to \ac{MNIST} Dataset for the digit recognition task.]{Simple example of domain adaptation from \ac{SVHN} dataset \cite{37648} to \ac{MNIST} Dataset\footnotemark for the digit recognition task.\footnotemark}
 	    \label{fig:DA}
 	    \end{center}
 \end{figure}
@@ -58,7 +58,7 @@ To understand how domain adaptation works, let's have a simple example. Consider
 
 \begin{figure}[H]
         \begin{center}
- 	    \includegraphics[scale=0.30]{images/DomainAdaptation.png}
+ 	    \includegraphics[scale=0.30]{images/Introduction/DomainAdaptation.png}
 	    \caption[Difference between traditional machine learning and domain adaptation.]{Difference between traditional machine learning and domain adaptation.}
 	    \label{fig:DomainAdaptation}
 	    \end{center}
@@ -73,14 +73,11 @@ As mentioned earlier, annotated data are scarce when it comes to the training of
 
 \begin{figure}[H]
         \begin{center}
-	    \includegraphics[scale=0.35]{images/Problem.png}
+	    \includegraphics[scale=0.60]{images/Introduction/Problem.png}
 	    \caption[Illustration of the problem this thesis aims to solve.]{Illustration of the problem this thesis aims to solve.}
 	    \label{fig:Problem}
 	    \end{center}
 \end{figure}
-
-
-
 
 
 The synthetic document images are created using unfilled form images (figure \ref{fig:EmptyForm}) and handwritten crops (figure \ref{fig:keinwifi}) retrieved from handwriting datasets like \ac{MNIST} (figure \ref{fig:handwrittenCrops}) or any other datasets. These unfilled form images contain fields like are customer number, customer name, and other customer information. These fields are represented by using bounding boxes. The bounding boxes are annotated using \ac{COCO} annotations \cite{10.1007/978-3-319-10602-1_48}. In this thesis, the handwritten crops are inserted over the unfilled form images to generate numerous synthetic document images. As mentioned earlier deep learning models trained using synthetic document images will not generalize well on real document images. In this thesis, the handwritten crops are inserted over the unfilled form images to generate numerous synthetic document images. As mentioned earlier deep learning models trained using synthetic document images will not generalize well on real document images. Further, the image-to-image translation application is developed using \ac{CycleGAN} to transform synthetic document images into realistic document images. ultimately, to reduce the domain gap between synthetic data distribution and real data distribution. 
@@ -91,23 +88,12 @@ A large number of realistic document images can be generated to tackle the probl
 
 \begin{figure}[H]
         \begin{center}
-	    \includegraphics[scale=0.35]{images/ProposedSolution.png}
+	    \includegraphics[scale=0.55]{images/Introduction/ProposedSolution.png}
 	    \caption[Illustration of the proposed solution to reduce the domain gap between synthetic document images and real document images.]{Illustration of the proposed solution to reduce the domain gap between synthetic document images and real document images.}
 	    \label{fig:ProposedSolution}
 	    \end{center}
 \end{figure}
 
-
-\begin{comment}
-\begin{figure}[H]
-        \begin{center}
-	    \includegraphics[scale=0.50]{images/ThesisObjectives2.JPG}
-	    \caption{Thesis Objectives.}
-	    \label{fig:ThesisObjectives}
-	    \end{center}
-\end{figure}
-
-\end{comment}
 
 
 \section{Thesis Objectives}\label{thesisobjectives}
@@ -126,13 +112,6 @@ Every research work comes with definite objectives to achieve. The aim of the th
     
 \end{itemize}
 
-%during the implementation phase of this thesis. In this step the \ac{CycleGAN} is implemented and trained.
-
-
-
-
-
-
 
 \section{Thesis Limitations and Structure}\label{thesisstructurelimitations}
 
@@ -142,8 +121,7 @@ The domain adaptation field is promoting incremental findings. Hence, this thesi
 
 \section{Terminology}\label{terminology}
 
-In this thesis for simplicity and readability, many terms are explained beforehand for better understanding and to avoid confusion. The following terms described in this thesis are consistently used throughout this thesis. The term ``Artificial Neural Networks (\acp{ANN})'' will be used as ``Neural Networks'' interchangeably. 
-
+In this thesis for simplicity and readability, many terms are explained beforehand for better understanding and to avoid confusion. The following terms described in this thesis are consistently used throughout this thesis. The term ``Artificial Neural Networks (\acp{ANN})'' will be used as ``Neural Networks'' interchangeably. The images generated by the \ac{CycleGAN} generator in the target domain are called ``realistic document images'', and they are also interchangeably called ``\ac{CycleGAN} generated document images''.
 
 
 
@@ -161,6 +139,8 @@ In this thesis for simplicity and readability, many terms are explained beforeha
 
 %Every research work comes with definite objectives to achieve. The Objective 1 of the thesis is to perform a literature survey, in which, different types of image-to-image translation methods should be discussed. Furthermore, the theoretical comparison between existing methods must be discussed, to finally decide a methodology to solve the problem statement. Objective 2 is to create and collect datasets to train neural networks by keeping small testing aside to evaluate models. Objective 3 is to proceed with the design and development of the neural networks during the implementation phase of this thesis. Objective 4 is to perform experiments, and Objective 5 is to analyze, evaluate results achieved by the chosen method, implementation. Objective 6 is to document all the information regarding the thesis, for example, chosen methodology, fundamentals required to understand the work, experiments, results, limitations, conclusion, and future work.
 
+
+%during the implementation phase of this thesis. In this step the \ac{CycleGAN} is implemented and trained.
 
 \begin{comment}
 The neural networks trained in this thesis using images of resolution $256 \times 256$. In the real world, document images are of higher resolution.
@@ -203,4 +183,14 @@ The architecture of \ac{CycleGAN} is adapted from Johnson et al. ~\cite{johnson2
 
 
 
+\begin{comment}
+\begin{figure}[H]
+        \begin{center}
+	    \includegraphics[scale=0.50]{images/ThesisObjectives2.JPG}
+	    \caption{Thesis Objectives.}
+	    \label{fig:ThesisObjectives}
+	    \end{center}
+\end{figure}
+
+\end{comment}
 

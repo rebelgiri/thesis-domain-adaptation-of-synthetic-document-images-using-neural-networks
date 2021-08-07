@@ -23,11 +23,11 @@
 %\usepackage{tgheros}
 
 % image caption setup
-%\usepackage{caption}
-%\captionsetup[figure]{justification=raggedright, format=plain, font=small, labelfont=bf}
+\usepackage{caption}
+\captionsetup[figure]{justification=raggedright, format=plain, font=small, labelfont=bf}
 
-
-
+% set foot note to the bottom of the page
+\usepackage[bottom]{footmisc}
 
 
 \titleformat{\chapter}[block]
@@ -160,7 +160,7 @@
     \input{implementation}
 \newpage
 
-\chapter{Evaluation}
+\chapter{Experiments and Evaluation}
     \label{evaluation}
     \input{evaluation}
 \newpage
