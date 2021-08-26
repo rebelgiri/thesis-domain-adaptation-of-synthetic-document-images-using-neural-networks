@@ -2,7 +2,7 @@
 \justifying
 \setlength{\parskip}{1em}
 
-In this chapter, the experiments conducted in this thesis are described along with evaluation metrics and results. In Section \ref{EvaluationMetrics} the evaluation metrics like accuracy, precision, recall, confusion matrix, and f1-score are explained. These metrics are used to evaluate the domain gap between the distributions and quality of \ac{CycleGAN} generated document images. In section \ref{experiments} all the experiments that are conducted in this thesis are explained along with training plots, confusion matrices, and classification reports. Finally, in section \ref{results}, quantitative and qualitative results are discussed thoroughly.
+In this chapter, the experiments conducted in this thesis are described along with evaluation metrics and results. In section \ref{EvaluationMetrics} the evaluation metrics like accuracy, precision, recall, confusion matrix, and f1-score are explained. These metrics are used to evaluate the domain gap between the distributions and quality of \ac{CycleGAN} generated document images. In section \ref{experiments} all the experiments that are conducted in this thesis are explained along with training plots, confusion matrices, and classification reports. Finally, in section \ref{results}, quantitative and qualitative results are discussed thoroughly.
 
 \section{Evaluation Metrics}\label{EvaluationMetrics}
 
@@ -72,13 +72,13 @@ Once training is finished, the latest saved checkpoint can be loaded to generate
     \item Train a \ac{CycleGAN} using synthetic document images and real document images.
     \item Generate realistic document images using generator $G$ from the trained \ac{CycleGAN} model. As mentioned above realistic document images are also called \ac{CycleGAN} generated document images.
     \item Train a classifier on \ac{CycleGAN} generated document images and evaluate its classification performance on the annotated real document images.
-    \item Compare the classification performance of the above three classifiers on the annotated real document images to illustrate the domain gap between real data distribution and other three distributions like synthetic data distribution, faxified data distribution, and \ac{CycleGAN} generated data distribution. The performance of a classifier trained upon \ac{CycleGAN} generated data distribution using annotated real document images describes, how close is the \ac{CycleGAN} generated data distribution to the real data distribution. Simply this approach determines the quality of the \ac{CycleGAN} generated document images compared to real document images.
+    \item Compare the classification performance of the above three classifiers on the annotated real document images, to illustrate the domain gap between real data distribution and other three distributions like synthetic data distribution, faxified data distribution, and \ac{CycleGAN} generated data distribution. The performance evaluation of a classifier trained upon \ac{CycleGAN} generated data distribution using annotated real document images describes, how close is the \ac{CycleGAN} generated data distribution to the real data distribution. Simply this approach determines the quality of the \ac{CycleGAN} generated document images compared to real document images.
 \end{enumerate}
 
 
 \subsection{\ac{CycleGAN} Training}
 
-The image-to-image translation application, which is implemented using \ac{CycleGAN} is trained for 20 epochs and with batch size 1. For more \ac{CycleGAN} training details refer Section \ref{TrainingDetailsCycleGAN}. The \ac{CycleGAN} consists of two generators $G$ and $F$. Along with two discriminators $D_X$ and $D_Y$. Domain $X$ represents the source domain and domain $Y$ represents the target domain. The developed image-to-image translation application aims to transform synthetic document images into realistic document images. Hence, the synthetic document images represent the source domain and real document images represent the target domain. The complete architecture of the image-to-image translation application using \ac{CycleGAN} is illustrated in figure \ref{fig:GxyFyx}.
+The image-to-image translation application, which is implemented using \ac{CycleGAN} is trained for 20 epochs and with batch size 1. For more \ac{CycleGAN} training details refer section \ref{TrainingDetailsCycleGAN}. The \ac{CycleGAN} consists of two generators $G$ and $F$. Along with two discriminators $D_X$ and $D_Y$. Domain $X$ represents the source domain and domain $Y$ represents the target domain. The developed image-to-image translation application aims to transform synthetic document images into realistic document images. Hence, the synthetic document images represent the source domain and real document images represent the target domain. The complete architecture of the image-to-image translation application using \ac{CycleGAN} is illustrated in figure \ref{fig:GxyFyx}.
 
 \begin{figure}[H]
   \centering
@@ -112,14 +112,13 @@ The image-to-image translation application, which is implemented using \ac{Cycle
 
 The \ac{CycleGAN} training happens by calculating loss and updating the weights of discriminators $D_X$ and $D_Y$, and generators $G$ and $F$ respectively. First, random input images $x_i$ and $y_i$ are retrieved from source domain $X$ and target domain $Y$. The fake image generated using generator $G$ is $Generated\_Y$ and the fake image generated using generator by $F$ is $Generated\_X$. As we described earlier, $G$ is a mapping function to transform an image from source domain $X$ to target domain $Y$, mathematically it is $G: X \rightarrow Y$. And $F$ is vice versa $F: Y \rightarrow X$. The generator $G$ is called the forward generator, and $F$ is called the backward generator. First, the discriminator loss for $D_X$ and $D_Y$ on real and fake images is computed. The computed discriminator loss is used to update the weights of both discriminators. Next, cycle consistency loss is calculated by transforming the source domain image into the target domain, back again into the source domain. It is called forward cycle consistency loss. It is calculated by determining the difference between the original image in the source domain and cycled image back in the source domain. If you refer to figure \ref{fig:GxyFyx}, the forward cycle consistency loss is the difference between \textit{Input\_X} and \textit{Cyclic\_X}. The backward cycle consistency loss is calculated by transforming the target domain image into the source domain, back again into the target domain. In figure \ref{fig:GxyFyx}, the backward cycle consistency loss is the difference between \textit{Input\_Y} and \textit{Cyclic\_Y}. The cycle consistency loss forces generating an image that is context instead of generating random images.
 
-Further, identity mapping loss is calculated to preserve the color of images after domain translation using generators $G$ and $F$. The generator $G$ transforms the image from domain $X$ to the domain $Y$. When the input $y_i$ is given to generator $G$ from the target domain $Y$, it should produce an identical image. The identity mapping loss for generator $G$ is the difference between the original image $y_i$, and the transformed image \textit{Same\_Y} when $y_i$ is used as an input for $G$. And, the identity mapping loss for generator $F$ is the difference between input image $x_i$ and the transformed image \textit{Same\_X} when $x_i$ is used as an input for $F$. The generator loss for generators $G$ and $F$ is calculated by the feedback given by their respective discriminators $D_Y$ and $D_X$. Combining generator loss, cycle consistency loss, and identity mapping loss, the total generator loss is calculated separately for generators $G$ and $F$, and their weights are updated to produce quality images. The epochs against loss plot while training generators $G$ and $F$ are shown in figure \ref{fig:generatorG} and \ref{fig:generatorF} respectively. Also, the epochs against loss plot while training discriminators $D_X$ and $D_Y$ are shown in figure \ref{fig:discriminatorDx} and \ref{fig:discriminatorDy} respectively. To understand the algorithm of \ac{CycleGAN} in-depth, refer to the pseudo-code from \ref{alg: CycleGANAlgorithm}.
+Further, identity mapping loss is calculated to preserve the color of images after domain translation using generators $G$ and $F$. The generator $G$ transforms the image from domain $X$ to the domain $Y$. When the input $y_i$ is given to generator $G$ from the target domain $Y$, it should produce an identical image. The identity mapping loss for generator $G$ is the difference between the original image $y_i$, and the transformed image \textit{Same\_Y} when $y_i$ is used as an input for $G$. And, the identity mapping loss for generator $F$ is the difference between input image $x_i$ and the transformed image \textit{Same\_X} when $x_i$ is used as an input for $F$. The generator loss for generators $G$ and $F$ is calculated by the feedback given by their respective discriminators $D_Y$ and $D_X$. Combining generator loss, cycle consistency loss, and identity mapping loss, the total generator loss is calculated separately for generators $G$ and $F$, and their weights are updated to produce quality images. The epochs against loss plot while training generators $G$ and $F$ are shown in figure \ref{fig:generatorG} and \ref{fig:generatorF} respectively. Also, the epochs against loss plot while training discriminators $D_X$ and $D_Y$ are shown in figure \ref{fig:discriminatorDx} and \ref{fig:discriminatorDy} respectively. To understand the algorithm of \ac{CycleGAN} in-depth, refer to the pseudo-code from \ref{alg:CycleGANAlgorithm}.
 
 
 
 \subsection{Training a Classifier on Synthetic Document Images}\label{trainingsyntheticclassifier}
 
-
-
+Before this experiment, the dataset of synthetic document images is created using templates (figure \ref{fig:template}) and handwritten crops (figure \ref{fig:keinwifi}) using the process mentioned in figure \ref{fig:InsertHandwrittenCrops}. In this experiment, a simple classifier (table \ref{table:ClassifierArchitecture}), is trained on synthetic document images dataset. The performance of this classifier is evaluated on annotated real document images (test dataset) to understand the domain gap between real data distribution and synthetic data distribution. The classification report in table \ref{table:SyntheticClassificationReport} states that the accuracy of this classifier on real document images is 25\%, macro average f1-score is 27\%, and weighted average f1-score is 31\%. As mentioned earlier, the test dataset is unbalanced, the weighted average f1-score is a suitable metric in this scenario. The weighted average f1-score concludes that there is a huge gap between real data distribution and synthetic data distribution. The confusion matrix is illustrated in figure \ref{fig:CMCycleganGeneratedDocumentImagesClassifier}. Where it is completely visible most of the test images were classified wrongly. The epochs against accuracy and epochs against loss plots while training classifier on synthetic document images is illustrated in figure \ref{fig:SyntheticClassifierAcc} and \ref{fig:SyntheticClassifierLoss} respectively.
 
 \begin{figure}[H]
   \centering
@@ -181,7 +180,8 @@ Further, identity mapping loss is calculated to preserve the color of images aft
 
 \subsection{Training a Classifier on \ac{CycleGAN} Generated Document Images}
 
-In this experiment, the 
+
+This is the most important experiment of this thesis. After the \ac{CycleGAN} is trained, the generator $G$ is loaded from the saved checkpoint, to perform image-to-image translation, simply to say, transforming synthetic document images to realistic document images. 100,000 synthetic document images are transformed into realistic document images. The transformed 100,000 realistic document images are used to train the same classifier (table \ref{table:ClassifierArchitecture}). The performance of this classifier is evaluated on annotated real document images (test dataset) to understand the domain gap between real data distribution and \ac{CycleGAN} generated data distribution and quality of generated images compared to real images. The classification report in table \ref{table:CycleGANClassificationReport} states that the accuracy of this classifier on annotated real document images is 27\%, macro average f1-score is 34\%, and weighted average f1-score is 25\%. The majority of documents are of the type ``Bein'', and they are similar to each other. It has been found, a small artifact transformation failure has caused the wrong classification hence, the performance evaluation was very challenging. The confusion matrix is illustrated in figure \ref{fig:CMFaxifiedDocumentImagesClassifier}. In the confusion matrix, the document images DE\_LY\_Arm\_2020-01, DE\_LY\_Bein\_2019-07,  DE\_LY\_Hand\_2020-01, and DE\_PH\_Bein\_2020-01 are classified satisfactorily. Document images DE\_LY\_Bein\_2020-01 and DE\_LY\_Bein\_2020-03 are wrongly classified as DE\_LY\_Bein\_2019-07. Document images DE\_PH\_Bein\_2018-09 and DE\_PH\_Bein\_2019-02 are wrongly classified as DE\_PH\_Bein\_2019-02. In section \ref{QualitativeResults}, qualitative results of the image-to-image translation are illustrated along with failure cases. The epochs against accuracy and epochs against loss plots while training classifier on \ac{CycleGAN} generated document images is illustrated in figure \ref{fig:CycleGANClassifierAcc} and \ref{fig:CycleGANClassifierLoss} respectively.
 
 
 \begin{figure}[H]
@@ -189,13 +189,13 @@ In this experiment, the
   \begin{minipage}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{images/Evaluation/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_Accuracy.png}
     \caption[Epochs vs accuracy plot while training a classifier on \ac{CycleGAN} generated document images.]{Epochs vs accuracy plot while training a classifier  on \ac{CycleGAN} generated document images.}
-    \label{fig:SyntheticClassifierAcc}
+    \label{fig:CycleGANClassifierAcc}
   \end{minipage}
   \hfill
   \begin{minipage}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{images/Evaluation/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_Loss.png}
     \caption[Epochs vs loss plot while training a classifier on \ac{CycleGAN} generated document images.]{Epochs vs loss plot while training a classifier on \ac{CycleGAN} generated document images.}
-    \label{fig:SyntheticClassifierLoss}
+    \label{fig:CycleGANClassifierLoss}
   \end{minipage}
 \end{figure}
 
@@ -233,8 +233,8 @@ In this experiment, the
         Weighted average          & 0.55 & 0.27 &  \bf{0.25} & 1162\\[0.0ex]
         \bottomrule
     \end{tabular}
-    \caption[Classification report generated after the classifier is trained on synthetic document images, its classification performance evaluated on the annotated real document images.]{Classification report generated after the classifier is trained on synthetic document images, its classification performance evaluated on the annotated real document images.}
-    \label{table:SyntheticClassificationReport}
+    \caption[Classification report generated after the classifier is trained on \ac{CycleGAN} generated document images, its classification performance evaluated on the annotated real document images.]{Classification report generated after the classifier is trained on \ac{CycleGAN} generated document images, its classification performance evaluated on the annotated real document images.}
+    \label{table:CycleGANClassificationReport}
     \end{center}
 \end{table}
 \end{center}
@@ -242,17 +242,29 @@ In this experiment, the
 
 
 
-
-
-
-
-
-
 \subsection{Training a Classifier on Faxified Document Images}\label{trainingfaxifiedclassifier}
 
-The faxification process mimics the way the fax machine works. Usually, fax machines transmit only black-and-white images, which might be dirty and are generally also not aligned perfectly. This leads to several common artifacts being introduced into transferred images, so faxification process attempts to mimic those introductions of artifacts into images. The faxification process transforms clean gray-scale synthetic document images in such a way like it was sent via fax. The faxification process is not deterministic, involves randomness during the process of faxification of the images. It uses several image transformations like gamma transformation, brightness transformation, 180-degree rotations, resizing, rescaling, binarization, adding noise, adding verticle lines, and conversion to a grayscale image. The faxification process can be visualized in figure \ref{fig:FaxificationProcess}. In figure \ref{fig:FaxificationProcessZoomed}, it is visible a snippet from the synthetic document image that has transformed randomly into different image transformations when it has been through the faxification process.
+
+\begin{figure}[H]
+        \begin{center}
+	    \includegraphics[scale=0.25]{images/Evaluation/FaxificationProcess.jpg}
+	    \caption[Illustration of faxification process applied on synthetic document images.]{Illustration of faxification process applied on synthetic document images (figure reproduced from elevait GmbH \& Co. KG with permission).}
+	    \label{fig:FaxificationProcess}
+	    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+        \begin{center}
+	    \includegraphics[scale=0.15]{images/Evaluation/FaxificationProcessZoomed.jpg}
+	    \caption[Illustration of faxified document images to conclude that faxification process is a random process, the input images are faxified randomly to create distinct output.]{Illustration of faxified document images to conclude that faxification process is a random process, the input images are faxified randomly to create distinct and random output. For example, for a snippet in a synthetic document image (a), snippets of faxified document images shown in (b) are created distinct and random.}
+	    \label{fig:FaxificationProcessZoomed}
+	    \end{center}
+\end{figure}
 
 
+The faxification process mimics the way the fax machine works. Usually, fax machines transmit only black-and-white images, which might be dirty and are generally also not aligned perfectly. This leads to several common artifacts being introduced into transferred images, so faxification process attempts to mimic those introductions of artifacts into images. The faxification process transforms clean gray-scale synthetic document images in such a way like it was sent via fax. The faxification process is not deterministic, involves randomness during the process of faxification of the images. It uses several image transformations like gamma transformation, brightness transformation, 180-degree rotations, resizing, rescaling, binarization, adding noise, adding verticle lines, and conversion to a grayscale image. The faxification process can be visualized in figure \ref{fig:FaxificationProcess}. In figure \ref{fig:FaxificationProcessZoomed}, it is visible a snippet from the synthetic document image that has transformed randomly into different image transformations when it has been through the faxification process. The faxification process is implemented in Python using a traditional programming approach.
+
+Before this experiment faxified document images dataset is created using synthetic document images and faxification process (figure \ref{fig:FaxificationProcess}). In this experiment, the same classifier (table \ref{table:ClassifierArchitecture}), is trained on faxified document images dataset. The performance of this classifier is evaluated on annotated real document images (test dataset) to understand the domain gap between real data distribution and faxified data distribution. The classification report in table \ref{table:FaxifiedClassificationReport} states that the accuracy of this classifier on annotated real document images is 43\%, macro average f1-score is  58\%, and weighted average f1-score is 43\%. The weighted average f1-score concludes that the faxified data distribution matched more than 40\% to the real data distribution. Also, compared to other data distributions like synthetic and \ac{CycleGAN} generated, the faxified data distribution is more similar to the real data distribution. The confusion matrix is illustrated in figure \ref{fig:CMFaxifiedDocumentImagesClassifier}. In the confusion matrix, it's visible that document images of class DE\_LY\_Bein\_2020-01 are wrongly classified as DE\_LY\_Bein\_2020-03. The rest of the document images are classified satisfactorily. The epochs against accuracy and epochs against loss plots while training classifier on synthetic document images is illustrated in figure \ref{fig:FaxifiedClassifierAcc} and \ref{fig:FaxifiedClassifierLoss} respectively.
 
 \begin{figure}[H]
   \centering
@@ -268,31 +280,6 @@ The faxification process mimics the way the fax machine works. Usually, fax mach
     \label{fig:FaxifiedClassifierLoss}
   \end{minipage}
 \end{figure}
-
-
-
-\begin{figure}[H]
-        \begin{center}
-	    \includegraphics[scale=0.25]{images/Evaluation/FaxificationProcess.jpg}
-	    \caption[Illustration of faxification process applied on synthetic document images.]{Illustration of faxification process applied on synthetic document images (figure reproduced from elevait GmbH \& Co. KG with permission).}
-	    \label{fig:FaxificationProcess}
-	    \end{center}
-\end{figure}
-
-
-
-\begin{figure}[H]
-        \begin{center}
-	    \includegraphics[scale=0.15]{images/Evaluation/FaxificationProcessZoomed.jpg}
-	    \caption[Illustration of faxified document images to conclude that faxification process is a random process, the input images are faxified randomly to create distinct output.]{Illustration of faxified document images to conclude that faxification process is a random process, the input images are faxified randomly to create distinct and random output. For example, for a snippet in a synthetic document image (a), snippets of faxified document images shown in (b) are created distinct and random.}
-	    \label{fig:FaxificationProcessZoomed}
-	    \end{center}
-\end{figure}
-
-
-
-
-
 
 \begin{center}
 \begin{table}[H]
@@ -340,50 +327,34 @@ The faxification process mimics the way the fax machine works. Usually, fax mach
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Results}\label{results}
+In this chapter, the qualitative and quantitative results are discussed. In section \ref{QualitativeResults}, the qualitative results are illustrated to understand the quality of \ac{CycleGAN} generated document images. Also, the typical failure cases of the proposed method to the problem statement are illustrated in section \ref{FailureCases}. In figure \ref{fig:QualitativeResults}, some images of synthetic document images that are transformed into realistic document images by the proposed image-to-image translation application are illustrated. The figure \ref{fig:failure1} illustrates the proposed image-to-image translation application using \ac{CycleGAN} has failed to transform handwritten crops present in the synthetic document images. The figure \ref{fig:failure2} illustrates the transformed image has undesired noisy artifacts. Figure \ref{fig:failure3} illustrates transformed image has a dark border and noisy artifacts. Figure \ref{fig:failure4} illustrates transformed image has random artifacts that are not present in the synthetic document image.
 
+In section \ref{QuantitativeResults}, the quantitative results are illustrated using a table and bar plot. In which the performance of the classifier trained using different distributions is evaluated and compared. The evaluation metrics like accuracy, macro average f1-score, and weighted average f1-score are used. As the testing dataset of annotated real document images is unbalanced we consider weighted average f1-score for comparison. Results show the \ac{CycleGAN} generated document images were 25\% similar to the real document images. But, the faxified document images were 43\% similar to the real document images. The final results reveal that \ac{CycleGAN} could not achieve the expected results quantitatively. The faxified data distribution created using the faxification process was satisfactorily matched to the real data distribution. The qualitative results (figure \ref{QualitativeResults}) look very promising. The proposed image-to-image translation application can be improved further in the future using different methods and loss functions. The future work and discussion about the results achieved in this thesis are explained in the chapter \ref{conclusion} in more detail.
 
-\subsection{Qualitative Results}
-
-The qualitative results look very promising. It is observed mode collapse has not occurred after training \ac{CycleGAN} for 20 epochs and with the dataset of 100,000 images in both domains and batch size 1. In Section \ref{FailureCases} failure cases like, no reconstrcution of handwritten crop in the target domain and unecessary noise.
-
-Synthetic document images transformed into realistic document images by image-to-image translation application implemented using \ac{CycleGAN}. The generator $G$ ($G: X \rightarrow Y$) in \ac{CycleGAN} model is used, to transform synthetic document image (from source domain) into realistic document image (in the target domain).
-
+\subsection{Quantitative Results}\label{QuantitativeResults}
 \begin{figure}[H]
         \begin{center}
-	    \includegraphics[scale=0.30]{images/Evaluation/Qualitative_Results.png}
-	    \caption[Synthetic document images transformed into realistic document images by the image-to-image translation application.]{Synthetic document images transformed into realistic document images by image-to-image translation application (figure reproduced from elevait GmbH \& Co. KG with permission).}
-	    \label{fig:QualitativeResults}
+	    \includegraphics[scale=0.90]{images/Evaluation/ComparisonOfAccuracyAndF1Score.png}
+	    \caption[Comparison of accuracies and f1-scores, when the classifiers trained on different data distributions and evaluated on annotated real document images.]{Comparison of accuracies and f1-scores, when the classifiers trained on different data distributions and evaluated on annotated real document images.}
+	    \label{fig:ComparisonOfAccuracyAndF1Score}
 	    \end{center}
 \end{figure}
 
 
-\subsubsection{Failure Cases}\label{FailureCases}
-
-
-\begin{figure}[H]
-        \begin{center}
-	    \includegraphics[scale=0.28]{images/Evaluation/failure1.png}
-	    \caption[The snippet from \ac{CycleGAN} generated document image displays that the proposed image-to-image translation application could not transform or reconstruct handwritten crops in the target domain from the source domain.]{The snippet from \ac{CycleGAN} generated document image (b) displays that the proposed image-to-image translation application could not transform or reconstruct handwritten crops in the target domain from the syhsource domain (figure reproduced from elevait GmbH \& Co. KG with permission).}
-	    \label{fig:failure1}
-	    \end{center}
-\end{figure}
-
-
-\begin{figure}[H]
-        \begin{center}
-	    \includegraphics[scale=0.50]{images/Evaluation/failure2.png}
-	    \caption[The \ac{CycleGAN} generated document image consists of noisy artifacts which are unrealistic.]{The \ac{CycleGAN} generated document image consists of noisy artifacts which are unrealistic (figure reproduced from elevait GmbH \& Co. KG with permission).}
-	    \label{fig:failure2}
-	    \end{center}
-\end{figure}
-
-
-\subsection{Quantitative Results}
-
-
-
-\begin{table}[hbp!]
+\begin{table}[H]
 \hspace*{-4.5em}
 \begin{tabular}{cccc} 
 	\toprule
@@ -396,18 +367,74 @@ Synthetic document images transformed into realistic document images by image-to
      \bf{Faxified document images} & 43\% & 43\% & 58\%\\[0.0ex]
      \bottomrule
 \end{tabular}
- \caption[Comparison of accuracy and f1-scores when the classifiers trained on different data distributions and evaluated on annotated real document images.]{Comparison of accuracy and f1-scores when the classifiers trained on different data distributions and evaluated on annotated real document images.}
+ \caption[The accuracies and f1-scores when the classifiers trained on different data distributions and evaluated on annotated real document images.]{The accuracies and f1-scores when the classifiers trained on different data distributions and evaluated on annotated real document images.}
     \label{table:finalResults}
 \end{table}
 
 
+\subsection{Qualitative Results}\label{QualitativeResults}
+
+\subsection{Failure Cases}\label{FailureCases}
+
 \begin{figure}[H]
         \begin{center}
-	    \includegraphics[scale=1.0]{images/Evaluation/ComparisonOfAccuracyAndF1Score.png}
-	    \caption[The bar plot of accuracy and f1-scores, when the classifiers trained on different data distributions and evaluated on annotated real document images.]{The bar plot of accuracy and f1-scores, when the classifiers trained on different data distributions and evaluated on annotated real document images. The bar plot shows, the classifier trained using faxified document images is closer to real document images compared to other data distributions.}
-	    \label{fig:ComparisonOfAccuracyAndF1Score}
+	    \includegraphics[scale=0.28]{images/Evaluation/failure1.png}
+	    \caption[The snippet from \ac{CycleGAN} generated document image illustrates that the proposed image-to-image translation application could not transform or reconstruct handwritten crops in the target domain from the synthetic document image in the source domain.]{The snippet from \ac{CycleGAN} generated document image illustrates that the proposed image-to-image translation application could not transform or reconstruct handwritten crops in the target domain from the synthetic document image in the source domain (figure reproduced from elevait GmbH \& Co. KG with permission).}
+	    \label{fig:failure1}
 	    \end{center}
 \end{figure}
+
+\begin{figure}[H]
+        \begin{center}
+	    \includegraphics[scale=0.50]{images/Evaluation/failure2.png}
+	    \caption[The \ac{CycleGAN} generated document image consists of noisy artifacts that are unrealistic.]{The \ac{CycleGAN} generated document image consists of noisy artifacts that are unrealistic (figure reproduced from elevait GmbH \& Co. KG with permission).}
+	    \label{fig:failure2}
+	    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+        \begin{center}
+	    \includegraphics[scale=0.50]{images/Evaluation/failure3.png}
+	    \caption[The \ac{CycleGAN} generated document image consists of dark border.]{The \ac{CycleGAN} generated document image consists of dark border (figure reproduced from elevait GmbH \& Co. KG with permission).}
+	    \label{fig:failure3}
+	    \end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+        \begin{center}
+	    \includegraphics[scale=0.50]{images/Evaluation/failure4.png}
+	    \caption[There are some artifacts appear in the generated image that are not present in the synthetic image.]{The \ac{CycleGAN} generated document image consists of noisy artifacts that are unrealistic and the visual quality of the generated image is not good. There are some artifacts (marked in red box) appear in the generated images that are not present in the synthetic image (figure reproduced from elevait GmbH \& Co. KG with permission).}
+	    \label{fig:failure4}
+	    \end{center}
+\end{figure}
+
+
+
+\begin{figure}[H]
+        \begin{center}
+	    \includegraphics[scale=0.30]{images/Evaluation/Qualitative_Results.png}
+	    \caption[Synthetic document images transformed into realistic document images by the image-to-image translation application.]{Synthetic document images transformed into realistic document images by the image-to-image translation application (figure reproduced from elevait GmbH \& Co. KG with permission).}
+	    \label{fig:QualitativeResults}
+	    \end{center}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
