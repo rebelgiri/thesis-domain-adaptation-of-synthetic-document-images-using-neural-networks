@@ -24,6 +24,15 @@
 %font type
 %\usepackage{tgheros}
 
+% For fancy bullet list
+\usepackage{enumitem}
+\usepackage{bbding}
+\usepackage{tikz}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=0.3pt] (char) {#1};}}
+% For fancy bullet list
+
 % image caption setup
 \usepackage{caption}
 \captionsetup[figure]{justification=justified, format=plain, font=small, labelfont=bf}

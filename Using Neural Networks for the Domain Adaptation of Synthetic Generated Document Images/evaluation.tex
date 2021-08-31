@@ -32,7 +32,7 @@ The accuracy is the most common metric used to evaluate classifiers. It is the r
 f1-score is the harmonic mean of the precision and recall (equation \ref{f1-score}). The weighted average f1-score is determined by first calculating the f1-score of each class separately and each multiplied by the weight (the number of true instances for each class) and finally added together, hence favoring the majority class. The equation \ref{Weightedf1-score} represents the weighted average f1-score. The macro average f1-score computes the unweighted mean of separate f1-score of each class. The macro average f1-score does not take label inbalance into account. This leads to bigger penalization when the classifier does not perform well on minority classes. The equation \ref{macrof1-score} represents the macro average f1-score. In equations \ref{Weightedf1-score} and \ref{macrof1-score}, $N$ represents number of classes.
 
 More information about accuracy, precision, recall, and f1-score can be found \href{https://en.wikipedia.org/wiki/Precision_and_recall}{here\footnotemark.}
-\footnotetext{\url{https://en.wikipedia.org/wiki/Precision_and_recall} last access: 03.08.2021}
+\footnotetext{\url{https://en.wikipedia.org/wiki/Precision_and_recall} last access: \dcdate}
 
 
 \begin{equation}\label{f1-score}
@@ -52,7 +52,7 @@ More information about accuracy, precision, recall, and f1-score can be found \h
 
 
 The confusion matrix is the most intuitive metric to determine the accuracy of the classifiers. It is useful when the classifier has to classify more than two classes. A confusion matrix is a table that describes how well a classifier performs on a test dataset that is labeled or annotated. The instances of the true class are represented at each row of the confusion matrix whereas the instances of predicted class probabilities are represented by each column or vice versa. Here, the confusion matrix is extensively used to analyze the performance of the classifiers trained on different data distributions. More information about the confusion matrix can be found \href{https://en.wikipedia.org/wiki/Confusion_matrix}{here}\footnotemark.
-\footnotetext{\url{https://en.wikipedia.org/wiki/Confusion_matrix} last access: 03.08.2021}
+\footnotetext{\url{https://en.wikipedia.org/wiki/Confusion_matrix} last access: \dcdate}
 
 
 \section{Experiments}\label{experiments}
@@ -110,9 +110,9 @@ The image-to-image translation application, which is implemented using \ac{Cycle
   \end{minipage}
 \end{figure}
 
-The \ac{CycleGAN} training happens by calculating loss and updating the weights of discriminators $D_X$ and $D_Y$, and generators $G$ and $F$ respectively. First, random input images $x_i$ and $y_i$ are retrieved from source domain $X$ and target domain $Y$. The fake image generated using generator $G$ is $Generated\_Y$ and the fake image generated using generator by $F$ is $Generated\_X$. As we described earlier, $G$ is a mapping function to transform an image from source domain $X$ to target domain $Y$, mathematically it is $G: X \rightarrow Y$. And $F$ is vice versa $F: Y \rightarrow X$. The generator $G$ is called the forward generator, and $F$ is called the backward generator. First, the discriminator loss for $D_X$ and $D_Y$ on real and fake images is computed. The computed discriminator loss is used to update the weights of both discriminators. Next, cycle consistency loss is calculated by transforming the source domain image into the target domain, back again into the source domain. It is called forward cycle consistency loss. It is calculated by determining the difference between the original image in the source domain and cycled image back in the source domain. If you refer to figure \ref{fig:GxyFyx}, the forward cycle consistency loss is the difference between \textit{Input\_X} and \textit{Cyclic\_X}. The backward cycle consistency loss is calculated by transforming the target domain image into the source domain, back again into the target domain. In figure \ref{fig:GxyFyx}, the backward cycle consistency loss is the difference between \textit{Input\_Y} and \textit{Cyclic\_Y}. The cycle consistency loss forces generating an image that is context instead of generating random images.
+The \ac{CycleGAN} training happens by calculating loss and updating the weights of discriminators $D_X$ and $D_Y$, and generators $G$ and $F$ respectively. First, random input images $x_i$ and $y_i$ are retrieved from source domain $X$ and target domain $Y$. The fake image generated using generator $G$ is $Generated\_Y$ and the fake image generated using generator by $F$ is $Generated\_X$. As we described earlier, $G$ is a mapping function to transform an image from source domain $X$ to target domain $Y$, mathematically it is $G: X \rightarrow Y$. And $F$ is vice versa $F: Y \rightarrow X$. The generator $G$ is called the forward generator, and $F$ is called the backward generator. First, the discriminator loss for $D_X$ and $D_Y$ on real and fake images is computed. The computed discriminator loss is used to update the weights of both discriminators. Next, cycle-consistency loss is calculated by transforming the source domain image into the target domain, back again into the source domain. It is called forward cycle-consistency loss. It is calculated by determining the difference between the original image in the source domain and cycled image back in the source domain. If you refer to figure \ref{fig:GxyFyx}, the forward cycle-consistency loss is the difference between \textit{Input\_X} and \textit{Cyclic\_X}. The backward cycle-consistency loss is calculated by transforming the target domain image into the source domain, back again into the target domain. In figure \ref{fig:GxyFyx}, the backward cycle-consistency loss is the difference between \textit{Input\_Y} and \textit{Cyclic\_Y}. The cycle-consistency loss forces generating an image that is context instead of generating random images.
 
-Further, identity mapping loss is calculated to preserve the color of images after domain translation using generators $G$ and $F$. The generator $G$ transforms the image from domain $X$ to the domain $Y$. When the input $y_i$ is given to generator $G$ from the target domain $Y$, it should produce an identical image. The identity mapping loss for generator $G$ is the difference between the original image $y_i$, and the transformed image \textit{Same\_Y} when $y_i$ is used as an input for $G$. And, the identity mapping loss for generator $F$ is the difference between input image $x_i$ and the transformed image \textit{Same\_X} when $x_i$ is used as an input for $F$. The generator loss for generators $G$ and $F$ is calculated by the feedback given by their respective discriminators $D_Y$ and $D_X$. Combining generator loss, cycle consistency loss, and identity mapping loss, the total generator loss is calculated separately for generators $G$ and $F$, and their weights are updated to produce quality images. The epochs against loss plot while training generators $G$ and $F$ are shown in figure \ref{fig:generatorG} and \ref{fig:generatorF} respectively. Also, the epochs against loss plot while training discriminators $D_X$ and $D_Y$ are shown in figure \ref{fig:discriminatorDx} and \ref{fig:discriminatorDy} respectively. To understand the algorithm of \ac{CycleGAN} in-depth, refer to the pseudo-code from \ref{alg:CycleGANAlgorithm}.
+Further, identity mapping loss is calculated to preserve the color of images after domain translation using generators $G$ and $F$. The generator $G$ transforms the image from domain $X$ to the domain $Y$. When the input $y_i$ is given to generator $G$ from the target domain $Y$, it should produce an identical image. The identity mapping loss for generator $G$ is the difference between the original image $y_i$, and the transformed image \textit{Same\_Y} when $y_i$ is used as an input for $G$. And, the identity mapping loss for generator $F$ is the difference between input image $x_i$ and the transformed image \textit{Same\_X} when $x_i$ is used as an input for $F$. The generator loss for generators $G$ and $F$ is calculated by the feedback given by their respective discriminators $D_Y$ and $D_X$. Combining generator loss, cycle-consistency loss, and identity mapping loss, the total generator loss is calculated separately for generators $G$ and $F$, and their weights are updated to produce quality images. The epochs against loss plot while training generators $G$ and $F$ are shown in figure \ref{fig:generatorG} and \ref{fig:generatorF} respectively. Also, the epochs against loss plot while training discriminators $D_X$ and $D_Y$ are shown in figure \ref{fig:discriminatorDx} and \ref{fig:discriminatorDy} respectively. To understand the algorithm of \ac{CycleGAN} in-depth, refer to the pseudo-code from \ref{alg:CycleGANAlgorithm}.
 
 
 
@@ -178,10 +178,10 @@ Before this experiment, the dataset of synthetic document images is created usin
 
 
 
-\subsection{Training a Classifier on \ac{CycleGAN} Generated Document Images}
+\subsection{Training a Classifier on \ac{CycleGAN} Generated Document Images}\label{trainingCycleGANDataClassifier}
 
 
-This is the most important experiment of this thesis. After the \ac{CycleGAN} is trained, the generator $G$ is loaded from the saved checkpoint, to perform image-to-image translation, simply to say, transforming synthetic document images to realistic document images. 100,000 synthetic document images are transformed into realistic document images. The transformed 100,000 realistic document images are used to train the same classifier (table \ref{table:ClassifierArchitecture}). The performance of this classifier is evaluated on annotated real document images (test dataset) to understand the domain gap between real data distribution and \ac{CycleGAN} generated data distribution and quality of generated images compared to real images. The classification report in table \ref{table:CycleGANClassificationReport} states that the accuracy of this classifier on annotated real document images is 27\%, macro average f1-score is 34\%, and weighted average f1-score is 25\%. The majority of documents are of the type ``Bein'', and they are similar to each other. It has been found, a small artifact transformation failure has caused the wrong classification hence, the performance evaluation was very challenging. The confusion matrix is illustrated in figure \ref{fig:CMFaxifiedDocumentImagesClassifier}. In the confusion matrix, the document images DE\_LY\_Arm\_2020-01, DE\_LY\_Bein\_2019-07,  DE\_LY\_Hand\_2020-01, and DE\_PH\_Bein\_2020-01 are classified satisfactorily. Document images DE\_LY\_Bein\_2020-01 and DE\_LY\_Bein\_2020-03 are wrongly classified as DE\_LY\_Bein\_2019-07. Document images DE\_PH\_Bein\_2018-09 and DE\_PH\_Bein\_2019-02 are wrongly classified as DE\_PH\_Bein\_2019-02. In section \ref{QualitativeResults}, qualitative results of the image-to-image translation are illustrated along with failure cases. The epochs against accuracy and epochs against loss plots while training classifier on \ac{CycleGAN} generated document images is illustrated in figure \ref{fig:CycleGANClassifierAcc} and \ref{fig:CycleGANClassifierLoss} respectively.
+This is the most important experiment of this thesis. After the \ac{CycleGAN} is trained, the generator $G$ is loaded from the saved checkpoint, to perform image-to-image translation, simply to say, transforming synthetic document images to realistic document images. 100,000 synthetic document images are transformed into realistic document images. The transformed 100,000 realistic document images are used to train the same classifier (table \ref{table:ClassifierArchitecture}). The performance of this classifier is evaluated on annotated real document images (test dataset) to understand the domain gap between real data distribution and \ac{CycleGAN} generated data distribution and quality of generated images compared to real images. The classification report in table \ref{table:CycleGANClassificationReport} states that the accuracy of this classifier on annotated real document images is 27\%, macro average f1-score is 34\%, and weighted average f1-score is 25\%. The majority of documents are of the type ``Bein'', and they are similar to each other. It has been found, a small artifact transformation failure has caused the wrong classification because learning such minor differences and features present in training datasets by \ac{CycleGAN} was very challenging. The confusion matrix is illustrated in figure \ref{fig:CMFaxifiedDocumentImagesClassifier}. In the confusion matrix, the document images DE\_LY\_Arm\_2020-01, DE\_LY\_Bein\_2019-07,  DE\_LY\_Hand\_2020-01, and DE\_PH\_Bein\_2020-01 are classified satisfactorily. Document images DE\_LY\_Bein\_2020-01 and DE\_LY\_Bein\_2020-03 are wrongly classified as DE\_LY\_Bein\_2019-07. Document images DE\_PH\_Bein\_2018-09 and DE\_PH\_Bein\_2019-02 are wrongly classified as DE\_PH\_Bein\_2019-02. In section \ref{QualitativeResults}, qualitative results of the image-to-image translation are illustrated along with failure cases. The epochs against accuracy and epochs against loss plots while training classifier on \ac{CycleGAN} generated document images is illustrated in figure \ref{fig:CycleGANClassifierAcc} and \ref{fig:CycleGANClassifierLoss} respectively.
 
 
 \begin{figure}[H]
@@ -342,21 +342,16 @@ Before this experiment faxified document images dataset is created using synthet
 \section{Results}\label{results}
 In this chapter, the qualitative and quantitative results are discussed. In section \ref{QualitativeResults}, the qualitative results are illustrated to understand the quality of \ac{CycleGAN} generated document images. Also, the typical failure cases of the proposed method to the problem statement are illustrated in section \ref{FailureCases}. In figure \ref{fig:QualitativeResults}, some images of synthetic document images that are transformed into realistic document images by the proposed image-to-image translation application are illustrated. The figure \ref{fig:failure1} illustrates the proposed image-to-image translation application using \ac{CycleGAN} has failed to transform handwritten crops present in the synthetic document images. The figure \ref{fig:failure2} illustrates the transformed image has undesired noisy artifacts. Figure \ref{fig:failure3} illustrates transformed image has a dark border and noisy artifacts. Figure \ref{fig:failure4} illustrates transformed image has random artifacts that are not present in the synthetic document image.
 
-In section \ref{QuantitativeResults}, the quantitative results are illustrated using a table and bar plot. In which the performance of the classifier trained using different distributions is evaluated and compared. The evaluation metrics like accuracy, macro average f1-score, and weighted average f1-score are used. As the testing dataset of annotated real document images is unbalanced we consider weighted average f1-score for comparison. Results show the \ac{CycleGAN} generated document images were 25\% similar to the real document images. But, the faxified document images were 43\% similar to the real document images. The final results reveal that \ac{CycleGAN} could not achieve the expected results quantitatively. The faxified data distribution created using the faxification process was satisfactorily matched to the real data distribution. The qualitative results (figure \ref{QualitativeResults}) look very promising. The proposed image-to-image translation application can be improved further in the future using different methods and loss functions. The future work and discussion about the results achieved in this thesis are explained in the chapter \ref{conclusion} in more detail.
+In section \ref{QuantitativeResults}, the quantitative results are illustrated using a table and bar plot. In which the performance of the classifier trained using different distributions is evaluated and compared. The evaluation metrics like accuracy, macro average f1-score, and weighted average f1-score are used. As the testing dataset of annotated real document images is unbalanced we consider weighted average f1-score for comparison. Results show the \ac{CycleGAN} generated document images were 25\% similar to the real document images. But, the faxified document images were 43\% similar to the real document images. Results reveal that \ac{CycleGAN} could not achieve the expected results quantitatively. The faxified data distribution created using the faxification process was satisfactorily matched to the real data distribution. The qualitative results (figure \ref{QualitativeResults}) look very promising. The proposed image-to-image translation application can be improved further in the future using different methods and loss functions. The future work and discussion about the results achieved in this thesis are explained in the chapter \ref{conclusion} in more detail.
 
 \subsection{Quantitative Results}\label{QuantitativeResults}
-\begin{figure}[H]
-        \begin{center}
-	    \includegraphics[scale=0.90]{images/Evaluation/ComparisonOfAccuracyAndF1Score.png}
-	    \caption[Comparison of accuracies and f1-scores, when the classifiers trained on different data distributions and evaluated on annotated real document images.]{Comparison of accuracies and f1-scores, when the classifiers trained on different data distributions and evaluated on annotated real document images.}
-	    \label{fig:ComparisonOfAccuracyAndF1Score}
-	    \end{center}
-\end{figure}
 
+
+\hspace*{5.0em}
 
 \begin{table}[H]
-\hspace*{-4.5em}
-\begin{tabular}{cccc} 
+%\hspace*{-5.40em}
+\begin{tabular}{P{0.25\linewidth} P{0.20\linewidth} P{0.20\linewidth} P{0.20\linewidth}} 
 	\toprule
 	\bf{Data distributions} & \bf{Accuracy}  & \bf{Weighted average f1-score} & \bf{Macro average f1-score} \\[0.0ex] 
 	\midrule
@@ -372,7 +367,26 @@ In section \ref{QuantitativeResults}, the quantitative results are illustrated u
 \end{table}
 
 
+\begin{figure}[H]
+        \begin{center}
+	    \includegraphics[scale=0.90]{images/Evaluation/ComparisonOfAccuracyAndF1Score.png}
+	    \caption[Comparison of accuracies and f1-scores, when the classifiers trained on different data distributions and evaluated on annotated real document images.]{Comparison of accuracies and f1-scores, when the classifiers trained on different data distributions and evaluated on annotated real document images.}
+	    \label{fig:ComparisonOfAccuracyAndF1Score}
+	    \end{center}
+\end{figure}
+
+
 \subsection{Qualitative Results}\label{QualitativeResults}
+
+
+\begin{figure}[H]
+        \begin{center}
+	    \includegraphics[scale=0.30]{images/Evaluation/Qualitative_Results.png}
+	    \caption[Synthetic document images transformed into realistic document images by the image-to-image translation application.]{Synthetic document images transformed into realistic document images by the image-to-image translation application (figure reproduced from elevait GmbH \& Co. KG with permission).}
+	    \label{fig:QualitativeResults}
+	    \end{center}
+\end{figure}
+
 
 \subsection{Failure Cases}\label{FailureCases}
 
@@ -411,13 +425,6 @@ In section \ref{QuantitativeResults}, the quantitative results are illustrated u
 
 
 
-\begin{figure}[H]
-        \begin{center}
-	    \includegraphics[scale=0.30]{images/Evaluation/Qualitative_Results.png}
-	    \caption[Synthetic document images transformed into realistic document images by the image-to-image translation application.]{Synthetic document images transformed into realistic document images by the image-to-image translation application (figure reproduced from elevait GmbH \& Co. KG with permission).}
-	    \label{fig:QualitativeResults}
-	    \end{center}
-\end{figure}
 
 
 
@@ -490,7 +497,7 @@ In section \ref{QuantitativeResults}, the quantitative results are illustrated u
 \end{table}
 \end{center}
 
-\newpage
+
 
 
 \begin{center}
@@ -534,5 +541,23 @@ In section \ref{QuantitativeResults}, the quantitative results are illustrated u
     \end{center}
 \end{table}
 \end{center}
+
+\begin{table}[H]
+\hspace*{-5.40em}
+\begin{tabular}{cccc} 
+	\toprule
+	\bf{Data distributions} & \bf{Accuracy}  & \bf{Weighted average f1-score} & \bf{Macro average f1-score} \\[0.0ex] 
+	\midrule
+     \bf{Synthetic document images} & 25\% & 31\% & 27\%\\[0.0ex]
+     \midrule
+     \bf{\ac{CycleGAN} generated document images} & 27\% & 25\% & 34\%\\[0.0ex]
+     \midrule
+     \bf{Faxified document images} & 43\% & 43\% & 58\%\\[0.0ex]
+     \bottomrule
+\end{tabular}
+ \caption[The accuracies and f1-scores when the classifiers trained on different data distributions and evaluated on annotated real document images.]{The accuracies and f1-scores when the classifiers trained on different data distributions and evaluated on annotated real document images.}
+    \label{table:finalResults}
+\end{table}
+
 
 \end{comment}
