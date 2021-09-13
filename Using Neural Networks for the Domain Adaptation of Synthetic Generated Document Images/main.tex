@@ -1,7 +1,12 @@
 \documentclass[fleqn]{report}
 \usepackage[utf8]{inputenc}
 \usepackage{ragged2e}
+
+% Configure colors in RGB values
 \usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{color}
+
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
@@ -20,6 +25,17 @@
 \usepackage{adjustbox}
 \usepackage[linesnumbered]{algorithm2e}
 \usepackage{pdfpages}
+
+
+
+%link colors
+\hypersetup{
+     linkbordercolor=magenta,
+     linkcolor=magenta,
+    pdftitle={Using Neural Networks for the Domain Adaptation of Synthetic Generated Document Images}
+}
+
+
 
 %font type
 %\usepackage{tgheros}
@@ -141,9 +157,9 @@
 \input{acrolist}
 \newpage
 
-\chapter*{List of Symbols}
-\input{listofsymbols}
-\newpage
+%\chapter*{List of Symbols}
+%\input{listofsymbols}
+%\newpage
 
 \chapter{Introduction}
     \label{introduction}
