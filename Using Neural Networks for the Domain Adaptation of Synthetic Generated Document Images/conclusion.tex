@@ -11,7 +11,13 @@ In this chapter, the overview of this thesis is described by outlining the probl
 
 Since the last decades, many success stories about deep learning have been written. Also, it has evolved tremendously due to the introduction of neural networks, which learn complex patterns present in videos, images, and speeches. Nowadays, neural networks are widely used in autonomous vehicles, language translations, object detection, face recognition, speech recognition, and many other sophisticated applications. However, there are limitations to deep learning models. In traditional deep learning models, neural networks are trained and tested on similar data distribution or the same domain to achieve the final objective by minimizing the error. In real-world scenarios, the data could arrive from different feature spaces, data distributions, and different domains. In such situations, neural networks don't generalize well to the data arrived from new data distribution or domain; for example, the model to detect pedestrian trained images of a pedestrian in summer might fail to detect pedestrians in winter. This problem of performance degradation causes because domain shift \cite{farahani2020brief}.
 
-A large amount of training data is required to train neural networks to achieve low generalization error and high performance. However, training data are scarce and it is a very difficult job to collect and annotate the data. Hence, machine learning engineers required to create synthetic data, but neural networks trained using synthetic data will not generalize well on real data. So, over the year several domain adaption methodologies are developed by machine learning researchers to solve the problem of domain shift \cite{farahani2020brief}. For example, transforming the image of a zebra from the source domain into the image of a horse in the target domain, and vice versa. Such kind of domain adaptation can be achieved by numerous image-to-image translation applications.
+A large amount of training data is required to train neural networks to achieve low generalization error and high performance. However, training data are scarce and it is a very difficult job to collect and annotate the data. Hence, machine learning engineers required to create synthetic data, but neural networks trained using synthetic data will not generalize well on real data. So, over the year several domain adaption methodologies are developed by machine learning researchers to solve the problem of domain shift by closing the domain gap between two different domains\cite{farahani2020brief}. 
+
+
+For example, transforming the image of a zebra from the source domain into the image of a horse in the target domain, and vice versa. Such kind of domain adaptation can be achieved by numerous image-to-image translation applications.
+
+
+
 
 \section{Conclusion}\label{Conclusion}
 
