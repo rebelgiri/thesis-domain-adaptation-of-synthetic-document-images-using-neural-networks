@@ -2,7 +2,7 @@
 \justifying
 \setlength{\parskip}{1em}
 
-In this chapter, the experiments conducted in this thesis are described along with evaluation metrics and results. In section \ref{EvaluationMetrics} the evaluation metrics like accuracy, precision, recall, confusion matrix, and f1-score are explained. These metrics are used to evaluate the domain gap between the distributions and quality of \ac{CycleGAN} generated document images. In section \ref{experiments} all the experiments that are conducted in this thesis are explained along with training plots, confusion matrices, and classification reports. Finally, in section \ref{results}, quantitative and qualitative results are discussed thoroughly.
+In this chapter, the experiments conducted in this thesis are described along with evaluation metrics and results. In section \ref{EvaluationMetrics} the evaluation metrics like accuracy, precision, recall, confusion matrix, and f1-score are explained. These metrics are used to evaluate the domain gap between the distributions and quality of \ac{CycleGAN} generated document images. In section \ref{experiments} conducted experiments are explained along with training plots, confusion matrices, and classification reports. Finally, in section \ref{results}, quantitative and qualitative results are discussed thoroughly along with the typical failure cases.
 
 \section{Evaluation Metrics}\label{EvaluationMetrics}
 
@@ -29,9 +29,7 @@ The accuracy is the most common metric used to evaluate classifiers. It is the r
 \textit{Accuracy} = \frac{TP + TN}{TP +TN+ FP + FN}
 \end{equation}
 
-f1-score is the harmonic mean of the precision and recall (equation \ref{f1-score}). The weighted average f1-score is determined by first calculating the f1-score of each class separately and each multiplied by the weight (the number of true instances for each class) and finally added together, hence favoring the majority class. The equation \ref{Weightedf1-score} represents the weighted average f1-score. The macro average f1-score computes the unweighted mean of separate f1-score of each class. The macro average f1-score does not take label inbalance into account. This leads to bigger penalization when the classifier does not perform well on minority classes. The equation \ref{macrof1-score} represents the macro average f1-score. In equations \ref{Weightedf1-score} and \ref{macrof1-score}, $N$ represents number of classes.
-
-More information about accuracy, precision, recall, and f1-score can be found \href{https://en.wikipedia.org/wiki/Precision_and_recall}{here\footnotemark.}
+The f1-score is the harmonic mean of the precision and recall (equation \ref{f1-score}). The weighted average f1-score is determined by first calculating the f1-score of each class separately and each multiplied by the weight (the number of true instances for each class) and finally added together, hence favoring the majority class. The equation \ref{Weightedf1-score} represents the weighted average f1-score. The macro average f1-score computes the unweighted mean of separate f1-score of each class. The macro average f1-score does not take label inbalance into account. This leads to bigger penalization when the classifier does not perform well on minority classes. The equation \ref{macrof1-score} represents the macro average f1-score. In equations \ref{Weightedf1-score} and \ref{macrof1-score}, $N$ represents number of classes. More information about accuracy, precision, recall, and f1-score can be found \href{https://en.wikipedia.org/wiki/Precision_and_recall}{here\footnotemark.}
 \footnotetext{\url{https://en.wikipedia.org/wiki/Precision_and_recall} last access: \dcdate}
 
 
@@ -70,8 +68,8 @@ Once training is finished, the latest saved checkpoint can be loaded to generate
     \item Train a classifier on synthetic document images and evaluate its classification performance on the annotated real document images.
     \item Train a classifier on faxified document images and evaluate its classification performance on the annotated real document images.
     \item Train a \ac{CycleGAN} using synthetic document images and real document images.
-    \item Generate realistic document images using generator $G$ from the trained \ac{CycleGAN} model. As mentioned above realistic document images are also called \ac{CycleGAN} generated document images.
-    \item Train a classifier on \ac{CycleGAN} generated document images and evaluate its classification performance on the annotated real document images.
+    \item Generate realistic document images using generator $G$ from the trained \ac{CycleGAN} model.
+    \item Train a classifier on \ac{CycleGAN} generated realistic document images and evaluate its classification performance on the annotated real document images.
     \item Compare the classification performance of the above three classifiers on the annotated real document images, to illustrate the domain gap between real data distribution and other three distributions like synthetic data distribution, faxified data distribution, and \ac{CycleGAN} generated data distribution. The performance evaluation of a classifier trained upon \ac{CycleGAN} generated data distribution using annotated real document images describes, how close is the \ac{CycleGAN} generated data distribution to the real data distribution. Simply this approach determines the quality of the \ac{CycleGAN} generated document images compared to real document images.
 \end{enumerate}
 
@@ -342,7 +340,6 @@ Before this experiment faxified document images dataset is created using synthet
 \section{Results}\label{results}
 In this chapter, the qualitative and quantitative results are discussed. In section \ref{QualitativeResults}, the qualitative results are illustrated to understand the quality of \ac{CycleGAN} generated document images. Also, the typical failure cases of the proposed method to the problem statement are illustrated in section \ref{FailureCases}. In figure \ref{fig:QualitativeResults}, some images of synthetic document images that are transformed into realistic document images by the proposed image-to-image translation application are illustrated. The figure \ref{fig:failure1} illustrates the proposed image-to-image translation application using \ac{CycleGAN} has failed to transform handwritten crops present in the synthetic document images. The figure \ref{fig:failure2} illustrates the transformed image has undesired noisy artifacts. Figure \ref{fig:failure3} illustrates transformed image has a dark border and noisy artifacts. Figure \ref{fig:failure4} illustrates transformed image has random artifacts that are not present in the synthetic document image.
 
-In section \ref{QuantitativeResults}, the quantitative results are illustrated using a table and bar plot. In which the performance of the classifier trained using different distributions is evaluated and compared. The evaluation metrics like accuracy, macro average f1-score, and weighted average f1-score are used. As the testing dataset of annotated real document images is unbalanced we consider weighted average f1-score for comparison. Results show the \ac{CycleGAN} generated document images were 25\% similar to the real document images. But, the faxified document images were 43\% similar to the real document images. Results reveal that \ac{CycleGAN} could not achieve the expected results quantitatively. The faxified data distribution created using the faxification process was satisfactorily matched to the real data distribution. The qualitative results (figure \ref{QualitativeResults}) look very promising. The proposed image-to-image translation application can be improved further in the future using different methods and loss functions. The future work and discussion about the results achieved in this thesis are explained in the chapter \ref{conclusion} in more detail.
 
 \subsection{Quantitative Results}\label{QuantitativeResults}
 
@@ -386,6 +383,10 @@ In section \ref{QuantitativeResults}, the quantitative results are illustrated u
 	    \label{fig:QualitativeResults}
 	    \end{center}
 \end{figure}
+
+
+In section \ref{QuantitativeResults}, the quantitative results are illustrated using a table and bar plot. In which the performance of the classifier trained using different distributions is evaluated and compared. The evaluation metrics like accuracy, macro average f1-score, and weighted average f1-score are used. As the testing dataset of annotated real document images is unbalanced we consider weighted average f1-score for comparison. Results show the \ac{CycleGAN} generated document images were 25\% similar to the real document images. But, the faxified document images were 43\% similar to the real document images. Results reveal that \ac{CycleGAN} could not achieve the expected results quantitatively. The faxified data distribution created using the faxification process was satisfactorily matched to the real data distribution. The qualitative results (figure \ref{QualitativeResults}) look very promising. The proposed image-to-image translation application can be improved further in the future using different methods and loss functions. The future work and discussion about the results achieved in this thesis are explained in the chapter \ref{conclusion} in more detail.
+
 
 
 \subsection{Failure Cases}\label{FailureCases}

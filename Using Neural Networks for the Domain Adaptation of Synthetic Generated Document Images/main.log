@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2020.12.20)  11 SEP 2021 18:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2020.12.20)  20 SEP 2021 00:56
 entering extended mode
 **"D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-u
 sing-neural-networks/Using Neural Networks for the Domain Adaptation of Synthet
@@ -1264,7 +1264,7 @@ c Generated Document Images\metadata.tex")
 ("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
 ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
 c Generated Document Images\titlepage.tex"
-<images/TUC_deutsch_einzeile_CMYK.pdf, id=258, 273.02pt x 24.09pt>
+<images/TUC_deutsch_einzeile_CMYK.pdf, id=254, 273.02pt x 24.09pt>
 File: images/TUC_deutsch_einzeile_CMYK.pdf Graphic file (type pdf)
 <use images/TUC_deutsch_einzeile_CMYK.pdf>
 Package pdftex.def Info: images/TUC_deutsch_einzeile_CMYK.pdf  used on input li
@@ -1275,3 +1275,972 @@ LaTeX Font Info:    Trying to load font information for U+msa on input line 42.
 
 ("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\u
 msa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 42.
+
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\u
+msb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 42
+.
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ulasy
+.fd"
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+) [1
+
+
+
+
+{C:/Users/Giriraj Pawar/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <D:/
+Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-using-n
+eural-networks/Using Neural Networks for the Domain Adaptation of Synthetic Gen
+erated Document Images/images/TUC_deutsch_einzeile_CMYK.pdf>])
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\metadatainfo.tex"
+Underfull \hbox (badness 10000) in paragraph at lines 3--12
+
+ []
+
+)
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\abstarct.tex"pdfTeX warning (ext4): destination wit
+h the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4 \begin{abstract}
+                     [1]
+Package acronym Info: Label `acro:CycleGAN' newly defined as it shall be overri
+dden
+although it is yet undefined on input line 7.
+Package acronym Info: Label `acro:GAN' newly defined as it shall be overridden
+although it is yet undefined on input line 29.
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.31 \end{abstract}
+                    [1]pdfTeX warning (ext4): destination with the same identif
+ier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.59 \end{abstract}
+                   } [1]) (main.tocpdfTeX warning (ext4): destination with the 
+same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.54 ...Qualitative Results}{57}{subsection.6.3.2}
+                                                  % [1
+
+]
+Package acronym Info: Label `acro:MNIST' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 61.
+)
+\tf@toc=\write5
+\openout5 = `main.toc'.
+
+ [2] (main.lof
+Package acronym Info: Label `acro:SVHN' newly defined as it shall be overridden
+
+although it is yet undefined on input line 4.
+Package acronym Info: Label `acro:cGAN' newly defined as it shall be overridden
+
+although it is yet undefined on input line 11.
+Package acronym Info: Label `acro:CNN' newly defined as it shall be overridden
+although it is yet undefined on input line 20.
+ [3
+
+])
+\tf@lof=\write6
+\openout6 = `main.lof'.
+
+
+[4] (main.lot)
+\tf@lot=\write7
+\openout7 = `main.lot'.
+
+ [5
+
+] (main.loa)
+\tf@loa=\write8
+\openout8 = `main.loa'.
+
+ [6
+
+]
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\acrolist.tex"
+
+LaTeX Warning: Hyper reference `acro:FID' on page 7 undefined on input line 27.
+
+
+
+LaTeX Warning: Hyper reference `acro:FID' on page 7 undefined on input line 27.
+
+
+) [7
+
+]
+Chapter 1.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\introduction.tex"
+Package acronym Info: Label `acro:AI' newly defined as it shall be overridden
+although it is yet undefined on input line 8.
+Package acronym Info: Label `acro:ML' newly defined as it shall be overridden
+although it is yet undefined on input line 8.
+Package acronym Info: Label `acro:DL' newly defined as it shall be overridden
+although it is yet undefined on input line 8.
+Package acronym Info: Label `acro:ANN' newly defined as it shall be overridden
+although it is yet undefined on input line 8.
+<images/Introduction/deeplearningsubset.jpg, id=750, 966.61125pt x 812.28468pt>
+
+File: images/Introduction/deeplearningsubset.jpg Graphic file (type jpg)
+<use images/Introduction/deeplearningsubset.jpg>
+Package pdftex.def Info: images/Introduction/deeplearningsubset.jpg  used on in
+put line 13.
+(pdftex.def)             Requested size: 241.65222pt x 203.07066pt.
+ [8
+
+ <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images/images/Introduction/deeplearningsubset.jpg>]
+<images/Introduction/TransferLearning.png, id=775, 596.2275pt x 353.06906pt>
+File: images/Introduction/TransferLearning.png Graphic file (type png)
+<use images/Introduction/TransferLearning.png>
+Package pdftex.def Info: images/Introduction/TransferLearning.png  used on inpu
+t line 39.
+(pdftex.def)             Requested size: 238.48677pt x 141.22511pt.
+ [9 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Introduction/TransferLearning.png>]
+<images/Introduction/DA.png, id=798, 1961.82938pt x 634.62094pt>
+File: images/Introduction/DA.png Graphic file (type png)
+<use images/Introduction/DA.png>
+Package pdftex.def Info: images/Introduction/DA.png  used on input line 52.
+(pdftex.def)             Requested size: 294.2617pt x 95.18903pt.
+
+Underfull \hbox (badness 7631) in paragraph at lines 58--58
+[][][]$\OT1/cmtt/m/n/8 https : / / machinelearning . apple . com / research / b
+ridging-[]the-[]domain-[]gap-[]for-[]neural-[]models$[] \OT1/cmr/m/n/8 last ac-
+cess:
+ []
+
+Package acronym Info: Label `acro:HTR' newly defined as it shall be overridden
+although it is yet undefined on input line 64.
+Package acronym Info: Label `acro:OCR' newly defined as it shall be overridden
+although it is yet undefined on input line 64.
+[10 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Introduction/DA.png>]
+<images/Introduction/img_translation.JPG, id=835, 533.5935pt x 330.33412pt>
+File: images/Introduction/img_translation.JPG Graphic file (type jpg)
+<use images/Introduction/img_translation.JPG>
+Package pdftex.def Info: images/Introduction/img_translation.JPG  used on input
+ line 68.
+(pdftex.def)             Requested size: 266.7961pt x 165.16666pt.
+<images/Introduction/DomainAdaptation.png, id=838, 1130.72438pt x 976.39781pt>
+File: images/Introduction/DomainAdaptation.png Graphic file (type png)
+<use images/Introduction/DomainAdaptation.png>
+Package pdftex.def Info: images/Introduction/DomainAdaptation.png  used on inpu
+t line 77.
+(pdftex.def)             Requested size: 316.60066pt x 273.38953pt.
+ [11 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Introduction/img_translation.JPG> <D:/Th
+esis/git_report/thesis-domain-adaptation_of-synthetic-document-images-using-neu
+ral-networks/Using Neural Networks for the Domain Adaptation of Synthetic Gener
+ated Document Images/images/Introduction/DomainAdaptation.png>]
+<images/Introduction/Problem.png, id=866, 752.0597pt x 328.22626pt>
+File: images/Introduction/Problem.png Graphic file (type png)
+<use images/Introduction/Problem.png>
+Package pdftex.def Info: images/Introduction/Problem.png  used on input line 99
+.
+(pdftex.def)             Requested size: 451.2393pt x 196.93727pt.
+
+Overfull \hbox (17.61931pt too wide) in paragraph at lines 99--100
+ [] 
+ []
+
+Package acronym Info: Label `acro:COCO' newly defined as it shall be overridden
+
+although it is yet undefined on input line 107.
+[12 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Introduction/Problem.png>]
+<images/Introduction/ProposedSolution.png, id=885, 630.10406pt x 495.35063pt>
+File: images/Introduction/ProposedSolution.png Graphic file (type png)
+<use images/Introduction/ProposedSolution.png>
+Package pdftex.def Info: images/Introduction/ProposedSolution.png  used on inpu
+t line 113.
+(pdftex.def)             Requested size: 346.5583pt x 272.4437pt.
+ [13 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Introduction/ProposedSolution.png>]) [14
+]
+Chapter 2.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\relatedworks.tex"
+Package acronym Info: Label `acro:DBN' newly defined as it shall be overridden
+although it is yet undefined on input line 14.
+Package acronym Info: Label `acro:Stacked-CAE' newly defined as it shall be ove
+rridden
+although it is yet undefined on input line 14.
+Package acronym Info: Label `acro:Deep-GSN' newly defined as it shall be overri
+dden
+although it is yet undefined on input line 14.
+<images/relatedWorks/GANEvolution.jpg, id=947, 1424.32124pt x 1935.23pt>
+File: images/relatedWorks/GANEvolution.jpg Graphic file (type jpg)
+<use images/relatedWorks/GANEvolution.jpg>
+Package pdftex.def Info: images/relatedWorks/GANEvolution.jpg  used on input li
+ne 18.
+(pdftex.def)             Requested size: 356.07944pt x 483.80632pt.
+Package acronym Info: Label `acro:LSGAN' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 27.
+Package acronym Info: Label `acro:DCGAN' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 27.
+Package acronym Info: Label `acro:EBGAN' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 27.
+ [15
+
+] [16 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-imag
+es-using-neural-networks/Using Neural Networks for the Domain Adaptation of Syn
+thetic Generated Document Images/images/relatedWorks/GANEvolution.jpg>]
+<images/relatedWorks/CGAN.png, id=1026, 1274.51157pt x 444.91219pt>
+File: images/relatedWorks/CGAN.png Graphic file (type png)
+<use images/relatedWorks/CGAN.png>
+Package pdftex.def Info: images/relatedWorks/CGAN.png  used on input line 35.
+(pdftex.def)             Requested size: 382.35643pt x 133.47467pt.
+Package acronym Info: Label `acro:CUT' newly defined as it shall be overridden
+although it is yet undefined on input line 41.
+Package acronym Info: Label `acro:MUNIT' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 41.
+Package acronym Info: Label `acro:DRIT' newly defined as it shall be overridden
+
+although it is yet undefined on input line 41.
+Package acronym Info: Label `acro:GCGAN' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 41.
+Package acronym Info: Label `acro:FastCUT' newly defined as it shall be overrid
+den
+although it is yet undefined on input line 41.
+ [17 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/relatedWorks/CGAN.png>]
+<images/relatedWorks/LearningToClean.jpg, id=1077, 727.96968pt x 538.26094pt>
+File: images/relatedWorks/LearningToClean.jpg Graphic file (type jpg)
+<use images/relatedWorks/LearningToClean.jpg>
+Package pdftex.def Info: images/relatedWorks/LearningToClean.jpg  used on input
+ line 46.
+(pdftex.def)             Requested size: 436.78519pt x 322.95906pt.
+
+Overfull \hbox (3.16519pt too wide) in paragraph at lines 46--47
+ [] 
+ []
+
+Package acronym Info: Label `acro:PSNR' newly defined as it shall be overridden
+
+although it is yet undefined on input line 54.
+[18 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/relatedWorks/LearningToClean.jpg>]
+<images/relatedWorks/CycleGANExamples.png, id=1118, 1271.5003pt x 575.90157pt>
+File: images/relatedWorks/CycleGANExamples.png Graphic file (type png)
+<use images/relatedWorks/CycleGANExamples.png>
+Package pdftex.def Info: images/relatedWorks/CycleGANExamples.png  used on inpu
+t line 59.
+(pdftex.def)             Requested size: 445.03177pt x 201.56856pt.
+
+Overfull \hbox (11.41177pt too wide) in paragraph at lines 59--60
+ [] 
+ []
+
+Package acronym Info: Label `acro:GT' newly defined as it shall be overridden
+although it is yet undefined on input line 70.
+Package acronym Info: Label `acro:DIBCO' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 70.
+[19 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/relatedWorks/CycleGANExamples.png>]
+Package acronym Info: Label `acro:WGAN' newly defined as it shall be overridden
+
+although it is yet undefined on input line 76.
+)
+[20]
+Chapter 3.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\fundamentals.tex"
+<images/Fundamentals/GANTrainingintuition.png, id=1219, 1413.78188pt x 989.9484
+4pt>
+File: images/Fundamentals/GANTrainingintuition.png Graphic file (type png)
+<use images/Fundamentals/GANTrainingintuition.png>
+Package pdftex.def Info: images/Fundamentals/GANTrainingintuition.png  used on 
+input line 12.
+(pdftex.def)             Requested size: 353.44461pt x 247.4865pt.
+ [21
+
+ <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images/images/Fundamentals/GANTrainingintuition.png>]
+<images/Fundamentals/GANStructure.png, id=1237, 1378.39969pt x 672.26157pt>
+File: images/Fundamentals/GANStructure.png Graphic file (type png)
+<use images/Fundamentals/GANStructure.png>
+Package pdftex.def Info: images/Fundamentals/GANStructure.png  used on input li
+ne 32.
+(pdftex.def)             Requested size: 413.5231pt x 201.68002pt.
+ [22 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Fundamentals/GANStructure.png>]
+<images/Fundamentals/GANTraining.jpg, id=1257, 881.79437pt x 290.58563pt>
+File: images/Fundamentals/GANTraining.jpg Graphic file (type jpg)
+<use images/Fundamentals/GANTraining.jpg>
+Package pdftex.def Info: images/Fundamentals/GANTraining.jpg  used on input lin
+e 53.
+(pdftex.def)             Requested size: 432.08302pt x 142.3882pt.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 64.
+
+[23 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Fundamentals/GANTraining.jpg>]
+<images/Fundamentals/discriminatorTraining.png, id=1282, 966.61125pt x 442.6537
+5pt>
+File: images/Fundamentals/discriminatorTraining.png Graphic file (type png)
+<use images/Fundamentals/discriminatorTraining.png>
+Package pdftex.def Info: images/Fundamentals/discriminatorTraining.png  used on
+ input line 78.
+(pdftex.def)             Requested size: 434.97105pt x 199.19234pt.
+
+Overfull \hbox (1.35106pt too wide) in paragraph at lines 78--79
+ [] 
+ []
+
+<images/Fundamentals/generatorTraining.png, id=1286, 1429.59094pt x 691.08188pt
+>
+File: images/Fundamentals/generatorTraining.png Graphic file (type png)
+<use images/Fundamentals/generatorTraining.png>
+Package pdftex.def Info: images/Fundamentals/generatorTraining.png  used on inp
+ut line 94.
+(pdftex.def)             Requested size: 428.8806pt x 207.32616pt.
+[24 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Fundamentals/discriminatorTraining.png> <
+D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-usin
+g-neural-networks/Using Neural Networks for the Domain Adaptation of Synthetic 
+Generated Document Images/images/Fundamentals/generatorTraining.png>] [25]
+Package acronym Info: Label `acro:ILSVRC' newly defined as it shall be overridd
+en
+although it is yet undefined on input line 149.
+<images/Fundamentals/CNNBuildingBlocks.JPG, id=1327, 770.37813pt x 336.25626pt>
+
+File: images/Fundamentals/CNNBuildingBlocks.JPG Graphic file (type jpg)
+<use images/Fundamentals/CNNBuildingBlocks.JPG>
+Package pdftex.def Info: images/Fundamentals/CNNBuildingBlocks.JPG  used on inp
+ut line 159.
+(pdftex.def)             Requested size: 454.51917pt x 198.38947pt.
+
+Overfull \hbox (20.89917pt too wide) in paragraph at lines 159--160
+ [] 
+ []
+
+Package acronym Info: Label `acro:2D' newly defined as it shall be overridden
+although it is yet undefined on input line 170.
+[26 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Fundamentals/CNNBuildingBlocks.JPG>]
+<images/Fundamentals/ConvolutionZeroPadding.JPG, id=1359, 563.60562pt x 370.885
+62pt>
+File: images/Fundamentals/ConvolutionZeroPadding.JPG Graphic file (type jpg)
+<use images/Fundamentals/ConvolutionZeroPadding.JPG>
+Package pdftex.def Info: images/Fundamentals/ConvolutionZeroPadding.JPG  used o
+n input line 176.
+(pdftex.def)             Requested size: 338.16597pt x 222.53308pt.
+<images/Fundamentals/Convolution.JPG, id=1368, 743.02594pt x 1553.05219pt>
+File: images/Fundamentals/Convolution.JPG Graphic file (type jpg)
+<use images/Fundamentals/Convolution.JPG>
+Package pdftex.def Info: images/Fundamentals/Convolution.JPG  used on input lin
+e 188.
+(pdftex.def)             Requested size: 297.20511pt x 621.20988pt.
+
+[27 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Fundamentals/ConvolutionZeroPadding.JPG>]
+[28 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Fundamentals/Convolution.JPG>]
+<images/Fundamentals/ann.png, id=1387, 901.11656pt x 621.07031pt>
+File: images/Fundamentals/ann.png Graphic file (type png)
+<use images/Fundamentals/ann.png>
+Package pdftex.def Info: images/Fundamentals/ann.png  used on input line 206.
+(pdftex.def)             Requested size: 270.33705pt x 186.32253pt.
+<images/Fundamentals/artificialNeuron.png, id=1389, 1090.82532pt x 684.30656pt>
+
+File: images/Fundamentals/artificialNeuron.png Graphic file (type png)
+<use images/Fundamentals/artificialNeuron.png>
+Package pdftex.def Info: images/Fundamentals/artificialNeuron.png  used on inpu
+t line 222.
+(pdftex.def)             Requested size: 327.25012pt x 205.29355pt.
+ [29 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Fundamentals/ann.png>]
+<images/Fundamentals/ActivationFunctions.jpg, id=1403, 1030.34938pt x 229.35687
+pt>
+File: images/Fundamentals/ActivationFunctions.jpg Graphic file (type jpg)
+<use images/Fundamentals/ActivationFunctions.jpg>
+Package pdftex.def Info: images/Fundamentals/ActivationFunctions.jpg  used on i
+nput line 235.
+(pdftex.def)             Requested size: 432.74379pt x 96.32922pt.
+ [30 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Fundamentals/artificialNeuron.png> <D:/T
+hesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-using-ne
+ural-networks/Using Neural Networks for the Domain Adaptation of Synthetic Gene
+rated Document Images/images/Fundamentals/ActivationFunctions.jpg>]
+<images/Fundamentals/PoolingLayer.png, id=1422, 542.025pt x 405.01312pt>
+File: images/Fundamentals/PoolingLayer.png Graphic file (type png)
+<use images/Fundamentals/PoolingLayer.png>
+Package pdftex.def Info: images/Fundamentals/PoolingLayer.png  used on input li
+ne 254.
+(pdftex.def)             Requested size: 271.01183pt x 202.50606pt.
+Package acronym Info: Label `acro:1D' newly defined as it shall be overridden
+although it is yet undefined on input line 264.
+ [31 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Fundamentals/PoolingLayer.png>]) [32]
+Chapter 4.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\methodology.tex"
+<images/Methodology/Gxy.png, id=1445, 2323.93219pt x 1091.57813pt>
+File: images/Methodology/Gxy.png Graphic file (type png)
+<use images/Methodology/Gxy.png>
+Package pdftex.def Info: images/Methodology/Gxy.png  used on input line 14.
+(pdftex.def)             Requested size: 476.98463pt x 224.04146pt.
+
+Overfull \hbox (43.36464pt too wide) in paragraph at lines 13--16
+ [][] 
+ []
+
+<images/Methodology/Fyx.png, id=1446, 2284.03313pt x 1057.70157pt>
+File: images/Methodology/Fyx.png Graphic file (type png)
+<use images/Methodology/Fyx.png>
+Package pdftex.def Info: images/Methodology/Fyx.png  used on input line 18.
+(pdftex.def)             Requested size: 476.98463pt x 220.88116pt.
+
+Overfull \hbox (43.36464pt too wide) in paragraph at lines 17--20
+ [][] 
+ []
+
+
+LaTeX Warning: Reference `rwdiscussion' on page 33 undefined on input line 38.
+
+[33
+
+] [34 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-imag
+es-using-neural-networks/Using Neural Networks for the Domain Adaptation of Syn
+thetic Generated Document Images/images/Methodology/Gxy.png> <D:/Thesis/git_rep
+ort/thesis-domain-adaptation_of-synthetic-document-images-using-neural-networks
+/Using Neural Networks for the Domain Adaptation of Synthetic Generated Documen
+t Images/images/Methodology/Fyx.png>] [35]
+<images/Methodology/CycleGAN.jpg, id=1487, 859.21pt x 248.42813pt>
+File: images/Methodology/CycleGAN.jpg Graphic file (type jpg)
+<use images/Methodology/CycleGAN.jpg>
+Package pdftex.def Info: images/Methodology/CycleGAN.jpg  used on input line 78
+.
+(pdftex.def)             Requested size: 429.60396pt x 124.21376pt.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 105.
+
+) [36 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-imag
+es-using-neural-networks/Using Neural Networks for the Domain Adaptation of Syn
+thetic Generated Document Images/images/Methodology/CycleGAN.jpg>] [37]
+Chapter 5.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\implementation.tex"
+<images/Implementation/keinwifi.JPG, id=1549, 415.5525pt x 391.4625pt>
+File: images/Implementation/keinwifi.JPG Graphic file (type jpg)
+<use images/Implementation/keinwifi.JPG>
+Package pdftex.def Info: images/Implementation/keinwifi.JPG  used on input line
+ 14.
+(pdftex.def)             Requested size: 186.99689pt x 176.1565pt.
+ [38
+
+ <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images/images/Implementation/keinwifi.JPG>]
+<images/Implementation/InsertHandwrittenCrops.png, id=1569, 1014.79124pt x 406.
+51875pt>
+File: images/Implementation/InsertHandwrittenCrops.png Graphic file (type png)
+<use images/Implementation/InsertHandwrittenCrops.png>
+Package pdftex.def Info: images/Implementation/InsertHandwrittenCrops.png  used
+ on input line 25.
+(pdftex.def)             Requested size: 405.9093pt x 162.60461pt.
+<images/Implementation/TemplatesWithMinorDifference.png, id=1573, 1504.8722pt x
+ 656.4525pt>
+File: images/Implementation/TemplatesWithMinorDifference.png Graphic file (type
+ png)
+<use images/Implementation/TemplatesWithMinorDifference.png>
+Package pdftex.def Info: images/Implementation/TemplatesWithMinorDifference.png
+  used on input line 37.
+(pdftex.def)             Requested size: 451.46515pt x 196.93727pt.
+
+Overfull \hbox (17.84515pt too wide) in paragraph at lines 37--38
+ [] 
+ []
+
+<images/Implementation/TemplatesWithMajorDifference.png, id=1574, 1504.8722pt x
+ 651.18282pt>
+File: images/Implementation/TemplatesWithMajorDifference.png Graphic file (type
+ png)
+<use images/Implementation/TemplatesWithMajorDifference.png>
+Package pdftex.def Info: images/Implementation/TemplatesWithMajorDifference.png
+  used on input line 47.
+(pdftex.def)             Requested size: 451.46515pt x 195.35635pt.
+
+Overfull \hbox (17.84515pt too wide) in paragraph at lines 47--48
+ [] 
+ []
+
+[39 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Implementation/InsertHandwrittenCrops.png
+> <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-u
+sing-neural-networks/Using Neural Networks for the Domain Adaptation of Synthet
+ic Generated Document Images/images/Implementation/TemplatesWithMinorDifference
+.png>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 119.
+
+Package acronym Info: Label `acro:ResNet' newly defined as it shall be overridd
+en
+although it is yet undefined on input line 121.
+[40 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Implementation/TemplatesWithMajorDifferen
+ce.png>]
+<images/Implementation/resnetBlocks.png, id=1595, 615.0478pt x 291.33844pt>
+File: images/Implementation/resnetBlocks.png Graphic file (type png)
+<use images/Implementation/resnetBlocks.png>
+Package pdftex.def Info: images/Implementation/resnetBlocks.png  used on input 
+line 126.
+(pdftex.def)             Requested size: 399.77634pt x 189.36774pt.
+LaTeX Font Info:    Trying to load font information for OT1+qcr on input line 1
+32.
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tex-gyre\o
+t1qcr.fd"
+File: ot1qcr.fd 2009/09/25 v1.2 font definition file for OT1/qcr
+)
+Overfull \hbox (26.31766pt too wide) in paragraph at lines 142--168
+ [][] 
+ []
+
+[41 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Implementation/resnetBlocks.png>]
+Overfull \hbox (4.63533pt too wide) in paragraph at lines 184--205
+ [][] 
+ []
+
+[42]
+Overfull \hbox (4.63533pt too wide) in paragraph at lines 222--249
+ [][] 
+ []
+
+[43]
+<images/Implementation/Preprocessing.png, id=1646, 478.03593pt x 777.65532pt>
+File: images/Implementation/Preprocessing.png Graphic file (type png)
+<use images/Implementation/Preprocessing.png>
+Package pdftex.def Info: images/Implementation/Preprocessing.png  used on input
+ line 268.
+(pdftex.def)             Requested size: 167.31508pt x 272.18344pt.
+ [44]
+<images/Implementation/ClassifierPreprocessing.png, id=1669, 277.78781pt x 337.
+26pt>
+File: images/Implementation/ClassifierPreprocessing.png Graphic file (type png)
+
+<use images/Implementation/ClassifierPreprocessing.png>
+Package pdftex.def Info: images/Implementation/ClassifierPreprocessing.png  use
+d on input line 284.
+(pdftex.def)             Requested size: 152.78375pt x 185.49356pt.
+ [45 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Implementation/Preprocessing.png>]) [46 
+<D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-usi
+ng-neural-networks/Using Neural Networks for the Domain Adaptation of Synthetic
+ Generated Document Images/images/Implementation/ClassifierPreprocessing.png>]
+Chapter 6.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\evaluation.tex" [47
+
+] [48]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 77.
+
+<images/Evaluation/GeneratorGTraining.png, id=1752, 462.528pt x 346.896pt>
+File: images/Evaluation/GeneratorGTraining.png Graphic file (type png)
+<use images/Evaluation/GeneratorGTraining.png>
+Package pdftex.def Info: images/Evaluation/GeneratorGTraining.png  used on inpu
+t line 84.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+<images/Evaluation/DiscriminatorDyTraining.png, id=1756, 462.528pt x 346.896pt>
+
+File: images/Evaluation/DiscriminatorDyTraining.png Graphic file (type png)
+<use images/Evaluation/DiscriminatorDyTraining.png>
+Package pdftex.def Info: images/Evaluation/DiscriminatorDyTraining.png  used on
+ input line 90.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+<images/Evaluation/GeneratorFTraining.png, id=1759, 462.528pt x 346.896pt>
+File: images/Evaluation/GeneratorFTraining.png Graphic file (type png)
+<use images/Evaluation/GeneratorFTraining.png>
+Package pdftex.def Info: images/Evaluation/GeneratorFTraining.png  used on inpu
+t line 99.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+<images/Evaluation/DiscriminatorDxTraining.png, id=1762, 462.528pt x 346.896pt>
+
+File: images/Evaluation/DiscriminatorDxTraining.png Graphic file (type png)
+<use images/Evaluation/DiscriminatorDxTraining.png>
+Package pdftex.def Info: images/Evaluation/DiscriminatorDxTraining.png  used on
+ input line 105.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+[49 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Evaluation/GeneratorGTraining.png> <D:/Th
+esis/git_report/thesis-domain-adaptation_of-synthetic-document-images-using-neu
+ral-networks/Using Neural Networks for the Domain Adaptation of Synthetic Gener
+ated Document Images/images/Evaluation/DiscriminatorDyTraining.png>] [50 <D:/Th
+esis/git_report/thesis-domain-adaptation_of-synthetic-document-images-using-neu
+ral-networks/Using Neural Networks for the Domain Adaptation of Synthetic Gener
+ated Document Images/images/Evaluation/GeneratorFTraining.png> <D:/Thesis/git_r
+eport/thesis-domain-adaptation_of-synthetic-document-images-using-neural-networ
+ks/Using Neural Networks for the Domain Adaptation of Synthetic Generated Docum
+ent Images/images/Evaluation/DiscriminatorDxTraining.png>]
+<images/Evaluation/Synthetic_Data_Classifier_2021-05-31_16-40-33_Accuracy.png, 
+id=1801, 462.528pt x 346.896pt>
+File: images/Evaluation/Synthetic_Data_Classifier_2021-05-31_16-40-33_Accuracy.
+png Graphic file (type png)
+<use images/Evaluation/Synthetic_Data_Classifier_2021-05-31_16-40-33_Accuracy.p
+ng>
+Package pdftex.def Info: images/Evaluation/Synthetic_Data_Classifier_2021-05-31
+_16-40-33_Accuracy.png  used on input line 124.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+<images/Evaluation/Synthetic_Data_Classifier_2021-05-31_16-40-33_Loss.png, id=1
+802, 462.528pt x 346.896pt>
+File: images/Evaluation/Synthetic_Data_Classifier_2021-05-31_16-40-33_Loss.png 
+Graphic file (type png)
+<use images/Evaluation/Synthetic_Data_Classifier_2021-05-31_16-40-33_Loss.png>
+Package pdftex.def Info: images/Evaluation/Synthetic_Data_Classifier_2021-05-31
+_16-40-33_Loss.png  used on input line 130.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 179.
+
+[51 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Evaluation/Synthetic_Data_Classifier_2021
+-05-31_16-40-33_Accuracy.png> <D:/Thesis/git_report/thesis-domain-adaptation_of
+-synthetic-document-images-using-neural-networks/Using Neural Networks for the 
+Domain Adaptation of Synthetic Generated Document Images/images/Evaluation/Synt
+hetic_Data_Classifier_2021-05-31_16-40-33_Loss.png>]
+<images/Evaluation/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_Accur
+acy.png, id=1821, 462.528pt x 346.896pt>
+File: images/Evaluation/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_
+Accuracy.png Graphic file (type png)
+<use images/Evaluation/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_A
+ccuracy.png>
+Package pdftex.def Info: images/Evaluation/CycleGAN_Generated_Data_Classifier_2
+021-06-02_21-55-39_Accuracy.png  used on input line 188.
+(pdftex.def)             Requested size: 195.12767pt x 146.34637pt.
+<images/Evaluation/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_Loss.
+png, id=1824, 462.528pt x 346.896pt>
+File: images/Evaluation/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_
+Loss.png Graphic file (type png)
+<use images/Evaluation/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_L
+oss.png>
+Package pdftex.def Info: images/Evaluation/CycleGAN_Generated_Data_Classifier_2
+021-06-02_21-55-39_Loss.png  used on input line 194.
+(pdftex.def)             Requested size: 195.12767pt x 146.34637pt.
+<images/Evaluation/FaxificationProcess.jpg, id=1829, 1754.05313pt x 938.75719pt
+>
+File: images/Evaluation/FaxificationProcess.jpg Graphic file (type jpg)
+<use images/Evaluation/FaxificationProcess.jpg>
+Package pdftex.def Info: images/Evaluation/FaxificationProcess.jpg  used on inp
+ut line 248.
+(pdftex.def)             Requested size: 438.5122pt x 234.68872pt.
+
+Overfull \hbox (4.89221pt too wide) in paragraph at lines 248--249
+ [] 
+ []
+
+[52 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Evaluation/CycleGAN_Generated_Data_Classi
+fier_2021-06-02_21-55-39_Accuracy.png> <D:/Thesis/git_report/thesis-domain-adap
+tation_of-synthetic-document-images-using-neural-networks/Using Neural Networks
+ for the Domain Adaptation of Synthetic Generated Document Images/images/Evalua
+tion/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_Loss.png>]
+<images/Evaluation/FaxificationProcessZoomed.jpg, id=1836, 2605.48407pt x 1251.
+92719pt>
+File: images/Evaluation/FaxificationProcessZoomed.jpg Graphic file (type jpg)
+<use images/Evaluation/FaxificationProcessZoomed.jpg>
+Package pdftex.def Info: images/Evaluation/FaxificationProcessZoomed.jpg  used 
+on input line 256.
+(pdftex.def)             Requested size: 390.80576pt x 187.78098pt.
+ [53 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Evaluation/FaxificationProcess.jpg> <D:/
+Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-using-n
+eural-networks/Using Neural Networks for the Domain Adaptation of Synthetic Gen
+erated Document Images/images/Evaluation/FaxificationProcessZoomed.jpg>]
+<images/Evaluation/Faxified_Data_Classifier_2021-05-31_19-31-35_Accuracy.png, i
+d=1850, 462.528pt x 346.896pt>
+File: images/Evaluation/Faxified_Data_Classifier_2021-05-31_19-31-35_Accuracy.p
+ng Graphic file (type png)
+<use images/Evaluation/Faxified_Data_Classifier_2021-05-31_19-31-35_Accuracy.pn
+g>
+Package pdftex.def Info: images/Evaluation/Faxified_Data_Classifier_2021-05-31_
+19-31-35_Accuracy.png  used on input line 270.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+<images/Evaluation/Faxified_Data_Classifier_2021-05-31_19-31-35_Loss.png, id=18
+51, 462.528pt x 346.896pt>
+File: images/Evaluation/Faxified_Data_Classifier_2021-05-31_19-31-35_Loss.png G
+raphic file (type png)
+<use images/Evaluation/Faxified_Data_Classifier_2021-05-31_19-31-35_Loss.png>
+Package pdftex.def Info: images/Evaluation/Faxified_Data_Classifier_2021-05-31_
+19-31-35_Loss.png  used on input line 276.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+ [54 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Evaluation/Faxified_Data_Classifier_2021
+-05-31_19-31-35_Accuracy.png> <D:/Thesis/git_report/thesis-domain-adaptation_of
+-synthetic-document-images-using-neural-networks/Using Neural Networks for the 
+Domain Adaptation of Synthetic Generated Document Images/images/Evaluation/Faxi
+fied_Data_Classifier_2021-05-31_19-31-35_Loss.png>]
+<images/Evaluation/ComparisonOfAccuracyAndF1Score.png, id=1873, 413.29407pt x 2
+97.36093pt>
+File: images/Evaluation/ComparisonOfAccuracyAndF1Score.png Graphic file (type p
+ng)
+<use images/Evaluation/ComparisonOfAccuracyAndF1Score.png>
+Package pdftex.def Info: images/Evaluation/ComparisonOfAccuracyAndF1Score.png  
+used on input line 370.
+(pdftex.def)             Requested size: 371.96121pt x 267.62236pt.
+ [55]
+<images/Evaluation/Qualitative_Results.png, id=1878, 1361.085pt x 1891.065pt>
+File: images/Evaluation/Qualitative_Results.png Graphic file (type png)
+<use images/Evaluation/Qualitative_Results.png>
+Package pdftex.def Info: images/Evaluation/Qualitative_Results.png  used on inp
+ut line 382.
+(pdftex.def)             Requested size: 408.32866pt x 567.32388pt.
+ [56 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Evaluation/ComparisonOfAccuracyAndF1Scor
+e.png>]
+<images/Evaluation/failure1.png, id=1883, 1486.80469pt x 674.52pt>
+File: images/Evaluation/failure1.png Graphic file (type png)
+<use images/Evaluation/failure1.png>
+Package pdftex.def Info: images/Evaluation/failure1.png  used on input line 393
+.
+(pdftex.def)             Requested size: 416.30247pt x 188.8643pt.
+ [57 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Evaluation/Qualitative_Results.png>]
+<images/Evaluation/failure2.png, id=1891, 873.2625pt x 408.02437pt>
+File: images/Evaluation/failure2.png Graphic file (type png)
+<use images/Evaluation/failure2.png>
+Package pdftex.def Info: images/Evaluation/failure2.png  used on input line 401
+.
+(pdftex.def)             Requested size: 436.63017pt x 204.01169pt.
+
+Overfull \hbox (3.01018pt too wide) in paragraph at lines 401--402
+ [] 
+ []
+
+<images/Evaluation/failure3.png, id=1894, 821.31844pt x 411.78844pt>
+File: images/Evaluation/failure3.png Graphic file (type png)
+<use images/Evaluation/failure3.png>
+Package pdftex.def Info: images/Evaluation/failure3.png  used on input line 409
+.
+(pdftex.def)             Requested size: 410.6582pt x 205.8937pt.
+[58 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Evaluation/failure1.png> <D:/Thesis/git_r
+eport/thesis-domain-adaptation_of-synthetic-document-images-using-neural-networ
+ks/Using Neural Networks for the Domain Adaptation of Synthetic Generated Docum
+ent Images/images/Evaluation/failure2.png>]
+<images/Evaluation/failure4.png, id=1901, 866.48718pt x 456.95718pt>
+File: images/Evaluation/failure4.png Graphic file (type png)
+<use images/Evaluation/failure4.png>
+Package pdftex.def Info: images/Evaluation/failure4.png  used on input line 418
+.
+(pdftex.def)             Requested size: 433.24252pt x 228.47803pt.
+) [59 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-imag
+es-using-neural-networks/Using Neural Networks for the Domain Adaptation of Syn
+thetic Generated Document Images/images/Evaluation/failure3.png> <D:/Thesis/git
+_report/thesis-domain-adaptation_of-synthetic-document-images-using-neural-netw
+orks/Using Neural Networks for the Domain Adaptation of Synthetic Generated Doc
+ument Images/images/Evaluation/failure4.png>]
+Chapter 7.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\conclusion.tex" [60
+
+]
+Package acronym Info: Label `acro:ACL-GAN' newly defined as it shall be overrid
+den
+although it is yet undefined on input line 29.
+Package acronym Info: Label `acro:VAE' newly defined as it shall be overridden
+although it is yet undefined on input line 29.
+ [61]) [62]
+Appendix A.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\appendix.tex"
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 2.
+
+<images/Appendix/handwrittenCrops.png, id=1976, 596.2275pt x 362.35374pt>
+File: images/Appendix/handwrittenCrops.png Graphic file (type png)
+<use images/Appendix/handwrittenCrops.png>
+Package pdftex.def Info: images/Appendix/handwrittenCrops.png  used on input li
+ne 5.
+(pdftex.def)             Requested size: 238.48677pt x 144.93892pt.
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 15.
+
+<images/Evaluation/CycleGANGeneratorsTraining.png, id=1983, 462.528pt x 346.896
+pt>
+File: images/Evaluation/CycleGANGeneratorsTraining.png Graphic file (type png)
+<use images/Evaluation/CycleGANGeneratorsTraining.png>
+Package pdftex.def Info: images/Evaluation/CycleGANGeneratorsTraining.png  used
+ on input line 21.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+<images/Evaluation/CycleGANDiscriminatorsTraining.png, id=1986, 462.528pt x 346
+.896pt>
+File: images/Evaluation/CycleGANDiscriminatorsTraining.png Graphic file (type p
+ng)
+<use images/Evaluation/CycleGANDiscriminatorsTraining.png>
+Package pdftex.def Info: images/Evaluation/CycleGANDiscriminatorsTraining.png  
+used on input line 27.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 35.
+
+<images/Appendix/generatorAndDiscriminatorTraining.png, id=1990, 1702.10907pt x
+ 1906.12125pt>
+File: images/Appendix/generatorAndDiscriminatorTraining.png Graphic file (type 
+png)
+<use images/Appendix/generatorAndDiscriminatorTraining.png>
+Package pdftex.def Info: images/Appendix/generatorAndDiscriminatorTraining.png 
+ used on input line 39.
+(pdftex.def)             Requested size: 425.52623pt x 476.52914pt.
+[63
+
+ <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images/images/Appendix/handwrittenCrops.png> <D:/Thesis/gi
+t_report/thesis-domain-adaptation_of-synthetic-document-images-using-neural-net
+works/Using Neural Networks for the Domain Adaptation of Synthetic Generated Do
+cument Images/images/Evaluation/CycleGANGeneratorsTraining.png> <D:/Thesis/git_
+report/thesis-domain-adaptation_of-synthetic-document-images-using-neural-netwo
+rks/Using Neural Networks for the Domain Adaptation of Synthetic Generated Docu
+ment Images/images/Evaluation/CycleGANDiscriminatorsTraining.png>]
+<images/Appendix/Confusion_Matrix_Synthetic_Data_Classifier_2021-05-31_16-40-33
+.png, id=2002, 1824.8175pt x 1806.75pt>
+File: images/Appendix/Confusion_Matrix_Synthetic_Data_Classifier_2021-05-31_16-
+40-33.png Graphic file (type png)
+<use images/Appendix/Confusion_Matrix_Synthetic_Data_Classifier_2021-05-31_16-4
+0-33.png>
+Package pdftex.def Info: images/Appendix/Confusion_Matrix_Synthetic_Data_Classi
+fier_2021-05-31_16-40-33.png  used on input line 51.
+(pdftex.def)             Requested size: 456.20326pt x 451.6864pt.
+
+Overfull \hbox (22.58327pt too wide) in paragraph at lines 51--52
+ [] 
+ []
+
+[64 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Appendix/generatorAndDiscriminatorTrainin
+g.png>]
+<images/Appendix/Confusion_Matrix_CycleGAN_Generated_Data_Classifier_2021-06-02
+_21-55-39.png, id=2007, 1809.76125pt x 1806.75pt>
+File: images/Appendix/Confusion_Matrix_CycleGAN_Generated_Data_Classifier_2021-
+06-02_21-55-39.png Graphic file (type png)
+<use images/Appendix/Confusion_Matrix_CycleGAN_Generated_Data_Classifier_2021-0
+6-02_21-55-39.png>
+Package pdftex.def Info: images/Appendix/Confusion_Matrix_CycleGAN_Generated_Da
+ta_Classifier_2021-06-02_21-55-39.png  used on input line 61.
+(pdftex.def)             Requested size: 452.43921pt x 451.6864pt.
+
+Overfull \hbox (18.81921pt too wide) in paragraph at lines 61--62
+ [] 
+ []
+
+[65 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Appendix/Confusion_Matrix_Synthetic_Data_
+Classifier_2021-05-31_16-40-33.png>]
+<images/Appendix/Confusion_Matrix_Faxified_Data_Classifier_2021-05-31_19-31-35.
+png, id=2014, 1842.13219pt x 1806.75pt>
+File: images/Appendix/Confusion_Matrix_Faxified_Data_Classifier_2021-05-31_19-3
+1-35.png Graphic file (type png)
+<use images/Appendix/Confusion_Matrix_Faxified_Data_Classifier_2021-05-31_19-31
+-35.png>
+Package pdftex.def Info: images/Appendix/Confusion_Matrix_Faxified_Data_Classif
+ier_2021-05-31_19-31-35.png  used on input line 70.
+(pdftex.def)             Requested size: 460.53192pt x 451.6864pt.
+
+Overfull \hbox (26.91193pt too wide) in paragraph at lines 70--71
+ [] 
+ []
+
+[66 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Appendix/Confusion_Matrix_CycleGAN_Genera
+ted_Data_Classifier_2021-06-02_21-55-39.png>]
+<images/Appendix/template.png, id=2019, 1308.38812pt x 1877.51437pt>
+File: images/Appendix/template.png Graphic file (type png)
+<use images/Appendix/template.png>
+Package pdftex.def Info: images/Appendix/template.png  used on input line 82.
+(pdftex.def)             Requested size: 379.42284pt x 544.46523pt.
+ [67 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Appendix/Confusion_Matrix_Faxified_Data_
+Classifier_2021-05-31_19-31-35.png>
+!pdfTeX error: pdflatex: fflush() failed (Invalid argument)
+ ==> Fatal error occurred, no output PDF file produced!
