@@ -113,7 +113,7 @@ The generator produces fake samples using random noise vectors sampled from the 
 		\Indp
 		a) Get a real data sample $X$ from the training dataset. \\
 		\BlankLine
-		b) Get a random noise vector $Z$ from the random noise distribution, pass it thorough the generator $G$ and create a fake sample $X'$. \\
+		b) Get a noise vector $Z$ from the random noise distribution, pass it thorough the generator $G$ and create a fake sample $X'$. \\
 		\BlankLine
 		c) Classify $X$ and $X'$ using the discriminator $D$.\\
 		\BlankLine
@@ -126,7 +126,7 @@ The generator produces fake samples using random noise vectors sampled from the 
 	\BlankLine
 	\BlankLine
 		\Indp
-		a) Get a random noise vector $Z$ from the random noise distribution, pass it thorough the generator $G$ and create a fake sample $X'$. \\
+		a) Get a noise vector $Z$ from the random noise distribution, pass it thorough the generator $G$ and create a fake sample $X'$. \\
 		\BlankLine
 		b) Classify $X'$ using the discriminator $D$.\\
 		\BlankLine
@@ -145,9 +145,7 @@ The generator produces fake samples using random noise vectors sampled from the 
 \newpage
 \section{Convolution Neural Networks}\label{CNNs}
 
-
-In recent years numerous deep learning techniques evolved with the rise of \acp{ANN}. These biologically inspired neural networks are capable to solve complex problems. The most successful image-driven pattern recognition technique among \acp{ANN} is \acp{CNN}\cite{oshea2015introduction}. Nowadays, \acp{CNN} are used to solve difficult image recognition, image classification, and object detection tasks. The \acp{CNN} have been a popular method because of its extraordinary results at object recognition competition known as the \ac{ILSVRC} in 2012 for solving computer vision tasks. \ac{CNN} is a kind of deep learning technique for processing data that has a grid pattern, for example, images. \acp{CNN} are inspired by the early findings in the study of biological vision, especially, organization of the animal visual cortex\cite{Hubel.1968}\cite{Fukushima.1980}\cite{10.5555/3153997} and designed to automatically and adaptively learn spatial hierarchies of features, from low-level to high-level patterns\cite{10.5555/3153997}. It is composed of various building blocks, such as convolution layers, pooling layers, and fully connected layers. As shown in figure \ref{fig:CNNBuildingBlocks}, the first two layers are convolution and pooling layers. They perform feature extraction. whereas the third, a fully connected layer, maps the extracted features into the final output, such as classification\cite{articleCNNs}. Let's have a look at each layer in the following sections.
-
+In recent years deep learning is evolved with the rise of \acp{ANN}. \acp{ANN} are biologically inspired and able to solve complex problems\cite{oshea2015introduction}. \acp{CNN} is the most successful image-driven pattern recognition technique among \acp{ANN}\cite{oshea2015introduction}. Nowadays, \acp{CNN} are used to solve difficult image recognition, image classification, and object detection tasks. The \acp{CNN} have been a popular method because of its extraordinary results at object recognition competition known as the \ac{ILSVRC} in 2012 for solving computer vision tasks. \ac{CNN} is a kind of deep learning technique for processing data that has a grid pattern, for example, images and videos. \acp{CNN} are inspired by the early findings in the study of biological vision, especially, organization of the animal visual cortex\cite{Hubel.1968}\cite{Fukushima.1980}\cite{10.5555/3153997} and designed to automatically and adaptively learn spatial hierarchies of features, from low-level to high-level patterns\cite{10.5555/3153997}. It is composed of various building blocks, such as convolution layers, pooling layers, and fully connected layers. As shown in figure \ref{fig:CNNBuildingBlocks}, the first two layers are convolution and pooling layers, and they perform feature extraction. Whereas, the third, a fully connected layer, maps the extracted features into the final output, such as classification\cite{articleCNNs}. Let's have a look at each layer in the following sections.
 
 %In recent years in the field of machine learning, drastic improvements have occurred to increase the performance of machine learning models. Also, numerous deep learning techniques like \acp{ANN} are evolved significantly.
 %These biologically inspired neural networks were able to exceed the performance compared to the traditional machine learning techniques to solve complex problems\cite{oshea2015introduction}. 
@@ -157,7 +155,7 @@ In recent years numerous deep learning techniques evolved with the rise of \acp{
 \begin{figure}[H]
         \begin{center}
 	    \includegraphics[scale=0.59]{images/Fundamentals/CNNBuildingBlocks.JPG}
-	    \caption[An illustration of \ac{CNN} architecture and its training process.]{An illustration of \ac{CNN} architecture and its training process. \ac{CNN} is a combination of several building blocks like convolution layers, pooling layers, and fully connected layers. These building blocks are stacked upon each other. The \ac{CNN} is trained using the training dataset, the input data is fed in the forward direction through the network. The process of feeding data in the forward direction to the \ac{CNN} is called forward propagation. Each layer accepts the input data, processes it as per the activation function like ReLU (Rectified Linear Unit) (figure \ref{fig:ActivationFunctions}), and passes it to the successive layer. Using a loss function through forward propagation on a training dataset, a model’s performance under particular kernels and weights is calculated. The learnable parameters, for example, weights and kernels, are updated as per the loss value through backpropagation using a gradient descent optimization algorithm\cite{ruder2017overview}.}
+	    \caption[An illustration of \ac{CNN} architecture and its training process.]{An illustration of \ac{CNN} architecture and its training process. \ac{CNN} is a combination of several building blocks like convolution layers, pooling layers, and fully connected layers. These building blocks are stacked upon each other. The \ac{CNN} is trained using the training dataset, the input data is fed in the forward direction through the network. The process of feeding data in the forward direction to the \ac{CNN} is called forward propagation. Each layer accepts the input data, processes it as per the activation function like \ac{ReLU}(figure \ref{fig:ActivationFunctions}), and passes it to the successive layer. Using a loss function through forward propagation on a training dataset, a model’s performance under particular kernels and weights is calculated. The learnable parameters, for example, weights and kernels, are updated as per the loss value through backpropagation using a gradient descent optimization algorithm\cite{ruder2017overview}.}
 	    \label{fig:CNNBuildingBlocks}
 	    \end{center}
 \end{figure}
@@ -167,7 +165,7 @@ In recent years numerous deep learning techniques evolved with the rise of \acp{
 
 
 \subsection{Convolution Layer}
-The convolution layer is a basic component of the \ac{CNN} architecture that performs feature extraction. It is typically a combination of linear and nonlinear operations like convolution operation and activation function. It is one of the core building blocks of \acp{CNN}. Also, it is responsible for most of the heavy computations. A convolution layer plays an important role in \ac{CNN}, it performs mathematical operations like convolution, a specialized type of linear operation. The digital images store pixel values in a \ac{2D} grid, i.e., an array of numbers as shown in figure \ref{fig:Convolution}. The small grid of parameters called the kernel, an optimizable feature extractor, is applied at each image position\cite{articleCNNs}, which makes \acp{CNN} highly efficient for image processing, feature extraction, since a feature could occur at any location in the image. The layers are connected, one layer feeds its output to the next layer. The extracted features can hierarchically and progressively become more complex\cite{articleCNNs}. Training is the process of optimizing parameters such as kernels which minimize the difference between outputs and ground truth labels through an optimization algorithm called backpropagation\cite{Goodfellow-et-al-2016} and gradient descent\cite{ruder2017overview}, among others. 
+The convolution layer is a basic component of the \ac{CNN} that performs feature extraction. It is typically a combination of linear and nonlinear operations like convolution operation and activation function. It is one of the core building blocks of \acp{CNN}. Also, it is responsible for most of the heavy computations. A convolution layer plays an important role in \ac{CNN} by performing mathematical operations like convolution, a specialized type of linear operation. The digital images store pixel values in a \ac{2D} grid, i.e., an array of numbers as shown in figure \ref{fig:Convolution}. The small grid of parameters called the kernel, an optimizable feature extractor, is applied at each image position, which makes \acp{CNN} highly efficient for image processing, feature extraction, since a feature could occur at any location in the image\cite{articleCNNs}. The layers are connected, one layer feeds its output to the next layer. The extracted features can hierarchically and progressively become more complex\cite{articleCNNs}. Training is the process of optimizing parameters such as kernels which minimize the difference between outputs and ground truth labels through an optimization algorithm backpropagation\cite{Goodfellow-et-al-2016} and gradient descent\cite{ruder2017overview}\cite{articleCNNs}.
 
 
 
@@ -179,9 +177,7 @@ The convolution layer is a basic component of the \ac{CNN} architecture that per
 	    \end{center}
 \end{figure}
 
-For feature extraction linear operation, convolution is used, where a small array of numbers, called a kernel, is applied across the input, which is an array of numbers, called a tensor. An element-wise product between kernel's each element and the input tensor is calculated at each location of the tensor and summed to obtain the output value in the corresponding position of the output tensor, called a feature map (figure \ref{fig:Convolution}a-c)\cite{articleCNNs}. 
-This procedure is repeated by applying multiple kernels to create an arbitrary number of feature maps, which describe different characteristics of the input tensors\cite{articleCNNs}. The different kernels can be considered as different feature extractors. Two important hyperparameters that represent the convolution operation are the size and number of kernels. The size is typically 3 × 3, but sometimes 5 × 5 or 7 × 7, depends on the requirement. The number of kernels is arbitrary, and determines the depth of output feature maps. The above-mentioned convolution operation prevents the center of each kernel from overlapping the input tensor's outermost element. And the output feature map's height and width are reduced compared to the input tensor. To address this issue, the padding, predominantly zero-padding technique is used where rows and columns of zeros are added on each side of the input tensor, to fit the center of a kernel on the outermost element and keep the same spatial dimension through the convolution operation (figure \ref{fig:ConvolutionZeroPadding}). Modern \ac{CNN} architectures normally employ zero padding to retain spatial dimensions to apply more further layers. Each successive feature map would get smaller after the successive convolution operation without zero padding. A stride is the distance between two successive kernel positions, and it also defines the convolution operation. A stride of 1 is the most common choice; however, a stride greater than 1 is sometimes used to achieve feature map downsampling. A pooling operation, as defined in section \ref{PoolingLayer}, is an alternative technique for downsampling. 
-
+For feature extraction linear operation, convolution is used, where a small array of numbers, called a kernel, is applied across the input, which is an array of numbers, called a tensor. An element-wise product between kernel's each element and the input tensor is calculated at each location of the tensor and summed to obtain the output value in the corresponding position of the output tensor, called a feature map (figure \ref{fig:Convolution}a-c)\cite{articleCNNs}. This procedure is repeated by applying multiple kernels to create an arbitrary number of feature maps, which describe different characteristics of the input tensors\cite{articleCNNs}. The different kernels can be considered as different feature extractors. Two important hyperparameters that represent the convolution operation are the size and number of kernels. The size is typically 3 × 3, but sometimes 5 × 5 or 7 × 7, depends on the requirement. The number of kernels is arbitrary, and determines the depth of output feature maps. The above-mentioned convolution operation prevents the center of each kernel from overlapping the input tensor's outermost element. Hence, the output feature map's height and width are reduced compared to the input tensor. To address this issue, the padding, predominantly zero-padding technique is used where rows and columns of zeros are added on each side of the input tensor, to fit the center of a kernel on the outermost element and keep the same spatial dimension through the convolution operation (figure \ref{fig:ConvolutionZeroPadding}). Modern \ac{CNN} architectures normally employ zero padding to retain spatial dimensions to apply more further layers. Each successive feature map would get smaller after the successive convolution operation without zero padding. A stride is the distance between two successive kernel positions, and it also defines the convolution operation. A stride of 1 is the most common choice; however, a stride greater than 1 is sometimes used to achieve feature map downsampling. A pooling operation is an alternative technique for downsampling. It is described briefly in section \ref{PoolingLayer}.
 
 \begin{figure}[H]
         \begin{center}
@@ -195,27 +191,16 @@ This procedure is repeated by applying multiple kernels to create an arbitrary n
 \subsubsection{Activation Functions}
 
 
-\acp{ANN} are inspired by biological neural networks present in the animal brain. Before constructing any \ac{ANN}, it is important to understand the artificial neuron model. In the figure \ref{fig:artificialNeuron} schematic diagram of an artificial neuron is illustrated. A biological neuron gets excited when other neurons with different weights send electrical signals to it. The value of the electrical signal should be big enough to excite the neuron. Otherwise, it will be in an inactive state. In the figure \ref{artificialNeuron} schematic diagram of an artificial neuron is illustrated. Where $\{X_1, X_2, X_3, ..., X_n\}$ are the inputs to the artificial neuron, $\{W_1, W_2, W_3, ..., W_n\}$ are the weights corresponding to the inputs. $b$ is the bias. The summation symbol represents the addition unit. The addition unit gets the linear weight sum $Z$ of the inputs and bias. Dot product between inputs and weights performed before addition. If $X = [X_1, X_2, X_3, ..., X_n]  \in R^{n}$  and  $W = [W_1, W_2, W_3, ..., W_n] \in R^{n}$, then output $Z$ is represented as
+%The \acp{ANN} are inspired by biological neural networks present in the animal brain. Before constructing any \ac{ANN}, it is important to understand the artificial neuron model. In the figure \ref{fig:artificialNeuron} schematic diagram of an artificial neuron is illustrated. 
+%A biological neuron gets excited when other neurons with different weights send electrical signals to it. The value of the electrical signal should be big enough to excite the neuron, otherwise, it will be in an inactive state. 
+%The addition unit gets the linear weight sum $Z$ of the inputs and bias.
+%The brain receives the stimulus from the external world. It processes the information and generates an output. A biological neuron gets excited when other neurons with different weights send electrical signals to it. The value of the electrical signal should be big enough to excite the neuron otherwise, it will be in an inactive state. It learns complex patterns by communicating with millions of neurons inside the brain. The artificial neurons work similarly to biological neurons. 
+
+The artificial neuron is a mathematical function inspired by the neurons inside the brain, and they are the basis of \acp{ANN}. The artificial neurons receive one or more weighted inputs and bias, and their sum is passed through an activation function. Schematic diagram of an artificial neuron is illustrated in the figure \ref{artificialNeuron}, where $\{X_1, X_2, X_3, ..., X_n\}$ are the inputs to the artificial neuron, $\{W_1, W_2, W_3, ..., W_n\}$ are the weights corresponding to the inputs, and $b$ is the bias. The summation symbol represents the addition unit. Inputs are fed to the neuron, they perform a linear transformation on these inputs using the weights and biases. If $X = [X_1, X_2, X_3, ..., X_n]  \in R^{n}$  and  $W = [W_1, W_2, W_3, ..., W_n] \in R^{n}$, then output $Z$ is represented as
 
 \begin{equation}\label{linearRegression}
 Z=X{W}^\intercal + b.
 \end{equation}
-
-\begin{figure}[H]
-        \begin{center}
-	    \includegraphics[scale=0.30]{images/Fundamentals/ann.png}
-	    \caption[Simple Neural Network.]{Simple Neural Network.}
-	    \label{fig:ann}
-	    \end{center}
-\end{figure}
-
-The function $f$ is activation function. It is used to excite the response state of biological neurons and obtain output $Y$
-\begin{equation}\label{artificialNeuron}
-Y = f(Z).
-\end{equation}
-
-
-The data is fed to the input layer of the neural network, the input undergoes the linear operation. Later, activation functions are applied to it in the hidden layers, and output is produced. In neural networks the hidden layer lies between input layer and output layer. In figure \ref{fig:ann} simple neural network is illustrated. The activation function is applied to the outputs of a linear operation like convolution. The activation functions important while constructing any neural network. They are mathematical functions attached to the neurons. Also, they tell which of the neuron is excited or triggered in each layer of neural networks. The purpose of the activation function is to introduce non-linearity in the neural network.
 
 \begin{figure}[H]
         \begin{center}
@@ -225,28 +210,51 @@ The data is fed to the input layer of the neural network, the input undergoes th
 	    \end{center}
 \end{figure}
 
+The function $f$ is the activation function applied on $Z$.
+\begin{equation}\label{artificialNeuron}
+Y = f(Z).
+\end{equation}
 
-The equation \ref{linearRegression} performs a linear operation. This linear function gets repeated every hidden layer of the neural network. A combination of such linear functions also a linear function, equivalent to all the hidden layers collapsed into a single linear function performing linear regression. Hence, all the hidden layers become useless. Even if linear functions are easy to use, but they fail to learn complex patterns present in the data like images, speech, and videos. Hence, nonlinear activation functions are used, while constructing neural networks. The nonlinear activation functions are differentiable, and they make gradient descent optimization (backpropagation) possible. Backpropagation minimizes the error and enhances the accuracy and performance of the neural network. The nonlinear functions like the sigmoid and hyperbolic tangent (tanh) functions were used previously because they are mathematical representations of biological neuron behavior. The rectified linear unit is now the most commonly used nonlinear activation function (ReLU) , which simply computes the function: $f(x) = \max(0, x)$ (figure \ref{fig:ActivationFunctions}) [\cite{LeCun.2015},\cite{NIPS2012_c399862d}, [\cite{10.5555/3104322.3104425}], [\cite{ramachandran2017searching}],\cite{pmlr-v15-glorot11a}].
+%The activation functions are important while constructing any neural network as they are mathematical functions attached to the neurons. The activation function is applied to the outputs of a linear operation like convolution. Also, they tell which of the neuron is excited or triggered in each layer of neural networks. 
+%The main purpose of the activation function is to introduce non-linearity in the neural network. The equation \ref{linearRegression} performs a linear operation. This linear function gets repeated every hidden layer of the neural network. A combination of such linear functions also a linear function, equivalent to all the hidden layers collapsed into a single linear function performing linear regression. Hence, all the hidden layers become useless. Even if linear functions are easy to use, but they fail to learn complex patterns present in the data like images, speech, and videos. Hence, nonlinear activation functions are used, while constructing neural networks. 
+
+The data is fed to the input layer of the neurons in neural network, undergoes the linear operation, later, activation functions are applied in the hidden layers, and output is produced. The produced output the propagated forward to next hidden layers, this is movement is called forward propagation\footnotemark. In neural networks the hidden layer lies between input layer and output layer. A simple neural network is illustrated in figure \ref{fig:ann}. The main purpose of the activation function is to introduce non-linearity in the neural network. The linear functions are easy to use, but they fail to learn complex patterns present in the data like images, speech, and videos. Hence, nonlinear activation functions are used, while constructing neural networks. The nonlinear activation functions are differentiable. The neural networks learn from the errors calculated at the output layer, a differentiable nonlinear activation function is required to perform backpropagation to compute loss with respect to the weights of the neurons and optimize them using gradient descent optimization algorithm or any other optimization algorithm. 
+
+\begin{figure}[H]
+        \begin{center}
+	    \includegraphics[scale=0.30]{images/Fundamentals/ann.png}
+	    \caption[Simple neural network.]{Simple neural network}
+	    \label{fig:ann}
+	    \end{center}
+\end{figure}
+
+The backpropagation minimizes the error, updates the weights of neurons, and enhances the accuracy and performance of the neural network. The nonlinear functions, sigmoid, hyperbolic tangent(tanh) functions ware mathematical representations of biological neuron behavior. The \ac{ReLU} is now the most commonly used nonlinear activation function, it computes the function: $f(x) = \max(0, x)$. These activation functions along with their plots are illustrated in figure \ref{fig:ActivationFunctions}\cite{LeCun.2015}\cite{NIPS2012_c399862d}.
+
+
+%\cite{10.5555/3104322.3104425}\cite{ramachandran2017searching}\cite{pmlr-v15-glorot11a}.
+
+\footnotetext{\url{https://www.analyticsvidhya.com/blog/2020/01/fundamentals-deep-learning-activation-functions-when-to-use-them/} last access: \dcdate}
 
 \vspace*{0.5cm}
 
 \begin{figure}[H]
         \begin{center}
 	    \includegraphics[scale=0.42]{images/Fundamentals/ActivationFunctions.jpg}
-	    \caption[Most common nonlinear activation functions used while constructing Neural Networks.]{Most common nonlinear activation functions used while constructing Neural Networks: \textbf{a)} rectified linear unit (ReLU), \textbf{b)} sigmoid, and \textbf{c)} hyperbolic tangent (tanh)\cite{articleCNNs}.}
+	    \caption[Most common nonlinear activation functions used while constructing Neural Networks.]{Most common nonlinear activation functions used while constructing neural networks: \textbf{a)} \ac{ReLU}, \textbf{b)} sigmoid, and \textbf{c)} hyperbolic tangent (tanh)\cite{articleCNNs}.}
 	    \label{fig:ActivationFunctions}
 	    \end{center}
 \end{figure}
 
 \subsection{Pooling Layer}\label{PoolingLayer}
-A pooling layer performs downsampling on feature maps to gradually reducing the spatial dimensionality, which leads to the reduction of the number of parameters and computational complexity of the neural network and controlling overfitting. Downsampling introduces translation invariance to minor shifts and distortions\cite{goodfellow2017deep}. Downsampling of feature maps can be accomplished by using convolution layers by increasing the stride of the convolution operation across the image. But the robust and common approach of downsampling is to use a pooling layer\cite{goodfellow2017deep}. Similar to convolution operations, it used hyperparameters like filter size, stride, and padding. Also, it is common to periodically insert a pooling layer in between successive convolution layers while constructing neural networks. There two common types of pooling methods one is max pooling the other is average pooling. The max-pooling considers the most activated (maximum value) value in each input patch of the feature map. The average pooling averages values in each input patch of the feature map.
+A pooling layer performs downsampling on feature maps to gradually reducing the spatial dimensionality, which leads to the reduction of the number of parameters and computational complexity of the neural network and controlling overfitting. Downsampling introduces translation invariance to minor shifts and distortions\cite{goodfellow2017deep}. Downsampling of feature maps can be accomplished by using convolution layers by increasing the stride of the convolution operation across the image. But the robust and common approach of downsampling is to use a pooling layer\cite{goodfellow2017deep}. Similar to convolution operations, it uses hyperparameters like filter size, stride, and padding. Also, it is common to periodically insert a pooling layer in between successive convolution layers while constructing neural networks. There two common types of pooling methods one is max pooling the other is average pooling. The max-pooling considers the most activated (maximum) value in each input patch of the feature map. The average pooling averages values in each input patch of the feature map\cite{10.1007/978-3-642-15825-4_10}.
 
 \subsubsection{Max Pooling}
-Max pooling is the most common and popular type of pooling operation. The max-pooling operation is independently operated at every depth slice of the input and resized spatially. Commonly, in max-pooling filters of size $2 \times 2$ applied with a stride of 2. The max-pooling operation extracts small patches of given filter size from the input feature maps and outputs the maximum value in every patch discarding others (figure \ref{fig:PoolingLayer})\cite{goodfellow2017deep}. The spatial dimension of feature maps is reduced by a factor of two by discarding 75\% of its activations\cite{kumar2018ordinal}. The height and width dimension of the features maps is reduced but the depth dimension remains unchanged. Pooling operations with larger filter sizes are too destructive. It's worth noting that max-pooling layers do not have learnable parameters.
+Max pooling is the most common and popular type of pooling operation. The max-pooling operation is independently operated at every depth slice of the input and resized spatially. Commonly, max-pooling filters are of size $2 \times 2$ and applied with a stride of 2. The max-pooling operation extracts small patches of given filter size from the input feature maps and outputs the maximum value in every patch discarding others (figure \ref{fig:PoolingLayer})\cite{goodfellow2017deep}. The spatial dimension of feature maps is reduced by a factor of two by discarding 75\% of its activations\cite{kumar2018ordinal}. The height and width dimension of the features maps is reduced but the depth dimension remains unchanged. Pooling operations with larger filter sizes are too destructive. %It's worth noting that max-pooling layers do not have learnable parameters.
 
 \subsubsection{Global Average Pooling}
-There is another type of pooling operation called global average pooling. It performs an extreme type of downsampling. It downsamples a feature map of size height $\times$ width $\times$ depth into a $1 \times 1 \times$ depth array by averaging all the elements present in the feature map by keeping depth dimension unchanged. This operation is applied only once before fully connected layers. There are some benefits of using global average pooling: a)  It reduces the number of learnable parameters. b) allows the CNN to consider inputs of variable size\cite{articleCNNs}\cite{lin2014network}.
+There is another type of pooling operation called global average pooling. It performs an extreme type of downsampling. It downsamples a feature map of size height $\times$ width $\times$ depth into a $1 \times 1 \times$ depth array by averaging all the elements present in the feature map by keeping depth dimension unchanged. This operation is applied only once before fully connected layers. There are some benefits of using global average pooling: a)  It reduces the number of learnable parameters. b) allows the \ac{CNN} to consider inputs of variable size\cite{articleCNNs}\cite{lin2014network}. c) It is designed to replace fully connected layers, the idea is to generate one feature map for each class, in the classification task, as they provide robust spatial information, and the resulting vector can easily be fed to the softmax layer\footnotemark.
 
+\footnotetext{\url{https://paperswithcode.com/method/global-average-pooling/} last access: \dcdate}
 
 
 \begin{figure}[H]
@@ -261,7 +269,33 @@ There is another type of pooling operation called global average pooling. It per
 
 \subsection{Fully connected layer}
 
-In neural networks, fully connected layers are those layers where all the inputs from one layer are connected to every neuron of the next layer. The final output feature map of convolution layers or pooling layers is flattened and the output is transformed into a \ac{1D} vector or array of numbers. The flattened output is connected to one or more fully connected layers. The fully connected layers are also called dense layers, where every input is connected to every output by a learnable weight. A fully connected layer performs multiplication between the input and weight matrix and then adds a bias vector. Each fully connected layer is followed by a nonlinear activation function, for example, ReLU. As already described, the nonlinear activation function helps neurons learn complex patterns. The equation \ref{artificialNeuron} represents the function of a fully connected layer. The features extracted using convolution layers and downsampled by pooling layers are mapped by a subset of fully connected layers to the final output of the neural network, for example, probabilities for each class in the classification tasks. Most of the time number of output nodes in the final fully connected layer equals the number of classes. The final fully connected layer's activation function is usually different than others. Each task chooses a suitable activation function. The sigmoid activation function is used in binary classification tasks. For example, logistic regression models the probabilities for binary classification tasks using the sigmoid activation function. The softmax activation function is widely used in multiclass classification tasks. It normalizes output real values from the last fully connected layer to target class probabilities, ranges between 0 and 1, and all values sum to 1\cite{articleCNNs}.
+In neural networks, fully connected layers are those layers where all the inputs from one layer are connected to every neuron of the next layer. The final output feature map of convolution layers or pooling layers is flattened and the output is transformed into a \ac{1D} vector. The flattened output is connected to one or more fully connected layers. The fully connected layers are also called dense layers, where every input is connected to every output by a learnable weight. A fully connected layer performs multiplication between the input and weight matrix then adds a bias vector. Equation \ref{artificialNeuron} represents the function of each neuron in a fully connected layer. Each fully connected layer is followed by a nonlinear activation function, for example, \ac{ReLU}. As already described, the nonlinear activation function helps neurons learn complex patterns. The features extracted using convolution layers and downsampled by pooling layers are mapped by a subset of fully connected layers to the final output of the neural network, for example, probabilities for each class in the classification tasks. Often the number of output nodes in the final fully connected layer equals the number of classes. The last fully connected layer's activation function is usually different than others. Each task chooses a suitable activation function. The sigmoid activation function is used in binary classification tasks. For example, logistic regression, models the probabilities for binary classification tasks using the sigmoid activation function. The softmax activation function is widely used in multiclass classification tasks. It normalizes output real values from the last fully connected layer to target class probabilities, ranges between 0 and 1, and all values sum to 1\cite{articleCNNs}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
