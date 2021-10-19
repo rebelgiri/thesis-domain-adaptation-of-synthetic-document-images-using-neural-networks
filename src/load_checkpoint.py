@@ -1,11 +1,8 @@
 
-
-from keras.models import load_model
 from classifier_model import *
 from train_synthetic_documents_classifier import *
 import sys
 from datetime import datetime
-from keras_contrib.layers.normalization.instancenormalization import InstanceNormalization
 import numpy as np
 import os
 import matplotlib.pyplot as plt
@@ -15,19 +12,22 @@ from tensorflow.keras import layers
 import pathlib
 import tensorflow_addons as tfa
 import tensorflow_datasets as tfds
+#tf.debugging.set_log_device_placement(True)
+from preprocessing_images import *
+from numpy import save
+
+
 tfds.disable_progress_bar()
 autotune = tf.data.experimental.AUTOTUNE
-from preprocessing_images import *
-from numpy import load, save
-
 
 buffer_size = 256
 batch_size = 1
 
 # Define the standard image size.
-orig_img_size = (286, 286)
-# Size of the random crops to be used during training.
-input_img_size = (256, 256, 1)
+#input_img_size = (256, 256, 1)
+input_img_size = (512, 512, 1)
+
+
 # Weights initializer for the layers.
 kernel_init = keras.initializers.RandomNormal(mean=0.0, stddev=0.02)
 # Gamma initializer for instance normalization.
@@ -55,8 +55,6 @@ class ReflectionPadding2D(layers.Layer):
             [0, 0],
         ]
         return tf.pad(input_tensor, padding_tensor, mode="REFLECT")
-
-
 
 def residual_block(
     x,
@@ -422,14 +420,13 @@ if __name__ == "__main__":
     classifier_training_data_set_path = sys.argv[2]
     classifier_test_data_set_path = sys.argv[3]
     classifier_name = sys.argv[4]
-    
-    time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    path = sys.argv[5]
 
-    path = classifier_name + '_' + time
+    time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    folder_name = classifier_name + '_' + time
+    path = path + '/' + folder_name + '/'
     os.mkdir(path)
     print("Directory '% s' created" % path)
-    path = path + '/'
-
 
     # Get the generators
     gen_G = get_resnet_generator(name="generator_G")
@@ -446,8 +443,6 @@ if __name__ == "__main__":
     )
     cycle_gan_model.load_weights(cyclegan_generator_path).expect_partial()
     print("Weights loaded successfully")
-
-
 
     data_dir = pathlib.Path(classifier_training_data_set_path)
     train_ds = tf.data.Dataset.list_files(str(data_dir/'*/*'), shuffle=False)
@@ -468,10 +463,11 @@ if __name__ == "__main__":
     print(tf.data.experimental.cardinality(train_ds).numpy())
     print(tf.data.experimental.cardinality(test_ds).numpy())
 
-    train_ds = train_ds.map(lambda x: preprocess_classifier_test_images(x, class_names), 
+    img_resize_dim = [512, 512]
+    train_ds = train_ds.map(lambda x: preprocess_classifier_test_images(x, class_names, img_resize_dim), 
       num_parallel_calls=tf.data.experimental.AUTOTUNE)
 
-    test_ds = test_ds.map(lambda x: preprocess_classifier_test_images(x, class_names), 
+    test_ds = test_ds.map(lambda x: preprocess_classifier_test_images(x, class_names, img_resize_dim), 
       num_parallel_calls=tf.data.experimental.AUTOTUNE)
 
     train_ds = configure_for_performance_without_shuffle(train_ds, 1)
@@ -488,40 +484,28 @@ if __name__ == "__main__":
     original_labels_ds = tf.data.Dataset.from_tensor_slices((original_labels))
     
    
+    train_ds_it = iter(train_ds)
     plt.figure(figsize=(10,10))
     for i in range(10):
-      X_train_10_samples, y_train_10_samples = next(iter(train_ds))
-      plt.subplot(5, 2, i+1)
+      X_train_10_samples, y_train_10_samples = next(train_ds_it)
+      #plt.subplot(5, 2, i+1)
       plt.xticks([])
       plt.yticks([])
       plt.grid(False)
-      plt.imshow(X_train_10_samples[i], cmap=plt.cm.gray)
-      plt.xlabel(class_names[np.argmax(y_train_10_samples[i], axis=-1)])
+      plt.imshow(X_train_10_samples[0], cmap=plt.cm.gray)
+      plt.xlabel(class_names[np.argmax(y_train_10_samples[0], axis=-1)])
       plt.show()
-      plt.savefig(path + 'Save_Sample_Images_1')
-    plt.close()
-    
-
-   
-    plt.figure(figsize=(10,10))
-    for i in range(10):
-      X_train_10_samples, y_train_10_samples = next(iter(train_ds))
-      plt.subplot(5, 2, i+1)
-      plt.xticks([])
-      plt.yticks([])
-      plt.grid(False)
-      plt.imshow(X_train_10_samples[i], cmap=plt.cm.gray)
-      plt.xlabel(class_names[np.argmax(y_train_10_samples[i], axis=-1)])
-      plt.show()
-      plt.savefig(path + 'Save_Sample_Images_2')
-    plt.close()
+      plt.savefig((path + 'Saved_Sample_Images_Before_Prediction_%d') % i)
+      plt.close()
+      
 
 
     # Generation of Target Domain Document Images
-    with tf.device("cpu:0"):
+    with tf.device("CPU:0"):
         generated_target_domain_images = cycle_gan_model.gen_G.predict(train_ds)
     print('Generated target domain images shape')
     print(generated_target_domain_images.shape)
+    #print(generated_target_domain_images)
     
     save(path + 'Generated_Target_Domain_Images_' + time + '.npy', generated_target_domain_images)
 
@@ -534,20 +518,20 @@ if __name__ == "__main__":
 
     plt.figure(figsize=(10,10))
     for i in range(10):
-      plt.subplot(5, 2, i+1)
+      #plt.subplot(5, 2, i+1)
       plt.xticks([])
       plt.yticks([])
       plt.grid(False)
       plt.imshow(generated_target_domain_images[i], cmap=plt.cm.gray)
       plt.xlabel(class_names[np.argmax(original_labels[i], axis=-1)])
       plt.show()
-      plt.savefig(path + 'Generated_Sample_Images')
-    plt.close()
+      plt.savefig((path + 'Saved_Sample_Images_after_Prediction_%d') % i)
+      plt.close()
 
     # Train the Domain Adapted Realistic Document Image Classifier and 
     # Verify on Annotated Test Data.
    
-    domain_adapted_documents_classifier_model = create_model(10)
+    domain_adapted_documents_classifier_model = create_model(10, (512, 512, 1))
 
     # Tensorboard Logs
     log_dir = path + "logs/fit/" + time   
@@ -586,7 +570,6 @@ if __name__ == "__main__":
     file_name = path + 'Confusion_Matrix_' + classifier_name + '_' + time
     file_name_plot = classifier_name + '_' + time
 
-    # Example: Confusion_Matrix_CycleGAN_Generated_Data_Classifier
     epochs = 10
     history = domain_adapted_documents_classifier_model.fit(
             final_train_ds,

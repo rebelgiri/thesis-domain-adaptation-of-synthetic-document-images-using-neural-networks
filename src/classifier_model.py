@@ -183,13 +183,14 @@ def convolutional_block(X, f, filters, stage, block, s=2):
 
     return X
 
-def create_model(num_classes=10):
-    #model = ResNet50(input_shape=(256, 256, 1), classes=10)
+# Example: input_shape=(256, 256, 1)
+def create_model(num_classes=10, input_shape=(256, 256, 1)):
+    #model = ResNet50(input_shape=input_shape, classes=10)
     
     model = Sequential()
     model.add(Conv2D(32, kernel_size=(3, 3),
                      activation='relu',
-                     input_shape=(256, 256, 1)))
+                     input_shape=input_shape))
     model.add(Conv2D(64, (3, 3), activation='relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
@@ -198,6 +199,6 @@ def create_model(num_classes=10):
     model.add(Dropout(0.5))
     model.add(Dense(num_classes, activation='softmax'))
     
-    
-    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+    adam = tf.keras.optimizers.Adam(learning_rate=0.0001)
+    model.compile(optimizer=adam, loss='categorical_crossentropy', metrics=['accuracy'])
     return model

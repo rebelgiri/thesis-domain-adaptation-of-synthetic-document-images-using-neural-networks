@@ -2,7 +2,7 @@
 
 from keras.models import load_model
 from classifier_model import *
-from train_synthetic_documents_classifier import *
+from train_documents_classifier import *
 import sys
 from datetime import datetime
 from keras_contrib.layers.normalization.instancenormalization import InstanceNormalization
@@ -29,13 +29,15 @@ if __name__ == "__main__":
     cyclegan_predicted_labels_path = sys.argv[2]
     classifier_test_data_set_path = sys.argv[3]
     classifier_name = sys.argv[4]
+    path = sys.argv[5]
 
     time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 
-    path = classifier_name + '_' + time
+    folder_name = classifier_name + '_' + time
+    path = path + '/' + folder_name + '/'
     os.mkdir(path)
     print("Directory '% s' created" % path)
-    path = path + '/'
+   
 
     test_data_dir = pathlib.Path(classifier_test_data_set_path)
     test_ds = tf.data.Dataset.list_files(str(test_data_dir/'*/*'), shuffle=False)
@@ -47,7 +49,9 @@ if __name__ == "__main__":
     print('Number of Test Data Images')
     print(tf.data.experimental.cardinality(test_ds).numpy())
 
-    test_ds = test_ds.map(lambda x: preprocess_classifier_test_images(x, class_names), 
+    img_resize_dim = [512, 512]
+
+    test_ds = test_ds.map(lambda x: preprocess_classifier_test_images(x, class_names, img_resize_dim), 
       num_parallel_calls=tf.data.experimental.AUTOTUNE)
 
     test_ds = configure_for_performance(test_ds, 1162, 
@@ -103,7 +107,7 @@ if __name__ == "__main__":
     # Train the Domain Adapted Realistic Document Image Classifier and 
     # Verify on Annotated Test Data.
     
-    classifier_model = create_model(10)
+    classifier_model = create_model(10, (512, 512, 1))
     # Tensorboard Logs
     log_dir = path + "logs/fit/" + time   
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
@@ -143,7 +147,7 @@ if __name__ == "__main__":
     file_name_plot = classifier_name + '_' + time
     # Example: Confusion_Matrix_CycleGAN_Generated_Data_Classifier
 
-    epochs = 20
+    epochs = 5
     history = classifier_model.fit(
             final_train_ds,
             epochs=epochs,

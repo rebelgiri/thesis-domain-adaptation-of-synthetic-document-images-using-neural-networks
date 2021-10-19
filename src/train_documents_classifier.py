@@ -13,7 +13,8 @@ import pathlib
 
 class CustomCallback(tf.keras.callbacks.Callback):
 
-    def __init__(self, model, test_images, test_labels, class_names, log_dir, file_writer_cm, file_name):
+    def __init__(self, model, test_images, test_labels, class_names, 
+        log_dir, file_writer_cm, file_name):
         self.model = model
         self.test_images = test_images
         self.test_labels = test_labels
@@ -30,7 +31,11 @@ class CustomCallback(tf.keras.callbacks.Callback):
         # Calculate the confusion matrix.
         cm = sklearn.metrics.confusion_matrix(self.test_labels, test_pred)
         # Log the confusion matrix as an image summary.
-        figure = plot_confusion_matrix(cm, class_names=self.class_names, file_name=self.file_name)
+
+        file_name = self.file_name + '_Epoch_' + str(epoch)
+
+        figure = plot_confusion_matrix(cm, class_names=self.class_names, 
+                                file_name=file_name)
         cm_image = plot_to_image(figure)
 
         # Log the confusion matrix as an image summary.
@@ -58,7 +63,6 @@ def plot_to_image(figure):
 def plot_confusion_matrix(cm, class_names, file_name):
   """
   Returns a matplotlib figure containing the plotted confusion matrix.
-
   Args:
     cm (array, shape = [n, n]): a confusion matrix of integer classes
     class_names (array, shape = [n]): String names of the integer classes
@@ -80,7 +84,8 @@ def plot_confusion_matrix(cm, class_names, file_name):
   threshold = cm.max() / 2.
   for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
     color = "white" if cm[i, j] > threshold else "black"
-    plt.text(j, i, labels[i, j], horizontalalignment="center", fontsize='large', fontweight='bold', color=color)
+    plt.text(j, i, labels[i, j], horizontalalignment="center", fontsize='large', 
+    fontweight='bold', color=color)
 
   plt.tight_layout()
   plt.ylabel('True label')
@@ -101,7 +106,6 @@ def image_grid(train_images, class_names, train_labels):
     plt.imshow(train_images[i], cmap=plt.cm.binary)
     #image = np.squeeze(train_images[i])
     #plt.imshow(image, cmap=plt.cm.binary)
-
   return figure
 
 
@@ -111,7 +115,15 @@ if __name__ == "__main__":
     classifier_training_data_set_path = sys.argv[1]
     classifier_test_data_set_path = sys.argv[2]
     classifier_name = sys.argv[3]
+    path = sys.argv[4]
 
+    time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+
+    folder_name = classifier_name + '_' + time
+    path = path + '/' + folder_name + '/'
+    os.mkdir(path)
+    print("Directory '% s' created" % path)
+   
     print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
     data_dir = pathlib.Path(classifier_training_data_set_path)
@@ -130,22 +142,21 @@ if __name__ == "__main__":
     train_ds = list_ds.skip(val_size)
     val_ds = list_ds.take(val_size)
 
-
     print(tf.data.experimental.cardinality(train_ds).numpy())
     print(tf.data.experimental.cardinality(val_ds).numpy())
     print(tf.data.experimental.cardinality(test_ds).numpy())
 
-
-    train_ds = train_ds.map(lambda x: preprocess_classifier_test_images(x, class_names), 
-      num_parallel_calls=tf.data.experimental.AUTOTUNE)
-
-    val_ds = val_ds.map(lambda x: preprocess_classifier_test_images(x, class_names),
-      num_parallel_calls=tf.data.experimental.AUTOTUNE)
-
-    test_ds = test_ds.map(lambda x: preprocess_classifier_test_images(x, class_names),
-      num_parallel_calls=tf.data.experimental.AUTOTUNE)
-
+    img_resize_dim = [512, 512]
     
+    train_ds = train_ds.map(lambda x: preprocess_images_without_augmentation(x, 
+    class_names, img_resize_dim), num_parallel_calls=tf.data.experimental.AUTOTUNE)
+
+    val_ds = val_ds.map(lambda x: preprocess_images_without_augmentation(x,
+    class_names, img_resize_dim), num_parallel_calls=tf.data.experimental.AUTOTUNE)
+
+    test_ds = test_ds.map(lambda x: preprocess_images_without_augmentation(x,
+    class_names, img_resize_dim), num_parallel_calls=tf.data.experimental.AUTOTUNE)
+
     train_ds = configure_for_performance(train_ds, 10, 
       tf.data.experimental.cardinality(train_ds).numpy())
     val_ds = configure_for_performance(val_ds, 10,
@@ -156,12 +167,9 @@ if __name__ == "__main__":
     for image, label in train_ds.take(1):
         print("Image shape: ", image.numpy().shape)
         print("Label: ", label.numpy())
-
-    time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-
+    
     # Tensorboard Logging
-
-    log_dir = "logs/fit/" + time
+    log_dir = path + "logs/fit/" + time
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
     # Creates a file writer for the log directory.
@@ -180,20 +188,19 @@ if __name__ == "__main__":
     # retrieve the test data
     X_test, y_test = next(iter(test_ds))
 
-    # create classifier model
- 
-    file_name = 'Confusion_Matrix_' + classifier_name + '_' + time
+    file_name = path + 'Confusion_Matrix_' + classifier_name + '_' + time
     file_name_plot = classifier_name + '_' + time
     # Example:  Confusion_Matrix_Synthetic_Data_Classifier
     # Example:  Confusion_Matrix_Faxified_Data_Classifier
     
-    synthetic_documents_classifier_model = create_model(10)     
+    # create classifier model
+    documents_classifier_model = create_model(10, (512, 512, 1))     
     epochs = 10
-    history = synthetic_documents_classifier_model.fit(
+    history = documents_classifier_model.fit(
             train_ds,
             epochs=epochs,
             validation_data=val_ds,
-            callbacks=[tensorboard_callback, CustomCallback(synthetic_documents_classifier_model, 
+            callbacks=[tensorboard_callback, CustomCallback(documents_classifier_model, 
             X_test,
             np.argmax(y_test, axis=-1),
             class_names,
@@ -205,26 +212,26 @@ if __name__ == "__main__":
           
     print('Training Finished...')
     # serialize weights to HDF5
-    synthetic_documents_classifier_model.save(classifier_name + '_' + time + '_model.h5')
+    documents_classifier_model.save(path + classifier_name + '_' + time + '_model.h5')
     
-    synthetic_documents_classifier_logs =  open(classifier_name + '_logs' + 
+    documents_classifier_logs =  open(path + classifier_name + '_logs' + 
     '_' + time + '.txt', 'a')
 
     print('Saved model to disk ' + classifier_name + '_' + time + '_model.h5', 
-    file=synthetic_documents_classifier_logs)
+    file=documents_classifier_logs)
 
     # list all data in history
     print(history.history.keys())
     # summarize history for accuracy
     plt.plot(history.history['accuracy'])
     plt.plot(history.history['val_accuracy'])
-    plt.title('Model accuracy', fontweight='bold', fontsize='x-large')
+    plt.title('Model Accuracy', fontweight='bold', fontsize='x-large')
     plt.ylabel('Accuracy', fontweight='bold', fontsize='x-large')
     plt.xlabel('Epochs', fontweight='bold', fontsize='x-large')
     plt.legend(['Train', 'Validation'], loc='upper left', prop=dict(weight='bold'))
     plt.grid(True)
     plt.show()
-    plt.savefig(file_name_plot + '_Accuracy', dpi=300)
+    plt.savefig(path + file_name_plot + '_Accuracy', dpi=300)
     plt.close()
 
     # summarize history for loss
@@ -236,19 +243,18 @@ if __name__ == "__main__":
     plt.legend(['Train', 'Validation'], loc='upper left', prop=dict(weight='bold'))
     plt.grid(True)
     plt.show()
-    plt.savefig(file_name_plot + '_Loss', dpi=300)
+    plt.savefig(path + file_name_plot + '_Loss', dpi=300)
     plt.close()
 
-    y_test_pred = np.argmax(synthetic_documents_classifier_model.predict(X_test), axis=-1)
+    y_test_pred = np.argmax(documents_classifier_model.predict(X_test), axis=-1)
     y_test_real = np.argmax(y_test, axis=-1)
 
-    results = synthetic_documents_classifier_model.evaluate(X_test, y_test, verbose=2)
-    print(classification_report(y_test_real, y_test_pred, target_names=class_names, zero_division=1), file=synthetic_documents_classifier_logs)
-    print("test loss, test acc:", results, file=synthetic_documents_classifier_logs)
+    results = documents_classifier_model.evaluate(X_test, y_test, verbose=2)
+    print(classification_report(y_test_real, y_test_pred, target_names=class_names, zero_division=1), file=documents_classifier_logs)
+    print("test loss, test acc:", results, file=documents_classifier_logs)
 
     # serialize weights to HDF5
-    synthetic_documents_classifier_model.save(classifier_name + '_' + time + '_model.h5')
-
-    synthetic_documents_classifier_logs.close()
+    documents_classifier_model.save(path + classifier_name + '_' + time + '_model.h5')
+    documents_classifier_logs.close()
 
    

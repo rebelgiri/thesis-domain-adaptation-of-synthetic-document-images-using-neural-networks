@@ -1,124 +1,38 @@
-"""
-Title: CycleGAN
-Author: [A_K_Nain](https://twitter.com/A_K_Nain)
-Date created: 2020/08/12
-Last modified: 2020/08/12
-Description: Implementation of CycleGAN.
-"""
 
-"""
-## CycleGAN
-CycleGAN is a model that aims to solve the image-to-image translation
-problem. The goal of the image-to-image translation problem is to learn the
-mapping between an input image and an output image using a training set of
-aligned image pairs. However, obtaining paired examples isn't always feasible.
-CycleGAN tries to learn this mapping without requiring paired input-output images,
-using cycle-consistent adversarial networks.
-- [Paper](https://arxiv.org/pdf/1703.10593.pdf)
-- [Original implementation](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
-"""
-
-"""
-## Setup
-"""
-
-import os
+from classifier_model import *
+from train_synthetic_documents_classifier import *
+import sys
+from datetime import datetime
 import numpy as np
+import os
 import matplotlib.pyplot as plt
-
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 import pathlib
 import tensorflow_addons as tfa
 import tensorflow_datasets as tfds
+#tf.debugging.set_log_device_placement(True)
+from preprocessing_images import *
+from numpy import save
+
 
 tfds.disable_progress_bar()
 autotune = tf.data.experimental.AUTOTUNE
-# from preprocessing_images import *
-
-
-def normalize_img(img):
-    # Map values in the range [-1, 1]
-    img = tf.cast(img, dtype=tf.float32)
-    return (img / 127.5) - 1.0
-
-
-def preprocess_cyclegan_images(image_path):
-    img = tf.io.read_file(image_path)
-    # Convert the image in grayscale
-    img = tf.image.decode_png(img, channels=1)
-    # Random flip left to right
-    # img = tf.image.random_flip_left_right(img)
-
-    # Resize the image Ex. [512, 512]
-    img = tf.image.resize(img, [256, 256])
-    
-    # Random crop image [[256, 256]]
-    # img = tf.image.random_crop(img, [256, 256, 1])
-    
-    img = normalize_img(img)
-    return img
-
-synthetic_document_images_path = '/mnt/data/data/cyclegan_synthetic_document_images/synthetic_document_images/'
-real_document_images_path = '/mnt/data/data/cyclegan_real_document_images/real_document_images/'
-
-#synthetic_document_images_path = '/mnt/data/data/cyclegan_synthetic_document_images_test/'
-#real_document_images_path = '/mnt/data/data/cyclegan_real_document_images_test/'
-
-synthetic_document_images_path_test = '/mnt/data/data/cyclegan_synthetic_document_images_test/'
-
 
 buffer_size = 256
 batch_size = 1
 
-# Training Dataset
-ds_source_domain_list_files = tf.data.Dataset.list_files(str(pathlib.Path(synthetic_document_images_path+'*.png')))
-ds_source_domain_dataset = ds_source_domain_list_files.map(preprocess_cyclegan_images,
-        num_parallel_calls=tf.data.experimental.AUTOTUNE).cache().shuffle(buffer_size).batch(batch_size)
-
-ds_target_domain_list_files = tf.data.Dataset.list_files(str(pathlib.Path(real_document_images_path+'*.png')))
-ds_target_domain_dataset = ds_target_domain_list_files.map(preprocess_cyclegan_images,
-        num_parallel_calls=tf.data.experimental.AUTOTUNE).cache().shuffle(buffer_size).batch(batch_size)
-
-
-# Testing Dataset
-ds_source_domain_list_files_test = tf.data.Dataset.list_files(str(
-    pathlib.Path(synthetic_document_images_path_test+'*.png')))
-
-ds_source_domain_dataset_test = ds_source_domain_list_files_test.map(preprocess_cyclegan_images,
-        num_parallel_calls=tf.data.experimental.AUTOTUNE).cache().shuffle(buffer_size).batch(batch_size)
-
-
-
 # Define the standard image size.
-#orig_img_size = (286, 286)
-# Size of the random crops to be used during training.
-#input_img_size = (512, 512, 1)
-input_img_size = (256, 256, 1)
+#input_img_size = (256, 256, 1)
+input_img_size = (512, 512, 1)
+
+
 # Weights initializer for the layers.
 kernel_init = keras.initializers.RandomNormal(mean=0.0, stddev=0.02)
 # Gamma initializer for instance normalization.
 gamma_init = keras.initializers.RandomNormal(mean=0.0, stddev=0.02)
 
-"""
-## Visualize some samples
-"""
-_, ax = plt.subplots(4, 2, figsize=(10, 15))
-for i, samples in enumerate(zip(ds_source_domain_dataset.take(4), ds_target_domain_dataset.take(4))):
-    # source = (((samples[0][0] * 127.5) + 127.5).numpy()).astype(np.uint8)
-    # target = (((samples[1][0] * 127.5) + 127.5).numpy()).astype(np.uint8)
-    source = ((samples[0][0]).numpy())
-    target = ((samples[1][0]).numpy())
-    ax[i, 0].imshow(source, cmap=plt.cm.gray)
-    ax[i, 1].imshow(target, cmap=plt.cm.gray)
-plt.show()
-plt.savefig('Visualize_Some_Samples')
-
-
-"""
-## Building blocks used in the CycleGAN generators and discriminators
-"""
 class ReflectionPadding2D(layers.Layer):
     """Implements Reflection Padding as a layer.
     Args:
@@ -141,7 +55,6 @@ class ReflectionPadding2D(layers.Layer):
             [0, 0],
         ]
         return tf.pad(input_tensor, padding_tensor, mode="REFLECT")
-
 
 def residual_block(
     x,
@@ -253,7 +166,7 @@ R256 ====|
 u128 ====|
          |-> 2 upsampling blocks
 u64  ====|
-c7s1-1 => Last conv block with `tanh` activation, filter size of 7.
+c7s1-3 => Last conv block with `tanh` activation, filter size of 7.
 ```
 """
 
@@ -499,126 +412,97 @@ class CycleGan(keras.Model):
         }
 
 
-"""
-## Create a callback that periodically saves generated images
-"""
+
+if __name__ == "__main__":
+
+    print(f"Arguments count: {len(sys.argv)}")
+    cyclegan_generator_path = sys.argv[1]
+    classifier_training_data_set_path = sys.argv[2]
+    folder_name = sys.argv[3]
+    path = sys.argv[4]
+
+    time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    folder_name_with_time = folder_name + '_' + time
+    path = path + '/' + folder_name_with_time + '/'
+    os.mkdir(path)
+    print("Directory '% s' created" % path)
+
+    # Get the generators
+    gen_G = get_resnet_generator(name="generator_G")
+    gen_F = get_resnet_generator(name="generator_F")
+
+    # Get the discriminators
+    disc_X = get_discriminator(name="discriminator_X")
+    disc_Y = get_discriminator(name="discriminator_Y")
 
 
-class GANMonitor(keras.callbacks.Callback):
-    """A callback to generate and save images after each epoch"""
-
-    def __init__(self, num_img=4):
-        self.num_img = num_img
-
-    def on_epoch_end(self, epoch, logs=None):
-        _, ax = plt.subplots(4, 2, figsize=(12, 12))
-        for i, img in enumerate(ds_source_domain_dataset_test.take(self.num_img)):
-            prediction = self.model.gen_G(img)[0].numpy()
-            # prediction = (prediction * 127.5 + 127.5).astype(np.uint8)
-            # img = (img[0] * 127.5 + 127.5).numpy().astype(np.uint8)
-            ax[i, 0].imshow(img[0].numpy(), cmap=plt.cm.gray)
-            ax[i, 1].imshow(prediction, cmap=plt.cm.gray)
-            ax[i, 0].set_title("Input image")
-            ax[i, 1].set_title("Translated image")
-            ax[i, 0].axis("off")
-            ax[i, 1].axis("off")
-
-            prediction = keras.preprocessing.image.array_to_img(prediction)
-            prediction.save(
-                "generated_img_{i}_{epoch}.png".format(i=i, epoch=epoch + 1)
-            )
-        plt.show()
-        plt.savefig('CycleGAN_Generated_Images_{i}_{epoch}.png'.format(i=i, epoch=epoch + 1))
-        plt.close()
-
-
-"""
-## Train the end-to-end model
-"""
-
-
-# Loss function for evaluating adversarial loss
-adv_loss_fn = keras.losses.MeanSquaredError()
-
-# Define the loss function for the generators
-def generator_loss_fn(fake):
-    fake_loss = adv_loss_fn(tf.ones_like(fake), fake)
-    return fake_loss
-
-
-# Define the loss function for the discriminators
-def discriminator_loss_fn(real, fake):
-    real_loss = adv_loss_fn(tf.ones_like(real), real)
-    fake_loss = adv_loss_fn(tf.zeros_like(fake), fake)
-    return (real_loss + fake_loss) * 0.5
-
-
-# Create cycle gan model
-cycle_gan_model = CycleGan(
-    generator_G=gen_G, generator_F=gen_F, discriminator_X=disc_X, discriminator_Y=disc_Y
-)
-
-# Compile the model
-cycle_gan_model.compile(
-    gen_G_optimizer=keras.optimizers.Adam(learning_rate=2e-4, beta_1=0.5),
-    gen_F_optimizer=keras.optimizers.Adam(learning_rate=2e-4, beta_1=0.5),
-    disc_X_optimizer=keras.optimizers.Adam(learning_rate=2e-4, beta_1=0.5),
-    disc_Y_optimizer=keras.optimizers.Adam(learning_rate=2e-4, beta_1=0.5),
-    gen_loss_fn=generator_loss_fn,
-    disc_loss_fn=discriminator_loss_fn,
-)
-
-# Callbacks
-plotter = GANMonitor()
-checkpoint_filepath = "./model_checkpoints/cyclegan_checkpoints.{epoch:03d}"
-model_checkpoint_callback = keras.callbacks.ModelCheckpoint(
-    filepath=checkpoint_filepath
-)
-
-# Here we will train the model
-cycle_gan_model.fit(
-    tf.data.Dataset.zip((ds_source_domain_dataset, ds_target_domain_dataset)),
-    epochs=20,
-    callbacks=[plotter, model_checkpoint_callback],
+    # Create cycle gan model
+    cycle_gan_model = CycleGan(
+        generator_G=gen_G, generator_F=gen_F, discriminator_X=disc_X, discriminator_Y=disc_Y
     )
+    cycle_gan_model.load_weights(cyclegan_generator_path).expect_partial()
+    print("Weights loaded successfully")
 
-print('Training Finished...')
+    data_dir = pathlib.Path(classifier_training_data_set_path)
+    train_ds = tf.data.Dataset.list_files(str(data_dir/'*/*'), shuffle=False)
 
-
-
-"""
-Test the performance of the model.
-"""
-# This model was trained for 90 epochs. We will be loading those weights
-# here. Once the weights are loaded, we will take a few samples from the test
-# data and check the model's performance.
-
-"""shell
-curl -LO https://github.com/AakashKumarNain/CycleGAN_TF2/releases/download/v1.0/saved_checkpoints.zip
-unzip -qq saved_checkpoints.zip
-"""
+    class_names = np.array(sorted([item.name for item in data_dir.glob('*')]))
+    print(class_names)  
+    no_of_classes = len(class_names)
 
 
-# Load the checkpoints
-weight_file = "./model_checkpoints/cyclegan_checkpoints.020"
-cycle_gan_model.load_weights(weight_file).expect_partial()
-print("Weights loaded successfully")
+    image_count = len(list(data_dir.glob('*/*.png')))
+    print(image_count)
 
-_, ax = plt.subplots(4, 2, figsize=(10, 15))
-for i, img in enumerate(ds_source_domain_dataset_test.take(4)):
-    prediction = cycle_gan_model.gen_G(img, training=False)[0].numpy()
-    # prediction = (prediction * 127.5 + 127.5).astype(np.uint8)
-    # img = (img[0] * 127.5 + 127.5).numpy().astype(np.uint8)
-    ax[i, 0].imshow(img[0].numpy(), cmap=plt.cm.gray)
-    ax[i, 1].imshow(prediction, cmap=plt.cm.gray)
-    ax[i, 0].set_title("Input image")
-    ax[i, 0].set_title("Input image")
-    ax[i, 1].set_title("Translated image")
-    ax[i, 0].axis("off")
-    ax[i, 1].axis("off")
+    print(tf.data.experimental.cardinality(train_ds).numpy())
 
-    prediction = keras.preprocessing.image.array_to_img(prediction)
-    prediction.save("predicted_img_{i}.png".format(i=i))
-plt.tight_layout()
-plt.show()
-plt.savefig('CycleGAN_Predicted_Images')
+    img_resize_dim = [512, 512]
+    train_ds = train_ds.map(lambda x: preprocess_classifier_test_images(x, class_names, img_resize_dim), 
+      num_parallel_calls=tf.data.experimental.AUTOTUNE)
+
+    train_ds = configure_for_performance_without_shuffle(train_ds, 1)
+
+    print('Retrieving Original Labels')
+    original_labels =  np.asarray(list(train_ds.map(lambda y, x: x)))
+    original_labels = np.reshape(original_labels, (image_count, no_of_classes))
+    print(original_labels.shape)
+    
+    train_ds_it = iter(train_ds)
+    
+    for i in range(image_count):
+      X_train_10_samples, y_train_10_samples = next(train_ds_it)
+      #plt.subplot(5, 2, i+1)
+      plt.figure(figsize=(10,10))
+      plt.xticks([])
+      plt.yticks([])
+      plt.grid(False)
+      plt.imshow(X_train_10_samples[0], cmap=plt.cm.gray)
+      plt.xlabel(class_names[np.argmax(y_train_10_samples[0], axis=-1)])
+      plt.show()
+      plt.savefig((path + 'Saved_Sample_Images_Before_Prediction_%d') % i)
+      plt.close()
+      
+
+
+    # Generation of Target Domain Document Images
+    with tf.device("CPU:0"):
+        generated_target_domain_images = cycle_gan_model.gen_G.predict(train_ds)
+    print('Generated target domain images shape')
+    print(generated_target_domain_images.shape)
+    #print(generated_target_domain_images)
+    
+
+    
+    for i in range(image_count):
+      #plt.subplot(5, 2, i+1)
+      plt.figure(figsize=(10,10))
+      plt.xticks([])
+      plt.yticks([])
+      plt.grid(False)
+      plt.imshow(generated_target_domain_images[i], cmap=plt.cm.gray)
+      plt.xlabel(class_names[np.argmax(original_labels[i], axis=-1)])
+      plt.show()
+      plt.savefig((path + 'Saved_Sample_Images_after_Prediction_%d') % i)
+      plt.close()
+
+    
