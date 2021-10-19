@@ -1,0 +1,217 @@
+\documentclass[fleqn]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{ragged2e}
+
+% Configure colors in RGB values
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{color}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{verbatim}
+\usepackage{lipsum}
+\usepackage{MnSymbol}
+\usepackage{graphicx}
+\usepackage{capt-of}
+\usepackage{titlesec}
+\usepackage{wrapfig}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{adjustbox}
+\usepackage[linesnumbered]{algorithm2e}
+\usepackage{pdfpages}
+
+
+%link colors
+\hypersetup{
+     linkbordercolor=magenta,
+     linkcolor=magenta,
+    pdftitle={Using Neural Networks for the Domain Adaptation of Synthetic Generated Document Images}
+}
+
+
+
+%font type
+%\usepackage{tgheros}
+
+% For fancy bullet list
+\usepackage{enumitem}
+\usepackage{bbding}
+\usepackage{tikz}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=0.3pt] (char) {#1};}}
+% For fancy bullet list
+
+% image caption setup
+\usepackage{caption}
+\captionsetup[figure]{justification=justified, format=plain, font=small, labelfont=bf}
+
+% set foot note to the bottom of the page
+\usepackage[bottom]{footmisc}
+
+
+\titleformat{\chapter}[block]
+  {\normalfont\huge\bfseries}{\thechapter.}{1em}{\huge}
+\titlespacing*{\chapter}{0pt}{15pt}{15pt}
+% acronyms
+\usepackage{acronym} 
+\usepackage[a4paper, total={6in, 10in}]{geometry}
+\usepackage{authblk}
+\author[1]{Giriraj Sukumar Pawar}
+
+%\title{Using Neural Networks for the Domain Adaptation of Synthetic Generated Document Images}
+
+\begin{comment}
+\usepackage{etoolbox}
+\expandafter\patchcmd\csname citeauthor \endcsname
+  {\begingroup}{\begingroup\aftergroup\@}{}{}
+\end{comment}
+
+
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+
+
+ \usepackage[utf8]{inputenc}
+    \usepackage{amsmath, amssymb, latexsym}
+    \DeclareMathOperator{\ReLU}{ReLU}
+    \DeclareMathOperator{\LeakyReLU}{LeakyReLU}
+    \newcommand{\KL}{\ensuremath{\mathrm{KL}}}
+    \newcommand{\Ber}{\ensuremath{\mathrm{Ber}}}
+     
+    \usepackage{tikz}
+    \usepackage{xcolor}
+    \definecolor{fc}{HTML}{FFA500}
+    \definecolor{h}{HTML}{228B22}
+    \definecolor{bias}{HTML}{87CEFA}
+    \definecolor{noise}{HTML}{8B008B}
+    \definecolor{conv}{HTML}{FFA500}
+    %\definecolor{pool}{HTML}{B22222}
+    \definecolor{pool}{HTML}{FFA500}
+    \definecolor{dp}{HTML}{FFA500}
+    \definecolor{up}{HTML}{B22222}
+    \definecolor{view}{HTML}{FFFFFF}
+    \definecolor{bn}{HTML}{FFD700}
+    \definecolor{flatten}{HTML}{FFA500}
+    \tikzset{fc/.style={black,draw=black,fill=fc,rectangle,minimum height=1cm}}
+    \tikzset{h/.style={black,draw=black,fill=h,rectangle,minimum height=1cm}}
+    \tikzset{bias/.style={black,draw=black,fill=bias,rectangle,minimum height=1cm}}
+    \tikzset{noise/.style={black,draw=black,fill=noise,rectangle,minimum height=1cm}}
+    \tikzset{conv/.style={black,draw=black,fill=conv,rectangle,minimum height=1cm}}
+    \tikzset{pool/.style={black,draw=black,fill=pool,rectangle,minimum height=1cm}}
+    \tikzset{up/.style={black,draw=black,fill=up,rectangle,minimum height=1cm}}
+    \tikzset{view/.style={black,draw=black,fill=view,rectangle,minimum height=1cm}}
+    \tikzset{bn/.style={black,draw=black,fill=bn,rectangle,minimum height=1cm}}
+    \tikzset{dp/.style={black,draw=black,fill=dp,rectangle,minimum height=1cm}}
+    \tikzset{flatten/.style={black,draw=black,fill=flatten,rectangle,minimum height=1cm}}
+
+     
+    \usepackage{xspace}
+    \newcommand*{\eg}{\emph{e.g.}\@\xspace}
+    \newcommand*{\Eg}{\emph{E.g.}\@\xspace}
+    \newcommand*{\ie}{\emph{i.e.}\@\xspace}
+    \newcommand*{\etc}{\emph{etc.}\@\xspace}
+    \newcommand*{\etal}{\emph{et al.}\@\xspace}
+    \newcommand*{\cf}{\emph{cf.}\@\xspace}
+    \newcommand*{\vs}{\emph{vs.}\@\xspace}
+
+
+
+
+
+
+
+\begin{document}
+
+%\maketitle
+\include{metadata}
+
+
+\input{titlepage}
+\newpage
+\input{metadatainfo}
+\input{abstarct}
+\newpage
+
+\tableofcontents
+\newpage
+
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+\newpage
+
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+\newpage
+
+\addcontentsline{toc}{chapter}{List of Algorithms}
+\listofalgorithms
+\newpage
+
+\addcontentsline{toc}{chapter}{List of Abbreviation}
+\chapter*{List of Abbreviations}
+\input{acrolist}
+\newpage
+
+%\chapter*{List of Symbols}
+%\input{listofsymbols}
+%\newpage
+
+\chapter{Introduction}
+    \label{introduction}
+    \input{introduction}
+\newpage
+
+\chapter{Related Works}
+    \label{relatedworks}
+    \input{relatedworks}
+\newpage    
+
+
+\chapter{Fundamentals}
+    \label{fundamentals}
+    \input{fundamentals}
+\newpage
+
+\chapter{Methodology}
+    \label{methodology}
+    \input{methodology}
+\newpage
+
+\chapter{Implementation}
+    \label{implementation}
+    \input{implementation}
+\newpage
+
+\chapter{Experiments and Evaluation}
+    \label{evaluation}
+    \input{evaluation}
+\newpage
+
+
+
+\chapter{Conclusion and Future Work}
+    \label{conclusion}
+    \input{conclusion}
+\newpage
+
+\appendix
+\chapter{Appendix}
+\input{appendix}
+\newpage
+
+\bibliographystyle{unsrt}
+\newpage
+\bibliography{literature.bib}
+
+
+\includepdf{abschlussarbeit_selbststaendigkeitserklaerung}
+
+\end{document}

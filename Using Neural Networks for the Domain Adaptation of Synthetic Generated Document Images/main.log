@@ -1,0 +1,2246 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2020.12.20)  20 SEP 2021 00:56
+entering extended mode
+**"D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-u
+sing-neural-networks/Using Neural Networks for the Domain Adaptation of Synthet
+ic Generated Document Images/main.tex"
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images/main.tex"
+LaTeX2e <2020-10-01> patch level 2
+L3 programming layer <2020-12-07> xparse <2020-03-03>
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\repor
+t.cls"
+Document Class: report 2020/04/10 v1.4m Standard LaTeX document class
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\fleqn
+.clo"
+File: fleqn.clo 2016/12/29 v1.2b Standard LaTeX option (flush left equations)
+\mathindent=\skip47
+Applying: [2015/01/01] Make \[ robust on input line 50.
+LaTeX Info: Redefining \[ on input line 51.
+Already applied: [0000/00/00] Make \[ robust on input line 62.
+Applying: [2015/01/01] Make \] robust on input line 74.
+LaTeX Info: Redefining \] on input line 75.
+Already applied: [0000/00/00] Make \] robust on input line 83.
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\size1
+0.clo"
+File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+)
+\c@part=\count177
+\c@chapter=\count178
+\c@section=\count179
+\c@subsection=\count180
+\c@subsubsection=\count181
+\c@paragraph=\count182
+\c@subparagraph=\count183
+\c@figure=\count184
+\c@table=\count185
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen138
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\input
+enc.sty"
+Package: inputenc 2020/08/01 v1.3d Input encoding file
+\inpenc@prehook=\toks15
+\inpenc@posthook=\toks16
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ragged2e\r
+agged2e.sty"
+Package: ragged2e 2019/07/28 v2.2 ragged2e Package (MS)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ms\everyse
+l.sty"
+Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
+)
+\CenteringLeftskip=\skip50
+\RaggedLeftLeftskip=\skip51
+\RaggedRightLeftskip=\skip52
+\CenteringRightskip=\skip53
+\RaggedLeftRightskip=\skip54
+\RaggedRightRightskip=\skip55
+\CenteringParfillskip=\skip56
+\RaggedLeftParfillskip=\skip57
+\RaggedRightParfillskip=\skip58
+\JustifyingParfillskip=\skip59
+\CenteringParindent=\skip60
+\RaggedLeftParindent=\skip61
+\RaggedRightParindent=\skip62
+\JustifyingParindent=\skip63
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\h
+yperref.sty"
+Package: hyperref 2020-05-15 v7.00e Hypertext links for LaTeX
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/ltxcmds\
+ltxcmds.sty"
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\if
+tex.sty"
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pdftexcm
+ds\pdftexcmds.sty"
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/infwarer
+r\infwarerr.sty"
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\k
+eyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/kvsetkey
+s\kvsetkeys.sty"
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/kvdefine
+keys\kvdefinekeys.sty"
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pdfescap
+e\pdfescape.sty"
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hycolor\hy
+color.sty"
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/letltxmacr
+o\letltxmacro.sty"
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/auxhook\au
+xhook.sty"
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/kvoptions\
+kvoptions.sty"
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+)
+\@linkdim=\dimen139
+\Hy@linkcounter=\count186
+\Hy@pagecounter=\count187
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\p
+d1enc.def"
+File: pd1enc.def 2020-05-15 v7.00e Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/intcalc\
+intcalc.sty"
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/etexcmds
+\etexcmds.sty"
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count188
+Package hyperref Info: Hyper figures OFF on input line 4464.
+Package hyperref Info: Link nesting OFF on input line 4469.
+Package hyperref Info: Hyper index ON on input line 4472.
+Package hyperref Info: Plain pages OFF on input line 4479.
+Package hyperref Info: Backreferencing OFF on input line 4484.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4717.
+\c@Hy@tempcnt=\count189
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/url\url.st
+y"
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5076.
+\XeTeXLinkMargin=\dimen140
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/bitset\b
+itset.sty"
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/bigintca
+lc\bigintcalc.sty"
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count190
+\Field@Width=\dimen141
+\Fld@charsize=\dimen142
+Package hyperref Info: Hyper figures OFF on input line 6347.
+Package hyperref Info: Link nesting OFF on input line 6352.
+Package hyperref Info: Hyper index ON on input line 6355.
+Package hyperref Info: backreferencing OFF on input line 6362.
+Package hyperref Info: Link coloring OFF on input line 6367.
+Package hyperref Info: Link coloring with OCG OFF on input line 6372.
+Package hyperref Info: PDF/A mode OFF on input line 6377.
+LaTeX Info: Redefining \ref on input line 6417.
+LaTeX Info: Redefining \pageref on input line 6421.
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\atbeg
+shi-ltx.sty"
+Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
+ge
+with kernel methods
+)
+\Hy@abspage=\count191
+\c@Item=\count192
+\c@Hfootnote=\count193
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\h
+pdftex.def"
+File: hpdftex.def 2020-05-15 v7.00e Hyperref driver for pdfTeX
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\atver
+yend-ltx.sty"
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery packag
+e
+with kernel methods
+)
+\Fld@listcount=\count194
+\c@bookmark@seq@number=\count195
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/rerunfilec
+heck\rerunfilecheck.sty"
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/uniqueco
+unter\uniquecounter.sty"
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip64
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xcolor\xco
+lor.sty"
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-c
+fg\color.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-d
+ef\pdftex.def"
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\am
+smath.sty"
+Package: amsmath 2020/09/23 v2.17i AMS math features
+\@mathmargin=\skip65
+
+For additional information on amsmath, use the `?' option.
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\am
+stext.sty"
+Package: amstext 2000/06/29 v2.01 AMS text
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\am
+sgen.sty"
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks18
+\ex@=\dimen143
+))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\am
+sbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen144
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\am
+sopn.sty"
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count196
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count197
+\leftroot@=\count198
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count199
+\DOTSCASE@=\count266
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box47
+\strutbox@=\box48
+\big@size=\dimen145
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count267
+\c@MaxMatrixCols=\count268
+\dotsspace@=\muskip17
+\c@parentequation=\count269
+\dspbrk@lvl=\count270
+\tag@help=\toks19
+\row@=\count271
+\column@=\count272
+\maxfields@=\count273
+\andhelp@=\toks20
+\eqnshift@=\dimen146
+\alignsep@=\dimen147
+\tagshift@=\dimen148
+\tagwidth@=\dimen149
+\totwidth@=\dimen150
+\lineht@=\dimen151
+\@envbody=\toks21
+\multlinegap=\skip66
+\multlinetaggap=\skip67
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2923.
+LaTeX Info: Redefining \] on input line 2924.
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\a
+mssymb.sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\a
+msfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\g
+raphicx.sty"
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\g
+raphics.sty"
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\t
+rig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-c
+fg\graphics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+)
+\Gin@req@height=\dimen152
+\Gin@req@width=\dimen153
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/subfigure\
+subfigure.sty"
+Package: subfigure 2002/07/30 v2.1.4 subfigure package
+\subfigtopskip=\skip68
+\subfigcapskip=\skip69
+\subfigcaptopadj=\dimen154
+\subfigbottomskip=\skip70
+\subfigcapmargin=\dimen155
+\subfiglabelskip=\skip71
+\c@subfigure=\count274
+\c@lofdepth=\count275
+\c@subtable=\count276
+\c@lotdepth=\count277
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/subfigure\
+subfigure.cfg")
+\subfig@top=\skip72
+\subfig@bottom=\skip73
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\verb
+atim.sty"
+Package: verbatim 2019/11/10 v1.5r LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks23
+\verbatim@line=\toks24
+\verbatim@in@stream=\read2
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lipsum\lip
+sum.sty"
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/l3kernel\e
+xpl3.sty"
+Package: expl3 2020-12-07 L3 programming layer (loader) 
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/l3backend\
+l3backend-pdftex.def"
+File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
+\l__kernel_color_stack_int=\count278
+\l__pdf_internal_box=\box49
+))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/l3packages
+/xparse\xparse.sty"
+Package: xparse 2020-10-27 L3 Experimental document command parser
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/l3packages
+/xparse\xparse-generic.tex"))
+Package: lipsum 2019/01/02 v2.2 150 paragraphs of Lorem Ipsum dummy text
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lipsum\lip
+sum.ltd.tex"
+File: lipsum.ltd.tex 2019/01/02 v2.2 The Lorem ipsum dummy text
+))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/mnsymbol\M
+nSymbol.sty"
+Package: MnSymbol 2007/01/21 v1.4 support for the MnSymbol font
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\textc
+omp.sty"
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+)
+LaTeX Info: Redefining \dagger on input line 84.
+LaTeX Info: Redefining \ddagger on input line 84.
+LaTeX Info: Redefining \mathparagraph on input line 84.
+LaTeX Info: Redefining \mathsection on input line 84.
+LaTeX Info: Redefining \mathdollar on input line 84.
+LaTeX Info: Redefining \mathsterling on input line 84.
+LaTeX Info: Redefining \yen on input line 84.
+LaTeX Info: Redefining \circledR on input line 84.
+LaTeX Info: Redefining \circledS on input line 84.
+LaTeX Info: Redefining \Re on input line 84.
+LaTeX Info: Redefining \Im on input line 84.
+LaTeX Info: Redefining \dotplus on input line 84.
+LaTeX Info: Redefining \thicksim on input line 84.
+LaTeX Info: Redefining \thickapprox on input line 84.
+LaTeX Info: Redefining \veebar on input line 84.
+LaTeX Info: Redefining \barwedge on input line 84.
+LaTeX Info: Redefining \doublebarwedge on input line 84.
+LaTeX Info: Redefining \centerdot on input line 84.
+LaTeX Info: Redefining \divideontimes on input line 84.
+\symMnSyA=\mathgroup6
+\symMnSyB=\mathgroup7
+\symMnSyC=\mathgroup8
+\symMnSyD=\mathgroup9
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 119.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/MnSymbolE/m/n on input line 119.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/MnSymbolE/m/n on input line 119.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 120.
+LaTeX Font Info:    Encoding `OMS' has changed to `U' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 120.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> U/MnSymbolF/m/n on input line 120.
+LaTeX Font Info:    Encoding `OMS' has changed to `U' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 120.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> U/MnSymbolF/m/n on input line 120.
+LaTeX Font Info:    Overwriting symbol font `MnSyA' in version `bold'
+(Font)                  U/MnSymbolA/m/n --> U/MnSymbolA/b/n on input line 121.
+LaTeX Font Info:    Overwriting symbol font `MnSyB' in version `bold'
+(Font)                  U/MnSymbolB/m/n --> U/MnSymbolB/b/n on input line 122.
+LaTeX Font Info:    Overwriting symbol font `MnSyC' in version `bold'
+(Font)                  U/MnSymbolC/m/n --> U/MnSymbolC/b/n on input line 123.
+LaTeX Font Info:    Overwriting symbol font `MnSyD' in version `bold'
+(Font)                  U/MnSymbolD/m/n --> U/MnSymbolD/b/n on input line 124.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/MnSymbolE/m/n --> OMX/MnSymbolE/b/n on input line 1
+25.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  U/MnSymbolF/m/n --> U/MnSymbolF/b/n on input line 126.
+LaTeX Font Info:    Redeclaring math alphabet \mathcal on input line 241.
+LaTeX Font Info:    Overwriting math alphabet `\mathcal' in version `bold'
+(Font)                  OMS/MnSymbolS/m/n --> OMS/MnSymbolS/b/n on input line 2
+41.
+LaTeX Info: Redefining \longrightarrow on input line 548.
+LaTeX Info: Redefining \longleftarrow on input line 549.
+LaTeX Info: Redefining \longleftrightarrow on input line 550.
+LaTeX Info: Redefining \Longrightarrow on input line 551.
+LaTeX Info: Redefining \Longleftarrow on input line 552.
+LaTeX Info: Redefining \Longleftrightarrow on input line 553.
+LaTeX Info: Redefining \longmapsto on input line 554.
+LaTeX Info: Redefining \vdots on input line 868.
+LaTeX Font Info:    Redeclaring math symbol \braceld on input line 1721.
+LaTeX Font Info:    Redeclaring math symbol \bracelu on input line 1722.
+LaTeX Font Info:    Redeclaring math symbol \bracerd on input line 1723.
+LaTeX Font Info:    Redeclaring math symbol \braceru on input line 1724.
+LaTeX Info: Redefining \downbracefill on input line 1799.
+LaTeX Info: Redefining \upbracefill on input line 1800.
+LaTeX Info: Redefining \overbrace on input line 1819.
+LaTeX Info: Redefining \underbrace on input line 1820.
+LaTeX Info: Redefining \surd on input line 1843.
+LaTeX Font Info:    Redeclaring math accent \widehat on input line 1845.
+LaTeX Font Info:    Redeclaring math accent \widetilde on input line 1846.
+LaTeX Font Info:    Redeclaring math accent \vec on input line 1848.
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/capt-of\ca
+pt-of.sty"
+Package: capt-of 2009/12/29 v0.2 standard captions outside of floats
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/titlesec\t
+itlesec.sty"
+Package: titlesec 2019/10/16 v2.13 Sectioning titles
+\ttl@box=\box50
+\beforetitleunit=\skip74
+\aftertitleunit=\skip75
+\ttl@plus=\dimen156
+\ttl@minus=\dimen157
+\ttl@toksa=\toks25
+\titlewidth=\dimen158
+\titlewidthlast=\dimen159
+\titlewidthfirst=\dimen160
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/wrapfig\wr
+apfig.sty"
+\wrapoverhang=\dimen161
+\WF@size=\dimen162
+\c@WF@wrappedlines=\count279
+\WF@box=\box51
+\WF@everypar=\toks26
+Package: wrapfig 2003/01/31  v 3.6
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/booktabs\b
+ooktabs.sty"
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen163
+\lightrulewidth=\dimen164
+\cmidrulewidth=\dimen165
+\belowrulesep=\dimen166
+\belowbottomsep=\dimen167
+\aboverulesep=\dimen168
+\abovetopsep=\dimen169
+\cmidrulesep=\dimen170
+\cmidrulekern=\dimen171
+\defaultaddspace=\dimen172
+\@cmidla=\count280
+\@cmidlb=\count281
+\@aboverulesep=\dimen173
+\@belowrulesep=\dimen174
+\@thisruleclass=\count282
+\@lastruleclass=\count283
+\@thisrulewidth=\dimen175
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/float\floa
+t.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count284
+\float@exts=\toks27
+\float@box=\box52
+\@float@everytoks=\toks28
+\@floatcapt=\box53
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fancyhdr\f
+ancyhdr.sty"
+Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
+s
+\f@nch@headwidth=\skip76
+\f@nch@O@elh=\skip77
+\f@nch@O@erh=\skip78
+\f@nch@O@olh=\skip79
+\f@nch@O@orh=\skip80
+\f@nch@O@elf=\skip81
+\f@nch@O@erf=\skip82
+\f@nch@O@olf=\skip83
+\f@nch@O@orf=\skip84
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\
+adjustbox.sty"
+Package: adjustbox 2020/08/19 v1.3 Adjusting TeX boxes (trim, clip, ...)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xkeyval\xk
+eyval.sty"
+Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\
+xkeyval.tex"
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\
+xkvutils.tex"
+\XKV@toks=\toks29
+\XKV@tempa@toks=\toks30
+)
+\XKV@depth=\count285
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\
+adjcalc.sty"
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\
+trimclip.sty"
+Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/collectbox
+\collectbox.sty"
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box54
+)
+\tc@llx=\dimen176
+\tc@lly=\dimen177
+\tc@urx=\dimen178
+\tc@ury=\dimen179
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\
+tc-pdftex.def"
+File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen180
+\adjbox@Height=\dimen181
+\adjbox@Depth=\dimen182
+\adjbox@Totalheight=\dimen183
+\adjbox@pwidth=\dimen184
+\adjbox@pheight=\dimen185
+\adjbox@pdepth=\dimen186
+\adjbox@ptotalheight=\dimen187
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ifoddpage\
+ifoddpage.sty"
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count286
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/varwidth\v
+arwidth.sty"
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box55
+\sift@deathcycles=\count287
+\@vwid@loff=\dimen188
+\@vwid@roff=\dimen189
+))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/algorithm2
+e\algorithm2e.sty"
+Package: algorithm2e 2017/07/18 v5.2 algorithms environments
+\c@AlgoLine=\count288
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ifthe
+n.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\algocf@hangindent=\skip85
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\xspa
+ce.sty"
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/relsize\re
+lsize.sty"
+Package: relsize 2013/03/29 ver 4.1
+)
+\skiptotal=\skip86
+\skiplinenumber=\skip87
+\skiprule=\skip88
+\skiphlne=\skip89
+\skiptext=\skip90
+\skiplength=\skip91
+\algomargin=\skip92
+\skipalgocfslide=\skip93
+\algowidth=\dimen190
+\inoutsize=\dimen191
+\inoutindent=\dimen192
+\interspacetitleruled=\dimen193
+\interspacealgoruled=\dimen194
+\interspacetitleboxruled=\dimen195
+\algocf@ruledwidth=\skip94
+\algocf@inoutbox=\box56
+\algocf@inputbox=\box57
+\AlCapSkip=\skip95
+\AlCapHSkip=\skip96
+\algoskipindent=\skip97
+\algocf@nlbox=\box58
+\algocf@hangingbox=\box59
+\algocf@untilbox=\box60
+\algocf@skipuntil=\skip98
+\algocf@capbox=\box61
+\algocf@lcaptionbox=\skip99
+\algoheightruledefault=\skip100
+\algoheightrule=\skip101
+\algotitleheightruledefault=\skip102
+\algotitleheightrule=\skip103
+\c@algocfline=\count289
+\c@algocfproc=\count290
+\c@algocf=\count291
+\algocf@algoframe=\box62
+\algocf@algobox=\box63
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pdfpages\p
+dfpages.sty"
+Package: pdfpages 2021/03/06 v0.5t Insert pages of external PDF documents (AM)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\calc
+.sty"
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count292
+\calc@Bcount=\count293
+\calc@Adimen=\dimen196
+\calc@Bdimen=\dimen197
+\calc@Askip=\skip104
+\calc@Bskip=\skip105
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count294
+\calc@Cskip=\skip106
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/eso-pic\es
+o-pic.sty"
+Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
+\ESO@tempdima=\dimen198
+\ESO@tempdimb=\dimen199
+)
+\AM@pagewidth=\dimen256
+\AM@pageheight=\dimen257
+\AM@fboxrule=\dimen258
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pdfpages\p
+ppdftex.def"
+File: pppdftex.def 2021/03/06 v0.5t Pdfpages driver for pdfTeX (AM)
+)
+\pdfpages@includegraphics@status=\count295
+\AM@pagebox=\box64
+\AM@global@opts=\toks31
+\AM@pagecnt=\count296
+\AM@toc@title=\toks32
+\c@AM@survey=\count297
+\AM@templatesizebox=\box65
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/enumitem\e
+numitem.sty"
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip107
+\enit@outerparindent=\dimen259
+\enit@toks=\toks33
+\enit@inbox=\box66
+\enit@count@id=\count298
+\enitdp@description=\count299
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/bbding\bbd
+ing.sty"
+Package: bbding 1999/04/15 v1.01 Dingbats symbols
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/fronte
+ndlayer\tikz.sty"
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/basicl
+ayer\pgf.sty"
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/utilit
+ies\pgfrcs.sty"
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/util
+ities\pgfutil-common.tex"
+\pgfutil@everybye=\toks34
+\pgfutil@tempdima=\dimen260
+\pgfutil@tempdimb=\dimen261
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/util
+ities\pgfutil-common-lists.tex"))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/util
+ities\pgfutil-latex.def"
+\pgfutil@abb=\box67
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/util
+ities\pgfrcs.code.tex"
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf\pgf.
+revision.tex")
+Package: pgfrcs 2020/12/01 v3.1.7a (3.1.7a)
+))
+Package: pgf 2020/12/01 v3.1.7a (3.1.7a)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/basicl
+ayer\pgfcore.sty"
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/system
+layer\pgfsys.sty"
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/syst
+emlayer\pgfsys.code.tex"
+Package: pgfsys 2020/12/01 v3.1.7a (3.1.7a)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/util
+ities\pgfkeys.code.tex"
+\pgfkeys@pathtoks=\toks35
+\pgfkeys@temptoks=\toks36
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/util
+ities\pgfkeysfiltered.code.tex"
+\pgfkeys@tmptoks=\toks37
+))
+\pgf@x=\dimen262
+\pgf@y=\dimen263
+\pgf@xa=\dimen264
+\pgf@ya=\dimen265
+\pgf@xb=\dimen266
+\pgf@yb=\dimen267
+\pgf@xc=\dimen268
+\pgf@yc=\dimen269
+\pgf@xd=\dimen270
+\pgf@yd=\dimen271
+\w@pgf@writea=\write3
+\r@pgf@reada=\read3
+\c@pgf@counta=\count300
+\c@pgf@countb=\count301
+\c@pgf@countc=\count302
+\c@pgf@countd=\count303
+\t@pgf@toka=\toks38
+\t@pgf@tokb=\toks39
+\t@pgf@tokc=\toks40
+\pgf@sys@id@count=\count304
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/syst
+emlayer\pgf.cfg"
+File: pgf.cfg 2020/12/01 v3.1.7a (3.1.7a)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/syst
+emlayer\pgfsys-pdftex.def"
+File: pgfsys-pdftex.def 2020/12/01 v3.1.7a (3.1.7a)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/syst
+emlayer\pgfsys-common-pdf.def"
+File: pgfsys-common-pdf.def 2020/12/01 v3.1.7a (3.1.7a)
+)))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/syst
+emlayer\pgfsyssoftpath.code.tex"
+File: pgfsyssoftpath.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+\pgfsyssoftpath@smallbuffer@items=\count305
+\pgfsyssoftpath@bigbuffer@items=\count306
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/syst
+emlayer\pgfsysprotocol.code.tex"
+File: pgfsysprotocol.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcore.code.tex"
+Package: pgfcore 2020/12/01 v3.1.7a (3.1.7a)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmath.code.tex"
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmathcalc.code.tex"
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmathutil.code.tex")
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmathparser.code.tex"
+\pgfmath@dimen=\dimen272
+\pgfmath@count=\count307
+\pgfmath@box=\box68
+\pgfmath@toks=\toks41
+\pgfmath@stack@operand=\toks42
+\pgfmath@stack@operation=\toks43
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmathfunctions.code.tex"
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmathfunctions.basic.code.tex")
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmathfunctions.trigonometric.code.tex")
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmathfunctions.random.code.tex")
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmathfunctions.comparison.code.tex")
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmathfunctions.base.code.tex")
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmathfunctions.round.code.tex")
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmathfunctions.misc.code.tex")
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmathfunctions.integerarithmetics.code.tex")))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmathfloat.code.tex"
+\c@pgfmathroundto@lastzeros=\count308
+))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfint.code.tex")
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcorepoints.code.tex"
+File: pgfcorepoints.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+\pgf@picminx=\dimen273
+\pgf@picmaxx=\dimen274
+\pgf@picminy=\dimen275
+\pgf@picmaxy=\dimen276
+\pgf@pathminx=\dimen277
+\pgf@pathmaxx=\dimen278
+\pgf@pathminy=\dimen279
+\pgf@pathmaxy=\dimen280
+\pgf@xx=\dimen281
+\pgf@xy=\dimen282
+\pgf@yx=\dimen283
+\pgf@yy=\dimen284
+\pgf@zx=\dimen285
+\pgf@zy=\dimen286
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcorepathconstruct.code.tex"
+File: pgfcorepathconstruct.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+\pgf@path@lastx=\dimen287
+\pgf@path@lasty=\dimen288
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcorepathusage.code.tex"
+File: pgfcorepathusage.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+\pgf@shorten@end@additional=\dimen289
+\pgf@shorten@start@additional=\dimen290
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcorescopes.code.tex"
+File: pgfcorescopes.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+\pgfpic=\box69
+\pgf@hbox=\box70
+\pgf@layerbox@main=\box71
+\pgf@picture@serial@count=\count309
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcoregraphicstate.code.tex"
+File: pgfcoregraphicstate.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+\pgflinewidth=\dimen291
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcoretransformations.code.tex"
+File: pgfcoretransformations.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+\pgf@pt@x=\dimen292
+\pgf@pt@y=\dimen293
+\pgf@pt@temp=\dimen294
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcorequick.code.tex"
+File: pgfcorequick.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcoreobjects.code.tex"
+File: pgfcoreobjects.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcorepathprocessing.code.tex"
+File: pgfcorepathprocessing.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcorearrows.code.tex"
+File: pgfcorearrows.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+\pgfarrowsep=\dimen295
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcoreshade.code.tex"
+File: pgfcoreshade.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+\pgf@max=\dimen296
+\pgf@sys@shading@range@num=\count310
+\pgf@shadingcount=\count311
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcoreimage.code.tex"
+File: pgfcoreimage.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcoreexternal.code.tex"
+File: pgfcoreexternal.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+\pgfexternal@startupbox=\box72
+))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcorelayers.code.tex"
+File: pgfcorelayers.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcoretransparency.code.tex"
+File: pgfcoretransparency.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcorepatterns.code.tex"
+File: pgfcorepatterns.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/basi
+clayer\pgfcorerdf.code.tex"
+File: pgfcorerdf.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+)))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/modu
+les\pgfmoduleshapes.code.tex"
+File: pgfmoduleshapes.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+\pgfnodeparttextbox=\box73
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/modu
+les\pgfmoduleplot.code.tex"
+File: pgfmoduleplot.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/compat
+ibility\pgfcomp-version-0-65.sty"
+Package: pgfcomp-version-0-65 2020/12/01 v3.1.7a (3.1.7a)
+\pgf@nodesepstart=\dimen297
+\pgf@nodesepend=\dimen298
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/compat
+ibility\pgfcomp-version-1-18.sty"
+Package: pgfcomp-version-1-18 2020/12/01 v3.1.7a (3.1.7a)
+))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/utilit
+ies\pgffor.sty"
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/utilit
+ies\pgfkeys.sty"
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/util
+ities\pgfkeys.code.tex"))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/math\p
+gfmath.sty"
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmath.code.tex"))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/util
+ities\pgffor.code.tex"
+Package: pgffor 2020/12/01 v3.1.7a (3.1.7a)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/math
+\pgfmath.code.tex")
+\pgffor@iter=\dimen299
+\pgffor@skip=\dimen300
+\pgffor@stack=\toks44
+\pgffor@toks=\toks45
+))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/fron
+tendlayer/tikz\tikz.code.tex"
+Package: tikz 2020/12/01 v3.1.7a (3.1.7a)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/libr
+aries\pgflibraryplothandlers.code.tex"
+File: pgflibraryplothandlers.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+\pgf@plot@mark@count=\count312
+\pgfplotmarksize=\dimen301
+)
+\tikz@lastx=\dimen302
+\tikz@lasty=\dimen303
+\tikz@lastxsaved=\dimen304
+\tikz@lastysaved=\dimen305
+\tikz@lastmovetox=\dimen306
+\tikz@lastmovetoy=\dimen307
+\tikzleveldistance=\dimen308
+\tikzsiblingdistance=\dimen309
+\tikz@figbox=\box74
+\tikz@figbox@bg=\box75
+\tikz@tempbox=\box76
+\tikz@tempbox@bg=\box77
+\tikztreelevel=\count313
+\tikznumberofchildren=\count314
+\tikznumberofcurrentchild=\count315
+\tikz@fig@count=\count316
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/modu
+les\pgfmodulematrix.code.tex"
+File: pgfmodulematrix.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+\pgfmatrixcurrentrow=\count317
+\pgfmatrixcurrentcolumn=\count318
+\pgf@matrix@numberofcolumns=\count319
+)
+\tikz@expandcount=\count320
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/fron
+tendlayer/tikz/libraries\tikzlibrarytopaths.code.tex"
+File: tikzlibrarytopaths.code.tex 2020/12/01 v3.1.7a (3.1.7a)
+)))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\ca
+ption.sty"
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\ca
+ption3.sty"
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen310
+\captionmargin@=\dimen311
+\captionwidth=\dimen312
+\caption@tempdima=\dimen313
+\caption@indent=\dimen314
+\caption@parindent=\dimen315
+\caption@hangindent=\dimen316
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count321
+\c@continuedfloat=\count322
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: subfigure package is loaded.
+Package caption Info: wrapfig package is loaded.
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/footmisc\f
+ootmisc.sty"
+Package: footmisc 2011/06/06 v5.5b a miscellany of footnote facilities
+\FN@temptoken=\toks46
+\footnotemargin=\dimen317
+\c@pp@next@reset=\count323
+Package footmisc Info: Declaring symbol style bringhurst on input line 855.
+Package footmisc Info: Declaring symbol style chicago on input line 863.
+Package footmisc Info: Declaring symbol style wiley on input line 872.
+Package footmisc Info: Declaring symbol style lamport-robust on input line 883.
+
+Package footmisc Info: Declaring symbol style lamport* on input line 903.
+Package footmisc Info: Declaring symbol style lamport*-robust on input line 924
+.
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/acronym\ac
+ronym.sty"
+Package: acronym 2020/04/17 v1.47 Support for acronyms (Tobias Oetiker)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/bigfoot\su
+ffix.sty"
+Package: suffix 2006/07/15 1.5a Variant command support
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xstring\xs
+tring.sty"
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xstring\
+xstring.tex"
+\integerpart=\count324
+\decimalpart=\count325
+)
+Package: xstring 2019/02/06 v1.83 String manipulations (CT)
+)
+\AC@clearlist=\toks47
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\g
+eometry.sty"
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\if
+vtex.sty"
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count326
+\Gm@cntv=\count327
+\c@Gm@tempcnt=\count328
+\Gm@bindingoffset=\dimen318
+\Gm@wd@mp=\dimen319
+\Gm@odd@mp=\dimen320
+\Gm@even@mp=\dimen321
+\Gm@layoutwidth=\dimen322
+\Gm@layoutheight=\dimen323
+\Gm@layouthoffset=\dimen324
+\Gm@layoutvoffset=\dimen325
+\Gm@dimlist=\toks48
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\g
+eometry.cfg"))
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/preprint\a
+uthblk.sty"
+Package: authblk 2001/02/27 1.3 (PWD)
+\affilsep=\skip108
+\@affilsep=\skip109
+\c@Maxaffil=\count329
+\c@authors=\count330
+\c@affil=\count331
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\arra
+y.sty"
+Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
+\col@sep=\dimen326
+\ar@mcellbox=\box78
+\extrarowheight=\dimen327
+\NC@list=\toks49
+\extratabsurround=\skip110
+\backup@length=\skip111
+\ar@cellbox=\box79
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\latex
+sym.sty"
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup10
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
+) (main.aux (metadata.aux))
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 129.
+LaTeX Font Info:    ... okay on input line 129.
+ ABD: EverySelectfont initializing macros
+LaTeX Info: Redefining \selectfont on input line 129.
+Package hyperref Info: Link coloring OFF on input line 129.
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\n
+ameref.sty"
+Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/refcount\r
+efcount.sty"
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/generic/gettitle
+string\gettitlestring.sty"
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count332
+)
+LaTeX Info: Redefining \ref on input line 129.
+LaTeX Info: Redefining \pageref on input line 129.
+LaTeX Info: Redefining \nameref on input line 129.
+ (main.out) (main.out)
+\@outlinefile=\write4
+\openout4 = `main.out'.
+
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mki
+i\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count333
+\scratchdimen=\dimen328
+\scratchbox=\box80
+\nofMPsegments=\count334
+\nofMParguments=\count335
+\everyMPshowfont=\toks50
+\MPscratchCnt=\count336
+\MPscratchDim=\dimen329
+\MPnumerator=\count337
+\makeMPintoPDFobject=\count338
+\everyMPtoPDFconversion=\toks51
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-p
+kg\epstopdf-base.sty"
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+)
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pdflscape\
+pdflscape.sty"
+Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\l
+scape.sty"
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(81.94394pt, 433.62pt, 81.94394pt)
+* v-part:(T,H,B)=(48.93872pt, 722.7pt, 73.40813pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=433.62pt
+* \textheight=722.7pt
+* \oddsidemargin=9.67395pt
+* \evensidemargin=9.67395pt
+* \topmargin=-60.33127pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+\openout2 = `metadata.aux'.
+
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\metadata.tex")
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\titlepage.tex"
+<images/TUC_deutsch_einzeile_CMYK.pdf, id=254, 273.02pt x 24.09pt>
+File: images/TUC_deutsch_einzeile_CMYK.pdf Graphic file (type pdf)
+<use images/TUC_deutsch_einzeile_CMYK.pdf>
+Package pdftex.def Info: images/TUC_deutsch_einzeile_CMYK.pdf  used on input li
+ne 8.
+(pdftex.def)             Requested size: 382.22539pt x 33.72574pt.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 42.
+
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\u
+msa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 42.
+
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\u
+msb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 42
+.
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ulasy
+.fd"
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+) [1
+
+
+
+
+{C:/Users/Giriraj Pawar/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <D:/
+Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-using-n
+eural-networks/Using Neural Networks for the Domain Adaptation of Synthetic Gen
+erated Document Images/images/TUC_deutsch_einzeile_CMYK.pdf>])
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\metadatainfo.tex"
+Underfull \hbox (badness 10000) in paragraph at lines 3--12
+
+ []
+
+)
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\abstarct.tex"pdfTeX warning (ext4): destination wit
+h the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4 \begin{abstract}
+                     [1]
+Package acronym Info: Label `acro:CycleGAN' newly defined as it shall be overri
+dden
+although it is yet undefined on input line 7.
+Package acronym Info: Label `acro:GAN' newly defined as it shall be overridden
+although it is yet undefined on input line 29.
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.31 \end{abstract}
+                    [1]pdfTeX warning (ext4): destination with the same identif
+ier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.59 \end{abstract}
+                   } [1]) (main.tocpdfTeX warning (ext4): destination with the 
+same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.54 ...Qualitative Results}{57}{subsection.6.3.2}
+                                                  % [1
+
+]
+Package acronym Info: Label `acro:MNIST' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 61.
+)
+\tf@toc=\write5
+\openout5 = `main.toc'.
+
+ [2] (main.lof
+Package acronym Info: Label `acro:SVHN' newly defined as it shall be overridden
+
+although it is yet undefined on input line 4.
+Package acronym Info: Label `acro:cGAN' newly defined as it shall be overridden
+
+although it is yet undefined on input line 11.
+Package acronym Info: Label `acro:CNN' newly defined as it shall be overridden
+although it is yet undefined on input line 20.
+ [3
+
+])
+\tf@lof=\write6
+\openout6 = `main.lof'.
+
+
+[4] (main.lot)
+\tf@lot=\write7
+\openout7 = `main.lot'.
+
+ [5
+
+] (main.loa)
+\tf@loa=\write8
+\openout8 = `main.loa'.
+
+ [6
+
+]
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\acrolist.tex"
+
+LaTeX Warning: Hyper reference `acro:FID' on page 7 undefined on input line 27.
+
+
+
+LaTeX Warning: Hyper reference `acro:FID' on page 7 undefined on input line 27.
+
+
+) [7
+
+]
+Chapter 1.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\introduction.tex"
+Package acronym Info: Label `acro:AI' newly defined as it shall be overridden
+although it is yet undefined on input line 8.
+Package acronym Info: Label `acro:ML' newly defined as it shall be overridden
+although it is yet undefined on input line 8.
+Package acronym Info: Label `acro:DL' newly defined as it shall be overridden
+although it is yet undefined on input line 8.
+Package acronym Info: Label `acro:ANN' newly defined as it shall be overridden
+although it is yet undefined on input line 8.
+<images/Introduction/deeplearningsubset.jpg, id=750, 966.61125pt x 812.28468pt>
+
+File: images/Introduction/deeplearningsubset.jpg Graphic file (type jpg)
+<use images/Introduction/deeplearningsubset.jpg>
+Package pdftex.def Info: images/Introduction/deeplearningsubset.jpg  used on in
+put line 13.
+(pdftex.def)             Requested size: 241.65222pt x 203.07066pt.
+ [8
+
+ <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images/images/Introduction/deeplearningsubset.jpg>]
+<images/Introduction/TransferLearning.png, id=775, 596.2275pt x 353.06906pt>
+File: images/Introduction/TransferLearning.png Graphic file (type png)
+<use images/Introduction/TransferLearning.png>
+Package pdftex.def Info: images/Introduction/TransferLearning.png  used on inpu
+t line 39.
+(pdftex.def)             Requested size: 238.48677pt x 141.22511pt.
+ [9 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Introduction/TransferLearning.png>]
+<images/Introduction/DA.png, id=798, 1961.82938pt x 634.62094pt>
+File: images/Introduction/DA.png Graphic file (type png)
+<use images/Introduction/DA.png>
+Package pdftex.def Info: images/Introduction/DA.png  used on input line 52.
+(pdftex.def)             Requested size: 294.2617pt x 95.18903pt.
+
+Underfull \hbox (badness 7631) in paragraph at lines 58--58
+[][][]$\OT1/cmtt/m/n/8 https : / / machinelearning . apple . com / research / b
+ridging-[]the-[]domain-[]gap-[]for-[]neural-[]models$[] \OT1/cmr/m/n/8 last ac-
+cess:
+ []
+
+Package acronym Info: Label `acro:HTR' newly defined as it shall be overridden
+although it is yet undefined on input line 64.
+Package acronym Info: Label `acro:OCR' newly defined as it shall be overridden
+although it is yet undefined on input line 64.
+[10 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Introduction/DA.png>]
+<images/Introduction/img_translation.JPG, id=835, 533.5935pt x 330.33412pt>
+File: images/Introduction/img_translation.JPG Graphic file (type jpg)
+<use images/Introduction/img_translation.JPG>
+Package pdftex.def Info: images/Introduction/img_translation.JPG  used on input
+ line 68.
+(pdftex.def)             Requested size: 266.7961pt x 165.16666pt.
+<images/Introduction/DomainAdaptation.png, id=838, 1130.72438pt x 976.39781pt>
+File: images/Introduction/DomainAdaptation.png Graphic file (type png)
+<use images/Introduction/DomainAdaptation.png>
+Package pdftex.def Info: images/Introduction/DomainAdaptation.png  used on inpu
+t line 77.
+(pdftex.def)             Requested size: 316.60066pt x 273.38953pt.
+ [11 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Introduction/img_translation.JPG> <D:/Th
+esis/git_report/thesis-domain-adaptation_of-synthetic-document-images-using-neu
+ral-networks/Using Neural Networks for the Domain Adaptation of Synthetic Gener
+ated Document Images/images/Introduction/DomainAdaptation.png>]
+<images/Introduction/Problem.png, id=866, 752.0597pt x 328.22626pt>
+File: images/Introduction/Problem.png Graphic file (type png)
+<use images/Introduction/Problem.png>
+Package pdftex.def Info: images/Introduction/Problem.png  used on input line 99
+.
+(pdftex.def)             Requested size: 451.2393pt x 196.93727pt.
+
+Overfull \hbox (17.61931pt too wide) in paragraph at lines 99--100
+ [] 
+ []
+
+Package acronym Info: Label `acro:COCO' newly defined as it shall be overridden
+
+although it is yet undefined on input line 107.
+[12 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Introduction/Problem.png>]
+<images/Introduction/ProposedSolution.png, id=885, 630.10406pt x 495.35063pt>
+File: images/Introduction/ProposedSolution.png Graphic file (type png)
+<use images/Introduction/ProposedSolution.png>
+Package pdftex.def Info: images/Introduction/ProposedSolution.png  used on inpu
+t line 113.
+(pdftex.def)             Requested size: 346.5583pt x 272.4437pt.
+ [13 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Introduction/ProposedSolution.png>]) [14
+]
+Chapter 2.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\relatedworks.tex"
+Package acronym Info: Label `acro:DBN' newly defined as it shall be overridden
+although it is yet undefined on input line 14.
+Package acronym Info: Label `acro:Stacked-CAE' newly defined as it shall be ove
+rridden
+although it is yet undefined on input line 14.
+Package acronym Info: Label `acro:Deep-GSN' newly defined as it shall be overri
+dden
+although it is yet undefined on input line 14.
+<images/relatedWorks/GANEvolution.jpg, id=947, 1424.32124pt x 1935.23pt>
+File: images/relatedWorks/GANEvolution.jpg Graphic file (type jpg)
+<use images/relatedWorks/GANEvolution.jpg>
+Package pdftex.def Info: images/relatedWorks/GANEvolution.jpg  used on input li
+ne 18.
+(pdftex.def)             Requested size: 356.07944pt x 483.80632pt.
+Package acronym Info: Label `acro:LSGAN' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 27.
+Package acronym Info: Label `acro:DCGAN' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 27.
+Package acronym Info: Label `acro:EBGAN' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 27.
+ [15
+
+] [16 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-imag
+es-using-neural-networks/Using Neural Networks for the Domain Adaptation of Syn
+thetic Generated Document Images/images/relatedWorks/GANEvolution.jpg>]
+<images/relatedWorks/CGAN.png, id=1026, 1274.51157pt x 444.91219pt>
+File: images/relatedWorks/CGAN.png Graphic file (type png)
+<use images/relatedWorks/CGAN.png>
+Package pdftex.def Info: images/relatedWorks/CGAN.png  used on input line 35.
+(pdftex.def)             Requested size: 382.35643pt x 133.47467pt.
+Package acronym Info: Label `acro:CUT' newly defined as it shall be overridden
+although it is yet undefined on input line 41.
+Package acronym Info: Label `acro:MUNIT' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 41.
+Package acronym Info: Label `acro:DRIT' newly defined as it shall be overridden
+
+although it is yet undefined on input line 41.
+Package acronym Info: Label `acro:GCGAN' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 41.
+Package acronym Info: Label `acro:FastCUT' newly defined as it shall be overrid
+den
+although it is yet undefined on input line 41.
+ [17 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/relatedWorks/CGAN.png>]
+<images/relatedWorks/LearningToClean.jpg, id=1077, 727.96968pt x 538.26094pt>
+File: images/relatedWorks/LearningToClean.jpg Graphic file (type jpg)
+<use images/relatedWorks/LearningToClean.jpg>
+Package pdftex.def Info: images/relatedWorks/LearningToClean.jpg  used on input
+ line 46.
+(pdftex.def)             Requested size: 436.78519pt x 322.95906pt.
+
+Overfull \hbox (3.16519pt too wide) in paragraph at lines 46--47
+ [] 
+ []
+
+Package acronym Info: Label `acro:PSNR' newly defined as it shall be overridden
+
+although it is yet undefined on input line 54.
+[18 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/relatedWorks/LearningToClean.jpg>]
+<images/relatedWorks/CycleGANExamples.png, id=1118, 1271.5003pt x 575.90157pt>
+File: images/relatedWorks/CycleGANExamples.png Graphic file (type png)
+<use images/relatedWorks/CycleGANExamples.png>
+Package pdftex.def Info: images/relatedWorks/CycleGANExamples.png  used on inpu
+t line 59.
+(pdftex.def)             Requested size: 445.03177pt x 201.56856pt.
+
+Overfull \hbox (11.41177pt too wide) in paragraph at lines 59--60
+ [] 
+ []
+
+Package acronym Info: Label `acro:GT' newly defined as it shall be overridden
+although it is yet undefined on input line 70.
+Package acronym Info: Label `acro:DIBCO' newly defined as it shall be overridde
+n
+although it is yet undefined on input line 70.
+[19 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/relatedWorks/CycleGANExamples.png>]
+Package acronym Info: Label `acro:WGAN' newly defined as it shall be overridden
+
+although it is yet undefined on input line 76.
+)
+[20]
+Chapter 3.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\fundamentals.tex"
+<images/Fundamentals/GANTrainingintuition.png, id=1219, 1413.78188pt x 989.9484
+4pt>
+File: images/Fundamentals/GANTrainingintuition.png Graphic file (type png)
+<use images/Fundamentals/GANTrainingintuition.png>
+Package pdftex.def Info: images/Fundamentals/GANTrainingintuition.png  used on 
+input line 12.
+(pdftex.def)             Requested size: 353.44461pt x 247.4865pt.
+ [21
+
+ <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images/images/Fundamentals/GANTrainingintuition.png>]
+<images/Fundamentals/GANStructure.png, id=1237, 1378.39969pt x 672.26157pt>
+File: images/Fundamentals/GANStructure.png Graphic file (type png)
+<use images/Fundamentals/GANStructure.png>
+Package pdftex.def Info: images/Fundamentals/GANStructure.png  used on input li
+ne 32.
+(pdftex.def)             Requested size: 413.5231pt x 201.68002pt.
+ [22 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Fundamentals/GANStructure.png>]
+<images/Fundamentals/GANTraining.jpg, id=1257, 881.79437pt x 290.58563pt>
+File: images/Fundamentals/GANTraining.jpg Graphic file (type jpg)
+<use images/Fundamentals/GANTraining.jpg>
+Package pdftex.def Info: images/Fundamentals/GANTraining.jpg  used on input lin
+e 53.
+(pdftex.def)             Requested size: 432.08302pt x 142.3882pt.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 64.
+
+[23 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Fundamentals/GANTraining.jpg>]
+<images/Fundamentals/discriminatorTraining.png, id=1282, 966.61125pt x 442.6537
+5pt>
+File: images/Fundamentals/discriminatorTraining.png Graphic file (type png)
+<use images/Fundamentals/discriminatorTraining.png>
+Package pdftex.def Info: images/Fundamentals/discriminatorTraining.png  used on
+ input line 78.
+(pdftex.def)             Requested size: 434.97105pt x 199.19234pt.
+
+Overfull \hbox (1.35106pt too wide) in paragraph at lines 78--79
+ [] 
+ []
+
+<images/Fundamentals/generatorTraining.png, id=1286, 1429.59094pt x 691.08188pt
+>
+File: images/Fundamentals/generatorTraining.png Graphic file (type png)
+<use images/Fundamentals/generatorTraining.png>
+Package pdftex.def Info: images/Fundamentals/generatorTraining.png  used on inp
+ut line 94.
+(pdftex.def)             Requested size: 428.8806pt x 207.32616pt.
+[24 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Fundamentals/discriminatorTraining.png> <
+D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-usin
+g-neural-networks/Using Neural Networks for the Domain Adaptation of Synthetic 
+Generated Document Images/images/Fundamentals/generatorTraining.png>] [25]
+Package acronym Info: Label `acro:ILSVRC' newly defined as it shall be overridd
+en
+although it is yet undefined on input line 149.
+<images/Fundamentals/CNNBuildingBlocks.JPG, id=1327, 770.37813pt x 336.25626pt>
+
+File: images/Fundamentals/CNNBuildingBlocks.JPG Graphic file (type jpg)
+<use images/Fundamentals/CNNBuildingBlocks.JPG>
+Package pdftex.def Info: images/Fundamentals/CNNBuildingBlocks.JPG  used on inp
+ut line 159.
+(pdftex.def)             Requested size: 454.51917pt x 198.38947pt.
+
+Overfull \hbox (20.89917pt too wide) in paragraph at lines 159--160
+ [] 
+ []
+
+Package acronym Info: Label `acro:2D' newly defined as it shall be overridden
+although it is yet undefined on input line 170.
+[26 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Fundamentals/CNNBuildingBlocks.JPG>]
+<images/Fundamentals/ConvolutionZeroPadding.JPG, id=1359, 563.60562pt x 370.885
+62pt>
+File: images/Fundamentals/ConvolutionZeroPadding.JPG Graphic file (type jpg)
+<use images/Fundamentals/ConvolutionZeroPadding.JPG>
+Package pdftex.def Info: images/Fundamentals/ConvolutionZeroPadding.JPG  used o
+n input line 176.
+(pdftex.def)             Requested size: 338.16597pt x 222.53308pt.
+<images/Fundamentals/Convolution.JPG, id=1368, 743.02594pt x 1553.05219pt>
+File: images/Fundamentals/Convolution.JPG Graphic file (type jpg)
+<use images/Fundamentals/Convolution.JPG>
+Package pdftex.def Info: images/Fundamentals/Convolution.JPG  used on input lin
+e 188.
+(pdftex.def)             Requested size: 297.20511pt x 621.20988pt.
+
+[27 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Fundamentals/ConvolutionZeroPadding.JPG>]
+[28 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Fundamentals/Convolution.JPG>]
+<images/Fundamentals/ann.png, id=1387, 901.11656pt x 621.07031pt>
+File: images/Fundamentals/ann.png Graphic file (type png)
+<use images/Fundamentals/ann.png>
+Package pdftex.def Info: images/Fundamentals/ann.png  used on input line 206.
+(pdftex.def)             Requested size: 270.33705pt x 186.32253pt.
+<images/Fundamentals/artificialNeuron.png, id=1389, 1090.82532pt x 684.30656pt>
+
+File: images/Fundamentals/artificialNeuron.png Graphic file (type png)
+<use images/Fundamentals/artificialNeuron.png>
+Package pdftex.def Info: images/Fundamentals/artificialNeuron.png  used on inpu
+t line 222.
+(pdftex.def)             Requested size: 327.25012pt x 205.29355pt.
+ [29 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Fundamentals/ann.png>]
+<images/Fundamentals/ActivationFunctions.jpg, id=1403, 1030.34938pt x 229.35687
+pt>
+File: images/Fundamentals/ActivationFunctions.jpg Graphic file (type jpg)
+<use images/Fundamentals/ActivationFunctions.jpg>
+Package pdftex.def Info: images/Fundamentals/ActivationFunctions.jpg  used on i
+nput line 235.
+(pdftex.def)             Requested size: 432.74379pt x 96.32922pt.
+ [30 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Fundamentals/artificialNeuron.png> <D:/T
+hesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-using-ne
+ural-networks/Using Neural Networks for the Domain Adaptation of Synthetic Gene
+rated Document Images/images/Fundamentals/ActivationFunctions.jpg>]
+<images/Fundamentals/PoolingLayer.png, id=1422, 542.025pt x 405.01312pt>
+File: images/Fundamentals/PoolingLayer.png Graphic file (type png)
+<use images/Fundamentals/PoolingLayer.png>
+Package pdftex.def Info: images/Fundamentals/PoolingLayer.png  used on input li
+ne 254.
+(pdftex.def)             Requested size: 271.01183pt x 202.50606pt.
+Package acronym Info: Label `acro:1D' newly defined as it shall be overridden
+although it is yet undefined on input line 264.
+ [31 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Fundamentals/PoolingLayer.png>]) [32]
+Chapter 4.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\methodology.tex"
+<images/Methodology/Gxy.png, id=1445, 2323.93219pt x 1091.57813pt>
+File: images/Methodology/Gxy.png Graphic file (type png)
+<use images/Methodology/Gxy.png>
+Package pdftex.def Info: images/Methodology/Gxy.png  used on input line 14.
+(pdftex.def)             Requested size: 476.98463pt x 224.04146pt.
+
+Overfull \hbox (43.36464pt too wide) in paragraph at lines 13--16
+ [][] 
+ []
+
+<images/Methodology/Fyx.png, id=1446, 2284.03313pt x 1057.70157pt>
+File: images/Methodology/Fyx.png Graphic file (type png)
+<use images/Methodology/Fyx.png>
+Package pdftex.def Info: images/Methodology/Fyx.png  used on input line 18.
+(pdftex.def)             Requested size: 476.98463pt x 220.88116pt.
+
+Overfull \hbox (43.36464pt too wide) in paragraph at lines 17--20
+ [][] 
+ []
+
+
+LaTeX Warning: Reference `rwdiscussion' on page 33 undefined on input line 38.
+
+[33
+
+] [34 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-imag
+es-using-neural-networks/Using Neural Networks for the Domain Adaptation of Syn
+thetic Generated Document Images/images/Methodology/Gxy.png> <D:/Thesis/git_rep
+ort/thesis-domain-adaptation_of-synthetic-document-images-using-neural-networks
+/Using Neural Networks for the Domain Adaptation of Synthetic Generated Documen
+t Images/images/Methodology/Fyx.png>] [35]
+<images/Methodology/CycleGAN.jpg, id=1487, 859.21pt x 248.42813pt>
+File: images/Methodology/CycleGAN.jpg Graphic file (type jpg)
+<use images/Methodology/CycleGAN.jpg>
+Package pdftex.def Info: images/Methodology/CycleGAN.jpg  used on input line 78
+.
+(pdftex.def)             Requested size: 429.60396pt x 124.21376pt.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 105.
+
+) [36 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-imag
+es-using-neural-networks/Using Neural Networks for the Domain Adaptation of Syn
+thetic Generated Document Images/images/Methodology/CycleGAN.jpg>] [37]
+Chapter 5.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\implementation.tex"
+<images/Implementation/keinwifi.JPG, id=1549, 415.5525pt x 391.4625pt>
+File: images/Implementation/keinwifi.JPG Graphic file (type jpg)
+<use images/Implementation/keinwifi.JPG>
+Package pdftex.def Info: images/Implementation/keinwifi.JPG  used on input line
+ 14.
+(pdftex.def)             Requested size: 186.99689pt x 176.1565pt.
+ [38
+
+ <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images/images/Implementation/keinwifi.JPG>]
+<images/Implementation/InsertHandwrittenCrops.png, id=1569, 1014.79124pt x 406.
+51875pt>
+File: images/Implementation/InsertHandwrittenCrops.png Graphic file (type png)
+<use images/Implementation/InsertHandwrittenCrops.png>
+Package pdftex.def Info: images/Implementation/InsertHandwrittenCrops.png  used
+ on input line 25.
+(pdftex.def)             Requested size: 405.9093pt x 162.60461pt.
+<images/Implementation/TemplatesWithMinorDifference.png, id=1573, 1504.8722pt x
+ 656.4525pt>
+File: images/Implementation/TemplatesWithMinorDifference.png Graphic file (type
+ png)
+<use images/Implementation/TemplatesWithMinorDifference.png>
+Package pdftex.def Info: images/Implementation/TemplatesWithMinorDifference.png
+  used on input line 37.
+(pdftex.def)             Requested size: 451.46515pt x 196.93727pt.
+
+Overfull \hbox (17.84515pt too wide) in paragraph at lines 37--38
+ [] 
+ []
+
+<images/Implementation/TemplatesWithMajorDifference.png, id=1574, 1504.8722pt x
+ 651.18282pt>
+File: images/Implementation/TemplatesWithMajorDifference.png Graphic file (type
+ png)
+<use images/Implementation/TemplatesWithMajorDifference.png>
+Package pdftex.def Info: images/Implementation/TemplatesWithMajorDifference.png
+  used on input line 47.
+(pdftex.def)             Requested size: 451.46515pt x 195.35635pt.
+
+Overfull \hbox (17.84515pt too wide) in paragraph at lines 47--48
+ [] 
+ []
+
+[39 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Implementation/InsertHandwrittenCrops.png
+> <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-u
+sing-neural-networks/Using Neural Networks for the Domain Adaptation of Synthet
+ic Generated Document Images/images/Implementation/TemplatesWithMinorDifference
+.png>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 119.
+
+Package acronym Info: Label `acro:ResNet' newly defined as it shall be overridd
+en
+although it is yet undefined on input line 121.
+[40 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Implementation/TemplatesWithMajorDifferen
+ce.png>]
+<images/Implementation/resnetBlocks.png, id=1595, 615.0478pt x 291.33844pt>
+File: images/Implementation/resnetBlocks.png Graphic file (type png)
+<use images/Implementation/resnetBlocks.png>
+Package pdftex.def Info: images/Implementation/resnetBlocks.png  used on input 
+line 126.
+(pdftex.def)             Requested size: 399.77634pt x 189.36774pt.
+LaTeX Font Info:    Trying to load font information for OT1+qcr on input line 1
+32.
+
+("C:\Users\Giriraj Pawar\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tex-gyre\o
+t1qcr.fd"
+File: ot1qcr.fd 2009/09/25 v1.2 font definition file for OT1/qcr
+)
+Overfull \hbox (26.31766pt too wide) in paragraph at lines 142--168
+ [][] 
+ []
+
+[41 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Implementation/resnetBlocks.png>]
+Overfull \hbox (4.63533pt too wide) in paragraph at lines 184--205
+ [][] 
+ []
+
+[42]
+Overfull \hbox (4.63533pt too wide) in paragraph at lines 222--249
+ [][] 
+ []
+
+[43]
+<images/Implementation/Preprocessing.png, id=1646, 478.03593pt x 777.65532pt>
+File: images/Implementation/Preprocessing.png Graphic file (type png)
+<use images/Implementation/Preprocessing.png>
+Package pdftex.def Info: images/Implementation/Preprocessing.png  used on input
+ line 268.
+(pdftex.def)             Requested size: 167.31508pt x 272.18344pt.
+ [44]
+<images/Implementation/ClassifierPreprocessing.png, id=1669, 277.78781pt x 337.
+26pt>
+File: images/Implementation/ClassifierPreprocessing.png Graphic file (type png)
+
+<use images/Implementation/ClassifierPreprocessing.png>
+Package pdftex.def Info: images/Implementation/ClassifierPreprocessing.png  use
+d on input line 284.
+(pdftex.def)             Requested size: 152.78375pt x 185.49356pt.
+ [45 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Implementation/Preprocessing.png>]) [46 
+<D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-usi
+ng-neural-networks/Using Neural Networks for the Domain Adaptation of Synthetic
+ Generated Document Images/images/Implementation/ClassifierPreprocessing.png>]
+Chapter 6.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\evaluation.tex" [47
+
+] [48]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 77.
+
+<images/Evaluation/GeneratorGTraining.png, id=1752, 462.528pt x 346.896pt>
+File: images/Evaluation/GeneratorGTraining.png Graphic file (type png)
+<use images/Evaluation/GeneratorGTraining.png>
+Package pdftex.def Info: images/Evaluation/GeneratorGTraining.png  used on inpu
+t line 84.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+<images/Evaluation/DiscriminatorDyTraining.png, id=1756, 462.528pt x 346.896pt>
+
+File: images/Evaluation/DiscriminatorDyTraining.png Graphic file (type png)
+<use images/Evaluation/DiscriminatorDyTraining.png>
+Package pdftex.def Info: images/Evaluation/DiscriminatorDyTraining.png  used on
+ input line 90.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+<images/Evaluation/GeneratorFTraining.png, id=1759, 462.528pt x 346.896pt>
+File: images/Evaluation/GeneratorFTraining.png Graphic file (type png)
+<use images/Evaluation/GeneratorFTraining.png>
+Package pdftex.def Info: images/Evaluation/GeneratorFTraining.png  used on inpu
+t line 99.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+<images/Evaluation/DiscriminatorDxTraining.png, id=1762, 462.528pt x 346.896pt>
+
+File: images/Evaluation/DiscriminatorDxTraining.png Graphic file (type png)
+<use images/Evaluation/DiscriminatorDxTraining.png>
+Package pdftex.def Info: images/Evaluation/DiscriminatorDxTraining.png  used on
+ input line 105.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+[49 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Evaluation/GeneratorGTraining.png> <D:/Th
+esis/git_report/thesis-domain-adaptation_of-synthetic-document-images-using-neu
+ral-networks/Using Neural Networks for the Domain Adaptation of Synthetic Gener
+ated Document Images/images/Evaluation/DiscriminatorDyTraining.png>] [50 <D:/Th
+esis/git_report/thesis-domain-adaptation_of-synthetic-document-images-using-neu
+ral-networks/Using Neural Networks for the Domain Adaptation of Synthetic Gener
+ated Document Images/images/Evaluation/GeneratorFTraining.png> <D:/Thesis/git_r
+eport/thesis-domain-adaptation_of-synthetic-document-images-using-neural-networ
+ks/Using Neural Networks for the Domain Adaptation of Synthetic Generated Docum
+ent Images/images/Evaluation/DiscriminatorDxTraining.png>]
+<images/Evaluation/Synthetic_Data_Classifier_2021-05-31_16-40-33_Accuracy.png, 
+id=1801, 462.528pt x 346.896pt>
+File: images/Evaluation/Synthetic_Data_Classifier_2021-05-31_16-40-33_Accuracy.
+png Graphic file (type png)
+<use images/Evaluation/Synthetic_Data_Classifier_2021-05-31_16-40-33_Accuracy.p
+ng>
+Package pdftex.def Info: images/Evaluation/Synthetic_Data_Classifier_2021-05-31
+_16-40-33_Accuracy.png  used on input line 124.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+<images/Evaluation/Synthetic_Data_Classifier_2021-05-31_16-40-33_Loss.png, id=1
+802, 462.528pt x 346.896pt>
+File: images/Evaluation/Synthetic_Data_Classifier_2021-05-31_16-40-33_Loss.png 
+Graphic file (type png)
+<use images/Evaluation/Synthetic_Data_Classifier_2021-05-31_16-40-33_Loss.png>
+Package pdftex.def Info: images/Evaluation/Synthetic_Data_Classifier_2021-05-31
+_16-40-33_Loss.png  used on input line 130.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 179.
+
+[51 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Evaluation/Synthetic_Data_Classifier_2021
+-05-31_16-40-33_Accuracy.png> <D:/Thesis/git_report/thesis-domain-adaptation_of
+-synthetic-document-images-using-neural-networks/Using Neural Networks for the 
+Domain Adaptation of Synthetic Generated Document Images/images/Evaluation/Synt
+hetic_Data_Classifier_2021-05-31_16-40-33_Loss.png>]
+<images/Evaluation/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_Accur
+acy.png, id=1821, 462.528pt x 346.896pt>
+File: images/Evaluation/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_
+Accuracy.png Graphic file (type png)
+<use images/Evaluation/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_A
+ccuracy.png>
+Package pdftex.def Info: images/Evaluation/CycleGAN_Generated_Data_Classifier_2
+021-06-02_21-55-39_Accuracy.png  used on input line 188.
+(pdftex.def)             Requested size: 195.12767pt x 146.34637pt.
+<images/Evaluation/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_Loss.
+png, id=1824, 462.528pt x 346.896pt>
+File: images/Evaluation/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_
+Loss.png Graphic file (type png)
+<use images/Evaluation/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_L
+oss.png>
+Package pdftex.def Info: images/Evaluation/CycleGAN_Generated_Data_Classifier_2
+021-06-02_21-55-39_Loss.png  used on input line 194.
+(pdftex.def)             Requested size: 195.12767pt x 146.34637pt.
+<images/Evaluation/FaxificationProcess.jpg, id=1829, 1754.05313pt x 938.75719pt
+>
+File: images/Evaluation/FaxificationProcess.jpg Graphic file (type jpg)
+<use images/Evaluation/FaxificationProcess.jpg>
+Package pdftex.def Info: images/Evaluation/FaxificationProcess.jpg  used on inp
+ut line 248.
+(pdftex.def)             Requested size: 438.5122pt x 234.68872pt.
+
+Overfull \hbox (4.89221pt too wide) in paragraph at lines 248--249
+ [] 
+ []
+
+[52 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Evaluation/CycleGAN_Generated_Data_Classi
+fier_2021-06-02_21-55-39_Accuracy.png> <D:/Thesis/git_report/thesis-domain-adap
+tation_of-synthetic-document-images-using-neural-networks/Using Neural Networks
+ for the Domain Adaptation of Synthetic Generated Document Images/images/Evalua
+tion/CycleGAN_Generated_Data_Classifier_2021-06-02_21-55-39_Loss.png>]
+<images/Evaluation/FaxificationProcessZoomed.jpg, id=1836, 2605.48407pt x 1251.
+92719pt>
+File: images/Evaluation/FaxificationProcessZoomed.jpg Graphic file (type jpg)
+<use images/Evaluation/FaxificationProcessZoomed.jpg>
+Package pdftex.def Info: images/Evaluation/FaxificationProcessZoomed.jpg  used 
+on input line 256.
+(pdftex.def)             Requested size: 390.80576pt x 187.78098pt.
+ [53 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Evaluation/FaxificationProcess.jpg> <D:/
+Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-using-n
+eural-networks/Using Neural Networks for the Domain Adaptation of Synthetic Gen
+erated Document Images/images/Evaluation/FaxificationProcessZoomed.jpg>]
+<images/Evaluation/Faxified_Data_Classifier_2021-05-31_19-31-35_Accuracy.png, i
+d=1850, 462.528pt x 346.896pt>
+File: images/Evaluation/Faxified_Data_Classifier_2021-05-31_19-31-35_Accuracy.p
+ng Graphic file (type png)
+<use images/Evaluation/Faxified_Data_Classifier_2021-05-31_19-31-35_Accuracy.pn
+g>
+Package pdftex.def Info: images/Evaluation/Faxified_Data_Classifier_2021-05-31_
+19-31-35_Accuracy.png  used on input line 270.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+<images/Evaluation/Faxified_Data_Classifier_2021-05-31_19-31-35_Loss.png, id=18
+51, 462.528pt x 346.896pt>
+File: images/Evaluation/Faxified_Data_Classifier_2021-05-31_19-31-35_Loss.png G
+raphic file (type png)
+<use images/Evaluation/Faxified_Data_Classifier_2021-05-31_19-31-35_Loss.png>
+Package pdftex.def Info: images/Evaluation/Faxified_Data_Classifier_2021-05-31_
+19-31-35_Loss.png  used on input line 276.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+ [54 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Evaluation/Faxified_Data_Classifier_2021
+-05-31_19-31-35_Accuracy.png> <D:/Thesis/git_report/thesis-domain-adaptation_of
+-synthetic-document-images-using-neural-networks/Using Neural Networks for the 
+Domain Adaptation of Synthetic Generated Document Images/images/Evaluation/Faxi
+fied_Data_Classifier_2021-05-31_19-31-35_Loss.png>]
+<images/Evaluation/ComparisonOfAccuracyAndF1Score.png, id=1873, 413.29407pt x 2
+97.36093pt>
+File: images/Evaluation/ComparisonOfAccuracyAndF1Score.png Graphic file (type p
+ng)
+<use images/Evaluation/ComparisonOfAccuracyAndF1Score.png>
+Package pdftex.def Info: images/Evaluation/ComparisonOfAccuracyAndF1Score.png  
+used on input line 370.
+(pdftex.def)             Requested size: 371.96121pt x 267.62236pt.
+ [55]
+<images/Evaluation/Qualitative_Results.png, id=1878, 1361.085pt x 1891.065pt>
+File: images/Evaluation/Qualitative_Results.png Graphic file (type png)
+<use images/Evaluation/Qualitative_Results.png>
+Package pdftex.def Info: images/Evaluation/Qualitative_Results.png  used on inp
+ut line 382.
+(pdftex.def)             Requested size: 408.32866pt x 567.32388pt.
+ [56 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Evaluation/ComparisonOfAccuracyAndF1Scor
+e.png>]
+<images/Evaluation/failure1.png, id=1883, 1486.80469pt x 674.52pt>
+File: images/Evaluation/failure1.png Graphic file (type png)
+<use images/Evaluation/failure1.png>
+Package pdftex.def Info: images/Evaluation/failure1.png  used on input line 393
+.
+(pdftex.def)             Requested size: 416.30247pt x 188.8643pt.
+ [57 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Evaluation/Qualitative_Results.png>]
+<images/Evaluation/failure2.png, id=1891, 873.2625pt x 408.02437pt>
+File: images/Evaluation/failure2.png Graphic file (type png)
+<use images/Evaluation/failure2.png>
+Package pdftex.def Info: images/Evaluation/failure2.png  used on input line 401
+.
+(pdftex.def)             Requested size: 436.63017pt x 204.01169pt.
+
+Overfull \hbox (3.01018pt too wide) in paragraph at lines 401--402
+ [] 
+ []
+
+<images/Evaluation/failure3.png, id=1894, 821.31844pt x 411.78844pt>
+File: images/Evaluation/failure3.png Graphic file (type png)
+<use images/Evaluation/failure3.png>
+Package pdftex.def Info: images/Evaluation/failure3.png  used on input line 409
+.
+(pdftex.def)             Requested size: 410.6582pt x 205.8937pt.
+[58 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Evaluation/failure1.png> <D:/Thesis/git_r
+eport/thesis-domain-adaptation_of-synthetic-document-images-using-neural-networ
+ks/Using Neural Networks for the Domain Adaptation of Synthetic Generated Docum
+ent Images/images/Evaluation/failure2.png>]
+<images/Evaluation/failure4.png, id=1901, 866.48718pt x 456.95718pt>
+File: images/Evaluation/failure4.png Graphic file (type png)
+<use images/Evaluation/failure4.png>
+Package pdftex.def Info: images/Evaluation/failure4.png  used on input line 418
+.
+(pdftex.def)             Requested size: 433.24252pt x 228.47803pt.
+) [59 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-imag
+es-using-neural-networks/Using Neural Networks for the Domain Adaptation of Syn
+thetic Generated Document Images/images/Evaluation/failure3.png> <D:/Thesis/git
+_report/thesis-domain-adaptation_of-synthetic-document-images-using-neural-netw
+orks/Using Neural Networks for the Domain Adaptation of Synthetic Generated Doc
+ument Images/images/Evaluation/failure4.png>]
+Chapter 7.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\conclusion.tex" [60
+
+]
+Package acronym Info: Label `acro:ACL-GAN' newly defined as it shall be overrid
+den
+although it is yet undefined on input line 29.
+Package acronym Info: Label `acro:VAE' newly defined as it shall be overridden
+although it is yet undefined on input line 29.
+ [61]) [62]
+Appendix A.
+
+("D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images\appendix.tex"
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 2.
+
+<images/Appendix/handwrittenCrops.png, id=1976, 596.2275pt x 362.35374pt>
+File: images/Appendix/handwrittenCrops.png Graphic file (type png)
+<use images/Appendix/handwrittenCrops.png>
+Package pdftex.def Info: images/Appendix/handwrittenCrops.png  used on input li
+ne 5.
+(pdftex.def)             Requested size: 238.48677pt x 144.93892pt.
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 15.
+
+<images/Evaluation/CycleGANGeneratorsTraining.png, id=1983, 462.528pt x 346.896
+pt>
+File: images/Evaluation/CycleGANGeneratorsTraining.png Graphic file (type png)
+<use images/Evaluation/CycleGANGeneratorsTraining.png>
+Package pdftex.def Info: images/Evaluation/CycleGANGeneratorsTraining.png  used
+ on input line 21.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+<images/Evaluation/CycleGANDiscriminatorsTraining.png, id=1986, 462.528pt x 346
+.896pt>
+File: images/Evaluation/CycleGANDiscriminatorsTraining.png Graphic file (type p
+ng)
+<use images/Evaluation/CycleGANDiscriminatorsTraining.png>
+Package pdftex.def Info: images/Evaluation/CycleGANDiscriminatorsTraining.png  
+used on input line 27.
+(pdftex.def)             Requested size: 212.47617pt x 159.35707pt.
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@ac' on input line 35.
+
+<images/Appendix/generatorAndDiscriminatorTraining.png, id=1990, 1702.10907pt x
+ 1906.12125pt>
+File: images/Appendix/generatorAndDiscriminatorTraining.png Graphic file (type 
+png)
+<use images/Appendix/generatorAndDiscriminatorTraining.png>
+Package pdftex.def Info: images/Appendix/generatorAndDiscriminatorTraining.png 
+ used on input line 39.
+(pdftex.def)             Requested size: 425.52623pt x 476.52914pt.
+[63
+
+ <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images-us
+ing-neural-networks/Using Neural Networks for the Domain Adaptation of Syntheti
+c Generated Document Images/images/Appendix/handwrittenCrops.png> <D:/Thesis/gi
+t_report/thesis-domain-adaptation_of-synthetic-document-images-using-neural-net
+works/Using Neural Networks for the Domain Adaptation of Synthetic Generated Do
+cument Images/images/Evaluation/CycleGANGeneratorsTraining.png> <D:/Thesis/git_
+report/thesis-domain-adaptation_of-synthetic-document-images-using-neural-netwo
+rks/Using Neural Networks for the Domain Adaptation of Synthetic Generated Docu
+ment Images/images/Evaluation/CycleGANDiscriminatorsTraining.png>]
+<images/Appendix/Confusion_Matrix_Synthetic_Data_Classifier_2021-05-31_16-40-33
+.png, id=2002, 1824.8175pt x 1806.75pt>
+File: images/Appendix/Confusion_Matrix_Synthetic_Data_Classifier_2021-05-31_16-
+40-33.png Graphic file (type png)
+<use images/Appendix/Confusion_Matrix_Synthetic_Data_Classifier_2021-05-31_16-4
+0-33.png>
+Package pdftex.def Info: images/Appendix/Confusion_Matrix_Synthetic_Data_Classi
+fier_2021-05-31_16-40-33.png  used on input line 51.
+(pdftex.def)             Requested size: 456.20326pt x 451.6864pt.
+
+Overfull \hbox (22.58327pt too wide) in paragraph at lines 51--52
+ [] 
+ []
+
+[64 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Appendix/generatorAndDiscriminatorTrainin
+g.png>]
+<images/Appendix/Confusion_Matrix_CycleGAN_Generated_Data_Classifier_2021-06-02
+_21-55-39.png, id=2007, 1809.76125pt x 1806.75pt>
+File: images/Appendix/Confusion_Matrix_CycleGAN_Generated_Data_Classifier_2021-
+06-02_21-55-39.png Graphic file (type png)
+<use images/Appendix/Confusion_Matrix_CycleGAN_Generated_Data_Classifier_2021-0
+6-02_21-55-39.png>
+Package pdftex.def Info: images/Appendix/Confusion_Matrix_CycleGAN_Generated_Da
+ta_Classifier_2021-06-02_21-55-39.png  used on input line 61.
+(pdftex.def)             Requested size: 452.43921pt x 451.6864pt.
+
+Overfull \hbox (18.81921pt too wide) in paragraph at lines 61--62
+ [] 
+ []
+
+[65 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Appendix/Confusion_Matrix_Synthetic_Data_
+Classifier_2021-05-31_16-40-33.png>]
+<images/Appendix/Confusion_Matrix_Faxified_Data_Classifier_2021-05-31_19-31-35.
+png, id=2014, 1842.13219pt x 1806.75pt>
+File: images/Appendix/Confusion_Matrix_Faxified_Data_Classifier_2021-05-31_19-3
+1-35.png Graphic file (type png)
+<use images/Appendix/Confusion_Matrix_Faxified_Data_Classifier_2021-05-31_19-31
+-35.png>
+Package pdftex.def Info: images/Appendix/Confusion_Matrix_Faxified_Data_Classif
+ier_2021-05-31_19-31-35.png  used on input line 70.
+(pdftex.def)             Requested size: 460.53192pt x 451.6864pt.
+
+Overfull \hbox (26.91193pt too wide) in paragraph at lines 70--71
+ [] 
+ []
+
+[66 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-images
+-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synth
+etic Generated Document Images/images/Appendix/Confusion_Matrix_CycleGAN_Genera
+ted_Data_Classifier_2021-06-02_21-55-39.png>]
+<images/Appendix/template.png, id=2019, 1308.38812pt x 1877.51437pt>
+File: images/Appendix/template.png Graphic file (type png)
+<use images/Appendix/template.png>
+Package pdftex.def Info: images/Appendix/template.png  used on input line 82.
+(pdftex.def)             Requested size: 379.42284pt x 544.46523pt.
+ [67 <D:/Thesis/git_report/thesis-domain-adaptation_of-synthetic-document-image
+s-using-neural-networks/Using Neural Networks for the Domain Adaptation of Synt
+hetic Generated Document Images/images/Appendix/Confusion_Matrix_Faxified_Data_
+Classifier_2021-05-31_19-31-35.png>
+!pdfTeX error: pdflatex: fflush() failed (Invalid argument)
+ ==> Fatal error occurred, no output PDF file produced!
