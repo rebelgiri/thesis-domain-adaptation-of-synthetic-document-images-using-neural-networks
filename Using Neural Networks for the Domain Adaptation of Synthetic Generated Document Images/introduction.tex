@@ -10,7 +10,7 @@
 
 \begin{figure}[H]
         \begin{center}
- 	    \includegraphics[scale=0.50]{images/Introduction/deeplearningsubset.jpg}
+ 	    \includegraphics[scale=0.48]{images/Introduction/deeplearningsubset.jpg}
 	    \caption[Relationship between Artificial Intelligence, Machine Learning and Deep Learning.]{Relationship between Artificial Intelligence, Machine Learning and Deep Learning.}
 	    \label{fig:deepLearningSubset}
 	    \end{center}
@@ -67,27 +67,33 @@ In traditional machine learning, the source and target domains are the same, inc
 \footnotetext[2]{\url{https://machinelearning.apple.com/research/bridging-the-domain-gap-for-neural-models} last access: \dcdate}
 
 
-To understand how domain adaptation works, let's discuss a simple example. Consider the source domain represented by the \ac{SVHN} dataset. It is a collection of house numbers images and the target domain is represented by the \ac{MNIST} dataset, which is a collection of handwritten digits images. When the \ac{CNN} is trained and evaluated on the source domain \ac{SVHN} dataset for the task of identifying numbers, it will achieve high accuracy. However, the same classifier will perform worst when evaluated the\ac{MNIST} dataset. This performance gap occurs due to differences between the domain data distribution. The images in the \ac{SVHN} dataset consist of different fonts, blur, noise and different backgrounds. But the images in the \ac{MNIST} dataset contain a clean background and handwritten strokes. Now consider images are scarce in the target domain. Only a small amount of the target domain images are available, which are unlabeled. As we know training a classifier using a smaller amount of data leads to underfitting and eventually leads to the worst performance on unseen data. Hence, to create a sufficient amount of data, the domain adaptation model is trained. It learns to transfer the underlying knowledge from the source domain to the target domain. In this case, labeled data is available in the source domain and unlabeled data available in the target domain. Such a setup is called unsupervised domain adaptation because the model learns to transform images from one domain to another in the absence of labeled data in the target domain and without taking much help from the labeled data from the source domain during the learning process. Using this domain adaptation model, large amount of annotated data can be created in the target domain by transforming source domain images into target domain images. Once a sufficient amount of images present in the target domain, the task to identify numbers in the target domain can be improved significantly. 
+To understand how domain adaptation works, let's discuss a simple example. Consider the source domain represented by the \ac{SVHN} dataset. It is a collection of house numbers images and the target domain is represented by the \ac{MNIST} dataset, which is a collection of handwritten digits images. When the \ac{CNN} is trained and evaluated on the source domain \ac{SVHN} dataset for the task of identifying numbers, it will achieve high accuracy. However, the same classifier will perform worst when evaluated the\ac{MNIST} dataset. This performance gap occurs due to differences between the domain data distribution. The images in the \ac{SVHN} dataset consist of different fonts, blur, noise and different backgrounds. But the images in the \ac{MNIST} dataset contain a clean background and handwritten strokes. Now consider images are scarce in the target domain. Only a small amount of the target domain images are available, which are unlabeled. As we know training a classifier using a smaller amount of data leads to underfitting and eventually leads to the worst performance on unseen data. Hence, to create a sufficient amount of data, the domain adaptation model is trained. It learns to transfer the underlying knowledge from the source domain to the target domain. In this case, labeled data is available in the source domain and unlabeled data available in the target domain. Such a setup is called unsupervised domain adaptation because the model learns to transform images from one domain to another in the absence of labeled data in the target domain and without taking much help from the labeled data from the source domain during the learning process. Using this domain adaptation model, large amount of annotated data can be created in the target domain by transforming source domain images into target domain images. Once sufficient amount of images are present in the target domain, the task to identify numbers in the target domain can be improved significantly. 
+
+Nowadays, the domain adaptation technique is widely used in the field of \ac{HTR} \cite{Kang_2020}, Image Classification \cite{5288526}, Style Transfer \cite{johnson2016perceptual} and \ac{OCR} \cite{8978011} to solve the problem of scarcity of data. Making such applications robust, accurate and efficient is a big task, which requires years of research. The scope of this thesis is limited to improving document image classification using the proposed domain adaptation technique. The proposed domain adaptation technique uses image-to-image translation method to transform synthetic document images into realistic document images.
 
 
-
-\begin{figure}
-  \centering
-  \begin{minipage}[b]{0.4\textwidth}
-    \includegraphics[width=\textwidth]{images/Introduction/ArmRealImage.png}
-    \caption[An example of an real document image from the Arm class.]{An example of an real document image from the Arm class (figure reproduced from elevait GmbH \& Co. KG with permission). }
-    \label{fig:realImageArm}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[b]{0.4\textwidth}
-    \includegraphics[width=\textwidth]{images/Introduction/BeinRealImage.png}
-    \caption[An example of an real document image from the Bein class.]{An example of an real document image from the Bein class (figure reproduced from elevait GmbH \& Co. KG with permission).}
-    \label{fig:reallImageBein}
-  \end{minipage}
+\begin{figure}[H]
+        \begin{center}
+	   	\includegraphics[scale=0.22]{images/Introduction/ArmRealImage.png}
+    		\caption[Example of an real document image from the Arm class.]{Example of an real document image from the Arm class (figure reproduced from elevait GmbH \& Co. KG with permission). }
+    		\label{fig:realImageArm}
+	    \end{center}
 \end{figure}
 
 
-Nowadays, the domain adaptation technique is widely used in the field of \ac{HTR} \cite{Kang_2020}, Image Classification \cite{5288526}, Style Transfer \cite{johnson2016perceptual} and \ac{OCR} \cite{8978011} to solve the problem of scarcity of data. Making such applications robust, accurate and efficient is a big task, which requires years of research. The scope of this thesis is limited to improving document image classification using the proposed domain adaptation technique. The proposed domain adaptation technique uses image-to-image translation method to transform synthetic document images into realistic document images.
+
+
+
+\begin{figure}[H]
+        \begin{center}
+	       \includegraphics[scale=0.22]{images/Introduction/BeinRealImage.png}
+    		\caption[Example of an real document image from the Bein class.]{Example of an real document image from the Bein class (figure reproduced from elevait GmbH \& Co. KG with permission).}
+	      \label{fig:reallImageBein}
+	    \end{center}
+\end{figure}
+
+
+
 
 
 \section{Problem Statement and Proposed Solution}\label{ProblemStatement}
@@ -95,17 +101,10 @@ Nowadays, the domain adaptation technique is widely used in the field of \ac{HTR
 As described earlier, a large amount of data is required to train a neural network, but annotated data is scarce and data labeling is a costly and tedious job. For example, in this thesis, it is being addressed that collecting several and distinct real document images (figures \ref{fig:realImageArm} and \ref{fig:reallImageBein}) with different types of handwriting is expensive and difficult job. In such cases, machine learning engineers have to inevitably generate synthetic document images. However, deep learning models trained using synthetic document images will not generalize well on unseen real document images (figure \ref{fig:Problem}), because the synthetic document images lack realism  \cite{8978087}. They don't possess a similar noise distribution, characteristics and artifacts as real document images \cite{8978087}. Hence, in the last two decades, numerous domain adaptation methodologies have been introduced to perform image-to-image translation \cite{8978011}. Image-to-image translation is a method of transforming images from source to a target domain by learning the underlying characteristic of target domain images. In the image-to-image translation, the goal is to learn to transform the input image into the output image using the paired training dataset. However, for many tasks, paired training datasets do not exist. Example of paired and unpaired training datasets is illustrated in figure \ref{fig:pairedUnpaired}. 
 
 
+
+
+
 \begin{figure}[H]
-        \begin{center}
-	    \includegraphics[scale=0.60]{images/Introduction/Problem.png}
-	    \caption[An illustration of the problem that this thesis will attempt to answer.]{An illustration of the problem that this thesis will attempt to answer.}
-	    \label{fig:Problem}
-	    \end{center}
-\end{figure}
-
-
-
-\begin{figure}
         \begin{center}
 	    \includegraphics[scale=0.50]{images/Introduction/pairedUnpaired.JPG}
 	    \caption[Examples of the paired training dataset and the unpaired training dataset.]{The paired training dataset consists of training examples, in which there is a correspondence between the source domain and the target domain (Left, Edges $\leftrightarrow$ Images). But in the unpaired training dataset, there is no correspondence between the source domain and the target domain (Right, Photographs $\leftrightarrow$ Painitings) \cite{zhu2020unpaired}.}
@@ -113,43 +112,56 @@ As described earlier, a large amount of data is required to train a neural netwo
 	    \end{center}
 \end{figure}
 
-\newpage
+
 The image-to-image translation technique has several applications. They are used to transform images of zebra into the horse, images of cats into dogs, images of the day into night and images summer into winter images. They can also be used to transform synthetic images into realistic images by learning to reduce the divergence between the distribution of real data and synthetic data. In this thesis, an image-to-image translation application is developed using \ac{CycleGAN} to reduce the domain gap between synthetic data distribution and real data distribution \cite{zhu2020unpaired}. The \ac{CycleGAN} is an extended variant of Generative Adversarial Network (\ac{GAN}) \cite{goodfellow2014generative}. It is a method to perform unpaired image-to-image translation, in which the model is trained using the collection of images from the source and target domain that are not related to each other\footnotemark.
 \footnotetext{\url{https://machinelearningmastery.com/what-is-cyclegan/} last access: \dcdate}
 
 The proposed image-to-image translation application is developed in consultation with, \ac{ML} developers at Elevait Deutschland GmbH, a Germany-based company that develops \ac{AI} applications for business use-cases. Elevait is widely contributing in the field of Cognitive Business Robotics \cite{Metta2012} to automate document processing. Elevait has developed state-of-the-art \ac{HTR} and \ac{OCR} tools to process documents and extract information from them. To make those systems robust and efficient, a large number of document images are required. The idea is to create a large number of synthetic document images to have a large quantity of annotated data. However, as mentioned earlier, the synthetic document images will not generalize well when they have to process real document images because real document images have different characteristics. Furthermore, real document images possess artifacts such as salt-and-pepper, background noise, blur due to camera motion or shake, watermarks, stains, wrinkles and fading text, introduced during the scanning process \cite{sharma2019learning}. To address this problem, in this thesis, the image-to-image translation application is developed to transform synthetic document images into realistic document images to reduce the domain gap between real data distribution and synthetic data distribution. In this way, a large number of realistic document images can be generated to reduce the scarcity of annotated real document images in the target domain.
 
+
 \begin{figure}[H]
         \begin{center}
-	    \includegraphics[scale=0.70]{images/Introduction/ProposedSolution.png}
-	    \caption[An illustration of the proposed solution for reducing the domain gap between synthetic and real document images.]{An illustration of the proposed solution for reducing the domain gap between synthetic and real document images.}
-	    \label{fig:ProposedSolution}
+	    \includegraphics[scale=0.20]{images/Introduction/template.png}
+	    \caption[Example of a template.]{An example of a template (figure reproduced from elevait GmbH \& Co. KG with permission).}
+    	    \label{fig:exampleTemplate}
+	    \end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+        \begin{center}
+		\includegraphics[scale=0.30]{images/Introduction/HandwrittenNumbers.png}
+    		\caption[Examples of handwritten crops.]{Examples of handwritten crops (figure reproduced from elevait GmbH \& Co. KG with permission). }
+	    	\label{fig:examplesHandwrittenCrops}
 	    \end{center}
 \end{figure}
 
 %The synthetic document images are created using templates (figure \ref{fig:template}) and handwritten crops (figure \ref{fig:keinwifi}) retrieved from handwriting datasets like \ac{MNIST} and IAM handwriting database (figure \ref{fig:iamDataset}) or any other datasets. 
 
-The synthetic document images are created using templates (figure \ref{fig:exampleTemplate}) and handwritten crops (figure \ref{fig:examplesHandwrittenCrops}) retrieved from handwriting dataset These templates contain fields like are customer number, customer name and other customer information. These fields are represented by using bounding boxes. The bounding boxes are annotated using \ac{COCO} annotations \cite{10.1007/978-3-319-10602-1_48}. The handwritten crops are inserted over the empty templates to generate numerous synthetic document images. The proposed image-to-image translation application solves the following problems. First, labeled synthetic document images are available in the source domain, ultimately, using the proposed application the collection of synthetic document images are transformed into realistic document images in the target domain. So the problem of labeling, annotations and scarcity is solved. Second, consider, a huge chunk of real document images are not labeled. If the simple classifier is trained on realistic document images. Later, these chuck of real document images can be automatically classified with ease. This will save data annotation and data collection efforts. Further, making image classification tools in the target domain robust and efficient even in the absence of real data. The figure \ref{fig:Problem} describes if the classifier is trained using synthetic document images, it won't generalize well on the unseen real document images. Further, it leads to high generalization error, hence represented in dark red color for better understanding. In figure \ref{fig:ProposedSolution} Data distribution in light green color represents realistic document images which is generated by the proposed image-to-image translation application. Dark green represents the real document images.  Further, the classifier is trained using realistic document images, generalizes better on the unseen real document images compared to the classifier are trained using synthetic document images, hence low generalization error represented in light red color for better understanding when compared to figure \ref{fig:Problem}.
+The synthetic document images are created using templates (figure \ref{fig:exampleTemplate}) and handwritten crops (figure \ref{fig:examplesHandwrittenCrops}) retrieved from handwriting datasets. These templates contain fields like customer number, name and other information. These fields are represented by using bounding boxes. The bounding boxes are annotated using \ac{COCO} annotations \cite{10.1007/978-3-319-10602-1_48}. The handwritten crops are inserted over the empty templates to generate numerous synthetic document images. The proposed image-to-image translation application solves the following problems. a) Once a large amount of labeled synthetic document images are created in the source domain, next, an image-to-image translation application is trained using synthetic and real document images. Further, the collection of synthetic document images is transformed into realistic document images in the target domain. So the problem of data labeling and data scarcity is solved in the target domain. b) Consider, a large dataset of real document images is not labeled. If the simple classifier is trained on realistic document images that are generated using proposed image-to-image translation application. Further, the dataset of real document images can be automatically classified with ease. This will save data annotation and data collection efforts. Further, making image classification tools in the target domain robust and efficient even in the absence of real data. The figure \ref{fig:Problem} describes if the classifier is trained using synthetic document images, it will not generalize well on the unseen real document images. Further, it leads to high generalization error, hence represented in dark red color for better understanding. In figure \ref{fig:ProposedSolution} data distribution in light green color represents realistic document images which are generated by the proposed image-to-image translation application. Dark green represents the real document images.  The classifier is trained using realistic document images, generalizes better on the unseen real document images compared to the classifier are trained using synthetic document images, hence low generalization error represented in light red color for better understanding when compared with figure \ref{fig:Problem}.
 
+\vspace*{2cm}
+\begin{figure}[H]
+        \begin{center}
+	    \includegraphics[scale=0.60]{images/Introduction/Problem.png}
+	    \caption[An illustration of the problem that this thesis will attempt to answer.]{An illustration of the problem that this thesis will attempt to answer. The classifier trained using synthetic document images (Yellow) will not generalize well on real document images (Green), producing high generalization error (Red).}
+	    \label{fig:Problem}
+	    \end{center}
+\end{figure}
 
-
-\begin{figure}
-  \centering
-  \begin{minipage}[b]{0.4\textwidth}
-  	\includegraphics[width=\textwidth]{images/Introduction/template.png}
-    	\caption[An example of a template.]{An example of a template (figure reproduced from elevait GmbH \& Co. KG with permission).}
-    	\label{fig:exampleTemplate}
-    
-  \end{minipage}
-  \hfill
-  \begin{minipage}[b]{0.4\textwidth}
-	\includegraphics[width=\textwidth]{images/Introduction/HandwrittenNumbers.png}
-    	\caption[Examples of handwritten crops.]{Examples of handwritten crops (figure reproduced from elevait GmbH \& Co. KG with permission). }
-    	\label{fig:examplesHandwrittenCrops}
-  \end{minipage}
+\vspace*{4cm}
+\begin{figure}[H]
+        \begin{center}
+	    \includegraphics[scale=0.70]{images/Introduction/ProposedSolution.png}
+	    \caption[An illustration of the proposed solution for reducing the domain gap between synthetic and real document images.]{An illustration of the proposed solution for reducing the domain gap between synthetic and real document images. The classifier trained using realistic document images (Light green) produces low generalization error (Light red) when evaluated using real document images (Green).}
+	    \label{fig:ProposedSolution}
+	    \end{center}
 \end{figure}
 
 
+
+
+\newpage
 \section{Thesis Objectives}\label{thesisobjectives}
 The goal of this thesis is to close the domain gap between synthetic data distribution and real data distribution by developing an image-to-image translation application using \ac{CycleGAN}, which is used to transform synthetic document images into realistic document images. In addition, in this thesis, experiments are conducted to understand the domain gap between data distributions. The main objectives of this thesis are listed below:
 %Every research work has its own objectives.
@@ -170,8 +182,11 @@ The goal of this thesis is to close the domain gap between synthetic data distri
 \end{enumerate}
 
 
+
+
+
 \section{Thesis Limitations and Structure}\label{thesisstructurelimitations}
-The domain adaptation field is promoting incremental findings, hence this thesis has its limitations due to time constraints. The solution of the defined problem and analysis performed in this thesis investigated only using \ac{CycleGAN}. The comparison with other methodologies is kept apart for future research. The scope of this thesis is limited to the improvement of real document images classification by increasing the quality and quantity of annotated images in the target domain using the proposed image-to-image translation application. The thesis is organized as follows. Chapter \ref{relatedworks} describes related literature and existing methods to solve the problem. Chapter \ref{fundamentals} discusses essential topics \acp{GAN} and \acp{CNN}. Chapter \ref{methodology} describes the method and loss functions used to solve the defined problem. Chapter \ref{implementation} describes the details about the dataset, the architecture of the neural networks implemented in this thesis. Chapter \ref{evaluation} illustrates the evaluation metrics, experiments performed and obtained results. Chapter \ref{conclusion} concludes the research and results analysis along with the future work and the limitations of the thesis.
+The domain adaptation field is promoting incremental findings, hence this thesis has its limitations due to time constraints. The solution of the defined problem and analysis performed in this thesis investigated only using \ac{CycleGAN}. The comparison with other methodologies is kept apart for future research. The scope of this thesis is limited to the improvement of real document images classification by increasing the quality and quantity of annotated images in the target domain using the proposed image-to-image translation application. The thesis is organized as follows. Chapter \ref{relatedworks} describes related literature and existing methods to solve the problem. Chapter \ref{fundamentals} discusses essential topics \acp{GAN} and \acp{CNN}. Chapter \ref{methodology} describes the method and loss functions used to solve the defined problem. Chapter \ref{implementation} describes the details about the dataset, the architecture of the neural networks implemented in this thesis. Chapter \ref{evaluation} illustrates the evaluation metrics, experiments performed and obtained results. Chapter \ref{conclusion} concludes the research and analysis of results along with the future work and the limitations of the thesis.
 
 
 
