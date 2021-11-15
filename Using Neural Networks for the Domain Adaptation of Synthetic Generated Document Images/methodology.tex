@@ -84,7 +84,15 @@ The cycle-consistency loss function is the basis of \ac{CycleGAN}. Theoretically
 
 \subsection{Least-Square Loss}
 
-In general \acp{GAN} the discriminator is a binary classifier that adopts the sigmoid cross-entropy loss function. As discussed in chapter \ref{relatedworks}, while updating the generator, the sigmoid cross-entropy loss function causes the vanishing gradients problem for the samples that are on the correct side of the decision boundary but are still far from the real data \cite{mao2017squares}.  Also, the sigmoid cross-entropy loss function causes difficulty to stabilize the model training procedure \cite{mao2017squares}. First, $\mathcal{L}_{GAN}$ (equation \ref{ganObjectiveFunction}), the negative log-likelihood objective replaced by a least-squares loss functions \cite{mao2017squares}. The least-squares loss is more stable during training and generates higher quality results \cite{mao2017squares}. It is used to optimize the generator and discriminator adversarially. In the below equations, $a$, $b$ and $c$ are the coding scheme for the equations of the discriminator. Where $a$ and $b$ are the labels for fake data and real data, respectively. $c$ denotes the value that $G$ wants $D$ to believe for fake data. Basically, $a = 0$, $b = 1$ and $c = 1$. That means fake data is represented by $0$ and real data is represented by $1$. Then the improved objective functions using least-squares loss can be defined as follows:
+In general \acp{GAN} the discriminator is a binary classifier that adopts the sigmoid cross-entropy loss function. However, the sigmoid cross-entropy loss function causes vanishing gradients problems while updating the generator for the samples that are on the correct side of the decision boundary but are still far away from the real data, because, the calculated error gradients are not sufficient to update the weights of the generator \cite{mao2017squares}.  Also, the sigmoid cross-entropy loss function causes difficulty to stabilize the model training procedure \cite{mao2017squares}. First, $\mathcal{L}_{GAN}$ (equation \ref{ganObjectiveFunction}), the negative log-likelihood objective replaced by a least-squares loss functions \cite{mao2017squares}. The least-squares loss is more stable during training and generates higher quality results \cite{mao2017squares}. It is used to optimize the generator and discriminator adversarially. In the below equations, $a$, $b$ and $c$ are the coding scheme for the equations of the discriminator, where $a = 0$, $b = 1$ and $c = 1$. The fake data is represented by $0$ and real data is represented by $1$. Then the improved objective functions using least-squares loss can be defined as follows:
+
+
+%Where $a$ and $b$ are the labels for fake data and real data, respectively. $c$ denotes the value that $G$ wants $D$ to believe for fake data. 
+
+
+
+
+
 
     \begin{equation}\label{lsgan1}
         \underset{D}{\min}\ \mathcal{L}_{ls}(D_Y) = \frac{1}{2}\ \mathbb{E}_{y \sim p_{data}(y)}\ (D_Y(y) - b)^2 + 
