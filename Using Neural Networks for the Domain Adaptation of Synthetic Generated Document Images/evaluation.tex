@@ -17,7 +17,7 @@ In machine learning, there are numerous performance metrics to evaluate neural n
 %\footnotemark
 %\footnotetext[1]{\url{https://en.wikipedia.org/wiki/Precision_and_recall} last access: \dcdate}
 %\footnotetext[2]{\url{https://machinelearningmastery.com/precision-recall-and-f-measure-for-imbalanced-classification/} last access: \dcdate}
-\footnotetext{\url{https://machinelearningmastery.com/precision-recall-and-f-measure-for-imbalanced-classification/} last access: \dcdate}
+\footnotetext{\url{https://machinelearningmastery.com/tour-of-evaluation-metrics-for-imbalanced-classification/} last access: \dcdate}
 
 \begin{equation}\label{accuracy}
 \textit{Accuracy} = \frac{TP + TN}{TP +TN+ FP + FN}
@@ -154,7 +154,7 @@ The dataset of faxified document images is created by transforming synthetic doc
 
 
 
-\vspace*{1cm}
+%\vspace*{1cm}
 
 \begin{figure}[H]
         \begin{center}
@@ -261,6 +261,8 @@ The dataset of faxified document images is created by transforming synthetic doc
 
 The proposed image-to-image translation application is implemented using \ac{CycleGAN}. The \ac{CycleGAN} is trained using synthetic document images (Domain $X$) and real document images (Domain $Y$). The domain $X$ represents the source domain and domain $Y$ represents the target domain. The \ac{CycleGAN} consists of two generators $G$ and $F$ and two discriminators $D_X$ and $D_Y$. Further, for training, random input images $x_i$ and $y_i$ are retrieved from source domain $X$ and target domain $Y$. The fake image generated using generator $G$ is $Generated\_Y$ and the fake image generated using generator by $F$ is $Generated\_X$. As we described earlier, $G$ is a mapping function to transform an image from source domain $X$ to target domain $Y$, mathematically it is $G: X \rightarrow Y$ and $F$ is vice versa $F: Y \rightarrow X$. The generator $G$ is called the forward generator and $F$ is called the backward generator. The discriminator loss for $D_X$ and $D_Y$ on real and fake images is computed. The computed discriminator loss is used to update the weights of respective discriminator. Next, the cycle-consistency loss is calculated by transforming the source domain image into the target domain, back again into the source domain. It is called forward cycle-consistency loss. It is calculated by determining the difference between the original image in the source domain and cycled image back in the source domain. Please refer to figure \ref{fig:GxyFyx}, the forward cycle-consistency loss is the difference between \textit{Input\_X} and \textit{Cyclic\_X}. The backward cycle-consistency loss is calculated by transforming the target domain image into the source domain, back again into the target domain. In figure \ref{fig:GxyFyx}, the backward cycle-consistency loss is the difference between \textit{Input\_Y} and \textit{Cyclic\_Y}. The cycle-consistency loss forces generating an image that is context instead of generating random images.
 
+Further, identity mapping loss is calculated to preserve the color of images after domain translation using generators $G$ and $F$. The generator $G$ transforms the image from domain $X$ to the domain $Y$. When the input $y_i$ is given to generator $G$ from the target domain $Y$, it should produce an identical image. The identity mapping loss for generator $G$ is the difference between the original image $y_i$ and the transformed image \textit{Same\_Y} when $y_i$ is used as an input for $G$. And, the identity mapping loss for generator $F$ is the difference between input image $x_i$ and the transformed image \textit{Same\_X} when $x_i$ is used as an input for $F$. The generator loss for generators $G$ and $F$ is calculated by the feedback given by their respective discriminators $D_Y$ and $D_X$. Combining generator loss, cycle-consistency loss and identity mapping loss, the total generator loss is calculated separately for generators $G$ and $F$ and their weights are updated to produce quality images. The epochs against loss plot while training generators $G$ and $F$ are shown in figure \ref{fig:generatorG} and \ref{fig:generatorF} respectively. Also, the epochs against loss plot while training discriminators $D_Y$ and $D_X$ are shown in figure \ref{fig:discriminatorDy} and \ref{fig:discriminatorDx} respectively. The algorithm of \ac{CycleGAN} is described in section \ref{CycleGANAlgorithm}. The complete architecture of the proposed image-to-image translation application using \ac{CycleGAN} is illustrated in figure \ref{fig:GxyFyx}. For more \ac{CycleGAN} training details refer section \ref{TrainingDetailsCycleGAN}. 
+
 
 \begin{figure}[H]
   \centering
@@ -293,7 +295,7 @@ vspace*{0.1cm}
 \end{figure}
 
 
-Further, identity mapping loss is calculated to preserve the color of images after domain translation using generators $G$ and $F$. The generator $G$ transforms the image from domain $X$ to the domain $Y$. When the input $y_i$ is given to generator $G$ from the target domain $Y$, it should produce an identical image. The identity mapping loss for generator $G$ is the difference between the original image $y_i$ and the transformed image \textit{Same\_Y} when $y_i$ is used as an input for $G$. And, the identity mapping loss for generator $F$ is the difference between input image $x_i$ and the transformed image \textit{Same\_X} when $x_i$ is used as an input for $F$. The generator loss for generators $G$ and $F$ is calculated by the feedback given by their respective discriminators $D_Y$ and $D_X$. Combining generator loss, cycle-consistency loss and identity mapping loss, the total generator loss is calculated separately for generators $G$ and $F$ and their weights are updated to produce quality images. The epochs against loss plot while training generators $G$ and $F$ are shown in figure \ref{fig:generatorG} and \ref{fig:generatorF} respectively. Also, the epochs against loss plot while training discriminators $D_Y$ and $D_X$ are shown in figure \ref{fig:discriminatorDy} and \ref{fig:discriminatorDx} respectively. The algorithm of \ac{CycleGAN} is described in section \ref{CycleGANAlgorithm}. The complete architecture of the proposed image-to-image translation application using \ac{CycleGAN} is illustrated in figure \ref{fig:GxyFyx}. For more \ac{CycleGAN} training details refer section \ref{TrainingDetailsCycleGAN}. 
+
 
 
 
