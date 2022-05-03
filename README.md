@@ -1,4 +1,4 @@
-# Abstract
+## Abstract
 
 Neural networks have improved significantly in past decades. They are competent
 to solve complex problems in the field of deep learning and they are capable to
@@ -30,3 +30,42 @@ remaining methods and comparisons with them are left for future work. In the fut
 CycleGAN can be used to generate high-quality realistic images in many tasks,
 such as handwriting recognition, image classification, image segmentation and object
 detection.
+
+## Problem
+
+![image](https://user-images.githubusercontent.com/18268525/166524949-a84a1dda-da3c-4ab8-b02f-936a1f1f78ac.png)
+
+## Proposed Solution
+
+![image](https://user-images.githubusercontent.com/18268525/166525063-031d4044-19c3-41cf-a756-bd0ae05ded99.png)
+
+## CycleGAN Architecture
+
+### Discriminator Architecture
+
+![image](https://user-images.githubusercontent.com/18268525/166551564-192db3c7-7b93-48fd-82c2-48d0a9fd05c8.png)
+
+### Generator Architecture
+
+![image](https://user-images.githubusercontent.com/18268525/166551703-954bf35c-546e-4879-bd97-bba9c7f4e0f7.png)
+
+## Loss Functions
+
+### Forward Cycle-Consistency Loss
+
+![image](https://user-images.githubusercontent.com/18268525/166524802-f617f1b0-bd4a-4201-8c3d-dedaa7a08801.png)
+
+### Backward Cycle-Consistency Loss
+
+![image](https://user-images.githubusercontent.com/18268525/166525635-8c5addd6-83cf-4938-8b78-1078bca690e9.png)
+
+### Generator Loss
+
+![image](https://user-images.githubusercontent.com/18268525/166548185-90965f8d-3a1f-4122-b7f6-9f3b5946e76c.png)
+
+### Discriminator Loss
+
+![image](https://user-images.githubusercontent.com/18268525/166549827-1b64c00e-4aeb-44cd-9d57-88bee8bb13e9.png)
+
+
+
