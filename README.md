@@ -31,6 +31,13 @@ CycleGAN can be used to generate high-quality realistic images in many tasks,
 such as handwriting recognition, image classification, image segmentation and object
 detection.
 
+## Training CycleGAN to transform Synthetic Images into Realistic Images
+
+- Use script **cyclegan_keras_example.py** to start training.
+- Inside the script two variables **synthetic_document_images_path** and **real_document_images_path** values needs to be modified.
+- Assign the correct path for synthetic document images and real document images.
+- You can also assign a value to a variable **synthetic_document_images_path_test**, once the training is finished (after 20 epochs), the last saved checkpoint is loaded and the synthetic images from the testing dataset are transformed into realistic document images, so the developer can have a qualitative overview of images produced by the generator.
+
 ## Problem
 
 ![image](https://user-images.githubusercontent.com/18268525/166524949-a84a1dda-da3c-4ab8-b02f-936a1f1f78ac.png)
