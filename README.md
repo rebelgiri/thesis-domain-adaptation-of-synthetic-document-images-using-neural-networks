@@ -1,3 +1,7 @@
+
+# Domain adaptation of synthetic document images using neural networks
+
+
 ## Abstract
 
 Neural networks have improved significantly in past decades. They are competent
